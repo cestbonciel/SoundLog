@@ -24,6 +24,8 @@
 		877DACB82A7AE71500AE3038 /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877DACB52A7AE71500AE3038 /* GmarketSansMedium.otf */; };
 		877DACB92A7AE71500AE3038 /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877DACB62A7AE71500AE3038 /* GmarketSansBold.otf */; };
 		877DACBA2A7AE71500AE3038 /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877DACB72A7AE71500AE3038 /* GmarketSansLight.otf */; };
+		87DB259F2A8D421E00EE0CE4 /* startFirstEnter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DB259E2A8D421E00EE0CE4 /* startFirstEnter.storyboard */; };
+		87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E9769D2A8D4BEA00756C18 /* StartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		877DACB52A7AE71500AE3038 /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
 		877DACB62A7AE71500AE3038 /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
 		877DACB72A7AE71500AE3038 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
+		87DB259E2A8D421E00EE0CE4 /* startFirstEnter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = startFirstEnter.storyboard; sourceTree = "<group>"; };
+		87E9769D2A8D4BEA00756C18 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 		877DAC8F2A7AD46C00AE3038 /* OmyAk */ = {
 			isa = PBXGroup;
 			children = (
+				87E9769D2A8D4BEA00756C18 /* StartViewController.swift */,
 				8720A14E2A7E946700801DEE /* Model.swift */,
 				8720A14C2A7E93B800801DEE /* Video.swift */,
 				8720A1502A7EA60800801DEE /* Response.swift */,
@@ -87,6 +92,7 @@
 				877DAC942A7AD46C00AE3038 /* ViewController.swift */,
 				8720A14A2A7E4F6100801DEE /* Constants.swift */,
 				877DAC962A7AD46C00AE3038 /* Main.storyboard */,
+				87DB259E2A8D421E00EE0CE4 /* startFirstEnter.storyboard */,
 				877DAC992A7AD46D00AE3038 /* Assets.xcassets */,
 				877DACA42A7ADC9100AE3038 /* Resources */,
 				877DAC9B2A7AD46D00AE3038 /* LaunchScreen.storyboard */,
@@ -179,6 +185,7 @@
 				877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */,
 				877DACB92A7AE71500AE3038 /* GmarketSansBold.otf in Resources */,
 				877DACBA2A7AE71500AE3038 /* GmarketSansLight.otf in Resources */,
+				87DB259F2A8D421E00EE0CE4 /* startFirstEnter.storyboard in Resources */,
 				877DACB12A7ADE0700AE3038 /* GmarketSansTTFMedium.ttf in Resources */,
 				877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */,
 				877DACB82A7AE71500AE3038 /* GmarketSansMedium.otf in Resources */,
@@ -198,6 +205,7 @@
 				877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */,
 				8738DFA52A854F18002EE5DE /* CategoryTableViewController.swift in Sources */,
 				8720A14F2A7E946700801DEE /* Model.swift in Sources */,
+				87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */,
 				8720A14B2A7E4F6100801DEE /* Constants.swift in Sources */,
 				8720A14D2A7E93B800801DEE /* Video.swift in Sources */,
 				8720A1512A7EA60800801DEE /* Response.swift in Sources */,

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GmarketSansBold.otf">
+            <string>GmarketSansBold</string>
+        </array>
+        <array key="GmarketSansMedium.otf">
+            <string>GmarketSansMedium</string>
+        </array>
+        <array key="TimesNewRoman.ttf">
+            <string>.SFUI-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Start View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="StartViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O-My-Ak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZ1-Bg-98Q">
+                                <rect key="frame" x="30.000000000000007" y="74" width="119.66666666666669" height="24"/>
+                                <fontDescription key="fontDescription" name="GmarketSansBold" family="Gmarket Sans" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘의    내 음악" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwA-cL-T30">
+                                <rect key="frame" x="112.66666666666669" y="225" width="158" height="80"/>
+                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임을 지어주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQc-0B-g7n">
+                                <rect key="frame" x="112" y="374" width="111" height="12"/>
+                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usg-j7-O2P">
+                                <rect key="frame" x="96" y="471" width="200" height="34"/>
+                                <color key="backgroundColor" red="0.85098039215686272" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name=".SFUI-Regular" family=".AppleSystemUIFont" pointSize="14"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" title="Start">
+                                    <fontDescription key="titleFontDescription" name="GmarketSansBold" family="Gmarket Sans" pointSize="20"/>
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="3자 이상 7자 미만" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="poT-lr-qKA">
+                                <rect key="frame" x="96" y="394" width="201" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4QJ-iC-KBf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="usg-j7-O2P" firstAttribute="top" secondItem="poT-lr-qKA" secondAttribute="bottom" constant="37" id="0a9-f4-1jP"/>
+                            <constraint firstItem="UQc-0B-g7n" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="112" id="59b-1V-1qM"/>
+                            <constraint firstItem="usg-j7-O2P" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="96" id="AUX-z2-od4"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="UwA-cL-T30" secondAttribute="trailing" constant="122.5" id="Cax-Wh-dQo"/>
+                            <constraint firstItem="usg-j7-O2P" firstAttribute="leading" secondItem="poT-lr-qKA" secondAttribute="leading" id="GCO-Rx-CFn"/>
+                            <constraint firstItem="poT-lr-qKA" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="MZ7-Mf-8XK"/>
+                            <constraint firstItem="UwA-cL-T30" firstAttribute="top" secondItem="tZ1-Bg-98Q" secondAttribute="bottom" constant="127" id="SNG-Rc-mhW"/>
+                            <constraint firstItem="UwA-cL-T30" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="112.5" id="hHl-lH-dz3"/>
+                            <constraint firstItem="tZ1-Bg-98Q" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="l7F-kE-HaW"/>
+                            <constraint firstItem="poT-lr-qKA" firstAttribute="top" secondItem="UQc-0B-g7n" secondAttribute="bottom" constant="8" id="lCT-VP-RLl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="usg-j7-O2P" secondAttribute="trailing" constant="97" id="lti-6q-FdK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="usg-j7-O2P" secondAttribute="bottom" constant="313" id="o0y-F7-i1j"/>
+                            <constraint firstItem="tZ1-Bg-98Q" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="tPa-bo-QOx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appNamelabel" destination="UwA-cL-T30" id="jMp-CZ-DdW"/>
+                        <outlet property="nicknameTextField" destination="poT-lr-qKA" id="r3f-mO-paP"/>
+                        <outlet property="startButton" destination="usg-j7-O2P" id="lhH-8D-sCy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-150.38167938931298" y="-27.464788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
