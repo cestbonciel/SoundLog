@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uvI-Jd-9Pg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -22,7 +22,40 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8XA-YO-TVM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1163" y="-48"/>
+            <point key="canvasLocation" x="951" y="-58"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="n8d-l7-14J">
+            <objects>
+                <tabBarController id="fEf-Vj-Qik" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kd2-RT-tBX">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="rhw-ca-8Nb" kind="relationship" relationship="viewControllers" id="bgR-Ri-Me0"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wWW-th-59h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-985" y="-862"/>
+        </scene>
+        <!--홈-->
+        <scene sceneID="RhF-Au-2XI">
+            <objects>
+                <viewController id="rhw-ca-8Nb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D3B-lc-uhz">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Vfp-Ei-fsV"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="홈" image="homeIcon" id="HV1-bD-WDe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fod-1u-eDs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1338" y="-127"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="FIt-5K-KYV">
@@ -73,32 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t2I-lb-gG6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-135.38461538461539" y="-48.341232227488149"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="aeb-ff-QaV">
-            <objects>
-                <viewController id="K8I-Lt-s2M" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9Fm-pm-bNd">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YRw-O1-68k">
-                                <rect key="frame" x="115" y="77" width="131" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                            </segmentedControl>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="foD-D6-Odl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9fg-mv-cOm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-135" y="694"/>
+            <point key="canvasLocation" x="1978" y="-58"/>
         </scene>
         <!--음악 장르 선택-->
         <scene sceneID="tuv-uR-4w4">
@@ -128,11 +136,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eDx-fP-1yW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="713.84615384615381" y="-48.341232227488149"/>
+            <point key="canvasLocation" x="2828" y="-58"/>
         </scene>
     </scenes>
     <resources>
         <image name="chevron.forward" catalog="system" width="97" height="128"/>
+        <image name="homeIcon" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
