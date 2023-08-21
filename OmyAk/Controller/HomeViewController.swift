@@ -1,18 +1,18 @@
 //
-//  MainTabBarControllerViewController.swift
+//  HomeViewController.swift
 //  OmyAk
 //
-//  Created by Seohyun Kim on 2023/08/18.
+//  Created by Seohyun Kim on 2023/08/21.
 //
 
 import UIKit
 
-class MainTabBarControllerViewController: UITabBarController {
+class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+		
     }
     
 

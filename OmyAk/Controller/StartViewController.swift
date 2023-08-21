@@ -8,7 +8,7 @@
 import UIKit
 
 class StartViewController: UIViewController {
-
+	var userNickname: String?
 	@IBOutlet weak var nicknameTextField: UITextField!
 	@IBOutlet weak var appNamelabel: UILabel!
 	
@@ -31,14 +31,27 @@ class StartViewController: UIViewController {
 		self.appNamelabel.attributedText = attributeString
 		
 	}
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	
+	@IBAction func inputNicknameInfo(_ sender: UIButton) {
+		guard let input = nicknameTextField.text else { return }
+		let inputLength = input.count
+		if (3...7).contains(inputLength) {
+			UserDefaults.standard.setValue(input, forKey: "nickname")
+			userNickname = UUID().uuidString
+			UserDefaults.standard.setValue(userNickname, forKey: "user_nickname")
+			
+			self.dismiss(animated: true)
+		} else {
+			let alert = UIAlertController(title: "닉네임 입력", message: "닉네임을 3자이상 7자 이내로 작성하세요.", preferredStyle: .alert)
+			let action = UIAlertAction(title: "입려", style: .default) { _ in
+				print("닉네임 정보가 저장되었습니다.") }
+			alert.addAction(action)
+			present(alert, animated: true)
+		}
+		
+		let tabBarVC = UIStoryboard(name:"Main",bundle: nil).instantiateViewController(withIdentifier: "tabBar")
+		tabBarVC.modalPresentationStyle = .fullScreen
+		present(tabBarVC, animated: true)
+	}
 
 }
