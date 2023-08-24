@@ -6,7 +6,6 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -86,27 +85,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5HJ-rt-JyM">
-                                <rect key="frame" x="30" y="211" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8om-UD-4yC">
-                                    <size key="itemSize" width="128" height="145"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SMP-98-Yct">
-                                        <rect key="frame" x="56" y="0.0" width="128" height="145"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="PAL-0v-fk8">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="145"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vfp-Ei-fsV"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,6 +102,9 @@
                         <imageReference key="image" image="homeIcon" variableValue="1"/>
                         <color key="badgeColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="monthlyArchive" destination="sU1-M8-wIR" id="g72-ka-eqr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fod-1u-eDs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -132,18 +113,42 @@
         <!--View Controller-->
         <scene sceneID="WE5-cv-9pD">
             <objects>
-                <viewController storyboardIdentifier="Write" id="OyC-Qv-DxC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="recordMusicDiary" id="OyC-Qv-DxC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zaG-9M-O77">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3W-GP-o7Y">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <connections>
+                                    <segue destination="e4D-0G-fvK" kind="embed" id="t7H-CO-rxe"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="k1C-G1-z76"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="U3W-GP-o7Y" firstAttribute="leading" secondItem="k1C-G1-z76" secondAttribute="leading" id="OUY-JI-JsF"/>
+                            <constraint firstItem="U3W-GP-o7Y" firstAttribute="trailing" secondItem="k1C-G1-z76" secondAttribute="trailing" id="ede-8F-9RY"/>
+                            <constraint firstAttribute="bottom" secondItem="U3W-GP-o7Y" secondAttribute="bottom" id="fyh-aP-Xpa"/>
+                            <constraint firstItem="U3W-GP-o7Y" firstAttribute="top" secondItem="zaG-9M-O77" secondAttribute="top" id="owN-yK-Srh"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="AddBtn" id="ffJ-wc-Q24"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j9d-0v-y3l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2002" y="-59"/>
+            <point key="canvasLocation" x="-2003.0769230769231" y="-59.004739336492889"/>
+        </scene>
+        <!--RecordMusic-->
+        <scene sceneID="ZRg-Dg-EpO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="recordMusicDiary" referencedIdentifier="RecordMusic" id="e4D-0G-fvK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="3sM-08-Zam"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ESt-oQ-CsU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2003" y="399"/>
         </scene>
         <!--더보기-->
         <scene sceneID="o2k-ct-B8m">
@@ -222,7 +227,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="genreCell" rowHeight="44" id="ji2-qY-tnQ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="44" id="ji2-qY-tnQ">
                                 <rect key="frame" x="0.0" y="50" width="390" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ji2-qY-tnQ" id="rkC-LZ-Ps0">

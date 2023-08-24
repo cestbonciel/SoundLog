@@ -9,6 +9,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
 
+	@IBOutlet weak var AddTabBar: UITabBarItem!
 	@IBOutlet weak var homeTabBar: UITabBar!
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,8 +17,11 @@ class MainTabBarController: UITabBarController {
 		
     }
     
-
-    /*
+	func tappedAddTabBar(_ sending:UITabBarItem!) {
+		
+	}
+	
+	/*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

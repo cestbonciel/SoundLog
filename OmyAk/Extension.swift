@@ -8,6 +8,16 @@
 import Foundation
 import UIKit
 
+extension UILabel {
+	func labelColor(targetString: String, color: UIColor) {
+		let fullText = text ?? ""
+		let attributedString = NSMutableAttributedString(string: fullText)
+		let range = (fullText as NSString).range(of: targetString)
+		attributedString.addAttribute(.foregroundColor, value: color, range: range)
+		attributedText = attributedString
+	}
+}
+
 extension UIColor {
 	class var pastelSkyblue: UIColor {
 		return UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 1)
@@ -19,6 +29,10 @@ extension UIColor {
 	
 	class var neonPurple: UIColor {
 		return UIColor(red: 149.0 / 255.0, green: 146.0 / 255.0, blue: 249.0 / 255.0, alpha: 1)
+	}
+	
+	class var systemDimGray: UIColor {
+		return UIColor(red: 176.0 / 255.0, green: 176.0 / 255.0, blue: 176.0 / 255.0, alpha: 1)
 	}
 }
 
