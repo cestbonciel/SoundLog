@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "homeTitleBG.png",
+      "filename" : "_monthlylbl_bg.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "homeTitleBG@2x.png",
+      "filename" : "_monthlylbl_bg@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "homeTitleBG@3x.png",
+      "filename" : "_monthlylbl_bg@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

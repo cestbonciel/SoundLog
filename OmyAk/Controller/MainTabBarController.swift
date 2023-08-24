@@ -1,5 +1,5 @@
 //
-//  MainTabBarControllerViewController.swift
+//  MainTabBarController.swift
 //  OmyAk
 //
 //  Created by Seohyun Kim on 2023/08/18.
@@ -7,16 +7,21 @@
 
 import UIKit
 
-class MainTabBarControllerViewController: UITabBarController {
+class MainTabBarController: UITabBarController {
 
-    override func viewDidLoad() {
+	@IBOutlet weak var AddTabBar: UITabBarItem!
+	@IBOutlet weak var homeTabBar: UITabBar!
+	override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		
+		
     }
     
-
-    /*
+	func tappedAddTabBar(_ sending:UITabBarItem!) {
+		
+	}
+	
+	/*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
