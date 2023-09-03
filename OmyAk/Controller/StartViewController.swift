@@ -29,7 +29,6 @@ class StartViewController: UIViewController {
 		attributeString.addAttribute(.foregroundColor, value: UIColor(displayP3Red: 149/255, green: 146/255, blue: 230/255, alpha: 1), range: (text as NSString).range(of: "내"))
 		attributeString.addAttribute(.foregroundColor, value: UIColor(displayP3Red: 149/255, green: 146/255, blue: 230/255, alpha: 1), range: (text as NSString).range(of: "악"))
 		self.appNamelabel.attributedText = attributeString
-		
 	}
 	
 	@IBAction func inputNicknameInfo(_ sender: UIButton) {

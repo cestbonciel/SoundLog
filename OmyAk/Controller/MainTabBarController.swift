@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import SwiftUI
 
 class MainTabBarController: UITabBarController {
 
+	
+	
+//	let swiftUIswitch = UIHostingController(rootView: SettingView())
 	@IBOutlet weak var AddTabBar: UITabBarItem!
 	@IBOutlet weak var homeTabBar: UITabBar!
 	override func viewDidLoad() {
@@ -20,6 +24,10 @@ class MainTabBarController: UITabBarController {
 	func tappedAddTabBar(_ sending:UITabBarItem!) {
 		
 	}
+	
+//	@IBAction func goToSettingView(_ sender: Any) {
+//		navigationController?.pushViewController(swiftUIswitch, animated: true)
+//	}
 	
 	/*
     // MARK: - Navigation

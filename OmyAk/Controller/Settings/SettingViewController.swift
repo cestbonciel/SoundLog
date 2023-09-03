@@ -6,69 +6,91 @@
 //
 
 import UIKit
+import SnapKit
 
-class SettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingViewController: UIViewController{
 	
-	let settingMenus = ["북마크한 기록", "테마변경", "언어변경"]
+	/// TableView Setting Menu
+	let tableView = UITableView(frame: .zero, style: .plain)
 	
-	
-	let settingTableView: UITableView = {
-		
-		let tableView = UITableView()
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.separatorStyle = .none
-		tableView.rowHeight = UITableView.automaticDimension
-		tableView.estimatedRowHeight = 77
-		
-		return tableView
+	let settingMenus: [String] = ["북마크한 기록", "테마변경", "언어변경"]
+	let settingIcons: [UIImage] = [
+		UIImage(named: "bookmarkIcon")!,
+		UIImage(named: "themeIcon")!,
+		UIImage(named: "languageIcon")!,
+	]
+
+	private let introLabel: UILabel = {
+		let label = UILabel()
+		label.attributedText = .attributeFont(font: .GMSansMedium, size: 12, text: "당신을 위한 음악 기록, 오늘의 내 음악", lineHeight: 12)
+		label.textColor = .systemDimGray
+		return label
 	}()
+	lazy var profileView: UIView = {
+		let view = UIView()
+		view.backgroundColor = .neonYellow
+		view.layer.borderWidth = 1
+		view.layer.borderColor = UIColor.green.cgColor
+		return view
+	}()
+	private let profileImage: UIImageView = {
+		let imageView = UIImageView(frame: CGRect(x: 30, y: 122, width: 56, height: 56))
+		let profileImage: UIImage = UIImage(named: "profileIcon")!
+		imageView.image = profileImage
+		return imageView
+	}()
+	private let profileNameLabel: UILabel = {
+		let nickNamelabel = UILabel()
+		nickNamelabel.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "뮤덕이", lineHeight: 16)
+		nickNamelabel.textColor = .black
+		return nickNamelabel
+	}()
+
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		settingViewUI()
 		
-		let tableView = UITableView(frame: view.bounds, style: .plain)
-		tableView.delegate = self
-		tableView.dataSource = self
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-		view.addSubview(tableView)
+		
     }
 	private func settingViewUI() {
-		view.addSubview(settingTableView)
 		
-	}
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return settingMenus.count
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-		cell.textLabel?.text = settingMenus[indexPath.row]
-		cell.accessoryType = .disclosureIndicator
-		return cell
-	}
-	
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		tableView.deselectRow(at: indexPath, animated: true)
 		
-		let settingMenus = settingMenus[indexPath.row]
-		switch settingMenus {
-		case "북마크한 기록":
-			if let bookmarkVC = self.storyboard?.instantiateViewController(identifier: "BookmarkViewController") {
-				self.navigationController?.pushViewController(bookmarkVC, animated: true)
-			}
-		case "테마변경":
-			if let themeVC = self.storyboard?.instantiateViewController(identifier: "ThemeViewController") {
-				self.navigationController?.pushViewController(themeVC, animated: true)
-			}
-		case "언어변경"://LanguageViewController
-			if let themeVC = self.storyboard?.instantiateViewController(identifier: "LanguageViewController") {
-				self.navigationController?.pushViewController(themeVC, animated: true)
-			}
-		default:
-			break
+		self.view.addSubview(introLabel)
+		introLabel.setContentCompressionResistancePriority(.init(rawValue:231), for: .horizontal)
+		introLabel.snp.makeConstraints {
+			$0.top.equalToSuperview().offset(80)
+			$0.left.right.equalToSuperview().offset(30)
 		}
+		
+		self.view.addSubview(profileImage)
+		profileImage.snp.makeConstraints {
+			$0.top.equalTo(introLabel.snp.bottom).inset(-24)
+			$0.left.equalToSuperview().offset(30)
+		}
+		self.view.addSubview(profileNameLabel)
+		profileNameLabel.snp.makeConstraints {
+			$0.top.equalTo(introLabel.snp.bottom).inset(-48)
+			$0.left.equalTo(profileImage.snp.right).inset(-20)
+		}
+		
+		self.view.addSubview(tableView)
+		
+		tableView.snp.makeConstraints {
+			$0.top.equalTo(profileImage.snp.bottom).offset(32)
+			$0.left.right.bottom.equalToSuperview()
+			$0.left.equalToSuperview().inset(30)
+		}
+		tableView.register(SettingMenuCell.self, forCellReuseIdentifier: SettingMenuCell.identifier)
+		tableView.delegate = self
+		tableView.dataSource = self
+		tableView.separatorStyle = .none
+		tableView.estimatedRowHeight = 77
+		tableView.isScrollEnabled = false
+		
 	}
-
+	
+	
 }
+
 

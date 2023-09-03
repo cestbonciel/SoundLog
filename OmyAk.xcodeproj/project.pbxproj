@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8708D6BA2A9F86E70000CAC5 /* SnapKit */; };
 		871D0EFA2A971A9C0097D6F1 /* recordMusicDiary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871D0EF92A971A9C0097D6F1 /* recordMusicDiary.storyboard */; };
 		871D0EFC2A971EDB0097D6F1 /* AddMusicDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0EFB2A971EDB0097D6F1 /* AddMusicDiaryViewController.swift */; };
 		871D0EFE2A971F310097D6F1 /* RecordMusicDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0EFD2A971F310097D6F1 /* RecordMusicDiaryViewController.swift */; };
@@ -15,6 +16,11 @@
 		8720A14D2A7E93B800801DEE /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8720A14C2A7E93B800801DEE /* Video.swift */; };
 		8720A14F2A7E946700801DEE /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8720A14E2A7E946700801DEE /* Model.swift */; };
 		8720A1512A7EA60800801DEE /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8720A1502A7EA60800801DEE /* Response.swift */; };
+		8731316D2A9CE26700E8B645 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731316C2A9CE26700E8B645 /* SettingViewController.swift */; };
+		8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */; };
+		8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */; };
+		8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */; };
+		8777A7ED2A9BBED5005526D1 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7EC2A9BBED5005526D1 /* ThemeViewController.swift */; };
 		877DAC912A7AD46C00AE3038 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DAC902A7AD46C00AE3038 /* AppDelegate.swift */; };
 		877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DAC922A7AD46C00AE3038 /* SceneDelegate.swift */; };
 		877DAC952A7AD46C00AE3038 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DAC942A7AD46C00AE3038 /* ViewController.swift */; };
@@ -29,6 +35,8 @@
 		877DACBA2A7AE71500AE3038 /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877DACB72A7AE71500AE3038 /* GmarketSansLight.otf */; };
 		878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D12A8E73A6008340E2 /* MainTabBarController.swift */; };
 		878864D42A8E745D008340E2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D32A8E745D008340E2 /* Extension.swift */; };
+		87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E852AA4B49B005D5351 /* SettingMenuCell.swift */; };
+		87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */; };
 		87ADBC012A9591BC00870D85 /* HomeCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87ADBC002A9591BC00870D85 /* HomeCollectionsViewController.swift */; };
 		87DB259F2A8D421E00EE0CE4 /* startEnter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */; };
 		87E3EBC72A937A7F00D14093 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3EBC62A937A7F00D14093 /* HomeViewController.swift */; };
@@ -44,6 +52,11 @@
 		8720A14C2A7E93B800801DEE /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		8720A14E2A7E946700801DEE /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8720A1502A7EA60800801DEE /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		8731316C2A9CE26700E8B645 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		8777A7EC2A9BBED5005526D1 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		877DAC8D2A7AD46C00AE3038 /* OmyAk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OmyAk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		877DAC902A7AD46C00AE3038 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		877DAC922A7AD46C00AE3038 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +73,8 @@
 		877DACB72A7AE71500AE3038 /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
 		878864D12A8E73A6008340E2 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		878864D32A8E745D008340E2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		87909E852AA4B49B005D5351 /* SettingMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingMenuCell.swift; sourceTree = "<group>"; };
+		87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewController.swift"; sourceTree = "<group>"; };
 		87ADBC002A9591BC00870D85 /* HomeCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionsViewController.swift; sourceTree = "<group>"; };
 		87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = startEnter.storyboard; sourceTree = "<group>"; };
 		87E3EBC62A937A7F00D14093 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -71,12 +86,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8708D6BC2A9F88330000CAC5 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				87909E852AA4B49B005D5351 /* SettingMenuCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		8777A7E62A9BBCD3005526D1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8708D6BC2A9F88330000CAC5 /* cell */,
+				8777A7E72A9BBCF7005526D1 /* SettingMenus */,
+				8731316C2A9CE26700E8B645 /* SettingViewController.swift */,
+				87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8777A7E72A9BBCF7005526D1 /* SettingMenus */ = {
+			isa = PBXGroup;
+			children = (
+				8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */,
+				8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */,
+				8777A7EC2A9BBED5005526D1 /* ThemeViewController.swift */,
+			);
+			path = SettingMenus;
+			sourceTree = "<group>";
+		};
 		877DAC842A7AD46C00AE3038 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +183,7 @@
 		87E3EBC42A93785500D14093 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8777A7E62A9BBCD3005526D1 /* Settings */,
 				878864D12A8E73A6008340E2 /* MainTabBarController.swift */,
 				87E9769D2A8D4BEA00756C18 /* StartViewController.swift */,
 				87E3EBC62A937A7F00D14093 /* HomeViewController.swift */,
@@ -155,6 +201,7 @@
 				877DAC962A7AD46C00AE3038 /* Main.storyboard */,
 				87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */,
 				871D0EF92A971A9C0097D6F1 /* recordMusicDiary.storyboard */,
+				8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,6 +222,9 @@
 			dependencies = (
 			);
 			name = OmyAk;
+			packageProductDependencies = (
+				8708D6BA2A9F86E70000CAC5 /* SnapKit */,
+			);
 			productName = OmyAk;
 			productReference = 877DAC8D2A7AD46C00AE3038 /* OmyAk.app */;
 			productType = "com.apple.product-type.application";
@@ -203,6 +253,9 @@
 				Base,
 			);
 			mainGroup = 877DAC842A7AD46C00AE3038;
+			packageReferences = (
+				8708D6B92A9F86E70000CAC5 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 877DAC8E2A7AD46C00AE3038 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -228,6 +281,7 @@
 				877DACBA2A7AE71500AE3038 /* GmarketSansLight.otf in Resources */,
 				877DACB82A7AE71500AE3038 /* GmarketSansMedium.otf in Resources */,
 				877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */,
+				8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,17 +294,23 @@
 			files = (
 				877DAC952A7AD46C00AE3038 /* ViewController.swift in Sources */,
 				871D0F002A975E1C0097D6F1 /* GenreTableViewController.swift in Sources */,
+				8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */,
 				877DAC912A7AD46C00AE3038 /* AppDelegate.swift in Sources */,
 				87ADBC012A9591BC00870D85 /* HomeCollectionsViewController.swift in Sources */,
 				877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */,
 				878864D42A8E745D008340E2 /* Extension.swift in Sources */,
 				8720A14F2A7E946700801DEE /* Model.swift in Sources */,
 				87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */,
+				87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */,
 				8720A14B2A7E4F6100801DEE /* Constants.swift in Sources */,
 				878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */,
 				8720A14D2A7E93B800801DEE /* Video.swift in Sources */,
+				8777A7ED2A9BBED5005526D1 /* ThemeViewController.swift in Sources */,
 				871D0EFC2A971EDB0097D6F1 /* AddMusicDiaryViewController.swift in Sources */,
+				8731316D2A9CE26700E8B645 /* SettingViewController.swift in Sources */,
+				87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */,
 				8720A1512A7EA60800801DEE /* Response.swift in Sources */,
+				8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */,
 				871D0EFE2A971F310097D6F1 /* RecordMusicDiaryViewController.swift in Sources */,
 				87E3EBC72A937A7F00D14093 /* HomeViewController.swift in Sources */,
 			);
@@ -470,6 +530,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8708D6B92A9F86E70000CAC5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8708D6BA2A9F86E70000CAC5 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8708D6B92A9F86E70000CAC5 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 877DAC852A7AD46C00AE3038 /* Project object */;
 }
