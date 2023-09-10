@@ -10,6 +10,7 @@ import SnapKit
 
 class SettingMenuCell: UITableViewCell {
 	static let identifier: String = "SettingMenuCell"
+	
 
 	lazy var settingImageView: UIImageView = {
 		let imageView = UIImageView()
@@ -39,6 +40,7 @@ class SettingMenuCell: UITableViewCell {
 		settinglabel.snp.makeConstraints{
 			$0.top.bottom.equalToSuperview().inset(12)
 			$0.left.equalTo(settingImageView.snp.right).inset(-30)
+//			$0.right.equalToSuperview().offset(30)
 		}
 	}
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

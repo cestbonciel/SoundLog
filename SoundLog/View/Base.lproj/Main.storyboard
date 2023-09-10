@@ -59,8 +59,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="_monthlylbl_bg" translatesAutoresizingMaskIntoConstraints="NO" id="OIt-wt-5jL">
-                                <rect key="frame" x="30" y="175" width="109" height="13"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="_monthlylbl_bg" translatesAutoresizingMaskIntoConstraints="NO" id="OIt-wt-5jL">
+                                <rect key="frame" x="30" y="173" width="109" height="13"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="월별 음악기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-M8-wIR">
                                 <rect key="frame" x="30" y="167" width="97" height="16"/>
@@ -134,10 +134,10 @@
             </objects>
             <point key="canvasLocation" x="-2003" y="399"/>
         </scene>
-        <!--SettingMenu-->
+        <!--SettingMenus-->
         <scene sceneID="Q4B-5e-3Fd">
             <objects>
-                <viewControllerPlaceholder storyboardName="Setting" referencedIdentifier="SettingMenu" id="ooS-LX-RTp" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Setting" referencedIdentifier="SettingMenus" id="ooS-LX-RTp" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="2W7-iw-Iyx"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bi3-em-abQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -170,6 +170,113 @@
             </objects>
             <point key="canvasLocation" x="-977" y="-58"/>
         </scene>
+        <!--Theme View Controller-->
+        <scene sceneID="RHs-z6-LJN">
+            <objects>
+                <viewController storyboardIdentifier="ThemeViewController" id="U6L-XY-DkT" customClass="ThemeViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Xy-j7-UO3">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="B" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ImS-Eu-U01">
+                                <rect key="frame" x="135" y="315" width="123" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Xcw-mH-FJb"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hgu-Fh-EK0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5oU-Fi-d52" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-57" y="1654"/>
+        </scene>
+        <!--Language View Controller-->
+        <scene sceneID="G2c-eP-dqu">
+            <objects>
+                <viewController storyboardIdentifier="LanguageViewController" id="tAT-LQ-4CZ" customClass="LanguageViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="V90-OF-v0k">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mtz-bq-JtN">
+                                <rect key="frame" x="135" y="267" width="123" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iYZ-yp-7lP"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="b2T-K5-Q3q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sOw-dF-61G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-57" y="2387"/>
+        </scene>
+        <!--Bookmark View Controller-->
+        <scene sceneID="Fiq-Xo-E0Y">
+            <objects>
+                <viewController storyboardIdentifier="BookmarkViewController" id="Ek1-No-UTw" customClass="BookmarkViewController" customModule="OmyAk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yJS-Mh-OY3">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1cU-Ox-qDN">
+                                <rect key="frame" x="135" y="253" width="123" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mh6-PM-MrL"/>
+                        <color key="backgroundColor" systemColor="systemCyanColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6Wa-V9-AJb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EYM-0m-AkI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-57" y="921"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="K1c-AD-nej">
+            <objects>
+                <navigationController id="i8H-3B-pJh" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l7Y-Ek-SzC">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3UP-MN-rWC" kind="relationship" relationship="rootViewController" id="TBh-0c-TBX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Wp-d4-GtZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2148" y="1064"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="WnB-LC-WEe">
+            <objects>
+                <viewController storyboardIdentifier="SettingMenus" id="3UP-MN-rWC" customClass="SettingViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FgT-aM-DkT">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="z7e-xa-cay"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qq6-z3-AhB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X4n-ZT-KfT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1377" y="1064"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AddBtn" width="60" height="60"/>
@@ -180,6 +287,12 @@
         <image name="more_highlight" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemCyanColor">
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

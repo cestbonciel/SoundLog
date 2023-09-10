@@ -26,13 +26,7 @@ class SettingViewController: UIViewController{
 		label.textColor = .systemDimGray
 		return label
 	}()
-	lazy var profileView: UIView = {
-		let view = UIView()
-		view.backgroundColor = .neonYellow
-		view.layer.borderWidth = 1
-		view.layer.borderColor = UIColor.green.cgColor
-		return view
-	}()
+
 	private let profileImage: UIImageView = {
 		let imageView = UIImageView(frame: CGRect(x: 30, y: 122, width: 56, height: 56))
 		let profileImage: UIImage = UIImage(named: "profileIcon")!
@@ -78,14 +72,14 @@ class SettingViewController: UIViewController{
 		
 		tableView.snp.makeConstraints {
 			$0.top.equalTo(profileImage.snp.bottom).offset(32)
-			$0.left.right.bottom.equalToSuperview()
-			$0.left.equalToSuperview().inset(30)
+			$0.left.right.bottom.equalToSuperview().inset(10)
+//			$0.left.equalToSuperview().inset(30)
 		}
 		tableView.register(SettingMenuCell.self, forCellReuseIdentifier: SettingMenuCell.identifier)
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.separatorStyle = .none
-		tableView.estimatedRowHeight = 77
+//		tableView.estimatedRowHeight = 77
 		tableView.isScrollEnabled = false
 		
 	}

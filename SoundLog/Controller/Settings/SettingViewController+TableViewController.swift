@@ -13,7 +13,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return settingMenus.count
-		print("설정 메뉴: \(settingMenus.count)")
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -28,12 +27,15 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
 		tableView.deselectRow(at: indexPath, animated: true)
 		
 		let settingMenus = settingMenus[indexPath.row]
+
 		switch settingMenus {
 		case "북마크한 기록":
 			if let bookmarkVC = self.storyboard?.instantiateViewController(identifier: "BookmarkViewController") {
+
 				self.navigationController?.pushViewController(bookmarkVC, animated: true)
 			}
 		case "테마변경":
