@@ -20,7 +20,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="n8d-l7-14J">
             <objects>
-                <tabBarController storyboardIdentifier="tabBar" id="fEf-Vj-Qik" customClass="MainTabBarController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" id="fEf-Vj-Qik" customClass="MainTabBarController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kd2-RT-tBX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -42,24 +42,18 @@
         <!--홈-->
         <scene sceneID="RhF-Au-2XI">
             <objects>
-                <viewController storyboardIdentifier="Home" id="rhw-ca-8Nb" customClass="HomeViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" id="rhw-ca-8Nb" customClass="HomeViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D3B-lc-uhz">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O my Ak" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-Lr-gDE">
-                                <rect key="frame" x="210" y="74" width="150" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="소리의 기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADt-nx-acz">
+                                <rect key="frame" x="180" y="63" width="174" height="45"/>
                                 <fontDescription key="fontDescription" name="GmarketSansBold" family="Gmarket Sans" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘의 내음악" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADt-nx-acz">
-                                <rect key="frame" x="263" y="121" width="97" height="16"/>
-                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="_monthlylbl_bg" translatesAutoresizingMaskIntoConstraints="NO" id="OIt-wt-5jL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="_monthlylbl_bg" translatesAutoresizingMaskIntoConstraints="NO" id="OIt-wt-5jL">
                                 <rect key="frame" x="30" y="173" width="109" height="13"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="월별 음악기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-M8-wIR">
@@ -69,16 +63,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Log" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-Lr-gDE">
+                                <rect key="frame" x="154" y="100" width="187" height="48"/>
+                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vfp-Ei-fsV"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.96197502710000005" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Vfp-Ei-fsV" firstAttribute="bottom" secondItem="ADt-nx-acz" secondAttribute="bottom" constant="624" id="16S-RC-Wsm"/>
-                            <constraint firstItem="ADt-nx-acz" firstAttribute="trailing" secondItem="1M7-Lr-gDE" secondAttribute="trailing" id="5Xm-we-WGQ"/>
-                            <constraint firstItem="OIt-wt-5jL" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="128" id="CUg-wH-gwS"/>
-                            <constraint firstItem="ADt-nx-acz" firstAttribute="top" secondItem="1M7-Lr-gDE" secondAttribute="bottom" constant="15" id="Xu6-ow-lXD"/>
-                            <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="1M7-Lr-gDE" secondAttribute="trailing" constant="30" id="bHB-Xp-WZ3"/>
+                            <constraint firstItem="Vfp-Ei-fsV" firstAttribute="bottom" secondItem="ADt-nx-acz" secondAttribute="bottom" constant="653" id="16S-RC-Wsm"/>
+                            <constraint firstItem="OIt-wt-5jL" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="126" id="CUg-wH-gwS"/>
+                            <constraint firstItem="Vfp-Ei-fsV" firstAttribute="bottom" secondItem="1M7-Lr-gDE" secondAttribute="bottom" constant="613" id="FTI-fS-CY8"/>
+                            <constraint firstAttribute="trailing" secondItem="1M7-Lr-gDE" secondAttribute="trailing" constant="49" id="LRb-Bt-LGs"/>
+                            <constraint firstItem="ADt-nx-acz" firstAttribute="leading" secondItem="Vfp-Ei-fsV" secondAttribute="leading" constant="180" id="PU7-KV-n9z"/>
+                            <constraint firstItem="1M7-Lr-gDE" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="53" id="S1M-Fc-Phd"/>
+                            <constraint firstItem="1M7-Lr-gDE" firstAttribute="leading" secondItem="Vfp-Ei-fsV" secondAttribute="leading" constant="154" id="TZu-co-Ser"/>
                             <constraint firstItem="OIt-wt-5jL" firstAttribute="leading" secondItem="Vfp-Ei-fsV" secondAttribute="leading" constant="30" id="tIw-cy-KeW"/>
                         </constraints>
                     </view>
@@ -118,7 +120,7 @@
                             <constraint firstItem="U3W-GP-o7Y" firstAttribute="top" secondItem="zaG-9M-O77" secondAttribute="top" id="owN-yK-Srh"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="AddBtn" id="ffJ-wc-Q24"/>
+                    <tabBarItem key="tabBarItem" title="" image="shazam" selectedImage="shazam" id="ffJ-wc-Q24"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j9d-0v-y3l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -173,7 +175,7 @@
         <!--Theme View Controller-->
         <scene sceneID="RHs-z6-LJN">
             <objects>
-                <viewController storyboardIdentifier="ThemeViewController" id="U6L-XY-DkT" customClass="ThemeViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ThemeViewController" id="U6L-XY-DkT" customClass="ThemeViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0Xy-j7-UO3">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,7 +200,7 @@
         <!--Language View Controller-->
         <scene sceneID="G2c-eP-dqu">
             <objects>
-                <viewController storyboardIdentifier="LanguageViewController" id="tAT-LQ-4CZ" customClass="LanguageViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LanguageViewController" id="tAT-LQ-4CZ" customClass="LanguageViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V90-OF-v0k">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -264,7 +266,7 @@
         <!--Setting View Controller-->
         <scene sceneID="WnB-LC-WEe">
             <objects>
-                <viewController storyboardIdentifier="SettingMenus" id="3UP-MN-rWC" customClass="SettingViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingMenus" id="3UP-MN-rWC" customClass="SettingViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FgT-aM-DkT">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,12 +281,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AddBtn" width="60" height="60"/>
         <image name="_monthlylbl_bg" width="109" height="13"/>
         <image name="homeIcon" width="24" height="24"/>
         <image name="home_highlight" width="24" height="24"/>
         <image name="moreIcon" width="24" height="24"/>
         <image name="more_highlight" width="24" height="24"/>
+        <image name="shazam" width="60" height="60"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
