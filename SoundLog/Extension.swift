@@ -17,7 +17,7 @@ extension UILabel {
 		attributedText = attributedString
 	}
 }
-
+//MARK: - Custom UIColor
 extension UIColor {
 	class var pastelSkyblue: UIColor {
 		return UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 1)
@@ -35,7 +35,7 @@ extension UIColor {
 		return UIColor(red: 176.0 / 255.0, green: 176.0 / 255.0, blue: 176.0 / 255.0, alpha: 1)
 	}
 }
-
+//MARK: - Custom Font
 enum OhmyAkFontType {
 	case GMSansLight
 	case GMSansMedium
