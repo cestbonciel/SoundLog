@@ -11,7 +11,8 @@ Pods/
 # Xcode
 # Xcode User interface state files
 *.xcuserstate
-#
+*..xcuserdatad/UserInterfaceState.xcuserstate
+
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## User settings
