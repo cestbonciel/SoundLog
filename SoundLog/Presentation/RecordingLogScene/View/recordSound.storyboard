@@ -25,17 +25,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="P2J-3x-6vn"/>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="MZ7-l7-ZGy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ia-I3-YeP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-847" y="-27"/>
         </scene>
-        <!--Record Music Diary View Controller-->
+        <!--Record Sound Log View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="RecordMusic" id="Y6W-OH-hqX" customClass="RecordMusicDiaryViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecordSound" id="Y6W-OH-hqX" customClass="RecordSoundLogViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,9 +71,6 @@
                                         <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="tappedSave:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="tgy-k6-dbX"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="음악을 검색해주세요." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uaE-Ce-Sbr">
                                 <rect key="frame" x="30" y="150" width="330" height="48"/>
@@ -141,10 +138,6 @@
                                 <buttonConfiguration key="configuration" style="plain" image="chevron.right" catalog="system">
                                     <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="selectGenreButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Csg-U1-og1"/>
-                                    <segue destination="6Gh-O6-aR4" kind="show" id="xEE-kp-Bzb"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="기분" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4j5-Ac-v3O">
                                 <rect key="frame" x="32" y="704" width="57" height="19"/>
@@ -158,70 +151,45 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="😢"/>
-                                <connections>
-                                    <action selector="selectMood:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cMK-na-8Oi"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pa7-zQ-mHv">
                                 <rect key="frame" x="265" y="696" width="47" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="😆"/>
-                                <connections>
-                                    <action selector="selectMood:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="W1i-nU-yeA"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQr-Y6-NbW">
                                 <rect key="frame" x="321" y="696" width="47" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="😄"/>
-                                <connections>
-                                    <action selector="selectMood:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="e3g-Ll-B6d"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bym-IV-go0">
                                 <rect key="frame" x="141" y="696" width="47" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="😡"/>
-                                <connections>
-                                    <action selector="selectMood:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="BTo-i2-Es7"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPL-fS-aTX">
                                 <rect key="frame" x="87" y="696" width="47" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="🙂"/>
-                                <connections>
-                                    <action selector="selectMood:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Kqz-1C-AvW"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="5jz-33-dwC"/>
-                    <connections>
-                        <outlet property="characterLabel" destination="YCs-4S-zP1" id="53V-Ge-ko8"/>
-                        <outlet property="recordTextView" destination="I3Y-1L-JaL" id="jqM-Lh-v4A"/>
-                        <outlet property="searchTextField" destination="uaE-Ce-Sbr" id="X4t-I1-bOE"/>
-                        <outletCollection property="moodButtons" destination="gPL-fS-aTX" collectionClass="NSMutableArray" id="o6H-cB-cs9"/>
-                        <outletCollection property="moodButtons" destination="Bym-IV-go0" collectionClass="NSMutableArray" id="ZEA-8n-gZk"/>
-                        <outletCollection property="moodButtons" destination="l2q-fa-KKs" collectionClass="NSMutableArray" id="Frk-6u-eNs"/>
-                        <outletCollection property="moodButtons" destination="pa7-zQ-mHv" collectionClass="NSMutableArray" id="Xg7-gY-F5r"/>
-                        <outletCollection property="moodButtons" destination="QQr-Y6-NbW" collectionClass="NSMutableArray" id="BBv-O9-te3"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3.8167938931297707" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="19" y="-27"/>
         </scene>
         <!--Genre Table View Controller-->
         <scene sceneID="kBn-cA-Eem">
             <objects>
-                <tableViewController storyboardIdentifier="genreView" id="6Gh-O6-aR4" customClass="GenreTableViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="genreView" id="6Gh-O6-aR4" customClass="GenreTableViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="aOl-dO-fdg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
