@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="-2003.0769230769231" y="-59.004739336492889"/>
         </scene>
-        <!--RecordMusic-->
+        <!--RecordSound-->
         <scene sceneID="ZRg-Dg-EpO">
             <objects>
-                <viewControllerPlaceholder storyboardName="recordMusicDiary" referencedIdentifier="RecordMusic" id="e4D-0G-fvK" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="recordSound" referencedIdentifier="RecordSound" id="e4D-0G-fvK" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="3sM-08-Zam"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESt-oQ-CsU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

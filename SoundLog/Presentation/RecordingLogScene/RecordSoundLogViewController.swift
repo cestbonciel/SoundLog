@@ -1,5 +1,5 @@
 //
-//  RecordMusicDiaryViewController.swift
+//  RecordSoundLogViewController.swift
 //  OmyAk
 //
 //  Created by Seohyun Kim on 2023/08/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecordMusicDiaryViewController: UIViewController {
+class RecordSoundLogViewController: UIViewController {
 	let placeholder = "오늘 당신의 음악을 기록해주세요."
 	
 	@IBOutlet var moodButtons: [UIButton]!
@@ -23,11 +23,7 @@ class RecordMusicDiaryViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-		searchTextField.layer.borderColor = UIColor.black.cgColor
-		searchTextField.layer.borderWidth = 1
-		recordTextView.layer.borderColor = UIColor.black.cgColor
-		recordTextView.layer.borderWidth = 1
-		recordTextView.textContainerInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+		
 		
 		
     }
@@ -66,8 +62,8 @@ class RecordMusicDiaryViewController: UIViewController {
 		sender.clipsToBounds = true
 	}
 }
-
-extension RecordMusicDiaryViewController: UITextViewDelegate {
+/*
+extension RecordSoundLogViewController: UITextViewDelegate {
 //	let placeholder = "오늘 당신의 음악을 기록해주세요."
 	
 	func textViewDidBeginEditing(_ textView: UITextView) {
@@ -107,3 +103,4 @@ extension RecordMusicDiaryViewController: UITextViewDelegate {
 
 }
 
+*/
