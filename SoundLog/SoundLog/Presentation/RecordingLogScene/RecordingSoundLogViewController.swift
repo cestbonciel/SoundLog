@@ -8,8 +8,24 @@
 import UIKit
 
 class RecordingSoundLogViewController: UIViewController {
-	let placeholder = "오늘 당신의 음악을 기록해주세요."
 	
+	
+	//MARK: - viewDidLoad
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		self.view.backgroundColor = UIColor.pastelSkyblue
+	}
+	//MARK: - Buttons: save, cancel
+	private lazy var cancelButton: UIButton = {
+		let button = UIButton()
+		button.setAttributedTitle(<#T##title: NSAttributedString?##NSAttributedString?#>, for: <#T##UIControl.State#>)
+		return button
+	}()
+	
+	private lazy var saveButton: UIButton = {
+		let button = UIButton()
+		return button
+	}()
 //	@IBOutlet var moodButtons: [UIButton]!
 //	var moodTag: Int = 1
 //	@IBOutlet weak var characterLabel: UILabel!
@@ -19,11 +35,7 @@ class RecordingSoundLogViewController: UIViewController {
 //	@IBOutlet weak var viewGenreButton: UIButton!
 	
 	
-	//MARK: - viewDidLoad
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		self.view.backgroundColor = UIColor.pastelSkyblue
-	}
+	
 //    self.dismiss(animated: true)
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		view.endEditing(true)
