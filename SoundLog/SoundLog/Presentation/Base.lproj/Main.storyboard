@@ -75,7 +75,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
                                 <connections>
-                                    <action selector="recordingSound:" destination="rhw-ca-8Nb" eventType="touchUpInside" id="XtG-d4-2aQ"/>
+                                    <action selector="recordingSoundButtonTapped:" destination="rhw-ca-8Nb" eventType="touchUpInside" id="XtG-d4-2aQ"/>
                                 </connections>
                             </button>
                         </subviews>

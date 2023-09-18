@@ -36,13 +36,13 @@ extension UIColor {
 	}
 }
 //MARK: - Custom Font
-enum OhmyAkFontType {
+enum SoundLogCustomFont {
 	case GMSansLight
 	case GMSansMedium
 	case GMSansBold
 }
 extension NSAttributedString {
-	class func attributeFont(font: OhmyAkFontType, size: CGFloat, text: String, lineHeight: CGFloat) -> NSAttributedString {
+	class func attributeFont(font: SoundLogCustomFont, size: CGFloat, text: String, lineHeight: CGFloat) -> NSAttributedString {
 		let attributeString = NSMutableAttributedString(string: text)
 		let paragraphStyle = NSMutableParagraphStyle()
 		
