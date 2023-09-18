@@ -22,19 +22,22 @@
         <!--Start View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="InputNickname" id="Y6W-OH-hqX" customClass="StartViewController" customModule="OmyAk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InputNickname" id="Y6W-OH-hqX" customClass="StartViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O-My-Ak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZ1-Bg-98Q">
-                                <rect key="frame" x="30.000000000000007" y="74" width="119.66666666666669" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Log" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZ1-Bg-98Q">
+                                <rect key="frame" x="30" y="74" width="144" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="ziE-iG-LSa"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="GmarketSansBold" family="Gmarket Sans" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘의    내 음악" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwA-cL-T30">
-                                <rect key="frame" x="112.66666666666669" y="225" width="158" height="80"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소리의     기록" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwA-cL-T30">
+                                <rect key="frame" x="112.66666666666669" y="258" width="158" height="80"/>
                                 <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -81,17 +84,17 @@
                         <constraints>
                             <constraint firstItem="usg-j7-O2P" firstAttribute="top" secondItem="poT-lr-qKA" secondAttribute="bottom" constant="37" id="0a9-f4-1jP"/>
                             <constraint firstItem="UQc-0B-g7n" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="112" id="59b-1V-1qM"/>
+                            <constraint firstItem="tZ1-Bg-98Q" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="7ie-QT-dL1"/>
                             <constraint firstItem="usg-j7-O2P" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="96" id="AUX-z2-od4"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="UwA-cL-T30" secondAttribute="trailing" constant="122.5" id="Cax-Wh-dQo"/>
                             <constraint firstItem="usg-j7-O2P" firstAttribute="leading" secondItem="poT-lr-qKA" secondAttribute="leading" id="GCO-Rx-CFn"/>
+                            <constraint firstItem="UQc-0B-g7n" firstAttribute="top" secondItem="UwA-cL-T30" secondAttribute="bottom" constant="36" id="HaS-WG-c5n"/>
                             <constraint firstItem="poT-lr-qKA" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="MZ7-Mf-8XK"/>
-                            <constraint firstItem="UwA-cL-T30" firstAttribute="top" secondItem="tZ1-Bg-98Q" secondAttribute="bottom" constant="127" id="SNG-Rc-mhW"/>
+                            <constraint firstItem="tZ1-Bg-98Q" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="eVz-se-JOT"/>
                             <constraint firstItem="UwA-cL-T30" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="112.5" id="hHl-lH-dz3"/>
-                            <constraint firstItem="tZ1-Bg-98Q" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="30" id="l7F-kE-HaW"/>
                             <constraint firstItem="poT-lr-qKA" firstAttribute="top" secondItem="UQc-0B-g7n" secondAttribute="bottom" constant="8" id="lCT-VP-RLl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="usg-j7-O2P" secondAttribute="trailing" constant="97" id="lti-6q-FdK"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="usg-j7-O2P" secondAttribute="bottom" constant="313" id="o0y-F7-i1j"/>
-                            <constraint firstItem="tZ1-Bg-98Q" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="15" id="tPa-bo-QOx"/>
                         </constraints>
                     </view>
                     <connections>
