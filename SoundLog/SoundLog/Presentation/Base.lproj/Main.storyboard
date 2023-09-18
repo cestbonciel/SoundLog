@@ -68,6 +68,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6J-fv-VGE">
+                                <rect key="frame" x="307" y="190" width="47" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="recordingSound:" destination="rhw-ca-8Nb" eventType="touchUpInside" id="XtG-d4-2aQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vfp-Ei-fsV"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -92,26 +102,24 @@
                         <color key="badgeColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="AddButton" destination="q6J-fv-VGE" id="KND-wA-uW3"/>
                         <outlet property="monthlyArchive" destination="sU1-M8-wIR" id="g72-ka-eqr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fod-1u-eDs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2883.0769230769229" y="-58.293838862559241"/>
+            <point key="canvasLocation" x="-4072" y="-43"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="WE5-cv-9pD">
             <objects>
-                <viewController storyboardIdentifier="recordMusicDiary" id="OyC-Qv-DxC" sceneMemberID="viewController">
+                <viewController id="OyC-Qv-DxC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zaG-9M-O77">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3W-GP-o7Y">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                                <connections>
-                                    <segue destination="e4D-0G-fvK" kind="embed" id="t7H-CO-rxe"/>
-                                </connections>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="k1C-G1-z76"/>
@@ -128,16 +136,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j9d-0v-y3l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2003.0769230769231" y="-59.004739336492889"/>
-        </scene>
-        <!--RecordSound-->
-        <scene sceneID="ZRg-Dg-EpO">
-            <objects>
-                <viewControllerPlaceholder storyboardName="recordSound" referencedIdentifier="RecordSound" id="e4D-0G-fvK" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="3sM-08-Zam"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ESt-oQ-CsU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2003" y="399"/>
         </scene>
         <!--SettingMenus-->
         <scene sceneID="Q4B-5e-3Fd">
@@ -250,38 +248,6 @@
             </objects>
             <point key="canvasLocation" x="-57" y="921"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="K1c-AD-nej">
-            <objects>
-                <navigationController id="i8H-3B-pJh" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l7Y-Ek-SzC">
-                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="3UP-MN-rWC" kind="relationship" relationship="rootViewController" id="TBh-0c-TBX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Wp-d4-GtZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2148" y="1064"/>
-        </scene>
-        <!--Setting View Controller-->
-        <scene sceneID="WnB-LC-WEe">
-            <objects>
-                <viewController storyboardIdentifier="SettingMenus" id="3UP-MN-rWC" customClass="SettingViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FgT-aM-DkT">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="z7e-xa-cay"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Qq6-z3-AhB"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X4n-ZT-KfT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1377" y="1064"/>
-        </scene>
     </scenes>
     <resources>
         <image name="_monthlylbl_bg" width="109" height="13"/>
@@ -289,6 +255,7 @@
         <image name="home_highlight" width="24" height="24"/>
         <image name="moreIcon" width="24" height="24"/>
         <image name="more_highlight" width="24" height="24"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="shazam" width="60" height="60"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

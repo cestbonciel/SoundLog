@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8708D6BA2A9F86E70000CAC5 /* SnapKit */; };
-		871D0EFA2A971A9C0097D6F1 /* recordSound.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871D0EF92A971A9C0097D6F1 /* recordSound.storyboard */; };
-		871D0EFE2A971F310097D6F1 /* RecordSoundLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0EFD2A971F310097D6F1 /* RecordSoundLogViewController.swift */; };
+		871D0EFE2A971F310097D6F1 /* RecordingSoundLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0EFD2A971F310097D6F1 /* RecordingSoundLogViewController.swift */; };
 		871D0F002A975E1C0097D6F1 /* GenreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0EFF2A975E1C0097D6F1 /* GenreTableViewController.swift */; };
 		8731316D2A9CE26700E8B645 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731316C2A9CE26700E8B645 /* SettingViewController.swift */; };
+		8744185D2AB8966200233604 /* RecordingSound.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8744185C2AB8966200233604 /* RecordingSound.storyboard */; };
 		8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */; };
 		8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */; };
 		8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */; };
@@ -35,10 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		871D0EF92A971A9C0097D6F1 /* recordSound.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = recordSound.storyboard; sourceTree = "<group>"; };
-		871D0EFD2A971F310097D6F1 /* RecordSoundLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSoundLogViewController.swift; sourceTree = "<group>"; };
+		871D0EFD2A971F310097D6F1 /* RecordingSoundLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSoundLogViewController.swift; sourceTree = "<group>"; };
 		871D0EFF2A975E1C0097D6F1 /* GenreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTableViewController.swift; sourceTree = "<group>"; };
 		8731316C2A9CE26700E8B645 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		8744185C2AB8966200233604 /* RecordingSound.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecordingSound.storyboard; sourceTree = "<group>"; };
 		8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 			children = (
 				87BFB0612AB830ED00CF839A /* View */,
 				871D0EFF2A975E1C0097D6F1 /* GenreTableViewController.swift */,
-				871D0EFD2A971F310097D6F1 /* RecordSoundLogViewController.swift */,
+				871D0EFD2A971F310097D6F1 /* RecordingSoundLogViewController.swift */,
 			);
 			path = RecordingLogScene;
 			sourceTree = "<group>";
@@ -206,7 +206,7 @@
 		87BFB0612AB830ED00CF839A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				871D0EF92A971A9C0097D6F1 /* recordSound.storyboard */,
+				8744185C2AB8966200233604 /* RecordingSound.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -291,10 +291,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				871D0EFA2A971A9C0097D6F1 /* recordSound.storyboard in Resources */,
 				877DAC982A7AD46C00AE3038 /* Main.storyboard in Resources */,
 				87DB259F2A8D421E00EE0CE4 /* startEnter.storyboard in Resources */,
 				87BFB0592AB8179900CF839A /* GmarketSansLight.otf in Resources */,
+				8744185D2AB8966200233604 /* RecordingSound.storyboard in Resources */,
 				877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */,
 				877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */,
 				87BFB05A2AB8179900CF839A /* GmarketSansMedium.otf in Resources */,
@@ -323,7 +323,7 @@
 				8731316D2A9CE26700E8B645 /* SettingViewController.swift in Sources */,
 				87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */,
 				8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */,
-				871D0EFE2A971F310097D6F1 /* RecordSoundLogViewController.swift in Sources */,
+				871D0EFE2A971F310097D6F1 /* RecordingSoundLogViewController.swift in Sources */,
 				87E3EBC72A937A7F00D14093 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

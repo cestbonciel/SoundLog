@@ -1,6 +1,6 @@
 //
 //  GenreTableViewController.swift
-//  OmyAk
+//  SoundLog
 //
 //  Created by Seohyun Kim on 2023/08/24.
 //
@@ -8,7 +8,7 @@
 import UIKit
 
 class GenreTableViewController: UITableViewController {
-	var genreVC: RecordSoundLogViewController?
+	var genreVC: RecordingSoundLogViewController?
 	var hierachicalData = ["Jazz", "POP", "K-POP", "Classic", "ASMR", "EDM"]
 	
     override func viewDidLoad() {

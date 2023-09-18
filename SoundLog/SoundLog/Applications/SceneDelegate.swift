@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  OmyAk
+//  SoundLog
 //
 //  Created by Seohyun Kim on 2023/08/03.
 //
@@ -46,7 +46,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 				let selectedImage1 = UIImage(named: "home_highlight")?.withRenderingMode(.alwaysOriginal)
 				tabBarItem[0].selectedImage = selectedImage1
 				
-				let image2 = UIImage(named: "AddBtn")?.withRenderingMode(.alwaysOriginal)
+				let image2 = UIImage(named: "shazam")?.withRenderingMode(.alwaysOriginal)
 				tabBarItem[1].image = image2
 				
 				let image3 = UIImage(named: "moreIcon")?.withRenderingMode(.alwaysOriginal)

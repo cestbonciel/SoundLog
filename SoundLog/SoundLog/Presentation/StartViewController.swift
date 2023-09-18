@@ -1,6 +1,6 @@
 //
 //  StartViewController.swift
-//  OmyAk
+//  SoundLog
 //
 //  Created by Seohyun Kim on 2023/08/17.
 //
