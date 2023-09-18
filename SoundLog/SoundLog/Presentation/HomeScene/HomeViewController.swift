@@ -19,13 +19,12 @@ class HomeViewController: UIViewController {
 		
     }
     
-	@IBAction func recordingSound(_ sender: Any) {
-		let targetStoryboard = UIStoryboard(name: "RecordingSound", bundle: nil)
-		let targetViewController = targetStoryboard.instantiateViewController(withIdentifier: "Record")
-		targetViewController.modalPresentationStyle = .fullScreen
-		self.present(targetViewController, animated: true)
+	@IBAction func recordingSoundButtonTapped(_ sender: Any) {
+		let viewController = RecordingSoundLogViewController()
+		viewController.isModalInPresentation = true
+		viewController.modalPresentationStyle = .fullScreen
+		self.present(viewController, animated: true)
 	}
-	
 //	recordingSound
 	/*
 	 @IBAction func actToOrange(_ sender: Any) {
