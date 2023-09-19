@@ -55,19 +55,17 @@ class RecordingSoundLogViewController: UIViewController {
 		return button
 	}()
 	
+	private lazy var date: UIDatePicker = {
+		let date = UIDatePicker()
+		return date
+	}()
+	
 	@objc func actCancelButton() {
-//		self.dismiss(animated: true)
 		UIView.animate(withDuration: 1.0, delay: 0.8, options: [.curveEaseInOut], animations: {
 			self.dismiss(animated: true)
 		}, completion: nil)
 	}
-//	@IBOutlet var moodButtons: [UIButton]!
-//	var moodTag: Int = 1
-//	@IBOutlet weak var characterLabel: UILabel!
-//	@IBOutlet weak var searchTextField: UITextField!
-//	@IBOutlet weak var recordTextView: UITextView!
-	
-//	@IBOutlet weak var viewGenreButton: UIButton!
+
 	
 	private func setupUI() {
 		self.view.addSubview(buttonStack)
