@@ -120,6 +120,9 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3W-GP-o7Y">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <connections>
+                                    <segue destination="TO6-NN-hxr" kind="embed" id="Dxc-GG-Mnv"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="k1C-G1-z76"/>
@@ -136,6 +139,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j9d-0v-y3l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2003.0769230769231" y="-59.004739336492889"/>
+        </scene>
+        <!--Shazam-->
+        <scene sceneID="JRf-h1-w2X">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Shazam" referencedIdentifier="Shazam" id="TO6-NN-hxr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vlc-ew-1SY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2003" y="380"/>
         </scene>
         <!--SettingMenus-->
         <scene sceneID="Q4B-5e-3Fd">

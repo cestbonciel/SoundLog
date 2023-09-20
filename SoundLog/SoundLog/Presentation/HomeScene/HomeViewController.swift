@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     }
     
 	@IBAction func recordingSoundButtonTapped(_ sender: Any) {
-		let viewController = RecordingSoundLogViewController()
+		let viewController = SoundLogViewController()
 		viewController.isModalInPresentation = true
 		viewController.modalPresentationStyle = .fullScreen
 		self.present(viewController, animated: true)
