@@ -8,7 +8,7 @@
 import UIKit
 
 class GenreTableViewController: UITableViewController {
-	var genreVC: RecordingSoundLogViewController?
+	var genreVC: SoundLogViewController?
 	var hierachicalData = ["Jazz", "POP", "K-POP", "Classic", "ASMR", "EDM"]
 	
     override func viewDidLoad() {

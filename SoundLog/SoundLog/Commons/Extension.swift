@@ -34,6 +34,10 @@ extension UIColor {
 	class var systemDimGray: UIColor {
 		return UIColor(red: 176.0 / 255.0, green: 176.0 / 255.0, blue: 176.0 / 255.0, alpha: 1)
 	}
+	
+	class var lightGray: UIColor {
+		return UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1)
+	}
 }
 //MARK: - Custom Font
 enum SoundLogCustomFont {
