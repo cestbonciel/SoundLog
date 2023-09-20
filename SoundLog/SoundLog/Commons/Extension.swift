@@ -16,6 +16,14 @@ extension UILabel {
 		attributedString.addAttribute(.foregroundColor, value: color, range: range)
 		attributedText = attributedString
 	}
+	
+	func anotherlabel(targetString: String, color: UIColor) {
+		let fullText = text ?? ""
+		let anotherAttributedString = NSMutableAttributedString(string: fullText)
+		let range = (fullText as NSString).range(of: targetString)
+		anotherAttributedString.addAttribute(.foregroundColor, value: color, range: range)
+		attributedText = anotherAttributedString
+	}
 }
 //MARK: - Custom UIColor
 extension UIColor {
@@ -104,6 +112,8 @@ extension NSAttributedString {
 			settingfont = UIFont(name: "Pretendard-Bold", size: size)!
 		case .PRdardMedium:
 			settingfont = UIFont(name: "Pretendard-Medium", size: size)!
+			//?? UIFont.systemFont(ofSize: size)
+			//settingfont = UIFont(name: "GmarketSansMedium", size: size)!
 		case .PRdardRegular:
 			settingfont = UIFont(name: "Pretendard-Regular", size: size)!
 		case .PRdardExtraBold:
@@ -119,11 +129,11 @@ extension NSAttributedString {
 		}
 		paragraphStyle.lineSpacing = lineHeight - settingfont.lineHeight
 		
-		attributeString.addAttributes([
+		anotherAttributeString.addAttributes([
 					NSAttributedString.Key.paragraphStyle : paragraphStyle,
 					.font : settingfont
-				], range: NSMakeRange(0, attributeString.length))
+				], range: NSMakeRange(0, anotherAttributeString.length))
 		
-		return attributeString
+		return anotherAttributeString
 	}
 }

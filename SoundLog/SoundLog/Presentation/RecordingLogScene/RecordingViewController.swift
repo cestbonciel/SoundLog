@@ -42,12 +42,12 @@ class RecordingViewController: UIViewController {
 	
 	}//: viewDidLoad()
 	
-	
+
 	// MARK: - Recording Objects
 	lazy var mainLabel: UILabel = {
 		let label = UILabel()
-
-		label.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "음성녹음", lineHeight: 16)
+		label.text = "음성 녹음"
+		label.font = UIFont.systemFont(ofSize: 16)
 		label.textColor = .black
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
@@ -87,7 +87,7 @@ class RecordingViewController: UIViewController {
 	
 	lazy var limitLabel: UILabel = {
 		let label = UILabel()
-		label.attributedText = .attributeFont(font: .GMSansMedium, size: 12, text: "기록제한시간", lineHeight: 16)
+		label.text = "기록 제한시간"
 		label.font = UIFont.systemFont(ofSize: 16)
 		label.textColor = .black
 		label.translatesAutoresizingMaskIntoConstraints = false
@@ -175,8 +175,8 @@ class RecordingViewController: UIViewController {
 	lazy var uploadButton: UIButton = {
 		let button = UIButton()
 		button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-		button.tintColor = UIColor.neonPurple
 		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
+		button.tintColor = .neonPurple
 		return button
 	}()
 
@@ -191,18 +191,17 @@ class RecordingViewController: UIViewController {
 			mainLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 			mainLabel.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 30),
 			
-			progressView.topAnchor.constraint(equalTo: mainLabel.topAnchor, constant: 48),
+			progressView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 64),
 			progressView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 30),
 			progressView.heightAnchor.constraint(equalToConstant: 32),
 			progressView.widthAnchor.constraint(equalToConstant: 300),
-			
+
 		])
 		
 		self.view.addSubview(timeStackView)
 		timeStackView.addArrangedSubview(timerLabel)
 		
 		NSLayoutConstraint.activate([
-			timeStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 64),
 			timeStackView.leadingAnchor.constraint(equalTo: timeStackView.leadingAnchor),
 			timeStackView.trailingAnchor.constraint(equalTo: progressView.trailingAnchor),
 			timeStackView.centerYAnchor.constraint(equalTo: progressView.centerYAnchor),
@@ -243,9 +242,9 @@ class RecordingViewController: UIViewController {
 		
 		// MARK: save and cancel Button StackView -
 		NSLayoutConstraint.activate([
-			buttonStackView.widthAnchor.constraint(equalToConstant: 300),
+			buttonStackView.widthAnchor.constraint(equalToConstant: 328),
 			buttonStackView.heightAnchor.constraint(equalToConstant: 40),
-			buttonStackView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 24),
+			buttonStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 300),
 			buttonStackView.leftAnchor.constraint(greaterThanOrEqualTo: self.view.leftAnchor, constant: 32),
 			buttonStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 			

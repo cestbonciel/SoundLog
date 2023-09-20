@@ -9,12 +9,14 @@ import UIKit
 import SnapKit
 
 class SoundLogViewController: UIViewController {
+	private let soundLogTextView = LogTextView()
 	
 	//MARK: - viewDidLoad
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.view.backgroundColor = UIColor.pastelSkyblue
 		setupUI()
+		
 		navigationController?.hidesBarsOnSwipe = true
 	}
 	
@@ -119,6 +121,10 @@ class SoundLogViewController: UIViewController {
 		textField.layer.cornerRadius = 10
 		textField.clearButtonMode = .whileEditing
 		textField.autocorrectionType = .no
+		textField.spellCheckingType = .no
+		textField.autocapitalizationType = .none
+		
+		textField.returnKeyType = .done
 		textField.delegate = self
 		textField.layer.backgroundColor = UIColor.white.cgColor
 		textField.translatesAutoresizingMaskIntoConstraints = false
@@ -355,7 +361,16 @@ class SoundLogViewController: UIViewController {
 			$0.width.equalTo(32)
 			$0.height.equalTo(32)
 		}
-
+		// MARK: - UITextView
+		soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
+		contentView.addSubview(soundLogTextView)
+		soundLogTextView.translatesAutoresizingMaskIntoConstraints = false
+		soundLogTextView.snp.makeConstraints {
+			$0.top.equalTo(recordingStack.snp.bottom).offset(24)
+			$0.leading.equalToSuperview().inset(28)
+			$0.trailing.equalToSuperview().inset(28)
+			$0.height.equalTo(200)
+		}
 	}// : setupUI
 }
 
@@ -371,5 +386,4 @@ extension SoundLogViewController: UITextFieldDelegate {
 		textField.resignFirstResponder()
 		return true
 	}
-	
 }

@@ -23,7 +23,7 @@
 		874418782ABB45FB00233604 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8744186F2ABB45FA00233604 /* Pretendard-Bold.otf */; };
 		874418792ABB45FB00233604 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 874418702ABB45FB00233604 /* Pretendard-Regular.otf */; };
 		8744187A2ABB45FB00233604 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */; };
-		8744187B2ABB45FB00233604 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 874418722ABB45FB00233604 /* Pretendard-Black.otf */; };
+		8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8744187C2ABB5CFD00233604 /* LogTextView.swift */; };
 		8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */; };
 		8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */; };
 		8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */; };
@@ -62,7 +62,7 @@
 		8744186F2ABB45FA00233604 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		874418702ABB45FB00233604 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
-		874418722ABB45FB00233604 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
+		8744187C2ABB5CFD00233604 /* LogTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextView.swift; sourceTree = "<group>"; };
 		8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
@@ -170,7 +170,6 @@
 		877DACAB2A7ADDA900AE3038 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				874418722ABB45FB00233604 /* Pretendard-Black.otf */,
 				8744186F2ABB45FA00233604 /* Pretendard-Bold.otf */,
 				8744186E2ABB45FA00233604 /* Pretendard-ExtraBold.otf */,
 				8744186C2ABB45FA00233604 /* Pretendard-ExtraLight.otf */,
@@ -243,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				8744185C2AB8966200233604 /* RecordingSound.storyboard */,
+				8744187C2ABB5CFD00233604 /* LogTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -333,7 +333,6 @@
 				874418772ABB45FB00233604 /* Pretendard-ExtraBold.otf in Resources */,
 				87BFB0592AB8179900CF839A /* GmarketSansLight.otf in Resources */,
 				8744185D2AB8966200233604 /* RecordingSound.storyboard in Resources */,
-				8744187B2ABB45FB00233604 /* Pretendard-Black.otf in Resources */,
 				8744185F2AB96F8F00233604 /* Shazam.storyboard in Resources */,
 				877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */,
 				877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */,
@@ -366,6 +365,7 @@
 				874418672ABAD97F00233604 /* RecordingViewController.swift in Sources */,
 				87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */,
 				878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */,
+				8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */,
 				8777A7ED2A9BBED5005526D1 /* ThemeViewController.swift in Sources */,
 				8731316D2A9CE26700E8B645 /* SettingViewController.swift in Sources */,
 				87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */,
