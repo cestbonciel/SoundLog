@@ -16,10 +16,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Recording Sound Log View Controller-->
+        <!--Sound Log View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="Record" id="Y6W-OH-hqX" customClass="RecordingSoundLogViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Record" id="Y6W-OH-hqX" customClass="SoundLogViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,7 +53,6 @@
         <!--View Controller-->
         <scene sceneID="VH8-Z7-KZF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5bD-Ua-OrO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="fZs-ST-zWt" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hqQ-Zt-sE9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
@@ -201,6 +200,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="sVm-fv-WMp"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5bD-Ua-OrO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="937" y="-738"/>
         </scene>

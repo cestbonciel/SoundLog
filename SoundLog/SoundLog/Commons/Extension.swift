@@ -16,6 +16,14 @@ extension UILabel {
 		attributedString.addAttribute(.foregroundColor, value: color, range: range)
 		attributedText = attributedString
 	}
+	
+	func anotherlabel(targetString: String, color: UIColor) {
+		let fullText = text ?? ""
+		let anotherAttributedString = NSMutableAttributedString(string: fullText)
+		let range = (fullText as NSString).range(of: targetString)
+		anotherAttributedString.addAttribute(.foregroundColor, value: color, range: range)
+		attributedText = anotherAttributedString
+	}
 }
 //MARK: - Custom UIColor
 extension UIColor {
@@ -34,15 +42,31 @@ extension UIColor {
 	class var systemDimGray: UIColor {
 		return UIColor(red: 176.0 / 255.0, green: 176.0 / 255.0, blue: 176.0 / 255.0, alpha: 1)
 	}
+	
+	class var lightGray: UIColor {
+		return UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1)
+	}
 }
 //MARK: - Custom Font
-enum SoundLogCustomFont {
+enum SoundLogCustomFontGM {
 	case GMSansLight
 	case GMSansMedium
 	case GMSansBold
 }
+
+enum SoundLogCustomFontPret {
+	case PRdardBold
+	case PRdardExtraBold
+	case PRdardExtraLight
+	case PRdardLight
+	case PRdardMedium
+	case PRdardRegular
+	case PRdardSemibold
+	case PRdardThin
+}
+
 extension NSAttributedString {
-	class func attributeFont(font: SoundLogCustomFont, size: CGFloat, text: String, lineHeight: CGFloat) -> NSAttributedString {
+	class func attributeFont(font: SoundLogCustomFontGM, size: CGFloat, text: String, lineHeight: CGFloat) -> NSAttributedString {
 		let attributeString = NSMutableAttributedString(string: text)
 		let paragraphStyle = NSMutableParagraphStyle()
 		
@@ -70,5 +94,46 @@ extension NSAttributedString {
 				], range: NSMakeRange(0, attributeString.length))
 		
 		return attributeString
+	}
+	
+	class func anotherAttributeFont(font: SoundLogCustomFontPret, text: String, size: CGFloat, lineHeight: CGFloat) -> NSAttributedString {
+		let anotherAttributeString = NSMutableAttributedString(string: text)
+		let paragraphStyle = NSMutableParagraphStyle()
+		
+		if #available(iOS 14.0, *) {
+			paragraphStyle.lineBreakStrategy = .hangulWordPriority
+		} else {
+			paragraphStyle.lineBreakStrategy = .pushOut
+		}
+		
+		var settingfont = UIFont()
+		switch font {
+		case .PRdardBold:
+			settingfont = UIFont(name: "Pretendard-Bold", size: size)!
+		case .PRdardMedium:
+			settingfont = UIFont(name: "Pretendard-Medium", size: size)!
+			//?? UIFont.systemFont(ofSize: size)
+			//settingfont = UIFont(name: "GmarketSansMedium", size: size)!
+		case .PRdardRegular:
+			settingfont = UIFont(name: "Pretendard-Regular", size: size)!
+		case .PRdardExtraBold:
+			settingfont = UIFont(name: "Pretendard-ExtraBold", size: size)!
+		case .PRdardExtraLight:
+			settingfont = UIFont(name: "Pretendard-ExtraLight", size: size)!
+		case .PRdardLight:
+			settingfont = UIFont(name: "Pretendard-Light", size: size)!
+		case .PRdardSemibold:
+			settingfont = UIFont(name: "Pretendard-SemiBold", size: size)!
+		case .PRdardThin:
+			settingfont = UIFont(name: "Pretendard-Thin", size: size)!
+		}
+		paragraphStyle.lineSpacing = lineHeight - settingfont.lineHeight
+		
+		anotherAttributeString.addAttributes([
+					NSAttributedString.Key.paragraphStyle : paragraphStyle,
+					.font : settingfont
+				], range: NSMakeRange(0, anotherAttributeString.length))
+		
+		return anotherAttributeString
 	}
 }

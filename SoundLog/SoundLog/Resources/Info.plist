@@ -4,9 +4,17 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Fonts/GmarketSansTTFBold.ttf</string>
-		<string>Fonts/GmarketSansTTFLight.ttf</string>
-		<string>Fonts/GmarketSansTTFMedium.ttf</string>
+		<string>Fonts/GmarketSansTTFBold.otf</string>
+		<string>Fonts/GmarketSansTTFLight.otf</string>
+		<string>Fonts/GmarketSansTTFMedium.otf</string>
+		<string>Fonts/Pretendard-Bold.otf</string>
+		<string>Fonts/Pretendard-ExtraBold.otf</string>
+		<string>Fonts/Pretendard-ExtraLight.otf</string>
+		<string>Fonts/Pretendard-Light.otf</string>
+		<string>Fonts/Pretendard-Medium.otf</string>
+		<string>Fonts/Pretendard-Regular.otf</string>
+		<string>Fonts/Pretendard-SemiBold.otf</string>
+		<string>Fonts/Pretendard-Thin.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
@@ -22,7 +30,7 @@
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
 					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
+					<string>RecordingSound</string>
 				</dict>
 			</array>
 		</dict>
