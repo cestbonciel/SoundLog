@@ -14,6 +14,8 @@ final class LogTextView: UITextView {
 		static let containerInset = UIEdgeInsets(top: 20, left: 20, bottom: 30, right: 20)
 		static let placeholderColor = UIColor.systemDimGray
 		static let placeholderFont = UIFont(name: "GmarketSansLight", size: 16.0)
+		static let mainTextFont = UIFont(name: "GmarketSansLight", size: 16.0)
+		static let lineHeight: CGFloat = 24.0
 	}
 	
 	// MARK: - textView
@@ -74,6 +76,22 @@ private extension LogTextView {
 		textView.textContainerInset = TextViewConst.containerInset
 		textView.contentInset = contentInset
 		textView.font = TextViewConst.placeholderFont
+		
+		
+		let mainTextAttributes: [NSAttributedString.Key: Any] = [
+			.font: TextViewConst.mainTextFont!,
+			.paragraphStyle: {
+				let style = NSMutableParagraphStyle()
+				style.lineSpacing = TextViewConst.lineHeight - TextViewConst.mainTextFont!.lineHeight
+				return style
+			}()
+		]
+		self.typingAttributes = mainTextAttributes
+		self.attributedText = NSAttributedString(string: self.text, attributes: mainTextAttributes)
+		
+		self.textContainer.maximumNumberOfLines = 0
+		self.textContainer.lineBreakMode = .byWordWrapping
+		self.isScrollEnabled = true
 	}
 	
 	func updateTextView() {
