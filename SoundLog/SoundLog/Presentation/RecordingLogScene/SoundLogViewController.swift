@@ -268,7 +268,7 @@ class SoundLogViewController: UIViewController {
 		
 		contentView.addSubview(buttonStack)
 		buttonStack.snp.makeConstraints {
-			$0.top.equalTo(contentView.snp.top).inset(32)
+			$0.top.equalTo(contentView.snp.top).inset(48)
 			$0.leading.equalToSuperview().inset(28)
 			$0.trailing.equalToSuperview().inset(28)
 			$0.height.equalTo(40)

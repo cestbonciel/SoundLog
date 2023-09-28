@@ -205,7 +205,7 @@ class RecordingViewController: UIViewController {
 			timeStackView.leadingAnchor.constraint(equalTo: timeStackView.leadingAnchor),
 			timeStackView.trailingAnchor.constraint(equalTo: progressView.trailingAnchor),
 			timeStackView.centerYAnchor.constraint(equalTo: progressView.centerYAnchor),
-			timerLabel.trailingAnchor.constraint(equalTo: timeStackView.trailingAnchor),
+			timerLabel.trailingAnchor.constraint(equalTo:	progressView.trailingAnchor, constant: -10),
 			timerLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -64)
 		])
 		
