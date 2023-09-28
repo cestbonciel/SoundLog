@@ -14,14 +14,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		
-//		if UserDefaults.standard.string(forKey: "nickname") == nil {
-//			if let mainVC = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as? StartViewController {
-//				window?.rootViewController = mainVC
-//			}
-//		} else {
-//			let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
-//			window?.rootViewController = tabBarVC
-//		}
+		if UserDefaults.standard.string(forKey: "nickname") == nil {
+			if let mainVC = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as? StartViewController {
+				window?.rootViewController = mainVC
+			}
+		} else {
+			let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
+			window?.rootViewController = tabBarVC
+		}
 		
 		let appearance = UINavigationBarAppearance()
 		let backItemAppearance = UIBarButtonItemAppearance()

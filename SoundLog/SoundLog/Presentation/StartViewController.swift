@@ -42,7 +42,7 @@ class StartViewController: UIViewController {
 			self.dismiss(animated: true)
 		} else {
 			let alert = UIAlertController(title: "닉네임 입력", message: "닉네임을 3자이상 7자 이내로 작성하세요.", preferredStyle: .alert)
-			let action = UIAlertAction(title: "입려", style: .default) { _ in
+			let action = UIAlertAction(title: "입력", style: .default) { _ in
 				print("닉네임 정보가 저장되었습니다.") }
 			alert.addAction(action)
 			present(alert, animated: true)

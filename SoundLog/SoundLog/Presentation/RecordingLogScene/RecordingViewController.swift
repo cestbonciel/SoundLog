@@ -47,7 +47,7 @@ class RecordingViewController: UIViewController {
 	lazy var mainLabel: UILabel = {
 		let label = UILabel()
 		label.text = "음성 녹음"
-		label.font = UIFont.systemFont(ofSize: 16)
+		label.font = UIFont(name: "GmarketSansMedium", size: 16.0)
 		label.textColor = .black
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label

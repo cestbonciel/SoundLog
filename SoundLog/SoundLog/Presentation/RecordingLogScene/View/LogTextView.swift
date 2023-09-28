@@ -78,14 +78,27 @@ private extension LogTextView {
 		textView.font = TextViewConst.placeholderFont
 		
 		
-		let mainTextAttributes: [NSAttributedString.Key: Any] = [
-			.font: TextViewConst.mainTextFont!,
-			.paragraphStyle: {
-				let style = NSMutableParagraphStyle()
-				style.lineSpacing = TextViewConst.lineHeight - TextViewConst.mainTextFont!.lineHeight
-				return style
-			}()
-		]
+		let mainTextAttributes: [NSAttributedString.Key: Any] = {
+				if let mainFont = TextViewConst.mainTextFont {
+						let style = NSMutableParagraphStyle()
+						style.lineSpacing = TextViewConst.lineHeight - mainFont.lineHeight
+						
+						return [
+								.font: mainFont,
+								.paragraphStyle: style
+						]
+				} else {
+						// 대체할 폰트를 지정하거나 기본 폰트를 사용할 수 있습니다.
+						return [
+								.font: UIFont.systemFont(ofSize: 16.0),
+								.paragraphStyle: {
+										let style = NSMutableParagraphStyle()
+										style.lineSpacing = TextViewConst.lineHeight - UIFont.systemFont(ofSize: 16.0).lineHeight
+										return style
+								}()
+						]
+				}
+		}()
 		self.typingAttributes = mainTextAttributes
 		self.attributedText = NSAttributedString(string: self.text, attributes: mainTextAttributes)
 		

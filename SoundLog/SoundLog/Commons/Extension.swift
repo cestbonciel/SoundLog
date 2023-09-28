@@ -1,6 +1,6 @@
 //
 //  Extension.swift
-//  OmyAk
+//  SoundLog
 //
 //  Created by Seohyun Kim on 2023/08/18.
 //
@@ -54,16 +54,7 @@ enum SoundLogCustomFontGM {
 	case GMSansBold
 }
 
-enum SoundLogCustomFontPret {
-	case PRdardBold
-	case PRdardExtraBold
-	case PRdardExtraLight
-	case PRdardLight
-	case PRdardMedium
-	case PRdardRegular
-	case PRdardSemibold
-	case PRdardThin
-}
+
 
 extension NSAttributedString {
 	class func attributeFont(font: SoundLogCustomFontGM, size: CGFloat, text: String, lineHeight: CGFloat) -> NSAttributedString {
@@ -95,45 +86,5 @@ extension NSAttributedString {
 		
 		return attributeString
 	}
-	
-	class func anotherAttributeFont(font: SoundLogCustomFontPret, text: String, size: CGFloat, lineHeight: CGFloat) -> NSAttributedString {
-		let anotherAttributeString = NSMutableAttributedString(string: text)
-		let paragraphStyle = NSMutableParagraphStyle()
-		
-		if #available(iOS 14.0, *) {
-			paragraphStyle.lineBreakStrategy = .hangulWordPriority
-		} else {
-			paragraphStyle.lineBreakStrategy = .pushOut
-		}
-		
-		var settingfont = UIFont()
-		switch font {
-		case .PRdardBold:
-			settingfont = UIFont(name: "Pretendard-Bold", size: size)!
-		case .PRdardMedium:
-			settingfont = UIFont(name: "Pretendard-Medium", size: size)!
-			//?? UIFont.systemFont(ofSize: size)
-			//settingfont = UIFont(name: "GmarketSansMedium", size: size)!
-		case .PRdardRegular:
-			settingfont = UIFont(name: "Pretendard-Regular", size: size)!
-		case .PRdardExtraBold:
-			settingfont = UIFont(name: "Pretendard-ExtraBold", size: size)!
-		case .PRdardExtraLight:
-			settingfont = UIFont(name: "Pretendard-ExtraLight", size: size)!
-		case .PRdardLight:
-			settingfont = UIFont(name: "Pretendard-Light", size: size)!
-		case .PRdardSemibold:
-			settingfont = UIFont(name: "Pretendard-SemiBold", size: size)!
-		case .PRdardThin:
-			settingfont = UIFont(name: "Pretendard-Thin", size: size)!
-		}
-		paragraphStyle.lineSpacing = lineHeight - settingfont.lineHeight
-		
-		anotherAttributeString.addAttributes([
-					NSAttributedString.Key.paragraphStyle : paragraphStyle,
-					.font : settingfont
-				], range: NSMakeRange(0, anotherAttributeString.length))
-		
-		return anotherAttributeString
-	}
+
 }
