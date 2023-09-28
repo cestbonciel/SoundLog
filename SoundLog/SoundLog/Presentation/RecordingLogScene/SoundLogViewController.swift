@@ -99,11 +99,11 @@ class SoundLogViewController: UIViewController {
 			UIView.animate(withDuration: 1.0, delay: 0.8, options: [.curveEaseInOut], animations: {
 				self.dismiss(animated: true)
 			}, completion: nil)
-			
+
 		}
 		alertController.addAction(cancelAction)
 		alertController.addAction(confirmAction)
-		
+
 		present(alertController, animated: true, completion: nil)
 		
 	} 
@@ -162,12 +162,22 @@ class SoundLogViewController: UIViewController {
 			button.translatesAutoresizingMaskIntoConstraints = false
 			button.addTarget(self, action: #selector(selectMood), for: .touchUpInside)
 			
+			if index == 1 {
+				if let customFont = UIFont(name: "GmarketSansMedium", size: 16.0) {
+					// Apply the custom font to the button's title label
+					button.titleLabel?.font = customFont
+				} else {
+					// Fallback to a system font if the custom font is not available
+					button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0)
+				}
+			}
 			
 			buttons.append(button)
 		}
 		
 		if let firstButton = buttons.first {
 			firstButton.isEnabled = false
+			
 		}
 		
 		return buttons
@@ -258,7 +268,7 @@ class SoundLogViewController: UIViewController {
 		
 		contentView.addSubview(buttonStack)
 		buttonStack.snp.makeConstraints {
-			$0.top.equalTo(contentView.snp.top).inset(0)
+			$0.top.equalTo(contentView.snp.top).inset(32)
 			$0.leading.equalToSuperview().inset(28)
 			$0.trailing.equalToSuperview().inset(28)
 			$0.height.equalTo(40)

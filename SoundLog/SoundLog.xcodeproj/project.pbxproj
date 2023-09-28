@@ -328,23 +328,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				877DAC982A7AD46C00AE3038 /* Main.storyboard in Resources */,
-				874418782ABB45FB00233604 /* Pretendard-Bold.otf in Resources */,
 				87DB259F2A8D421E00EE0CE4 /* startEnter.storyboard in Resources */,
-				874418772ABB45FB00233604 /* Pretendard-ExtraBold.otf in Resources */,
-				87BFB0592AB8179900CF839A /* GmarketSansLight.otf in Resources */,
-				8744185D2AB8966200233604 /* RecordingSound.storyboard in Resources */,
 				8744185F2AB96F8F00233604 /* Shazam.storyboard in Resources */,
-				877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */,
-				877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */,
+				8744185D2AB8966200233604 /* RecordingSound.storyboard in Resources */,
+				874418782ABB45FB00233604 /* Pretendard-Bold.otf in Resources */,
+				874418772ABB45FB00233604 /* Pretendard-ExtraBold.otf in Resources */,
 				874418752ABB45FB00233604 /* Pretendard-ExtraLight.otf in Resources */,
-				87BFB05A2AB8179900CF839A /* GmarketSansMedium.otf in Resources */,
 				874418792ABB45FB00233604 /* Pretendard-Regular.otf in Resources */,
-				87BFB0582AB8179900CF839A /* GmarketSansBold.otf in Resources */,
+				874418742ABB45FB00233604 /* Pretendard-Medium.otf in Resources */,
 				874418732ABB45FB00233604 /* Pretendard-Thin.otf in Resources */,
 				874418762ABB45FB00233604 /* Pretendard-Light.otf in Resources */,
 				8744187A2ABB45FB00233604 /* Pretendard-SemiBold.otf in Resources */,
+				87BFB0592AB8179900CF839A /* GmarketSansLight.otf in Resources */,
+				87BFB0582AB8179900CF839A /* GmarketSansBold.otf in Resources */,
+				87BFB05A2AB8179900CF839A /* GmarketSansMedium.otf in Resources */,
+				877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */,
+				877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */,
 				8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */,
-				874418742ABB45FB00233604 /* Pretendard-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

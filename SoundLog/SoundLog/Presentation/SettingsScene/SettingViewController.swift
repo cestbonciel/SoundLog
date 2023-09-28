@@ -22,7 +22,7 @@ class SettingViewController: UIViewController{
 
 	private let introLabel: UILabel = {
 		let label = UILabel()
-		label.attributedText = .attributeFont(font: .GMSansMedium, size: 12, text: "당신을 위한 음악 기록, 오늘의 내 음악", lineHeight: 12)
+		label.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "당신을 위한 소리 기록장", lineHeight: 16)
 		label.textColor = .systemDimGray
 		return label
 	}()
