@@ -50,6 +50,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 				let image2 = UIImage(named: "shazam")?.withRenderingMode(.alwaysOriginal)
 				tabBarItem[1].image = image2
 				
+				let selectedImage2 = UIImage(named: "shazamHighlight")?.withRenderingMode(.alwaysOriginal)
+				tabBarItem[1].selectedImage = selectedImage2
+				
 				let image3 = UIImage(named: "moreIcon")?.withRenderingMode(.alwaysOriginal)
 				tabBarItem[2].image = image3
 				
