@@ -14,14 +14,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		
-		if UserDefaults.standard.string(forKey: "nickname") == nil {
-			if let mainVC = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as? StartViewController {
-				window?.rootViewController = mainVC
-			}
-		} else {
-			let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
-			window?.rootViewController = tabBarVC
-		}
+//		if UserDefaults.standard.string(forKey: "nickname") == nil {
+//			if let mainVC = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as? StartViewController {
+//				window?.rootViewController = mainVC
+//			}
+//		} else {
+//			let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
+//			window?.rootViewController = tabBarVC
+//		}
 		
 		let appearance = UINavigationBarAppearance()
 		let backItemAppearance = UIBarButtonItemAppearance()
@@ -49,6 +49,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 				
 				let image2 = UIImage(named: "shazam")?.withRenderingMode(.alwaysOriginal)
 				tabBarItem[1].image = image2
+				
+				let selectedImage2 = UIImage(named: "shazamHighlight")?.withRenderingMode(.alwaysOriginal)
+				tabBarItem[1].selectedImage = selectedImage2
 				
 				let image3 = UIImage(named: "moreIcon")?.withRenderingMode(.alwaysOriginal)
 				tabBarItem[2].image = image3
