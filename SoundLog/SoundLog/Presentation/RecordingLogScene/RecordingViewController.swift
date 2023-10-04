@@ -10,33 +10,27 @@ import AVFoundation
 
 class RecordingViewController: UIViewController {
 	
-	var audioRecorder: AVAudioRecorder?
+	var audioRecorder: AVAudioRecorder!
 	var audioPlayer: AVAudioPlayer!
-	var progressTimer: Timer?
+	var progressTimer: Timer!
 
 	var isRecording = false
 	var isPlaying = false
 	
 
-	var audioFileName: URL! = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("recording.m4a")
+	var audioFileURL: URL!
 
 	
 	let maxVolume: Float = 10.0
-	
-	let timePlayer: Selector = #selector(updatePlayTime)
-	let timeRecord: Selector = #selector(updateRecordTime)
-	
-	var isRecordMode = false
-	
-	let timePlayerSelector: Selector = #selector(RecordingViewController.updatePlayTime)
-	let timeRecordSelector: Selector = #selector(RecordingViewController.updateRecordTime)
+
 	//MARK: - viewDidLoad()
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.setupUI()
 		view.backgroundColor = .pastelSkyblue
-		setUpAudioSession()
-		setupAudioRecorder()
+		
+		setPlayAndRecordSession()
+//		setupAudioRecorder()
 		// default Record
 		updateUIForRecording(false, true, false)
 	
@@ -117,16 +111,16 @@ class RecordingViewController: UIViewController {
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
 	}()
-	
+	//MARK: - RECORD BUTTON
 	lazy var recordButton: UIButton = {
 		let button = UIButton()
-		button.setImage(UIImage(systemName: "record.circle.fill"), for: .normal)
+		button.setImage(UIImage(systemName: "mic.circle.fill"), for: .normal)
 		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
 		button.tintColor = .red
-		button.addTarget(self, action: #selector(tapButtonRecord), for: .touchUpInside)
+		button.addTarget(self, action: #selector(recordButtonPressed), for: .touchUpInside)
 		return button
 	}()
-	
+	//MARK: - PLAY BUTTON
 	lazy var playButton: UIButton = {
 		let button = UIButton()
 		button.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
@@ -134,7 +128,7 @@ class RecordingViewController: UIViewController {
 		button.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
 		return button
 	}()
-
+	//MARK: - STOP BUTTON
 	lazy var stopButton: UIButton = {
 		let button = UIButton()
 		button.setImage(UIImage(systemName: "stop.circle.fill"), for: .normal)

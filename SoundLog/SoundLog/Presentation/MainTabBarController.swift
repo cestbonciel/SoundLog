@@ -10,8 +10,6 @@ import SwiftUI
 
 class MainTabBarController: UITabBarController {
 
-	
-	
 //	let swiftUIswitch = UIHostingController(rootView: SettingView())
 	@IBOutlet weak var AddTabBar: UITabBarItem!
 	@IBOutlet weak var homeTabBar: UITabBar!

@@ -261,7 +261,8 @@ class SoundLogViewController: UIViewController {
 		scrollView.addSubview(contentView)
 		contentView.snp.makeConstraints {
 			$0.edges.equalToSuperview()
-			$0.top.equalTo(scrollView.snp.top).inset(5)
+//			$0.top.equalTo(scrollView.snp.top).inset(200)
+//			$0.top.equalTo(scrollView.snp.top).inset(5)
 			$0.width.equalToSuperview()
 			$0.height.equalTo(800)
 		}
@@ -275,13 +276,13 @@ class SoundLogViewController: UIViewController {
 		}
 		
 		cancelButton.snp.makeConstraints {
-			$0.leading.equalToSuperview()
+//			$0.leading.equalToSuperview()
 			$0.width.equalTo(72)
 			$0.height.equalTo(40)
 		}
 		
 		saveButton.snp.makeConstraints {
-			$0.trailing.equalToSuperview()
+//			$0.trailing.equalToSuperview()
 			$0.width.equalTo(72)
 			$0.height.equalTo(40)
 		}
@@ -320,9 +321,9 @@ class SoundLogViewController: UIViewController {
 		backgroundView2.addSubview(moodStackView)
 		moodStackView.snp.makeConstraints {
 			//			$0.top.equalTo(backgroundView2).inset(10)
-			$0.leading.equalToSuperview().inset(28)
-			$0.trailing.equalToSuperview().inset(28)
-			$0.left.right.equalTo(backgroundView2).inset(10)
+//			$0.leading.equalToSuperview().inset(28)
+//			$0.trailing.equalToSuperview().inset(28)
+			$0.left.right.equalTo(backgroundView2).inset(24)
 			$0.edges.equalToSuperview()
 		}
 		
@@ -333,8 +334,8 @@ class SoundLogViewController: UIViewController {
 		for (idx, button) in moodButtons.enumerated() {
 			button.snp.makeConstraints {
 				$0.height.equalTo(32)
-				$0.width.equalTo(24)
-				$0.trailing.equalTo(button).inset(10)
+//				$0.width.equalTo(16)
+//				$0.trailing.equalTo(button).inset(16)
 			}
 		}
 		

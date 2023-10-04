@@ -10,13 +10,48 @@ import AVFoundation
 
 extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 	
-	
+	// MARK: - RECORDING
+	@objc func recordButtonPressed(_ sender: UIButton) {
+		
+		if audioPlayer != nil && audioPlayer.isPlaying {
+			print("stopping")
+			audioPlayer.stop()
+		}
+		
+		if audioRecorder == nil {
+			print("recording.. recorder nil.")
+			progressView.progress = 0.0
+			recordButton.setImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
+			playButton.isEnabled = false
+			stopButton.isEnabled = true
+			startRecording(true)
+//			progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+//			sliderVolume.value = 1.0
+//			audioPlayer?.volume = sliderVolume.value
+//			timerLabel.text = formatTime(0)
+			return
+		}
+		
+		if audioRecorder != nil && audioRecorder.isRecording {
+			print("Pausing")
+			audioRecorder.pause()
+			recordButton.setImage(UIImage(systemName: "mic.circle.fill"), for: .normal)
+			
+		} else {
+			print("Recording")
+			recordButton.setImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
+			playButton.isEnabled = false
+			stopButton.isEnabled = true
+			startRecording(false)
+		}
+		
+	}
 	
 	//MARK: - Setup audio session
-	func setUpAudioSession() {
+	func setPlayAndRecordSession() {
 		let audioSession = AVAudioSession.sharedInstance()
 		do {
-			try audioSession.setCategory(.playback, mode: .default)
+			try audioSession.setCategory(.playAndRecord, mode: .default)
 		} catch {
 			print("Error setting up audio session: \(error.localizedDescription)")
 		}
@@ -34,13 +69,27 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 			AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
 			AVEncoderBitRateKey: 320000,
 			AVNumberOfChannelsKey: 2,
-			AVSampleRateKey: 44100] as [String: Any]
+			AVSampleRateKey: 44100]
+		
+		let format = DateFormatter()
+		format.dateFormat = "yyyy-MM-dd-HH-mm-ss"
+		
+		let currentFileName = "recording-\(format.string(from: Date()))"
+		let uniformTypeIdentifier = UTType.audio
+		print(currentFileName)
+		
+		let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+		self.audioFileURL = documentsDirectory.appendingPathComponent(currentFileName, conformingTo: uniformTypeIdentifier)
+		print("writing to soundfile url: \(audioFileURL!)")
+		
+		if FileManager.default.fileExists(atPath: audioFileURL.absoluteString) {
+			print("audio File \(audioFileURL.absoluteString) exists")
+		}
 		
 		do {
-			let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-			let audioFileName = documentsURL.appendingPathComponent("recording.m4a")
-			audioRecorder = try AVAudioRecorder(url: audioFileName, settings: audioSettings)
+			audioRecorder = try AVAudioRecorder(url: audioFileURL, settings: audioSettings)
 			audioRecorder?.delegate = self
+			audioRecorder?.isMeteringEnabled = true
 			audioRecorder?.prepareToRecord()
 			
 		} catch let error as NSError {
@@ -49,60 +98,43 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 	}
 
 	
-	// MARK: - functions_ Record, Play, Stop
-	func startRecording() {
-		if !isRecording {
-			progressView.progress = 0.0
-			audioRecorder?.record()
-			isRecording = true
-			updateUIForRecording(false, true, false)
-			
-			progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-			sliderVolume.value = 1.0
-			audioPlayer?.volume = sliderVolume.value
-			timerLabel.text = convertNSTimeInterval2String(0)
+	// MARK: - functions_ Record
+	func startRecording(_ setup: Bool) {
+		AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] granted in
+			if granted {
+				DispatchQueue.main.async {
+					self.setPlayAndRecordSession()
+					if setup {
+						self.setupAudioRecorder()
+					}
+					self.audioRecorder.record()
+					
+					self.progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+				}
+			} else {
+				print("Permission to record not granted.")
+			}
 		}
-
-		setPlayButton(true, stop: true)
+		
+		if AVAudioSession.sharedInstance().recordPermission == .denied {
+			print("permission denied.")
+		}
 	
 	}
 	
 	func stopRecording() {
-		if isRecording {
-			audioRecorder?.stop()
-			isRecording = false
-			
-			updateUIForRecording(false, false, true)
-
-			progressTimer?.invalidate()
-		}
+	
 	}
 	
 	func playRecordedAudio() {
-		if !isPlaying {
-			do {
-				audioPlayer = try AVAudioPlayer(contentsOf: audioFileName)
-				audioPlayer?.delegate = self
-				isPlaying = true
-				audioPlayer.prepareToPlay()
-				audioPlayer.play()
-				progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updatePlayTime), userInfo: nil, repeats: true)
-				sliderVolume.maximumValue = maxVolume
-				sliderVolume.value = 1.0
-				progressView.progress = 0
-				audioPlayer.volume = sliderVolume.value
-			} catch {
-				print("Audio player setup error: \(error.localizedDescription)")
-			}
-		}
-		updateUIRecording(isRecording: isRecording)
+
 	}
 	
 	func updateUIRecording(isRecording: Bool) {
-					recordButton.isEnabled = !isRecording
-					playButton.isEnabled = !isRecording
-					stopButton.isEnabled = isRecording
-			}
+		recordButton.isEnabled = !isRecording
+		playButton.isEnabled = !isRecording
+		stopButton.isEnabled = isRecording
+	}
 
 	func stopPlaying() {
 		if isPlaying {
@@ -113,24 +145,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 		}
 	}
 	
-	func initPlay() {
-		do{
-			audioPlayer = try AVAudioPlayer(contentsOf: audioFileName)
-		} catch let error as NSError {
-			print("Error-initPlay: \(error)")
-		}
-//		slVolume.maximumValue = MAX_VOLUME
-		sliderVolume.value = 1.0
-		progressView.progress = 0
-		
-		audioPlayer.delegate = self
-		audioPlayer.prepareToPlay()
-		audioPlayer.volume = sliderVolume.value
-		
-		timerLabel.text = convertNSTimeInterval2String(audioPlayer.duration)
 
-		setPlayButton(true, stop: false)
-	}
 	
 
 	func updateUIForRecording(_ play: Bool,_ record: Bool,_ stop: Bool) {
@@ -145,60 +160,44 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 		stopButton.isEnabled = stop
 	}
 	
-	func convertNSTimeInterval2String(_ time: TimeInterval) -> String{
-		let min = Int(time/60)
-		let sec = Int(time.truncatingRemainder(dividingBy: 60))
-		let strTime = String(format:"%02d:%02d", min, sec)
-		return strTime
-	}
+
 	//MARK: Progress Bar Timer
 	@objc func updateTimer() {
 		if isRecording || isPlaying {
 			// 녹음 중 또는 재생 중일 때
-			let currentTime = isRecording ? audioRecorder?.currentTime : audioPlayer?.currentTime
-			let formattedTime = convertNSTimeInterval2String(audioRecorder?.currentTime ?? 0)
-			timerLabel.text = formattedTime
+			let currentTime = isRecording ? audioRecorder.currentTime : audioPlayer.currentTime
+			let formattedTime = formatTime(audioRecorder.currentTime ?? 0)
+
 		}
 	}
 	
-	func formatTime(seconds: Int) -> String {
-		let minutes = seconds / 60
-		let seconds = seconds % 60
-		return String(format: "%02:%02d", minutes, seconds)
-	}
-	//MARK: - AddTarget: play, record, stop
-	@objc func playButtonPressed(_ sender: UIButton) {
-		if isPlaying {
-			stopPlaying()
-			startRecording()
-		} else {
-			playRecordedAudio()
+	func formatTime(_ time: TimeInterval) -> String {
+		let min = Int(time / 60)
 
-		}
+		let sec = Int(time.truncatingRemainder(dividingBy: 60))
+
+		let strTime = String(format: "%02d:%02d", min, sec)
+		return strTime
+	}
+	//MARK: - ADD TARGET : PLAY
+	@objc func playButtonPressed(_ sender: UIButton) {
+		playRecordedAudio()
 	}
 
 	@objc func updatePlayTime(){
-		timerLabel.text = convertNSTimeInterval2String(audioPlayer.currentTime)
+		timerLabel.text = formatTime(audioPlayer.currentTime)
 		progressView.progress = Float(audioPlayer.currentTime/audioPlayer.duration)
 	}
 	
 	@objc func updateRecordTime() {
-		timerLabel.text = convertNSTimeInterval2String(audioRecorder?.currentTime ?? 0)
+		timerLabel.text = formatTime(audioRecorder?.currentTime ?? 0)
 	}
 	
-	@objc func tapButtonRecord(_ sender: UIButton) {
-		if isRecording {
-			stopRecording()
-
-		} else {
-			startRecording()
-		}
-	}
 	
 	@objc func stopButtonPressed(_ sender: UIButton) {
 		stopRecording()
 
-		timerLabel.text = convertNSTimeInterval2String(audioRecorder?.currentTime ?? 0)
+		timerLabel.text = formatTime(audioRecorder?.currentTime ?? 0)
 
 		progressTimer?.invalidate()
 		playButton.isEnabled = true
