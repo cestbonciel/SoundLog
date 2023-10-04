@@ -25,9 +25,9 @@ class StartViewController: UIViewController {
 	func changeTextColor() {
 		guard let text = self.appNamelabel.text else { return }
 		let attributeString = NSMutableAttributedString(string: text)
-		attributeString.addAttribute(.foregroundColor, value: UIColor(displayP3Red: 149/255, green: 146/255, blue: 230/255, alpha: 1), range: (text as NSString).range(of: "오"))
-		attributeString.addAttribute(.foregroundColor, value: UIColor(displayP3Red: 149/255, green: 146/255, blue: 230/255, alpha: 1), range: (text as NSString).range(of: "내"))
-		attributeString.addAttribute(.foregroundColor, value: UIColor(displayP3Red: 149/255, green: 146/255, blue: 230/255, alpha: 1), range: (text as NSString).range(of: "악"))
+		attributeString.addAttribute(.foregroundColor, value: UIColor(displayP3Red: 149/255, green: 146/255, blue: 230/255, alpha: 1), range: (text as NSString).range(of: "소"))
+		attributeString.addAttribute(.foregroundColor, value: UIColor(displayP3Red: 149/255, green: 146/255, blue: 230/255, alpha: 1), range: (text as NSString).range(of: "기"))
+		//attributeString.addAttribute(.foregroundColor, value: UIColor(displayP3Red: 149/255, green: 146/255, blue: 230/255, alpha: 1), range: (text as NSString).range(of: "악"))
 		self.appNamelabel.attributedText = attributeString
 	}
 	
