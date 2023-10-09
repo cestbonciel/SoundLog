@@ -109,8 +109,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vfp-Ei-fsV"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.96197502710000005" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.85098039219999999" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="EN8-Q7-g3x" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="32" id="EVJ-6A-0fW"/>
                             <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="EN8-Q7-g3x" secondAttribute="trailing" constant="30" id="VJZ-1h-ZGe"/>
