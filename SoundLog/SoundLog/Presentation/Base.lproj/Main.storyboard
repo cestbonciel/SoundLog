@@ -47,54 +47,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="소리의 기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADt-nx-acz">
-                                <rect key="frame" x="180" y="63" width="174" height="45"/>
-                                <fontDescription key="fontDescription" name="GmarketSansBold" family="Gmarket Sans" pointSize="32"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="_monthlylbl_bg" translatesAutoresizingMaskIntoConstraints="NO" id="OIt-wt-5jL">
-                                <rect key="frame" x="30" y="173" width="109" height="13"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월별 음악기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-M8-wIR">
-                                <rect key="frame" x="30" y="167" width="97" height="16"/>
-                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Log" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-Lr-gDE">
-                                <rect key="frame" x="177" y="95" width="165" height="48"/>
-                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6J-fv-VGE">
-                                <rect key="frame" x="307" y="190" width="47" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
-                                <connections>
-                                    <action selector="recordingSoundButtonTapped:" destination="rhw-ca-8Nb" eventType="touchUpInside" id="XtG-d4-2aQ"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-Q7-g3x" userLabel="AppTitle Stack">
+                                <rect key="frame" x="197" y="79" width="163" height="52"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소리의 기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADt-nx-acz">
+                                        <rect key="frame" x="0.0" y="0.0" width="163" height="32"/>
+                                        <fontDescription key="fontDescription" name="GmarketSansBold" family="Gmarket Sans" pointSize="32"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Log" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-Lr-gDE">
+                                        <rect key="frame" x="0.0" y="32" width="163" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="wjF-cQ-6e5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="160" translatesAutoresizingMaskIntoConstraints="NO" id="hzg-NJ-1Ah">
+                                <rect key="frame" x="30" y="151" width="330" height="32"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bga-7e-95c">
+                                        <rect key="frame" x="0.0" y="0.0" width="109" height="32"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="_monthlylbl_bg" translatesAutoresizingMaskIntoConstraints="NO" id="OIt-wt-5jL">
+                                                <rect key="frame" x="0.0" y="11" width="109" height="13"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월별 음악기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-M8-wIR">
+                                                <rect key="frame" x="0.0" y="8" width="109" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="109" id="3Tj-A2-xNQ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="8gi-x6-hgE"/>
+                                            <constraint firstItem="OIt-wt-5jL" firstAttribute="bottom" secondItem="sU1-M8-wIR" secondAttribute="bottom" id="IlK-Hn-XkN"/>
+                                            <constraint firstItem="OIt-wt-5jL" firstAttribute="leading" secondItem="sU1-M8-wIR" secondAttribute="leading" id="RJm-la-zga"/>
+                                            <constraint firstItem="sU1-M8-wIR" firstAttribute="centerY" secondItem="Bga-7e-95c" secondAttribute="centerY" id="fHO-HB-xUj"/>
+                                            <constraint firstItem="sU1-M8-wIR" firstAttribute="centerX" secondItem="Bga-7e-95c" secondAttribute="centerX" id="lHS-FI-yyg"/>
+                                            <constraint firstItem="sU1-M8-wIR" firstAttribute="leading" secondItem="Bga-7e-95c" secondAttribute="leading" id="ynW-0p-IIG"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6J-fv-VGE">
+                                        <rect key="frame" x="283" y="0.0" width="47" height="32"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
+                                        <connections>
+                                            <action selector="recordingSoundButtonTapped:" destination="rhw-ca-8Nb" eventType="touchUpInside" id="XtG-d4-2aQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vfp-Ei-fsV"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.96197502710000005" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Vfp-Ei-fsV" firstAttribute="bottom" secondItem="ADt-nx-acz" secondAttribute="bottom" constant="653" id="16S-RC-Wsm"/>
-                            <constraint firstItem="sU1-M8-wIR" firstAttribute="leading" secondItem="OIt-wt-5jL" secondAttribute="leading" id="1LL-TL-12s"/>
-                            <constraint firstItem="sU1-M8-wIR" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="120" id="9xR-9z-A0H"/>
-                            <constraint firstItem="OIt-wt-5jL" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="126" id="CUg-wH-gwS"/>
-                            <constraint firstItem="ADt-nx-acz" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="16" id="EUY-0i-HTn"/>
-                            <constraint firstItem="Vfp-Ei-fsV" firstAttribute="bottom" secondItem="1M7-Lr-gDE" secondAttribute="bottom" constant="618" id="FTI-fS-CY8"/>
-                            <constraint firstAttribute="trailing" secondItem="1M7-Lr-gDE" secondAttribute="trailing" constant="48" id="LRb-Bt-LGs"/>
-                            <constraint firstItem="ADt-nx-acz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vfp-Ei-fsV" secondAttribute="leading" id="PU7-KV-n9z"/>
-                            <constraint firstItem="1M7-Lr-gDE" firstAttribute="top" secondItem="ADt-nx-acz" secondAttribute="top" constant="32" id="S1M-Fc-Phd"/>
-                            <constraint firstItem="1M7-Lr-gDE" firstAttribute="leading" secondItem="ADt-nx-acz" secondAttribute="leading" constant="-14" id="TZu-co-Ser"/>
-                            <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="ADt-nx-acz" secondAttribute="trailing" constant="36" id="hAd-FL-Nes"/>
-                            <constraint firstItem="OIt-wt-5jL" firstAttribute="leading" secondItem="Vfp-Ei-fsV" secondAttribute="leading" constant="30" id="tIw-cy-KeW"/>
+                            <constraint firstItem="EN8-Q7-g3x" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="32" id="EVJ-6A-0fW"/>
+                            <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="EN8-Q7-g3x" secondAttribute="trailing" constant="30" id="VJZ-1h-ZGe"/>
+                            <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="hzg-NJ-1Ah" secondAttribute="trailing" constant="30" id="bze-fO-wQb"/>
+                            <constraint firstItem="hzg-NJ-1Ah" firstAttribute="top" secondItem="EN8-Q7-g3x" secondAttribute="bottom" constant="20" id="lcz-8y-c4f"/>
+                            <constraint firstItem="hzg-NJ-1Ah" firstAttribute="leading" secondItem="Vfp-Ei-fsV" secondAttribute="leading" constant="30" id="nKh-Ht-HrS"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="홈" selectedImage="home_highlight" id="HV1-bD-WDe">
@@ -104,11 +126,12 @@
                     <connections>
                         <outlet property="AddButton" destination="q6J-fv-VGE" id="KND-wA-uW3"/>
                         <outlet property="monthlyArchive" destination="sU1-M8-wIR" id="g72-ka-eqr"/>
+                        <outlet property="topSideStackView" destination="hzg-NJ-1Ah" id="JiQ-Ag-sC9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fod-1u-eDs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4072" y="-43"/>
+            <point key="canvasLocation" x="-4072.3076923076924" y="-43.364928909952603"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="WE5-cv-9pD">
