@@ -9,7 +9,8 @@ import UIKit
 
 class CalendarDelegate: NSObject,UICalendarViewDelegate {
 	func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
-		return DateDatabase.shared.eventOnCalendar(date: dateComponents)
+		return SoundDateDatabase.shared.eventOnCalendar(date: dateComponents)
+		
 	}
 	/*
 	 func calendarView(_ calendarView: UICalendarView, decorationFor dateComponents: DateComponents) -> UICalendarView.Decoration? {
