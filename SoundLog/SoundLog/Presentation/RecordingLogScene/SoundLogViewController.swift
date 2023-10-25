@@ -7,16 +7,18 @@
 
 import UIKit
 import SnapKit
-import CoreLocation
+import MapKit
 
-class SoundLogViewController: UIViewController, CLLocationManagerDelegate {
+class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 	private let soundLogTextView = LogTextView()
 	
+	
+	
 	//MARK: - CLLocation
-	let locationManager = CLLocationManager()
-	var isShowingLocation = true
+	var locationManager2: CLLocationManager?
 	
-	
+	weak var mapDelegate: MapViewControllerDelegate?
+
 	//MARK: - viewDidLoad
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -28,90 +30,23 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate {
 		
 	}
 	
+//	override func viewWillAppear(_ animated: Bool) {
+//	  //navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 숨기기
+//		if let mapVC = navigationController?.viewControllers.first as? MapViewController {
+//			addressLabel.text = mapVC.currentLocationAddress
+//		}
+//	}
+//	
+//	override func viewWillDisappear(_ animated: Bool) {
+//	  navigationController?.setNavigationBarHidden(false, animated: true) // 뷰 컨트롤러가 사라질 때 나타내기
+//		
+//	}
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		view.endEditing(true)
 	}
 	
-	// MARK: - 위치정보
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		if let location = locations.first {
-			let geocoder = CLGeocoder()
-			geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-				if let placemark = placemarks?.first {
-					if let address = placemark.formattedAddress {
-						self.addressLabel.text = "지금 여기\(address)"
-					}
-				}
-			}
-		}
-	}
 	
-	// 위도 경도 받아오기 에러
-	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-		print(error.localizedDescription)
-	}
-
-	@objc func toggleView() {
-		if isShowingLocation {
-			// Check if location services are authorized
-			switch locationManager.authorizationStatus {
-			case .authorizedWhenInUse, .authorizedAlways:
-				// Location services are already authorized
-				locationLabel.isHidden = true
-				coreLocationButton.isHidden = true
-				addressLabel.isHidden = false
-				
-				// Start updating location to get the current address
-				locationLabel.text = "Fetching address..."
-				locationManager.startUpdatingLocation()
-			case .notDetermined:
-				// Request location authorization asynchronously
-				requestLocationAuthorization()
-			case .denied, .restricted:
-				// Show an alert to inform the user to enable location services in settings
-				showLocationServicesDisabledAlert()
-			@unknown default:
-				break
-			}
-		} else {
-			locationLabel.isHidden = false
-			coreLocationButton.isHidden = false
-			addressLabel.isHidden = true
-			
-			// Stop updating location when not needed
-			locationManager.stopUpdatingLocation()
-		}
-		
-		isShowingLocation = !isShowingLocation
-	}
-	
-	func requestLocationAuthorization() {
-		locationManager.delegate = self
-		locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-		locationManager.requestWhenInUseAuthorization()
-	}
-	
-	func showLocationServicesDisabledAlert() {
-		
-		let alertController = UIAlertController(
-			title: "위치 권한 비활성화",
-			message: "위치 정보를 사용하려면 설정에서 위치 서비스를 활성화해야 합니다. 설정으로 이동하시겠습니까?",
-			preferredStyle: .alert
-		)
-		
-		let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-		let settingsAction = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
-			if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-				UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-			}
-		}
-		
-		alertController.addAction(cancelAction)
-		alertController.addAction(settingsAction)
-		
-		present(alertController, animated: true, completion: nil)
-	}
 	
 	
 	//MARK: - Entire View Scroll
@@ -347,7 +282,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate {
 		present(viewController, animated: true)
 		
 	}
-	//MARK: - user's Location
+	//MARK: - LOCATION STACK VIEW
 	private lazy var locationStack: UIStackView = {
 		let stackView = UIStackView(arrangedSubviews: [locationLabel, coreLocationButton])
 		stackView.axis = .horizontal
@@ -369,22 +304,82 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate {
 		button.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
 		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
 		button.tintColor = .black
-		button.addTarget(self, action: #selector(toggleView), for: .touchUpInside)
+		button.addTarget(self, action: #selector(pinnedCurrentLocation), for: .touchUpInside)
 		return button
 	}()
 	
+	@objc func pinnedCurrentLocation() {
+		let mapVC = MapViewController()
+		mapVC.currentLocationAddress = addressLabel.text
+		mapVC.mapDelegate = self
+		mapVC.isModalInPresentation = true
+		mapVC.modalPresentationStyle = .popover
+		self.present(mapVC, animated: true, completion: nil)
+		checkLocationPermission()
+	}
+	
+	private func checkLocationPermission() {
+		locationManager2 = CLLocationManager()
+		locationManager2?.delegate = self
+		locationManager2?.requestWhenInUseAuthorization()
+		locationManager2?.desiredAccuracy = kCLLocationAccuracyBest
+		DispatchQueue.global(qos: .userInitiated).async {
+			if CLLocationManager.locationServicesEnabled() {
+				switch self.locationManager2?.authorizationStatus {
+				case .authorizedAlways, .authorizedWhenInUse:
+					// 위치 권한이 승인되어 있는 경우
+					self.locationManager2?.startUpdatingLocation()
+				case .notDetermined:
+					// 위치 권한을 요청받지 않은 경우
+					DispatchQueue.main.async {
+						self.locationManager2?.requestAlwaysAuthorization()
+					}
+				case .denied, .restricted:
+					// 위치 권한이 거부되거나 제한된 경우
+					DispatchQueue.main.async {
+						self.showLocationServicesDisabledAlert2()
+					}
+					break
+				default:
+					break
+				}
+			} else {
+				self.showLocationServicesDisabledAlert2()
+			}
+		}
+	}//: CheckLocationPermission
+	
+	func showLocationServicesDisabledAlert2() {
+		
+		let alertController = UIAlertController(
+			title: "위치 권한 비활성화",
+			message: "위치 정보를 사용하려면 설정에서 위치 서비스를 활성화해야 합니다. 설정으로 이동하시겠습니까?",
+			preferredStyle: .alert
+		)
+		
+		let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+		let settingsAction = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
+			if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+				UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+			}
+		}
+		
+		alertController.addAction(cancelAction)
+		alertController.addAction(settingsAction)
+		
+		present(alertController, animated: true, completion: nil)
+	}
+	
 	let addressLabel: UILabel = {
-			let label = UILabel()
-			label.numberOfLines = 0
-			label.translatesAutoresizingMaskIntoConstraints = false
-			return label
+		let label = UILabel()
+		label.numberOfLines = 0
+//		label.text = "위치"
+		label.translatesAutoresizingMaskIntoConstraints = false
+		
+		return label
 	}()
 	
-	@objc func getUserLocation() {
-//		locationManager.startUpdatingLocation()
-		locationManager.requestLocation()
-		
-	}
+
 	
 	// MARK: - setupUI
 	private func setupUI() {
@@ -525,6 +520,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate {
 		// MARK: - USER LOCATION
 		contentView.addSubview(backgroundView4)
 		backgroundView4.addSubview(locationStack)
+		contentView.addSubview(addressLabel)
 		
 		backgroundView4.snp.makeConstraints {
 			$0.top.equalTo(soundLogTextView.snp.bottom).offset(24)
@@ -538,6 +534,12 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate {
 			$0.leading.equalToSuperview().inset(10)
 			$0.trailing.equalToSuperview().inset(28)
 //			$0.top.equalTo(backgroundView3.snp.top)
+		}
+		
+		addressLabel.snp.makeConstraints {
+			$0.top.equalTo(locationStack.snp.top).offset(56)
+			$0.leading.equalTo(locationStack.snp.leading).inset(20)
+			
 		}
 		
 		locationLabel.snp.makeConstraints {
@@ -554,14 +556,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate {
 			$0.height.equalTo(32)
 		}
 		
-		backgroundView4.addSubview(addressLabel)
-		addressLabel.snp.makeConstraints {
-//			$0.leading.equalTo(backgroundView4.snp.leading).inset(10)
-			$0.trailing.equalTo(backgroundView4.snp.trailing).inset(-20)
-			$0.centerY.equalTo(backgroundView4.snp.centerY)
-//			$0.width.equalTo(240)
-			$0.height.equalTo(40)
-		}
 	}// : setupUI
 }
 
@@ -582,9 +576,21 @@ extension SoundLogViewController: UITextFieldDelegate {
 
 extension CLPlacemark {
 	var formattedAddress: String? {
-		if let name = name, let locality = locality, let administrativeArea = administrativeArea {
+		if let name = name, let locality = subLocality, let administrativeArea = administrativeArea {
 			return "\(name), \(locality), \(administrativeArea)"
 		}
 		return nil
+	}
+}
+
+extension SoundLogViewController: MapViewControllerDelegate {
+	func didSelectLocationWithAddress(_ address: String?) {
+		 if let address = address {
+			  addressLabel.text = address
+		 }
+	}
+	
+	func dismissMapViewController() {
+		 dismiss(animated: true, completion: nil)
 	}
 }

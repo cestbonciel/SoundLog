@@ -55,7 +55,7 @@ class HomeViewController: UIViewController {
 		calendarView.selectionBehavior = multiDaySelection
 	}
 	
-	@IBAction func recordingSoundButtonTapped(_ sender: Any) {
+	@IBAction func leaveLogButtonTapped(_ sender: Any) {
 		let viewController = SoundLogViewController()
 		viewController.isModalInPresentation = true
 		viewController.modalPresentationStyle = .fullScreen

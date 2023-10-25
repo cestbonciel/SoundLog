@@ -40,6 +40,8 @@
 		87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */; };
 		879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */; };
 		879BD0772AD45DF300ED7C77 /* CalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BD0762AD45DF300ED7C77 /* CalendarDelegate.swift */; };
+		87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B143F72AE6B3DF00EDF23F /* MapViewController.swift */; };
+		87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */; };
 		87BB609F2AD72B2B00B9428D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB609E2AD72B2B00B9428D /* LocationService.swift */; };
 		87BFB0582AB8179900CF839A /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 87BFB0552AB8179900CF839A /* GmarketSansBold.otf */; };
 		87BFB0592AB8179900CF839A /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 87BFB0562AB8179900CF839A /* GmarketSansLight.otf */; };
@@ -85,6 +87,8 @@
 		87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewController.swift"; sourceTree = "<group>"; };
 		879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDateDatabase.swift; sourceTree = "<group>"; };
 		879BD0762AD45DF300ED7C77 /* CalendarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDelegate.swift; sourceTree = "<group>"; };
+		87B143F72AE6B3DF00EDF23F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedDelegate.swift; sourceTree = "<group>"; };
 		87BB609E2AD72B2B00B9428D /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		87BFB0552AB8179900CF839A /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
 		87BFB0562AB8179900CF839A /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 				871D0EFF2A975E1C0097D6F1 /* GenreTableViewController.swift */,
 				871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */,
 				874418662ABAD97F00233604 /* RecordingViewController.swift */,
+				87B143F72AE6B3DF00EDF23F /* MapViewController.swift */,
+				87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */,
 				874418682ABAD98400233604 /* RecordingViewController+AVFoundation.swift */,
 			);
 			path = RecordingLogScene;
@@ -392,6 +398,8 @@
 				87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */,
 				878864D42A8E745D008340E2 /* Extension.swift in Sources */,
 				87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */,
+				87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */,
+				87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */,
 				874418672ABAD97F00233604 /* RecordingViewController.swift in Sources */,
 				87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */,
 				879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */,
