@@ -24,6 +24,7 @@
 		874418792ABB45FB00233604 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 874418702ABB45FB00233604 /* Pretendard-Regular.otf */; };
 		8744187A2ABB45FB00233604 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */; };
 		8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8744187C2ABB5CFD00233604 /* LogTextView.swift */; };
+		87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */; };
 		8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */; };
 		8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */; };
 		8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */; };
@@ -37,14 +38,18 @@
 		878864D42A8E745D008340E2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D32A8E745D008340E2 /* Extension.swift */; };
 		87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E852AA4B49B005D5351 /* SettingMenuCell.swift */; };
 		87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */; };
-		879BD0752AD45C0E00ED7C77 /* DateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BD0742AD45C0E00ED7C77 /* DateDatabase.swift */; };
+		879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */; };
 		879BD0772AD45DF300ED7C77 /* CalendarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BD0762AD45DF300ED7C77 /* CalendarDelegate.swift */; };
+		87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B143F72AE6B3DF00EDF23F /* MapViewController.swift */; };
+		87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */; };
+		87BB609F2AD72B2B00B9428D /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB609E2AD72B2B00B9428D /* LocationService.swift */; };
 		87BFB0582AB8179900CF839A /* GmarketSansBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 87BFB0552AB8179900CF839A /* GmarketSansBold.otf */; };
 		87BFB0592AB8179900CF839A /* GmarketSansLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 87BFB0562AB8179900CF839A /* GmarketSansLight.otf */; };
 		87BFB05A2AB8179900CF839A /* GmarketSansMedium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 87BFB0572AB8179900CF839A /* GmarketSansMedium.otf */; };
 		87DB259F2A8D421E00EE0CE4 /* startEnter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */; };
 		87E3EBC72A937A7F00D14093 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E3EBC62A937A7F00D14093 /* HomeViewController.swift */; };
 		87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E9769D2A8D4BEA00756C18 /* StartViewController.swift */; };
+		87EE460D2AD7D651008E553F /* UIView+BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EE460C2AD7D651008E553F /* UIView+BackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +69,7 @@
 		874418702ABB45FB00233604 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		8744187C2ABB5CFD00233604 /* LogTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextView.swift; sourceTree = "<group>"; };
+		87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldContentView.swift; sourceTree = "<group>"; };
 		8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
@@ -79,14 +85,18 @@
 		878864D32A8E745D008340E2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		87909E852AA4B49B005D5351 /* SettingMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingMenuCell.swift; sourceTree = "<group>"; };
 		87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewController.swift"; sourceTree = "<group>"; };
-		879BD0742AD45C0E00ED7C77 /* DateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDatabase.swift; sourceTree = "<group>"; };
+		879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDateDatabase.swift; sourceTree = "<group>"; };
 		879BD0762AD45DF300ED7C77 /* CalendarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDelegate.swift; sourceTree = "<group>"; };
+		87B143F72AE6B3DF00EDF23F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedDelegate.swift; sourceTree = "<group>"; };
+		87BB609E2AD72B2B00B9428D /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		87BFB0552AB8179900CF839A /* GmarketSansBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansBold.otf; sourceTree = "<group>"; };
 		87BFB0562AB8179900CF839A /* GmarketSansLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansLight.otf; sourceTree = "<group>"; };
 		87BFB0572AB8179900CF839A /* GmarketSansMedium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansMedium.otf; sourceTree = "<group>"; };
 		87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = startEnter.storyboard; sourceTree = "<group>"; };
 		87E3EBC62A937A7F00D14093 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		87E9769D2A8D4BEA00756C18 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		87EE460C2AD7D651008E553F /* UIView+BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BackgroundView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +160,7 @@
 		877DAC8F2A7AD46C00AE3038 /* SoundLog */ = {
 			isa = PBXGroup;
 			children = (
+				87BB609D2AD72B1A00B9428D /* Service */,
 				87BFB05F2AB82BDE00CF839A /* Applications */,
 				87BFB05E2AB82B9800CF839A /* Presentation */,
 				87BFB0632AB8316600CF839A /* Commons */,
@@ -187,6 +198,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		87BB609D2AD72B1A00B9428D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				87BB609E2AD72B2B00B9428D /* LocationService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		87BFB05B2AB82A7300CF839A /* ShazamScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				87E3EBC62A937A7F00D14093 /* HomeViewController.swift */,
-				879BD0742AD45C0E00ED7C77 /* DateDatabase.swift */,
+				879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */,
 				879BD0762AD45DF300ED7C77 /* CalendarDelegate.swift */,
 			);
 			path = HomeScene;
@@ -216,6 +235,7 @@
 				87BFB05C2AB82A7A00CF839A /* HomeScene */,
 				87BFB05B2AB82A7300CF839A /* ShazamScene */,
 				8777A7E62A9BBCD3005526D1 /* SettingsScene */,
+				87EE460B2AD7D614008E553F /* ContentViews */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -236,6 +256,8 @@
 				871D0EFF2A975E1C0097D6F1 /* GenreTableViewController.swift */,
 				871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */,
 				874418662ABAD97F00233604 /* RecordingViewController.swift */,
+				87B143F72AE6B3DF00EDF23F /* MapViewController.swift */,
+				87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */,
 				874418682ABAD98400233604 /* RecordingViewController+AVFoundation.swift */,
 			);
 			path = RecordingLogScene;
@@ -264,6 +286,15 @@
 				878864D32A8E745D008340E2 /* Extension.swift */,
 			);
 			path = Commons;
+			sourceTree = "<group>";
+		};
+		87EE460B2AD7D614008E553F /* ContentViews */ = {
+			isa = PBXGroup;
+			children = (
+				87EE460C2AD7D651008E553F /* UIView+BackgroundView.swift */,
+				87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */,
+			);
+			path = ContentViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,20 +391,25 @@
 			files = (
 				871D0F002A975E1C0097D6F1 /* GenreTableViewController.swift in Sources */,
 				879BD0772AD45DF300ED7C77 /* CalendarDelegate.swift in Sources */,
+				87BB609F2AD72B2B00B9428D /* LocationService.swift in Sources */,
 				8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */,
 				877DAC912A7AD46C00AE3038 /* AppDelegate.swift in Sources */,
 				877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */,
+				87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */,
 				878864D42A8E745D008340E2 /* Extension.swift in Sources */,
 				87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */,
+				87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */,
+				87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */,
 				874418672ABAD97F00233604 /* RecordingViewController.swift in Sources */,
 				87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */,
-				879BD0752AD45C0E00ED7C77 /* DateDatabase.swift in Sources */,
+				879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */,
 				878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */,
 				8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */,
 				8777A7ED2A9BBED5005526D1 /* ThemeViewController.swift in Sources */,
 				8731316D2A9CE26700E8B645 /* SettingViewController.swift in Sources */,
 				87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */,
 				874418692ABAD98400233604 /* RecordingViewController+AVFoundation.swift in Sources */,
+				87EE460D2AD7D651008E553F /* UIView+BackgroundView.swift in Sources */,
 				8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */,
 				871D0EFE2A971F310097D6F1 /* SoundLogViewController.swift in Sources */,
 				87E3EBC72A937A7F00D14093 /* HomeViewController.swift in Sources */,
@@ -530,6 +566,7 @@
 				DEVELOPMENT_TEAM = 2P5FNS3JAJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoundLog/Resources/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치를 등록하려면 사용자의 위치 권한을 허용해야합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "녹음을 기록하려면 마이크 사용 허용해야합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -561,6 +598,7 @@
 				DEVELOPMENT_TEAM = 2P5FNS3JAJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SoundLog/Resources/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치를 등록하려면 사용자의 위치 권한을 허용해야합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "녹음을 기록하려면 마이크 사용 허용해야합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
