@@ -24,7 +24,9 @@ class HomeViewController: UIViewController {
 		let gregorianCalendar = Calendar(identifier: .gregorian)
 		calendarView.calendar = gregorianCalendar
 		calendarView.locale = Locale(identifier: "ko-KR")
-		calendarView.fontDesign = .monospaced
+		calendarView.fontDesign = .rounded
+		calendarView.tintColor = .neonPurple
+		
 		calendarView.visibleDateComponents = DateComponents(calendar: Calendar(identifier: .gregorian), year: 2023, month: 10, day: 7)
 		calendarView.wantsDateDecorations = true
 		return calendarView
@@ -49,11 +51,11 @@ class HomeViewController: UIViewController {
 	
 	func setupCalendar() {
 		let multiDaySelection = UICalendarSelectionMultiDate(delegate: self)
-		multiDaySelection.selectedDates = DateDatabase.shared.selectedDate ?? []
+		multiDaySelection.selectedDates = SoundDateDatabase.shared.selectedDate ?? []
 		calendarView.selectionBehavior = multiDaySelection
 	}
 	
-	@IBAction func recordingSoundButtonTapped(_ sender: Any) {
+	@IBAction func leaveLogButtonTapped(_ sender: Any) {
 		let viewController = SoundLogViewController()
 		viewController.isModalInPresentation = true
 		viewController.modalPresentationStyle = .fullScreen
@@ -67,8 +69,8 @@ class HomeViewController: UIViewController {
 		
 		calendarView.snp.makeConstraints {
 			$0.top.equalTo(topSideStackView.snp.bottom).offset(20)
-			$0.left.right.equalTo(view.safeAreaLayoutGuide).inset(32)
-			$0.height.equalTo(500)
+			$0.left.right.equalTo(view.safeAreaLayoutGuide).inset(16)
+			$0.height.equalTo(400)
 		}
 		
 	}

@@ -187,8 +187,9 @@ class RecordingViewController: UIViewController {
 			
 			progressView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 64),
 			progressView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 30),
+			progressView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -30),
 			progressView.heightAnchor.constraint(equalToConstant: 32),
-			progressView.widthAnchor.constraint(equalToConstant: 300),
+//			progressView.widthAnchor.constraint(equalToConstant: 300),
 
 		])
 		

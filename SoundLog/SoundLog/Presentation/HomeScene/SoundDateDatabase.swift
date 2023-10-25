@@ -7,13 +7,13 @@
 
 import UIKit
 
-class DateDatabase {
+class SoundDateDatabase {
 	
 	enum EventType {
 		case none, recordingSound, shazam, asmr
 	}
 	
-	public static let shared: DateDatabase = DateDatabase()
+	public static let shared: SoundDateDatabase = SoundDateDatabase()
 	
 	private init() {
 		
@@ -41,7 +41,7 @@ class DateDatabase {
 		return dates
 	}()
 	
-	let dateEvents: [DateComponents : DateDatabase.EventType] = [
+	let dateEvents: [DateComponents : SoundDateDatabase.EventType] = [
 		DateComponents(calendar: Calendar(identifier: .gregorian), year: 2023, month: 10, day: 13): .recordingSound,
 		DateComponents(calendar: Calendar(identifier: .gregorian), year: 2023, month: 10, day: 15): .asmr,
 		DateComponents(calendar: Calendar(identifier: .gregorian), year: 2023, month: 10, day: 16): .asmr,
@@ -50,7 +50,7 @@ class DateDatabase {
 		DateComponents(calendar: Calendar(identifier: .gregorian), year: 2023, month: 10, day: 26): .shazam,
 	]
 	
-	private func eventStatus(date: DateComponents) -> DateDatabase.EventType {
+	private func eventStatus(date: DateComponents) -> SoundDateDatabase.EventType {
 		if let component = dateEvents.filter({ $0.0.date == date.date }).first {
 			return component.1
 		}
@@ -65,11 +65,30 @@ class DateDatabase {
 			return nil
 		case .recordingSound:
 			
-			return .image(UIImage(systemName: "waveform"), color: .black)
+			return .customView {
+				let label = UILabel()
+				label.text = "𝗥"
+				label.textColor = UIColor.systemRed
+				label.textAlignment = .center
+				return label
+			}
+			
 		case .shazam:
-			return .image(UIImage(systemName: "shazam.logo"), color: .systemBlue, size: .medium)
+			return .customView {
+				let label = UILabel()
+				label.text = "👂"
+				label.textColor = UIColor.systemBlue
+				label.textAlignment = .center
+				return label
+			}
 		case .asmr:
-			return .image(UIImage(systemName: "character"), color: .systemGreen, size: .medium)
+			return .customView {
+				let label = UILabel()
+				label.text = "🍃"
+				label.textColor = UIColor.systemBlue
+				label.textAlignment = .center
+				return label
+			}
 		}
 	}
 	
