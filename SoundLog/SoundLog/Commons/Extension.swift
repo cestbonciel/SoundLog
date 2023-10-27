@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/*
 extension UILabel {
 	func labelColor(targetString: String, color: UIColor) {
 		let fullText = text ?? ""
@@ -25,6 +26,7 @@ extension UILabel {
 		attributedText = anotherAttributedString
 	}
 }
+*/
 //MARK: - Custom UIColor
 extension UIColor {
 	class var pastelSkyblue: UIColor {
