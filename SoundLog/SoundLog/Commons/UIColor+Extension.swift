@@ -1,32 +1,12 @@
 //
-//  Extension.swift
+//  UIColor+Extension.swift
 //  SoundLog
 //
 //  Created by Seohyun Kim on 2023/08/18.
 //
 
-import Foundation
 import UIKit
 
-/*
-extension UILabel {
-	func labelColor(targetString: String, color: UIColor) {
-		let fullText = text ?? ""
-		let attributedString = NSMutableAttributedString(string: fullText)
-		let range = (fullText as NSString).range(of: targetString)
-		attributedString.addAttribute(.foregroundColor, value: color, range: range)
-		attributedText = attributedString
-	}
-	
-	func anotherlabel(targetString: String, color: UIColor) {
-		let fullText = text ?? ""
-		let anotherAttributedString = NSMutableAttributedString(string: fullText)
-		let range = (fullText as NSString).range(of: targetString)
-		anotherAttributedString.addAttribute(.foregroundColor, value: color, range: range)
-		attributedText = anotherAttributedString
-	}
-}
-*/
 //MARK: - Custom UIColor
 extension UIColor {
 	class var pastelSkyblue: UIColor {
@@ -50,6 +30,7 @@ extension UIColor {
 	}
 }
 //MARK: - Custom Font
+/*
 enum SoundLogCustomFontGM {
 	case GMSansLight
 	case GMSansMedium
@@ -90,3 +71,4 @@ extension NSAttributedString {
 	}
 
 }
+*/

@@ -56,12 +56,12 @@ class RecordingViewController: UIViewController {
 		return progressView
 	}()
 
-	lazy var timeStackView: UIStackView = {
-		let view = UIStackView()
-		view.axis = .horizontal
-		view.translatesAutoresizingMaskIntoConstraints = false
-		return view
-	}()
+//	lazy var timeStackView: UIStackView = {
+//		let view = UIStackView()
+//		view.axis = .horizontal
+//		view.translatesAutoresizingMaskIntoConstraints = false
+//		return view
+//	}()
 
 	lazy var timerLabel: UILabel = {
 		let label = UILabel()
@@ -72,9 +72,10 @@ class RecordingViewController: UIViewController {
 	}()
 	
 	// MARK: - Limit Recording Time
-	private let stackView: UIStackView = {
+	private let limitTimeStackView: UIStackView = {
 		let view = UIStackView()
 		view.axis = .horizontal
+		view.distribution = .fillProportionally
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
 	}()
@@ -82,7 +83,7 @@ class RecordingViewController: UIViewController {
 	lazy var limitLabel: UILabel = {
 		let label = UILabel()
 		label.text = "기록 제한시간"
-		label.font = UIFont.systemFont(ofSize: 16)
+		label.font = .prtendard(ofSize: 13, weight: .PRTendardMedium)
 		label.textColor = .black
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
@@ -93,15 +94,7 @@ class RecordingViewController: UIViewController {
 		segmentControl.translatesAutoresizingMaskIntoConstraints = false
 		return segmentControl
 	}()
-	// MARK: - bottom Button Components
-	private let buttonStackView: UIStackView = {
-		let view = UIStackView()
-		view.axis = .horizontal
-		view.translatesAutoresizingMaskIntoConstraints = false
-		return view
-	}()
-	
-	
+
 	// MARK: - Recorder Button Components
 	private let recorderButtonStackView: UIStackView = {
 		let view = UIStackView()
@@ -113,52 +106,91 @@ class RecordingViewController: UIViewController {
 	}()
 	//MARK: - RECORD BUTTON
 	lazy var recordButton: UIButton = {
-		let button = UIButton()
-		button.setImage(UIImage(systemName: "mic.circle.fill"), for: .normal)
-		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
-		button.tintColor = .red
-		button.addTarget(self, action: #selector(recordButtonPressed), for: .touchUpInside)
+		var config = UIButton.Configuration.filled()
+		config.image = UIImage(systemName: "mic.fill")
+		config.baseBackgroundColor = .systemRed
+		config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
+
+		let button = UIButton(configuration: config)
+		button.configuration = config
+		button.tintColor = .white
+//		button.layer.masksToBounds = false
+		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
+		button.layer.cornerRadius = button.frame.width / 2
+		button.translatesAutoresizingMaskIntoConstraints = false
+		
 		return button
 	}()
 	//MARK: - PLAY BUTTON
 	lazy var playButton: UIButton = {
-		let button = UIButton()
-		button.setImage(UIImage(systemName: "play.circle.fill"), for: .normal)
-		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
-		button.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
+		var config = UIButton.Configuration.filled()
+		config.image = UIImage(systemName: "play.fill")
+		config.baseBackgroundColor = .neonPurple
+		config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
+
+		let button = UIButton(configuration: config)
+		button.configuration = config
+		button.tintColor = .white
+//		button.layer.masksToBounds = false
+		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
+		button.layer.cornerRadius = button.frame.width / 2
+		button.translatesAutoresizingMaskIntoConstraints = false
+
+//		button.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
 		return button
 	}()
 	//MARK: - STOP BUTTON
 	lazy var stopButton: UIButton = {
-		let button = UIButton()
-		button.setImage(UIImage(systemName: "stop.circle.fill"), for: .normal)
-		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
-		button.tintColor = .systemPink
-		button.addTarget(self, action: #selector(stopButtonPressed), for: .touchUpInside)
+		var attString = AttributedString("정지")
+		attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+		var config = UIButton.Configuration.borderedTinted()
+		config.attributedTitle = attString
+		config.baseBackgroundColor = .systemRed
+		config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+
+		let button = UIButton(configuration: config)
+		button.configuration = config
+		button.tintColor = .systemRed
+		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
+		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
 
 	
-	lazy var sliderVolume: UISlider = {
-		let slider = UISlider(frame: CGRect(x: 0, y: 320, width: 300, height: 24))
-		slider.minimumValue = 0.0
-		slider.maximumValue = 100.0
-		slider.value = 5.0
-		slider.translatesAutoresizingMaskIntoConstraints = false
-		slider.addTarget(self, action: #selector(sliderValueChanged), for: .touchUpInside)
-		return slider
+//	lazy var sliderVolume: UISlider = {
+//		let slider = UISlider(frame: CGRect(x: 0, y: 320, width: 300, height: 24))
+//		slider.minimumValue = 0.0
+//		slider.maximumValue = 100.0
+//		slider.value = 5.0
+//		slider.translatesAutoresizingMaskIntoConstraints = false
+//		slider.addTarget(self, action: #selector(sliderValueChanged), for: .touchUpInside)
+//		return slider
+//	}()
+	
+	// MARK: - bottom Button Components
+	private let buttonStackView: UIStackView = {
+		let view = UIStackView()
+		view.axis = .horizontal
+		view.distribution = .equalSpacing
+		view.translatesAutoresizingMaskIntoConstraints = false
+		return view
 	}()
-	
-	
-	
+
 	lazy var cancelButton: UIButton = {
-		let button = UIButton()
-		button.setTitle("취소", for: .normal)
-		button.backgroundColor = .systemDimGray
-		button.tintColor = .black
-		button.frame = CGRect(x: 0, y: 0, width: 64, height: 32)
-		button.layer.cornerRadius = 20
+		var attString = AttributedString("취소")
+		attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+
+		var config = UIButton.Configuration.filled()
+		config.attributedTitle = attString
+		config.baseBackgroundColor = .systemDimGray
+		config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+
+		let button = UIButton(configuration: config)
+		button.configuration = config
+		button.tintColor = .systemGray3
+		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
 		button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+		button.translatesAutoresizingMaskIntoConstraints = false
 		return button
 	}()
 	
@@ -176,103 +208,93 @@ class RecordingViewController: UIViewController {
 
 	// MARK: - Set up User Interfaces
 	private func setupUI() {
-		self.view.backgroundColor = .systemBackground
-		self.view.addSubview(mainLabel)
-		self.view.addSubview(progressView)
-		
+		view.backgroundColor = .systemBackground
+		view.addSubview(mainLabel)
+		view.addSubview(progressView)
 		
 		NSLayoutConstraint.activate([
-			mainLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-			mainLabel.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 30),
-			
-			progressView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 64),
-			progressView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor,constant: 30),
-			progressView.trailingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.trailingAnchor, constant: -30),
-			progressView.heightAnchor.constraint(equalToConstant: 32),
-//			progressView.widthAnchor.constraint(equalToConstant: 300),
+			mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
 
 		])
-		
-		self.view.addSubview(timeStackView)
-		timeStackView.addArrangedSubview(timerLabel)
+
+		view.addSubview(timerLabel)
+		view.addSubview(progressView)
+
+		NSLayoutConstraint.activate([
+
+			progressView.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 32),
+			progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+			progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+
+			progressView.heightAnchor.constraint(equalToConstant: 32),
+			timerLabel.trailingAnchor.constraint(equalTo: progressView.trailingAnchor, constant: -16),
+			timerLabel.centerYAnchor.constraint(equalTo: progressView.centerYAnchor)
+		])
+
+		view.bringSubviewToFront(timerLabel)
+
+		// MARK: Limit time -
+		view.addSubview(limitTimeStackView)
+		limitTimeStackView.addArrangedSubview(limitLabel)
+		limitTimeStackView.addArrangedSubview(segmentControl)
 		
 		NSLayoutConstraint.activate([
-			timeStackView.leadingAnchor.constraint(equalTo: timeStackView.leadingAnchor),
-			timeStackView.trailingAnchor.constraint(equalTo: progressView.trailingAnchor),
-			timeStackView.centerYAnchor.constraint(equalTo: progressView.centerYAnchor),
-			timerLabel.trailingAnchor.constraint(equalTo:	progressView.trailingAnchor, constant: -10),
-			timerLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -64)
+			
+			limitTimeStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 32),
+			limitTimeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+			limitTimeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+			
+			limitTimeStackView.heightAnchor.constraint(equalToConstant: 40),
+			
 		])
 		
-		view.bringSubviewToFront(timeStackView)
+		NSLayoutConstraint.activate([
+			limitLabel.leadingAnchor.constraint(equalTo: limitTimeStackView.leadingAnchor),
+		
+			limitLabel.centerYAnchor.constraint(equalTo: limitTimeStackView.centerYAnchor),
+			
+			segmentControl.trailingAnchor.constraint(equalTo: limitTimeStackView.trailingAnchor),
+			segmentControl.heightAnchor.constraint(equalToConstant: 40),
+			segmentControl.centerYAnchor.constraint(equalTo: limitLabel.centerYAnchor)
+			
+		])
 		
 		
-		self.view.addSubview(sliderVolume)
 		// MARK: record Button StackView -
-		self.view.addSubview(recorderButtonStackView)
+		view.addSubview(recorderButtonStackView)
 		recorderButtonStackView.addArrangedSubview(playButton)
 		recorderButtonStackView.addArrangedSubview(recordButton)
 		recorderButtonStackView.addArrangedSubview(stopButton)
-		
+
 		NSLayoutConstraint.activate([
-			sliderVolume.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-			sliderVolume.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor, constant: 30),
-			sliderVolume.widthAnchor.constraint(equalToConstant: 300),
-			sliderVolume.heightAnchor.constraint(equalToConstant: 40),
+			recorderButtonStackView.topAnchor.constraint(equalTo: limitTimeStackView.bottomAnchor, constant: 32),
+			recorderButtonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+			recorderButtonStackView.heightAnchor.constraint(equalToConstant: 40),
+			recorderButtonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+
+			recorderButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 		])
 
-		
-		NSLayoutConstraint.activate([
-			recorderButtonStackView.topAnchor.constraint(equalTo: sliderVolume.bottomAnchor, constant: 30),
-			recorderButtonStackView.widthAnchor.constraint(equalToConstant: 300),
-			recorderButtonStackView.heightAnchor.constraint(equalToConstant: 40),
-			recorderButtonStackView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor, constant: 30),
-			
-			recorderButtonStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-		])
-		
-		self.view.addSubview(buttonStackView)
+		view.addSubview(buttonStackView)
 		buttonStackView.addArrangedSubview(cancelButton)
 		buttonStackView.addArrangedSubview(uploadButton)
-		
+
 		// MARK: save and cancel Button StackView -
 		NSLayoutConstraint.activate([
-			buttonStackView.widthAnchor.constraint(equalToConstant: 328),
+			buttonStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
+			buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 32),
+			buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -32),
 			buttonStackView.heightAnchor.constraint(equalToConstant: 40),
-			buttonStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 300),
-			buttonStackView.leftAnchor.constraint(greaterThanOrEqualTo: self.view.leftAnchor, constant: 32),
-			buttonStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 			
-			cancelButton.widthAnchor.constraint(equalToConstant: 64),
-			cancelButton.heightAnchor.constraint(equalToConstant: 32),
-			cancelButton.trailingAnchor.constraint(equalTo: uploadButton.leadingAnchor, constant: -200),
-			uploadButton.widthAnchor.constraint(equalToConstant: 32),
-			uploadButton.heightAnchor.constraint(equalToConstant: 32),
-			
+
+			cancelButton.leadingAnchor.constraint(equalTo: buttonStackView.leadingAnchor),
+			cancelButton.centerYAnchor.constraint(equalTo: buttonStackView.centerYAnchor),
+
+			uploadButton.trailingAnchor.constraint(equalTo: buttonStackView.trailingAnchor),
+			uploadButton.centerYAnchor.constraint(equalTo: buttonStackView.centerYAnchor)
+
 		])
-		
-		// MARK: Limit time -
-		self.view.addSubview(stackView)
-		stackView.addArrangedSubview(limitLabel)
-		stackView.addArrangedSubview(segmentControl)
-		
-		NSLayoutConstraint.activate([
-			stackView.widthAnchor.constraint(equalToConstant: 300),
-			stackView.heightAnchor.constraint(equalToConstant: 32),
-			stackView.leadingAnchor.constraint(equalTo: self.view.layoutMarginsGuide.leadingAnchor, constant: 30),
-			stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
-			stackView.bottomAnchor.constraint(equalTo: sliderVolume.topAnchor, constant: -10)
-		])
-		
-		NSLayoutConstraint.activate([
-			limitLabel.widthAnchor.constraint(equalToConstant: 90),
-			limitLabel.heightAnchor.constraint(equalToConstant: 16),
-			
-			segmentControl.widthAnchor.constraint(equalToConstant: 120),
-			segmentControl.heightAnchor.constraint(equalToConstant: 40)
-			
-		])
-		
 		
 	}
 }
@@ -281,3 +303,5 @@ class RecordingViewController: UIViewController {
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
 	return input.rawValue
 }
+
+

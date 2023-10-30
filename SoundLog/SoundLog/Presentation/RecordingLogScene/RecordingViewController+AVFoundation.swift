@@ -205,13 +205,13 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 		
 	}
 	
-	@objc func sliderValueChanged(_ sender: UISlider) {
-		audioPlayer?.volume = sliderVolume.value
-	}
-	
-	@objc func slChangeVolume(_ sender: UISlider) {
-		audioPlayer.volume = sliderVolume.value
-	}
+//	@objc func sliderValueChanged(_ sender: UISlider) {
+//		audioPlayer?.volume = sliderVolume.value
+//	}
+//
+//	@objc func slChangeVolume(_ sender: UISlider) {
+//		audioPlayer.volume = sliderVolume.value
+//	}
 	
 	// MARK: - AVFoundation Delegate
 	func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {

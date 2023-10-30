@@ -250,7 +250,11 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 	
 	private lazy var recordLabel: UILabel = {
 		let label = UILabel()
-		label.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "당신의 소리를 기록해보세요.", lineHeight: 16)
+		label.text = "당신의 소리를 기록해보세요."
+		label.numberOfLines = 0
+		label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+//		label.font = .prtendard(ofSize: 16, weight: .PRTendardMedium)
+		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
 	}()
 	
@@ -258,7 +262,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		let button = UIButton()
 		button.setImage(UIImage(systemName: "waveform.circle.fill"), for: .normal)
 		button.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-//		button.frame = CGRect(x: 300, y: 64, width: 32, height: 32)
 		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
 		button.tintColor = .black
 		button.addTarget(self, action: #selector(touchUpbottomSheet), for: .touchUpInside)
@@ -272,7 +275,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 			sheet.preferredCornerRadius = 20
 			viewController.sheetPresentationController?.detents = [
 				.custom(resolver: { context in
-				0.5 * context.maximumDetentValue
+				0.4 * context.maximumDetentValue
 			})]
 			
 			viewController.sheetPresentationController?.largestUndimmedDetentIdentifier = .medium
@@ -488,20 +491,15 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		}
 		
 		recordingStack.snp.makeConstraints{
-			$0.centerY.equalToSuperview()
-			$0.leading.equalToSuperview().inset(10)
-			$0.trailing.equalToSuperview().inset(28)
-//			$0.top.equalTo(backgroundView3.snp.top)
+			$0.centerY.equalTo(backgroundView3.snp.centerY)
+			$0.leading.equalTo(backgroundView3.snp.leading).inset(16)
+			$0.trailing.equalTo(backgroundView3.snp.trailing).inset(16)
 		}
 		recordLabel.snp.makeConstraints {
-			$0.leading.equalTo(recordingStack.snp.leading).inset(10)
 			$0.centerY.equalTo(recordingStack.snp.centerY)
-			$0.width.equalTo(198)
-			$0.height.equalTo(40)
 		}
 		
 		recordingButton.snp.makeConstraints {
-//			$0.trailing.equalToSuperview()
 			$0.centerY.equalTo(recordingStack.snp.centerY)
 			$0.width.equalTo(32)
 			$0.height.equalTo(32)
@@ -594,3 +592,23 @@ extension SoundLogViewController: MapViewControllerDelegate {
 		 dismiss(animated: true, completion: nil)
 	}
 }
+
+//MARK: - Preview Setting
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+struct SoundLogViewControllerRepresentable: UIViewControllerRepresentable {
+	func makeUIViewController(context: Context) -> some UIViewController {
+		return UIStoryboard(name: "RecordingSound", bundle: nil).instantiateViewController(withIdentifier: "Record")
+	}
+	
+	func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+		
+	}
+}
+
+struct SoundLogViewController_Preview: PreviewProvider {
+	static var previews: some View {
+		SoundLogViewControllerRepresentable()
+	}
+}
+#endif

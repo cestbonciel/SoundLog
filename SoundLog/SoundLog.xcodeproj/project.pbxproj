@@ -24,6 +24,7 @@
 		8744187A2ABB45FB00233604 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */; };
 		8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8744187C2ABB5CFD00233604 /* LogTextView.swift */; };
 		87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */; };
+		876B9A842AEFE33700D566D0 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */; };
 		8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */; };
 		8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */; };
 		8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */; };
@@ -34,7 +35,7 @@
 		877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 877DAC992A7AD46D00AE3038 /* Assets.xcassets */; };
 		877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 877DAC9B2A7AD46D00AE3038 /* LaunchScreen.storyboard */; };
 		878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D12A8E73A6008340E2 /* MainTabBarController.swift */; };
-		878864D42A8E745D008340E2 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D32A8E745D008340E2 /* Extension.swift */; };
+		878864D42A8E745D008340E2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D32A8E745D008340E2 /* UIColor+Extension.swift */; };
 		87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E852AA4B49B005D5351 /* SettingMenuCell.swift */; };
 		87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */; };
 		879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */; };
@@ -71,6 +72,7 @@
 		874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		8744187C2ABB5CFD00233604 /* LogTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextView.swift; sourceTree = "<group>"; };
 		87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldContentView.swift; sourceTree = "<group>"; };
+		876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
@@ -83,7 +85,7 @@
 		877DAC9C2A7AD46D00AE3038 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		877DAC9E2A7AD46D00AE3038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		878864D12A8E73A6008340E2 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		878864D32A8E745D008340E2 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		878864D32A8E745D008340E2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		87909E852AA4B49B005D5351 /* SettingMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingMenuCell.swift; sourceTree = "<group>"; };
 		87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewController.swift"; sourceTree = "<group>"; };
 		879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDateDatabase.swift; sourceTree = "<group>"; };
@@ -289,7 +291,8 @@
 		87BFB0632AB8316600CF839A /* Commons */ = {
 			isa = PBXGroup;
 			children = (
-				878864D32A8E745D008340E2 /* Extension.swift */,
+				878864D32A8E745D008340E2 /* UIColor+Extension.swift */,
+				876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -404,7 +407,8 @@
 				877DAC912A7AD46C00AE3038 /* AppDelegate.swift in Sources */,
 				877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */,
 				87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */,
-				878864D42A8E745D008340E2 /* Extension.swift in Sources */,
+				876B9A842AEFE33700D566D0 /* UIFont+Extension.swift in Sources */,
+				878864D42A8E745D008340E2 /* UIColor+Extension.swift in Sources */,
 				87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */,
 				87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */,
 				87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */,

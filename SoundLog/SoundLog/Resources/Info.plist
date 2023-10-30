@@ -4,17 +4,17 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Fonts/GmarketSansTTFBold.otf</string>
-		<string>Fonts/GmarketSansTTFLight.otf</string>
-		<string>Fonts/GmarketSansTTFMedium.otf</string>
-		<string>Fonts/Pretendard-Bold.otf</string>
-		<string>Fonts/Pretendard-ExtraBold.otf</string>
-		<string>Fonts/Pretendard-ExtraLight.otf</string>
-		<string>Fonts/Pretendard-Light.otf</string>
-		<string>Fonts/Pretendard-Medium.otf</string>
-		<string>Fonts/Pretendard-Regular.otf</string>
-		<string>Fonts/Pretendard-SemiBold.otf</string>
-		<string>Fonts/Pretendard-Thin.otf</string>
+		<string>GmarketSansTTFBold.ttf</string>
+		<string>GmarketSansTTFLight.ttf</string>
+		<string>GmarketSansTTFMedium.ttf</string>
+		<string>Pretendard-Bold.otf</string>
+		<string>Pretendard-ExtraBold.otf</string>
+		<string>Pretendard-ExtraLight.otf</string>
+		<string>Pretendard-Light.otf</string>
+		<string>Pretendard-Medium.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>Pretendard-Thin.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
