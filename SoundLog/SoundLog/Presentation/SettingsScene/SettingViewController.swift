@@ -22,7 +22,9 @@ class SettingViewController: UIViewController{
 
 	private let introLabel: UILabel = {
 		let label = UILabel()
-		label.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "당신을 위한 소리 기록장", lineHeight: 16)
+//		label.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "당신을 위한 소리 기록장", lineHeight: 16)
+		label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+		label.text = "당신을 위한 소리 기록장"
 		label.textColor = .systemDimGray
 		return label
 	}()
@@ -35,7 +37,9 @@ class SettingViewController: UIViewController{
 	}()
 	private let profileNameLabel: UILabel = {
 		let nickNamelabel = UILabel()
-		nickNamelabel.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "뮤덕이", lineHeight: 16)
+//		nickNamelabel.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "뮤덕이", lineHeight: 16)
+		nickNamelabel.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+		nickNamelabel.text = "뮤덕이"
 		nickNamelabel.textColor = .black
 		return nickNamelabel
 	}()

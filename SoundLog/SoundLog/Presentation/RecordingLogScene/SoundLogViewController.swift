@@ -79,7 +79,9 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		button.layer.cornerRadius = 10
 		button.setTitleColor(.black, for: .normal)
 		button.backgroundColor = UIColor.lightGray
-		button.setAttributedTitle(.attributeFont(font: .GMSansMedium, size: 16, text: "취소", lineHeight: 18), for: .normal)
+		button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+		button.setTitle("취소", for: .normal)
+//		button.setAttributedTitle(.attributeFont(font: .GMSansMedium, size: 16, text: "취소", lineHeight: 18), for: .normal)
 		
 		button.addTarget(self, action: #selector(actCancelButton), for: .touchUpInside)
 		return button
@@ -91,7 +93,9 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		button.layer.cornerRadius = 10
 		button.setTitleColor(.black, for: .normal)
 		button.backgroundColor = UIColor.neonYellow
-		button.setAttributedTitle(.attributeFont(font: .GMSansBold, size: 16, text: "저장", lineHeight: 18), for: .normal)
+//		button.setAttributedTitle(.attributeFont(font: .GMSansBold, size: 16, text: "저장", lineHeight: 18), for: .normal)
+		button.setTitle("저장", for: .normal)
+		button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
 		
 		return button
 	}()
@@ -141,8 +145,9 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		let leftInsetView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: 48))
 		textField.leftView = leftInsetView
 		textField.leftViewMode = .always
-		
-		textField.attributedPlaceholder = .attributeFont(font: .GMSansMedium, size: 16, text: "제목 - 3자 이상 7자 미만.", lineHeight: 48)
+		textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+		textField.attributedPlaceholder = NSAttributedString(string: "3자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+//		textField.attributedPlaceholder = .attributeFont(font: .GMSansMedium, size: 16, text: "제목 - 3자 이상 7자 미만.", lineHeight: 48)
 		
 		textField.layer.cornerRadius = 10
 		textField.clearButtonMode = .whileEditing
@@ -296,7 +301,9 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 	
 	private lazy var locationLabel: UILabel = {
 		let label = UILabel()
-		label.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "어디서 기록했나요?", lineHeight: 16)
+		label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+		label.text = "어디서 기록했나요?"
+//		label.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "어디서 기록했나요?", lineHeight: 16)
 		return label
 	}()
 	
