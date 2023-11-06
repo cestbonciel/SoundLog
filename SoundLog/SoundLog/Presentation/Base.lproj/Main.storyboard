@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fEf-Vj-Qik">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -68,7 +69,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="160" translatesAutoresizingMaskIntoConstraints="NO" id="hzg-NJ-1Ah">
-                                <rect key="frame" x="30" y="151" width="330" height="32"/>
+                                <rect key="frame" x="30" y="179" width="330" height="32"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bga-7e-95c">
                                         <rect key="frame" x="0.0" y="0.0" width="109" height="32"/>
@@ -114,7 +115,7 @@
                             <constraint firstItem="EN8-Q7-g3x" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="32" id="EVJ-6A-0fW"/>
                             <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="EN8-Q7-g3x" secondAttribute="trailing" constant="30" id="VJZ-1h-ZGe"/>
                             <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="hzg-NJ-1Ah" secondAttribute="trailing" constant="30" id="bze-fO-wQb"/>
-                            <constraint firstItem="hzg-NJ-1Ah" firstAttribute="top" secondItem="EN8-Q7-g3x" secondAttribute="bottom" constant="20" id="lcz-8y-c4f"/>
+                            <constraint firstItem="hzg-NJ-1Ah" firstAttribute="top" secondItem="EN8-Q7-g3x" secondAttribute="bottom" constant="48" id="lcz-8y-c4f"/>
                             <constraint firstItem="hzg-NJ-1Ah" firstAttribute="leading" secondItem="Vfp-Ei-fsV" secondAttribute="leading" constant="30" id="nKh-Ht-HrS"/>
                         </constraints>
                     </view>

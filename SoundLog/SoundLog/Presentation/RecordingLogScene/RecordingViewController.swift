@@ -56,12 +56,7 @@ class RecordingViewController: UIViewController {
 		return progressView
 	}()
 
-//	lazy var timeStackView: UIStackView = {
-//		let view = UIStackView()
-//		view.axis = .horizontal
-//		view.translatesAutoresizingMaskIntoConstraints = false
-//		return view
-//	}()
+
 
 	lazy var timerLabel: UILabel = {
 		let label = UILabel()
@@ -156,17 +151,7 @@ class RecordingViewController: UIViewController {
 		return button
 	}()
 
-	
-//	lazy var sliderVolume: UISlider = {
-//		let slider = UISlider(frame: CGRect(x: 0, y: 320, width: 300, height: 24))
-//		slider.minimumValue = 0.0
-//		slider.maximumValue = 100.0
-//		slider.value = 5.0
-//		slider.translatesAutoresizingMaskIntoConstraints = false
-//		slider.addTarget(self, action: #selector(sliderValueChanged), for: .touchUpInside)
-//		return slider
-//	}()
-	
+
 	// MARK: - bottom Button Components
 	private let buttonStackView: UIStackView = {
 		let view = UIStackView()
