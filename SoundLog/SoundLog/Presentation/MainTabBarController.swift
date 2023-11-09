@@ -9,32 +9,42 @@ import UIKit
 import SwiftUI
 
 class MainTabBarController: UITabBarController {
-
-//	let swiftUIswitch = UIHostingController(rootView: SettingView())
+	
 	@IBOutlet weak var AddTabBar: UITabBarItem!
 	@IBOutlet weak var homeTabBar: UITabBar!
 	override func viewDidLoad() {
-        super.viewDidLoad()
+		super.viewDidLoad()
 		
+
 		
-    }
-    
-	func tappedAddTabBar(_ sending:UITabBarItem!) {
+		let tbItemProxy = UITabBarItem.appearance()
+		tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.neonYellow], for: .selected)
+		tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .disabled)
+		let attributes = [NSAttributedString.Key.font:UIFont(name: "GmarketSansMedium", size: 12)]
+				tbItemProxy.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
+		
+			if  let tabBarItem = self.tabBar.items {
+				let image1 = UIImage(named: "homeIcon")?.withRenderingMode(.alwaysOriginal)
+				tabBarItem[0].image = image1
+				
+				let selectedImage1 = UIImage(named: "home_highlight")?.withRenderingMode(.alwaysOriginal)
+				tabBarItem[0].selectedImage = selectedImage1
+				
+				let image2 = UIImage(named: "shazam")?.withRenderingMode(.alwaysOriginal)
+				tabBarItem[1].image = image2
+				
+				let selectedImage2 = UIImage(named: "shazamHighlight")?.withRenderingMode(.alwaysOriginal)
+				tabBarItem[1].selectedImage = selectedImage2
+				
+				let image3 = UIImage(named: "moreIcon")?.withRenderingMode(.alwaysOriginal)
+				tabBarItem[2].image = image3
+				
+				let selectedImage3 = UIImage(named: "more_highlight")?.withRenderingMode(.alwaysOriginal)
+				tabBarItem[2].selectedImage = selectedImage3
+			}
+
 		
 	}
 	
-//	@IBAction func goToSettingView(_ sender: Any) {
-//		navigationController?.pushViewController(swiftUIswitch, animated: true)
-//	}
 	
-	/*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

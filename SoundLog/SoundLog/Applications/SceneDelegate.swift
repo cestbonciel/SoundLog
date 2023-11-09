@@ -32,34 +32,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let tabBarAppearance = UITabBarAppearance()
 		tabBarAppearance.backgroundColor = .black
 		
-		let tbItemProxy = UITabBarItem.appearance()
-		tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.neonYellow], for: .selected)
-		tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .disabled)
-		let attributes = [NSAttributedString.Key.font:UIFont(name: "GmarketSansMedium", size: 12)]
-				tbItemProxy.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
-		
-		if let tabBarCustom = self.window?.rootViewController as? UITabBarController {
-			
-			if  let tabBarItem = tabBarCustom.tabBar.items {
-				let image1 = UIImage(named: "homeIcon")?.withRenderingMode(.alwaysOriginal)
-				tabBarItem[0].image = image1
-				
-				let selectedImage1 = UIImage(named: "home_highlight")?.withRenderingMode(.alwaysOriginal)
-				tabBarItem[0].selectedImage = selectedImage1
-				
-				let image2 = UIImage(named: "shazam")?.withRenderingMode(.alwaysOriginal)
-				tabBarItem[1].image = image2
-				
-				let selectedImage2 = UIImage(named: "shazamHighlight")?.withRenderingMode(.alwaysOriginal)
-				tabBarItem[1].selectedImage = selectedImage2
-				
-				let image3 = UIImage(named: "moreIcon")?.withRenderingMode(.alwaysOriginal)
-				tabBarItem[2].image = image3
-				
-				let selectedImage3 = UIImage(named: "more_highlight")?.withRenderingMode(.alwaysOriginal)
-				tabBarItem[2].selectedImage = selectedImage3
-			}
-		}
+//		let tbItemProxy = UITabBarItem.appearance()
+//		tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.neonYellow], for: .selected)
+//		tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .disabled)
+//		let attributes = [NSAttributedString.Key.font:UIFont(name: "GmarketSansMedium", size: 12)]
+//				tbItemProxy.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
+//		if let tabBarCustom = self.window?.rootViewController as? UITabBarController {
+//			
+//			if  let tabBarItem = tabBarCustom.tabBar.items {
+//				let image1 = UIImage(named: "homeIcon")?.withRenderingMode(.alwaysOriginal)
+//				tabBarItem[0].image = image1
+//				
+//				let selectedImage1 = UIImage(named: "home_highlight")?.withRenderingMode(.alwaysOriginal)
+//				tabBarItem[0].selectedImage = selectedImage1
+//				
+//				let image2 = UIImage(named: "shazam")?.withRenderingMode(.alwaysOriginal)
+//				tabBarItem[1].image = image2
+//				
+//				let selectedImage2 = UIImage(named: "shazamHighlight")?.withRenderingMode(.alwaysOriginal)
+//				tabBarItem[1].selectedImage = selectedImage2
+//				
+//				let image3 = UIImage(named: "moreIcon")?.withRenderingMode(.alwaysOriginal)
+//				tabBarItem[2].image = image3
+//				
+//				let selectedImage3 = UIImage(named: "more_highlight")?.withRenderingMode(.alwaysOriginal)
+//				tabBarItem[2].selectedImage = selectedImage3
+//			}
+//		}
+//		
 
 	}
 

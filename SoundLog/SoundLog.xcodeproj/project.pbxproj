@@ -24,6 +24,14 @@
 		8744187A2ABB45FB00233604 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */; };
 		8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8744187C2ABB5CFD00233604 /* LogTextView.swift */; };
 		874764362AF95E2D00365717 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 874764352AF95E2D00365717 /* FSCalendar */; };
+		874764382AFAA3CD00365717 /* ShazamHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874764372AFAA3CD00365717 /* ShazamHostingController.swift */; };
+		8747643B2AFAA45300365717 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747643A2AFAA45300365717 /* ContentView.swift */; };
+		8747643D2AFAA46C00365717 /* ShazamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747643C2AFAA46C00365717 /* ShazamView.swift */; };
+		874764402AFAA48900365717 /* SongData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747643F2AFAA48900365717 /* SongData.swift */; };
+		874764432AFAA4B200365717 /* ShazamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874764422AFAA4B200365717 /* ShazamViewModel.swift */; };
+		874764472AFAA64600365717 /* SongDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874764462AFAA64500365717 /* SongDetail.swift */; };
+		874764492AFAB2C900365717 /* RippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874764482AFAB2C900365717 /* RippleView.swift */; };
+		8747644C2AFAB31600365717 /* NoResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747644B2AFAB31600365717 /* NoResultView.swift */; };
 		87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */; };
 		876B9A842AEFE33700D566D0 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */; };
 		8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */; };
@@ -71,6 +79,14 @@
 		874418702ABB45FB00233604 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		8744187C2ABB5CFD00233604 /* LogTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextView.swift; sourceTree = "<group>"; };
+		874764372AFAA3CD00365717 /* ShazamHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamHostingController.swift; sourceTree = "<group>"; };
+		8747643A2AFAA45300365717 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8747643C2AFAA46C00365717 /* ShazamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamView.swift; sourceTree = "<group>"; };
+		8747643F2AFAA48900365717 /* SongData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongData.swift; sourceTree = "<group>"; };
+		874764422AFAA4B200365717 /* ShazamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamViewModel.swift; sourceTree = "<group>"; };
+		874764462AFAA64500365717 /* SongDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetail.swift; sourceTree = "<group>"; };
+		874764482AFAB2C900365717 /* RippleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleView.swift; sourceTree = "<group>"; };
+		8747644B2AFAB31600365717 /* NoResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultView.swift; sourceTree = "<group>"; };
 		87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldContentView.swift; sourceTree = "<group>"; };
 		876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -123,6 +139,52 @@
 				87909E852AA4B49B005D5351 /* SettingMenuCell.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		874764392AFAA3EE00365717 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				8747643A2AFAA45300365717 /* ContentView.swift */,
+				8747643E2AFAA47D00365717 /* Model */,
+				874764412AFAA4A100365717 /* ViewModel */,
+				874764442AFAA61800365717 /* Shazam */,
+				874764452AFAA62300365717 /* SongDetail */,
+				8747644B2AFAB31600365717 /* NoResultView.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		8747643E2AFAA47D00365717 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8747643F2AFAA48900365717 /* SongData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		874764412AFAA4A100365717 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				874764422AFAA4B200365717 /* ShazamViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		874764442AFAA61800365717 /* Shazam */ = {
+			isa = PBXGroup;
+			children = (
+				8747643C2AFAA46C00365717 /* ShazamView.swift */,
+				874764482AFAB2C900365717 /* RippleView.swift */,
+			);
+			path = Shazam;
+			sourceTree = "<group>";
+		};
+		874764452AFAA62300365717 /* SongDetail */ = {
+			isa = PBXGroup;
+			children = (
+				874764462AFAA64500365717 /* SongDetail.swift */,
+			);
+			path = SongDetail;
 			sourceTree = "<group>";
 		};
 		8777A7E62A9BBCD3005526D1 /* SettingsScene */ = {
@@ -219,6 +281,8 @@
 			isa = PBXGroup;
 			children = (
 				8744185E2AB96F8F00233604 /* Shazam.storyboard */,
+				874764372AFAA3CD00365717 /* ShazamHostingController.swift */,
+				874764392AFAA3EE00365717 /* SwiftUI */,
 			);
 			path = ShazamScene;
 			sourceTree = "<group>";
@@ -402,17 +466,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				874764492AFAB2C900365717 /* RippleView.swift in Sources */,
+				874764472AFAA64600365717 /* SongDetail.swift in Sources */,
 				87BB609F2AD72B2B00B9428D /* LocationService.swift in Sources */,
+				8747643B2AFAA45300365717 /* ContentView.swift in Sources */,
 				8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */,
 				877DAC912A7AD46C00AE3038 /* AppDelegate.swift in Sources */,
 				877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */,
 				87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */,
+				8747643D2AFAA46C00365717 /* ShazamView.swift in Sources */,
 				876B9A842AEFE33700D566D0 /* UIFont+Extension.swift in Sources */,
 				878864D42A8E745D008340E2 /* UIColor+Extension.swift in Sources */,
+				874764402AFAA48900365717 /* SongData.swift in Sources */,
 				87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */,
 				87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */,
 				87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */,
 				874418672ABAD97F00233604 /* RecordingViewController.swift in Sources */,
+				8747644C2AFAB31600365717 /* NoResultView.swift in Sources */,
 				87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */,
 				879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */,
 				878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */,
@@ -422,6 +492,8 @@
 				87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */,
 				874418692ABAD98400233604 /* RecordingViewController+AVFoundation.swift in Sources */,
 				87EE460D2AD7D651008E553F /* UIView+BackgroundView.swift in Sources */,
+				874764382AFAA3CD00365717 /* ShazamHostingController.swift in Sources */,
+				874764432AFAA4B200365717 /* ShazamViewModel.swift in Sources */,
 				8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */,
 				871D0EFE2A971F310097D6F1 /* SoundLogViewController.swift in Sources */,
 				87E3EBC72A937A7F00D14093 /* HomeViewController.swift in Sources */,
@@ -501,7 +573,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				NEW_SETTING = "";
@@ -557,7 +629,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				NEW_SETTING = "";
@@ -586,7 +658,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -618,7 +690,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
