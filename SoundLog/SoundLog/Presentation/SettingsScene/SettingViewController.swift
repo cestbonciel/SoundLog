@@ -13,7 +13,7 @@ class SettingViewController: UIViewController{
 	/// TableView Setting Menu
 	let tableView = UITableView(frame: .zero, style: .plain)
 	
-	let settingMenus: [String] = ["북마크한 기록", "테마변경", "언어변경", "개인정보처리 방침", "개발자 문의"]
+	let settingMenus: [String] = ["북마크한 기록", "테마변경", "언어변경"]
 	let settingIcons: [UIImage] = [
 		UIImage(named: "bookmarkIcon")!,
 		UIImage(named: "themeIcon")!,
