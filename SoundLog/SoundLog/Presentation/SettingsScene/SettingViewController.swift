@@ -13,7 +13,7 @@ class SettingViewController: UIViewController{
 	/// TableView Setting Menu
 	let tableView = UITableView(frame: .zero, style: .plain)
 	
-	let settingMenus: [String] = ["북마크한 기록", "테마변경", "언어변경"]
+	let settingMenus: [String] = ["북마크한 기록", "테마변경", "언어변경", "개인정보처리 방침", "개발자 문의"]
 	let settingIcons: [UIImage] = [
 		UIImage(named: "bookmarkIcon")!,
 		UIImage(named: "themeIcon")!,
@@ -22,7 +22,6 @@ class SettingViewController: UIViewController{
 
 	private let introLabel: UILabel = {
 		let label = UILabel()
-//		label.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "당신을 위한 소리 기록장", lineHeight: 16)
 		label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
 		label.text = "당신을 위한 소리 기록장"
 		label.textColor = .systemDimGray
@@ -37,7 +36,6 @@ class SettingViewController: UIViewController{
 	}()
 	private let profileNameLabel: UILabel = {
 		let nickNamelabel = UILabel()
-//		nickNamelabel.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "뮤덕이", lineHeight: 16)
 		nickNamelabel.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
 		nickNamelabel.text = "뮤덕이"
 		nickNamelabel.textColor = .black
@@ -55,7 +53,7 @@ class SettingViewController: UIViewController{
 		
 		
 		self.view.addSubview(introLabel)
-		introLabel.setContentCompressionResistancePriority(.init(rawValue:231), for: .horizontal)
+		//introLabel.setContentCompressionResistancePriority(.init(rawValue:231), for: .horizontal)
 		introLabel.snp.makeConstraints {
 			$0.top.equalToSuperview().offset(80)
 			$0.left.right.equalToSuperview().offset(30)
@@ -77,7 +75,7 @@ class SettingViewController: UIViewController{
 		tableView.snp.makeConstraints {
 			$0.top.equalTo(profileImage.snp.bottom).offset(32)
 			$0.left.right.bottom.equalToSuperview().inset(10)
-//			$0.left.equalToSuperview().inset(30)
+
 		}
 		tableView.register(SettingMenuCell.self, forCellReuseIdentifier: SettingMenuCell.identifier)
 		tableView.delegate = self
@@ -91,4 +89,23 @@ class SettingViewController: UIViewController{
 	
 }
 
+//MARK: - Preview Setting
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+struct SettingViewControllerRepresentable: UIViewControllerRepresentable {
+	func makeUIViewController(context: Context) -> some UIViewController {
+		return UIStoryboard(name: "Setting", bundle: nil).instantiateViewController(withIdentifier: "SettingMenus")
+	}
+	
+	func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+		
+	}
+}
+
+struct SettingViewController_Preview: PreviewProvider {
+	static var previews: some View {
+		SettingViewControllerRepresentable()
+	}
+}
+#endif
 

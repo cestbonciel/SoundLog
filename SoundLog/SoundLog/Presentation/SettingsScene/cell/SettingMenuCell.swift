@@ -20,7 +20,7 @@ class SettingMenuCell: UITableViewCell {
 	
 	lazy var settinglabel: UILabel = {
 		let label  = UILabel()
-		label.font = UIFont(name: "GMSansMedium", size: 16)
+		label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
 		return label
 	}()
 	

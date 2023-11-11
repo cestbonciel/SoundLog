@@ -26,29 +26,51 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 		return cell
 	}
 	
+	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
-		tableView.deselectRow(at: indexPath, animated: true)
-		
-		let settingMenus = settingMenus[indexPath.row]
 
+//		tableView.deselectRow(at: indexPath, animated: true)
+
+		let settingMenus = settingMenus[indexPath.row]
+		
+		
 		switch settingMenus {
 		case "북마크한 기록":
-			if let bookmarkVC = self.storyboard?.instantiateViewController(identifier: "BookmarkViewController") {
-
-				self.navigationController?.pushViewController(bookmarkVC, animated: true)
+			if let bookmarkVC = self.storyboard?.instantiateViewController(withIdentifier: "BookmarkViewController"){
+	
+				showDetailViewController(bookmarkVC, sender: nil)
+//				self.navigationController?.pushViewController(bookmarkVC, animated: true)
 			}
+
 		case "테마변경":
+			
 			if let themeVC = self.storyboard?.instantiateViewController(identifier: "ThemeViewController") {
-				self.navigationController?.pushViewController(themeVC, animated: true)
+				let navigationController = UINavigationController(rootViewController: themeVC)
+	
+				// 내비게이션 컨트롤러를 present
+				 
+				self.present(navigationController, animated: true)
+//				self.navigationItem.backButtonTitle = "Back"
+				self.navigationItem.backButtonDisplayMode = .minimal
+				self.navigationController?.navigationBar.tintColor = .black
+				self.navigationController?.navigationBar.topItem?.title = "Back"
+//				themeVC.modalPresentationStyle = .overFullScreen
+//				self.present(themeVC, animated: true)
+//				self.navigationController?.pushViewController(themeVC, animated: true)
 			}
 		case "언어변경":
-			if let themeVC = self.storyboard?.instantiateViewController(identifier: "LanguageViewController") {
-				self.navigationController?.pushViewController(themeVC, animated: true)
+			
+			if let langVC = self.storyboard?.instantiateViewController(identifier: "LanguageViewController") {
+				showDetailViewController(langVC, sender: nil)
 			}
+//		case "제안하기 / 문의하기":
+//			if let inquiryVC = self.
 		default:
-			break
+			return
 		}
+		
 	}
+	
+	
 }
 

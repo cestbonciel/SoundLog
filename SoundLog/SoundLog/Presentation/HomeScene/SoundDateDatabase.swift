@@ -56,7 +56,7 @@ class SoundDateDatabase {
 		}
 		return .none
 	}
-	
+	/*
 	func eventOnCalendar(date: DateComponents) -> UICalendarView.Decoration? {
 		let event = eventStatus(date: date)
 		
@@ -90,6 +90,7 @@ class SoundDateDatabase {
 				return label
 			}
 		}
+		
 	}
-	
+	*/
 }

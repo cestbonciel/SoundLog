@@ -47,6 +47,8 @@
 		878864D42A8E745D008340E2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D32A8E745D008340E2 /* UIColor+Extension.swift */; };
 		87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E852AA4B49B005D5351 /* SettingMenuCell.swift */; };
 		87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */; };
+		879936702AFEAD87001AB072 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8799366F2AFEAD87001AB072 /* InquiryViewController.swift */; };
+		879936722AFEB583001AB072 /* Inquiry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 879936712AFEB583001AB072 /* Inquiry.storyboard */; };
 		879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */; };
 		87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B143F72AE6B3DF00EDF23F /* MapViewController.swift */; };
 		87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */; };
@@ -104,6 +106,8 @@
 		878864D32A8E745D008340E2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		87909E852AA4B49B005D5351 /* SettingMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingMenuCell.swift; sourceTree = "<group>"; };
 		87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewController.swift"; sourceTree = "<group>"; };
+		8799366F2AFEAD87001AB072 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
+		879936712AFEB583001AB072 /* Inquiry.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Inquiry.storyboard; sourceTree = "<group>"; };
 		879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDateDatabase.swift; sourceTree = "<group>"; };
 		87B143F72AE6B3DF00EDF23F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 				8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */,
 				8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */,
 				8777A7EC2A9BBED5005526D1 /* ThemeViewController.swift */,
+				8799366F2AFEAD87001AB072 /* InquiryViewController.swift */,
+				879936712AFEB583001AB072 /* Inquiry.storyboard */,
 			);
 			path = SettingMenus;
 			sourceTree = "<group>";
@@ -439,6 +445,7 @@
 				87DB259F2A8D421E00EE0CE4 /* startEnter.storyboard in Resources */,
 				8744185F2AB96F8F00233604 /* Shazam.storyboard in Resources */,
 				8744185D2AB8966200233604 /* RecordingSound.storyboard in Resources */,
+				879936722AFEB583001AB072 /* Inquiry.storyboard in Resources */,
 				874418782ABB45FB00233604 /* Pretendard-Bold.otf in Resources */,
 				874418772ABB45FB00233604 /* Pretendard-ExtraBold.otf in Resources */,
 				874418752ABB45FB00233604 /* Pretendard-ExtraLight.otf in Resources */,
@@ -472,6 +479,7 @@
 				8747643B2AFAA45300365717 /* ContentView.swift in Sources */,
 				8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */,
 				877DAC912A7AD46C00AE3038 /* AppDelegate.swift in Sources */,
+				879936702AFEAD87001AB072 /* InquiryViewController.swift in Sources */,
 				877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */,
 				87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */,
 				8747643D2AFAA46C00365717 /* ShazamView.swift in Sources */,
@@ -573,7 +581,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				NEW_SETTING = "";
@@ -629,7 +637,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				NEW_SETTING = "";
@@ -658,7 +666,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -690,7 +698,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

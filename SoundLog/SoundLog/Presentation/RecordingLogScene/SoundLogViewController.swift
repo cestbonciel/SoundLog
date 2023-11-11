@@ -475,7 +475,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 			moodStackView.addArrangedSubview(button)
 		}
 		
-		for (idx, button) in moodButtons.enumerated() {
+		for (_, button) in moodButtons.enumerated() {
 			button.snp.makeConstraints {
 				$0.height.equalTo(32)
 //				$0.width.equalTo(16)
