@@ -70,23 +70,24 @@ class HomeViewController: UIViewController {
 		return button
 	}()
 	
-	private lazy var leftButton: UIButton = {
-		let button = UIButton()
-		button.setImage(Icon.leftIcon, for: .normal)
-		button.addTarget(self, action: #selector(tapBeforeWeek), for: .touchUpInside)
-		return button
-	}()
-	
-	private lazy var rightButton: UIButton = {
-		let button = UIButton()
-		button.setImage(Icon.rightIcon, for: .normal)
-		button.addTarget(self, action: #selector(tapNextWeek), for: .touchUpInside)
-		return button
-	}()
+//	private lazy var leftButton: UIButton = {
+//		let button = UIButton()
+//		button.setImage(Icon.leftIcon, for: .normal)
+//		button.addTarget(self, action: #selector(tapBeforeWeek), for: .touchUpInside)
+//		return button
+//	}()
+//
+//	private lazy var rightButton: UIButton = {
+//		let button = UIButton()
+//		button.setImage(Icon.rightIcon, for: .normal)
+//		button.addTarget(self, action: #selector(tapNextWeek), for: .touchUpInside)
+//		return button
+//	}()
 	
 	@objc func tapToggleButton() {
 		if self.calendarView.scope == .month {
 			self.calendarView.setScope(.week, animated: true)
+			
 			self.headerDateFormatter.dateFormat = "YYYY년 MM월 W주차"
 			self.togglePeriodButton.setTitle("주", for: .normal)
 			self.togglePeriodButton.setImage(UIImage(systemName: "arrowtriangle.down.fill"), for: .normal)
@@ -144,6 +145,9 @@ class HomeViewController: UIViewController {
 		calendarView.select(Date())
 		
 		calendarView.locale = Locale(identifier: "ko_kr")
+		calendarView.scope = .week
+		calendarView.appearance.headerDateFormat = "YYYY년 MM월 W주차"
+		
 		calendarView.headerHeight = 0
 		calendarView.weekdayHeight = 32
 		
@@ -201,6 +205,7 @@ struct HomeViewController_Preview: PreviewProvider {
 
 extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
 	func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+		
 		calendarView.snp.updateConstraints {
 			$0.height.equalTo(bounds.height)
 		}
