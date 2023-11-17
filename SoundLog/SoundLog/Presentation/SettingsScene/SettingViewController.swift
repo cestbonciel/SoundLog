@@ -14,6 +14,7 @@ class SettingViewController: UIViewController{
 	let tableView = UITableView(frame: .zero, style: .plain)
 	
 	let settingMenus: [String] = ["북마크한 기록", "테마변경", "언어변경"]
+	let policyMenus: [String] = ["개인정보처리방침", "이용약관"]
 	let settingIcons: [UIImage] = [
 		UIImage(named: "bookmarkIcon")!,
 		UIImage(named: "themeIcon")!,
@@ -46,7 +47,7 @@ class SettingViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 		settingViewUI()
-		
+		 tableView.backgroundColor = .clear
 		
     }
 	private func settingViewUI() {
@@ -74,14 +75,18 @@ class SettingViewController: UIViewController{
 		
 		tableView.snp.makeConstraints {
 			$0.top.equalTo(profileImage.snp.bottom).offset(32)
-			$0.left.right.bottom.equalToSuperview().inset(10)
+			$0.left.right.equalToSuperview().inset(10)
+			$0.bottom.equalToSuperview().inset(100)
 
 		}
 		tableView.register(SettingMenuCell.self, forCellReuseIdentifier: SettingMenuCell.identifier)
 		tableView.delegate = self
 		tableView.dataSource = self
+		tableView.backgroundColor = .clear
+		tableView.layer.borderColor = UIColor.blue.cgColor
+		tableView.layer.borderWidth = 1
 		tableView.separatorStyle = .none
-//		tableView.estimatedRowHeight = 77
+//		tableView.estimatedRowHeight = 100
 		tableView.isScrollEnabled = false
 		
 	}

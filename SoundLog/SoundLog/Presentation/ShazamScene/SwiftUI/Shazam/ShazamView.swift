@@ -19,6 +19,8 @@ struct ShazamView: View {
 	
 	@State var isAnimating: Bool = false
 	
+	
+	
 	 var body: some View {
 		 ZStack {
 			 Color.init(.pastelSkyblue)
@@ -74,10 +76,10 @@ struct ShazamView: View {
 					 Spacer()
 				 }
 
-				 VStack {
-					 Spacer()
-					 footerText.padding(.bottom, 16)
-				 }
+//				 VStack {
+//					 Spacer()
+//					 footerText.padding(.bottom, 16)
+//				 }
 				 
 			 }// : ZSTACK
 			 .padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
@@ -141,12 +143,12 @@ struct ShazamView: View {
 
 	}
 
-	@ViewBuilder
-	private var footerText: some View {
-		 Text("Shazam Clone")
-			  .font(.footnote)
-			  .foregroundColor(Color.black.opacity(0.7))
-	}
+//	@ViewBuilder
+//	private var footerText: some View {
+//		 Text("Shazam Clone")
+//			  .font(.footnote)
+//			  .foregroundColor(Color.black.opacity(0.7))
+//	}
 
 	private func bindViewModel() {
 		 shazamViewModel.$viewState.sink { viewState in
@@ -196,6 +198,6 @@ struct ShazamView: View {
 
 struct ShazamView_Previews: PreviewProvider {
 	 static var previews: some View {
-		  ShazamView()
+		 ShazamView()
 	 }
 }

@@ -34,6 +34,7 @@
 		8747644C2AFAB31600365717 /* NoResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747644B2AFAB31600365717 /* NoResultView.swift */; };
 		87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */; };
 		876B9A842AEFE33700D566D0 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */; };
+		876E83A82B03DE8E00546D75 /* TermOfUseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E83A72B03DE8E00546D75 /* TermOfUseController.swift */; };
 		8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */; };
 		8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */; };
 		8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */; };
@@ -91,6 +92,7 @@
 		8747644B2AFAB31600365717 /* NoResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultView.swift; sourceTree = "<group>"; };
 		87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldContentView.swift; sourceTree = "<group>"; };
 		876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		876E83A72B03DE8E00546D75 /* TermOfUseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfUseController.swift; sourceTree = "<group>"; };
 		8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
 		8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				8777A7EC2A9BBED5005526D1 /* ThemeViewController.swift */,
 				8799366F2AFEAD87001AB072 /* InquiryViewController.swift */,
 				879936712AFEB583001AB072 /* Inquiry.storyboard */,
+				876E83A72B03DE8E00546D75 /* TermOfUseController.swift */,
 			);
 			path = SettingMenus;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				874764432AFAA4B200365717 /* ShazamViewModel.swift in Sources */,
 				8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */,
 				871D0EFE2A971F310097D6F1 /* SoundLogViewController.swift in Sources */,
+				876E83A82B03DE8E00546D75 /* TermOfUseController.swift in Sources */,
 				87E3EBC72A937A7F00D14093 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

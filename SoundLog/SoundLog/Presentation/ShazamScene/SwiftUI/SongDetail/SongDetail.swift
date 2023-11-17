@@ -82,7 +82,7 @@ struct SongDetail: View {
 
 struct SongDetail_Previews: PreviewProvider {
     static var previews: some View {
-//		 SongDetail(song: SongData.example())
-		 Text("")
+		 SongDetail(song: SongData.example())
+//		 Text("")
     }
 }
