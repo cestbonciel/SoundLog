@@ -34,7 +34,11 @@
 		8747644C2AFAB31600365717 /* NoResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747644B2AFAB31600365717 /* NoResultView.swift */; };
 		87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */; };
 		876B9A842AEFE33700D566D0 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */; };
+		876E83A82B03DE8E00546D75 /* TermOfUseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876E83A72B03DE8E00546D75 /* TermOfUseController.swift */; };
 		8777A7DB2A9B9D9A005526D1 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */; };
+		8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */; };
+		8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */; };
+		8777A7ED2A9BBED5005526D1 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777A7EC2A9BBED5005526D1 /* ThemeViewController.swift */; };
 		877DAC912A7AD46C00AE3038 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DAC902A7AD46C00AE3038 /* AppDelegate.swift */; };
 		877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DAC922A7AD46C00AE3038 /* SceneDelegate.swift */; };
 		877DAC982A7AD46C00AE3038 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 877DAC962A7AD46C00AE3038 /* Main.storyboard */; };
@@ -42,6 +46,10 @@
 		877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 877DAC9B2A7AD46D00AE3038 /* LaunchScreen.storyboard */; };
 		878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D12A8E73A6008340E2 /* MainTabBarController.swift */; };
 		878864D42A8E745D008340E2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D32A8E745D008340E2 /* UIColor+Extension.swift */; };
+		87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E852AA4B49B005D5351 /* SettingMenuCell.swift */; };
+		87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */; };
+		879936702AFEAD87001AB072 /* InquiryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8799366F2AFEAD87001AB072 /* InquiryViewController.swift */; };
+		879936722AFEB583001AB072 /* Inquiry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 879936712AFEB583001AB072 /* Inquiry.storyboard */; };
 		879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */; };
 		87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B143F72AE6B3DF00EDF23F /* MapViewController.swift */; };
 		87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */; };
@@ -84,7 +92,11 @@
 		8747644B2AFAB31600365717 /* NoResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultView.swift; sourceTree = "<group>"; };
 		87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextfieldContentView.swift; sourceTree = "<group>"; };
 		876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		876E83A72B03DE8E00546D75 /* TermOfUseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfUseController.swift; sourceTree = "<group>"; };
 		8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkViewController.swift; sourceTree = "<group>"; };
+		8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		8777A7EC2A9BBED5005526D1 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		877DAC8D2A7AD46C00AE3038 /* SoundLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoundLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		877DAC902A7AD46C00AE3038 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		877DAC922A7AD46C00AE3038 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +106,10 @@
 		877DAC9E2A7AD46D00AE3038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		878864D12A8E73A6008340E2 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		878864D32A8E745D008340E2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		87909E852AA4B49B005D5351 /* SettingMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingMenuCell.swift; sourceTree = "<group>"; };
+		87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingViewController+TableViewController.swift"; sourceTree = "<group>"; };
+		8799366F2AFEAD87001AB072 /* InquiryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InquiryViewController.swift; sourceTree = "<group>"; };
+		879936712AFEB583001AB072 /* Inquiry.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Inquiry.storyboard; sourceTree = "<group>"; };
 		879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDateDatabase.swift; sourceTree = "<group>"; };
 		87B143F72AE6B3DF00EDF23F /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +139,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8708D6BC2A9F88330000CAC5 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				87909E852AA4B49B005D5351 /* SettingMenuCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		874764392AFAA3EE00365717 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,8 +197,25 @@
 			isa = PBXGroup;
 			children = (
 				87BFB0622AB830FD00CF839A /* View */,
+				8708D6BC2A9F88330000CAC5 /* cell */,
+				8777A7E72A9BBCF7005526D1 /* SettingMenus */,
+				8731316C2A9CE26700E8B645 /* SettingViewController.swift */,
+				87909E872AA4CA4B005D5351 /* SettingViewController+TableViewController.swift */,
 			);
 			path = SettingsScene;
+			sourceTree = "<group>";
+		};
+		8777A7E72A9BBCF7005526D1 /* SettingMenus */ = {
+			isa = PBXGroup;
+			children = (
+				8777A7E82A9BBDAE005526D1 /* BookmarkViewController.swift */,
+				8777A7EA2A9BBEBE005526D1 /* LanguageViewController.swift */,
+				8777A7EC2A9BBED5005526D1 /* ThemeViewController.swift */,
+				8799366F2AFEAD87001AB072 /* InquiryViewController.swift */,
+				879936712AFEB583001AB072 /* Inquiry.storyboard */,
+				876E83A72B03DE8E00546D75 /* TermOfUseController.swift */,
+			);
+			path = SettingMenus;
 			sourceTree = "<group>";
 		};
 		877DAC842A7AD46C00AE3038 = {
@@ -314,7 +355,6 @@
 		87BFB0622AB830FD00CF839A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8731316C2A9CE26700E8B645 /* SettingViewController.swift */,
 				8777A7DA2A9B9D9A005526D1 /* Setting.storyboard */,
 			);
 			path = View;
@@ -408,6 +448,7 @@
 				87DB259F2A8D421E00EE0CE4 /* startEnter.storyboard in Resources */,
 				8744185F2AB96F8F00233604 /* Shazam.storyboard in Resources */,
 				8744185D2AB8966200233604 /* RecordingSound.storyboard in Resources */,
+				879936722AFEB583001AB072 /* Inquiry.storyboard in Resources */,
 				874418782ABB45FB00233604 /* Pretendard-Bold.otf in Resources */,
 				874418772ABB45FB00233604 /* Pretendard-ExtraBold.otf in Resources */,
 				874418752ABB45FB00233604 /* Pretendard-ExtraLight.otf in Resources */,
@@ -439,7 +480,9 @@
 				874764472AFAA64600365717 /* SongDetail.swift in Sources */,
 				87BB609F2AD72B2B00B9428D /* LocationService.swift in Sources */,
 				8747643B2AFAA45300365717 /* ContentView.swift in Sources */,
+				8777A7EB2A9BBEBE005526D1 /* LanguageViewController.swift in Sources */,
 				877DAC912A7AD46C00AE3038 /* AppDelegate.swift in Sources */,
+				879936702AFEAD87001AB072 /* InquiryViewController.swift in Sources */,
 				877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */,
 				87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */,
 				8747643D2AFAA46C00365717 /* ShazamView.swift in Sources */,
@@ -451,15 +494,20 @@
 				87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */,
 				874418672ABAD97F00233604 /* RecordingViewController.swift in Sources */,
 				8747644C2AFAB31600365717 /* NoResultView.swift in Sources */,
+				87909E862AA4B49B005D5351 /* SettingMenuCell.swift in Sources */,
 				879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */,
 				878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */,
 				8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */,
+				8777A7ED2A9BBED5005526D1 /* ThemeViewController.swift in Sources */,
 				8731316D2A9CE26700E8B645 /* SettingViewController.swift in Sources */,
+				87909E882AA4CA4B005D5351 /* SettingViewController+TableViewController.swift in Sources */,
 				874418692ABAD98400233604 /* RecordingViewController+AVFoundation.swift in Sources */,
 				87EE460D2AD7D651008E553F /* UIView+BackgroundView.swift in Sources */,
 				874764382AFAA3CD00365717 /* ShazamHostingController.swift in Sources */,
 				874764432AFAA4B200365717 /* ShazamViewModel.swift in Sources */,
+				8777A7E92A9BBDAE005526D1 /* BookmarkViewController.swift in Sources */,
 				871D0EFE2A971F310097D6F1 /* SoundLogViewController.swift in Sources */,
+				876E83A82B03DE8E00546D75 /* TermOfUseController.swift in Sources */,
 				87E3EBC72A937A7F00D14093 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
