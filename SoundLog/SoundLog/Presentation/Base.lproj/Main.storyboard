@@ -189,9 +189,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bMe-O8-RZZ">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMe-O8-RZZ">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="ooS-LX-RTp" kind="embed" id="lCo-4K-Zbj"/>
                                 </connections>
@@ -200,6 +199,12 @@
                         <viewLayoutGuide key="safeArea" id="KWP-2h-IzU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstItem="bMe-O8-RZZ" firstAttribute="top" secondItem="4vq-TV-i5n" secondAttribute="top" id="CyS-Ky-FVq"/>
+                            <constraint firstItem="bMe-O8-RZZ" firstAttribute="trailing" secondItem="KWP-2h-IzU" secondAttribute="trailing" id="h8W-Gr-thv"/>
+                            <constraint firstItem="bMe-O8-RZZ" firstAttribute="leading" secondItem="KWP-2h-IzU" secondAttribute="leading" id="kIG-kS-shg"/>
+                            <constraint firstAttribute="bottom" secondItem="bMe-O8-RZZ" secondAttribute="bottom" id="xe0-vz-56T"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="더보기" image="moreIcon" selectedImage="more_highlight" id="kCw-lI-1Pg"/>
                 </viewController>
