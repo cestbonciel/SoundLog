@@ -34,7 +34,7 @@
                         <viewLayoutGuide key="safeArea" id="HXW-2d-KsE"/>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="zOF-jO-xCH"/>
+                    <navigationItem key="navigationItem" id="evk-iE-blz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ErM-0Z-Gya" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
