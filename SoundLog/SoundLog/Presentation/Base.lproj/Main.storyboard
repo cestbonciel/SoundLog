@@ -171,10 +171,10 @@
             </objects>
             <point key="canvasLocation" x="-2003" y="380"/>
         </scene>
-        <!--SettingMenus-->
+        <!--MoreMenus-->
         <scene sceneID="Q4B-5e-3Fd">
             <objects>
-                <viewControllerPlaceholder storyboardName="Setting" referencedIdentifier="SettingMenus" id="ooS-LX-RTp" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="More" referencedIdentifier="MoreMenus" id="ooS-LX-RTp" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="2W7-iw-Iyx"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bi3-em-abQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

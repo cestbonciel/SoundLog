@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-1688" y="-20"/>
         </scene>
-        <!--Setting View Controller-->
+        <!--More Menu View Controller-->
         <scene sceneID="Mha-qM-uAB">
             <objects>
-                <viewController storyboardIdentifier="SettingMenus" id="2Nc-OJ-HIS" customClass="SettingViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoreMenus" id="2Nc-OJ-HIS" customClass="MoreMenuViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hc6-S6-Qkg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
