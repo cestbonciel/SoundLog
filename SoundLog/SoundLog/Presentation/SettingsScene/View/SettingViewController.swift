@@ -10,8 +10,6 @@ import SnapKit
 
 class SettingViewController: UIViewController {
 
-	
-=======
 	/// TableView Setting Menu
 //	let tableView = UITableView(frame: .zero, style: .plain)
 	
@@ -49,7 +47,23 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
     }
 
-
+  private func settingViewUI() {
+    
+    view.addSubview(settingIcon)
+    view.addSubview(introLabel)
+    
+    settingIcon.snp.makeConstraints {
+      $0.top.equalTo(view.snp.top).inset(56)
+      $0.trailing.equalTo(view.snp.trailing).inset(32)
+    }
+    
+    introLabel.snp.makeConstraints {
+      $0.top.equalToSuperview().offset(120)
+      $0.left.equalToSuperview().inset(32)
+    }
+    
+    
+  }
 }
 
 //MARK: - Extension: TableView
@@ -71,25 +85,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   
-}
-=======
-	private func settingViewUI() {
-		
-		view.addSubview(settingIcon)
-		view.addSubview(introLabel)
-		
-		settingIcon.snp.makeConstraints {
-			$0.top.equalTo(view.snp.top).inset(56)
-			$0.trailing.equalTo(view.snp.trailing).inset(32)
-		}
-		
-		introLabel.snp.makeConstraints {
-			$0.top.equalToSuperview().offset(120)
-			$0.left.equalToSuperview().inset(32)
-		}
-		
-		
-	}
+
 }
 
 //MARK: - Preview Setting
