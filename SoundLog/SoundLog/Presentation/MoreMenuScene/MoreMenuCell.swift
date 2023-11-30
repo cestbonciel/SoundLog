@@ -1,14 +1,14 @@
 //
-//  MoreMenuTableViewCell.swift
+//  MoreMenuCell.swift
 //  SoundLog
 //
-//  Created by Nat Kim on 2023/11/24.
+//  Created by Nat Kim on 2023/11/29.
 //
 
 import UIKit
 
-class MoreMenuTableViewCell: UITableViewCell {
-   static let identifier = "MoreMenuTableViewCell"
+class MoreMenuCell: UITableViewCell {
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
