@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol MoreMenuViewDelegate: AnyObject {
+    func didTapModifiedButton()
+}
