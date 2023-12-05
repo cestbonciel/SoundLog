@@ -29,10 +29,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         
-        let appearance = UINavigationBarAppearance()
-        let backItemAppearance = UIBarButtonItemAppearance()
+//        let appearance = UINavigationBarAppearance()
+//        let backItemAppearance = UIBarButtonItemAppearance()
         
-        UINavigationBar.appearance().tintColor = .black
+//        UINavigationBar.appearance().tintColor = .black
         //        UINavigationBar.appearance().tintColor = .black
         guard let _ = (scene as? UIWindowScene) else { return }
         
