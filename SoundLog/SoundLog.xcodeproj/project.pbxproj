@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A1396962B17AF240072BC49 /* MoreMenuViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1396952B17AF240072BC49 /* MoreMenuViewController+TableViewController.swift */; };
+		1A09B5132B1A4FD600510108 /* MoreMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A09B5122B1A4FD600510108 /* MoreMenuView.swift */; };
 		1A1396982B17B4460072BC49 /* MoreMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1396972B17B4460072BC49 /* MoreMenuDelegate.swift */; };
 		1A13969A2B187C0C0072BC49 /* CustomNaviBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1396992B187C0C0072BC49 /* CustomNaviBarItem.swift */; };
 		1A13969E2B18895C0072BC49 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A13969D2B18895C0072BC49 /* SettingViewController.swift */; };
@@ -65,7 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A1396952B17AF240072BC49 /* MoreMenuViewController+TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoreMenuViewController+TableViewController.swift"; sourceTree = "<group>"; };
+		1A09B5122B1A4FD600510108 /* MoreMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuView.swift; sourceTree = "<group>"; };
 		1A1396972B17B4460072BC49 /* MoreMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuDelegate.swift; sourceTree = "<group>"; };
 		1A1396992B187C0C0072BC49 /* CustomNaviBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNaviBarItem.swift; sourceTree = "<group>"; };
 		1A13969D2B18895C0072BC49 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -331,8 +331,8 @@
 			children = (
 				8731316C2A9CE26700E8B645 /* MoreMenuViewController.swift */,
 				8777A7DA2A9B9D9A005526D1 /* More.storyboard */,
-				1A1396952B17AF240072BC49 /* MoreMenuViewController+TableViewController.swift */,
 				1A13969D2B18895C0072BC49 /* SettingViewController.swift */,
+				1A09B5122B1A4FD600510108 /* MoreMenuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -454,7 +454,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				874764492AFAB2C900365717 /* RippleView.swift in Sources */,
-				1A1396962B17AF240072BC49 /* MoreMenuViewController+TableViewController.swift in Sources */,
 				874764472AFAA64600365717 /* SongDetail.swift in Sources */,
 				87BB609F2AD72B2B00B9428D /* LocationService.swift in Sources */,
 				8747643B2AFAA45300365717 /* ContentView.swift in Sources */,
@@ -470,6 +469,7 @@
 				87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */,
 				87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */,
 				874418672ABAD97F00233604 /* RecordingViewController.swift in Sources */,
+				1A09B5132B1A4FD600510108 /* MoreMenuView.swift in Sources */,
 				8747644C2AFAB31600365717 /* NoResultView.swift in Sources */,
 				1AF5E4422B15DFF800E3537A /* ModifyUserNameController.swift in Sources */,
 				1A13969E2B18895C0072BC49 /* SettingViewController.swift in Sources */,

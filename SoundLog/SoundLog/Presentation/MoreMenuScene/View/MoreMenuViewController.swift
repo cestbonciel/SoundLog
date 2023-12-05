@@ -10,53 +10,81 @@ import SnapKit
 
 class MoreMenuViewController: UIViewController {
     
-    lazy var navigationBar: UINavigationBar = {
-        let navigationBar = UINavigationBar()
-        navigationBar.barTintColor = .pastelSkyblue
-        navigationBar.translatesAutoresizingMaskIntoConstraints = false
-        return navigationBar
-    }()
+    lazy var moreMenuView = MoreMenuView()
     
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //      settingViewUI()
         
-        let safeArea = self.view.safeAreaLayoutGuide
         
-        view.addSubview(navigationBar)
+        // 네비게이션 바 생성
+//        let navigationBar = UINavigationBar()
+//        navigationBar.barTintColor = .pastelSkyblue
+//        navigationBar.tintColor = .label
+//        navigationBar.backgroundColor = .pastelSkyblue
         
-        navigationBar.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
-        navigationBar.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor).isActive = true
-        navigationBar.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
-        navigationBar.backgroundColor = .pastelSkyblue
-        navigationBar.tintColor = .label
+//        let navItem = UINavigationItem()
+        let settingButton = UIBarButtonItem(
+            image: UIImage(systemName: "gearshape.fill"),
+            style: .plain, target: self,
+            action: #selector(moveToSettingView)
+        )
+        settingButton.tintColor = UIColor.red
+        settingButton.width = 30
+        
+//        navItem.rightBarButtonItem = settingButton
+//        self.navigationItem.rightBarButtonItem = settingButton
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = settingButton
+        
+        //navigationBar.setItems([navItem], animated: true)
+        
+        //        let safeArea = self.view.safeAreaLayoutGuide
+//        view.addSubview(navigationBar)
+//        navigationBar.translatesAutoresizingMaskIntoConstraints = false
+       
+//        NSLayoutConstraint.activate([
+//            navigationBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 56),
+//            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            navigationBar.heightAnchor.constraint(equalToConstant: 56)
+//        ])
+        
+//        navigationBar.tintColor = .label
+        
+        navigationController?.navigationBar.tintColor = .label
         view.backgroundColor = .pastelSkyblue
-        let navItem = UINavigationItem()
-        let rightButton = UIBarButtonItem(image: UIImage(systemName: "gearshape.fill"), style: .plain, target: self, action: #selector(moveToSettingView))
-        navItem.rightBarButtonItem = rightButton
-        navigationBar.setItems([navItem], animated: true)
     }
     
-    
-   @objc func moveToSettingView(_ sender: UIBarButtonItem) {
-        let settingViewController = SettingViewController()
-        settingViewController.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(settingViewController, animated: true)
+    override func loadView() {
+        self.view = moreMenuView
+        
+        
     }
-    private func setupNavigationBar() {
-        let settingConfig = CustomNaviBarItemConfiguration(image: UIImage(systemName: "gearshape.fill")) {
+    
+//    private func setupNavigationBar() {
+//
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(
+//            image: UIImage(systemName: "gearshape.fill"),
+//            style: .plain,
+//            target: self,
+//            action: #selector(moveToSettingView)
+//        )
+//
+//
+//
+//
+//    }
+    
+    @objc func moveToSettingView() {
+        // 네비게이션 컨트롤러가 nil이 아니라면 pushViewController 수행
+        if let navigationController = self.navigationController {
             let settingViewController = SettingViewController()
-            settingViewController.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(settingViewController, animated: true)
+            settingViewController.hidesBottomBarWhenPushed = false
+            navigationController.pushViewController(settingViewController, animated: true)
+        } else {
+            // 네비게이션 컨트롤러가 nil이라면 처리할 로직을 추가
+            print("네비게이션 컨트롤러가 nil입니다. 예외 처리가 필요합니다.")
         }
-        
-        let settingItem = UIBarButtonItem.make(with: settingConfig, width: 24)
-        
-        navigationItem.rightBarButtonItem = settingItem
-        navigationItem.backButtonDisplayMode = .minimal
-        navigationController?.navigationBar.tintColor = .black
     }
 
     
@@ -64,22 +92,22 @@ class MoreMenuViewController: UIViewController {
 
 
 //MARK: - Preview Setting
-//#if canImport(SwiftUI) && DEBUG
-//import SwiftUI
-//struct SettingViewControllerRepresentable: UIViewControllerRepresentable {
-//    func makeUIViewController(context: Context) -> some UIViewController {
-//        return UIStoryboard(name: "More", bundle: nil).instantiateViewController(withIdentifier: "MoreMenus")
-//    }
-//
-//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//
-//    }
-//}
-//
-//struct SettingViewController_Preview: PreviewProvider {
-//    static var previews: some View {
-//        SettingViewControllerRepresentable()
-//    }
-//}
-//#endif
-//
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+struct MoreMenuViewControllerRepresentable: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> some UIViewController {
+        return UIStoryboard(name: "More", bundle: nil).instantiateViewController(withIdentifier: "MoreMenus")
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+
+    }
+}
+
+struct MoreMenuViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        MoreMenuViewControllerRepresentable()
+    }
+}
+#endif
+

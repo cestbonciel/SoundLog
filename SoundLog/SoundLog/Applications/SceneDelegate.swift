@@ -11,58 +11,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
 
-
-	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-		
-		if UserDefaults.standard.string(forKey: "nickname") == nil {
-			if let mainVC = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as? StartViewController {
-				window?.rootViewController = mainVC
-			}
-		} else {
-			let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
-			window?.rootViewController = tabBarVC
-		}
-		
-		let appearance = UINavigationBarAppearance()
-		let backItemAppearance = UIBarButtonItemAppearance()
-		
-		UINavigationBar.appearance().tintColor = .black
-		guard let _ = (scene as? UIWindowScene) else { return }
-		
-		let tabBarAppearance = UITabBarAppearance()
-		tabBarAppearance.backgroundColor = .black
-		
-//		let tbItemProxy = UITabBarItem.appearance()
-//		tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.neonYellow], for: .selected)
-//		tbItemProxy.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .disabled)
-//		let attributes = [NSAttributedString.Key.font:UIFont(name: "GmarketSansMedium", size: 12)]
-//				tbItemProxy.setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
-//		if let tabBarCustom = self.window?.rootViewController as? UITabBarController {
-//			
-//			if  let tabBarItem = tabBarCustom.tabBar.items {
-//				let image1 = UIImage(named: "homeIcon")?.withRenderingMode(.alwaysOriginal)
-//				tabBarItem[0].image = image1
-//				
-//				let selectedImage1 = UIImage(named: "home_highlight")?.withRenderingMode(.alwaysOriginal)
-//				tabBarItem[0].selectedImage = selectedImage1
-//				
-//				let image2 = UIImage(named: "shazam")?.withRenderingMode(.alwaysOriginal)
-//				tabBarItem[1].image = image2
-//				
-//				let selectedImage2 = UIImage(named: "shazamHighlight")?.withRenderingMode(.alwaysOriginal)
-//				tabBarItem[1].selectedImage = selectedImage2
-//				
-//				let image3 = UIImage(named: "moreIcon")?.withRenderingMode(.alwaysOriginal)
-//				tabBarItem[2].image = image3
-//				
-//				let selectedImage3 = UIImage(named: "more_highlight")?.withRenderingMode(.alwaysOriginal)
-//				tabBarItem[2].selectedImage = selectedImage3
-//			}
-//		}
-//		
-
-	}
-
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        var rootViewController: UIViewController
+        
+        if UserDefaults.standard.string(forKey: "nickname") == nil {
+            let startViewController = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as! StartViewController
+            rootViewController = UINavigationController(rootViewController: startViewController)
+        } else {
+            // 닉네임이 이미 저장되어 있다면 메인 화면을 표시
+            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
+            rootViewController = UINavigationController(rootViewController: tabBarVC)
+        }
+        
+        
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
+        
+        
+        let appearance = UINavigationBarAppearance()
+        let backItemAppearance = UIBarButtonItemAppearance()
+        
+        UINavigationBar.appearance().tintColor = .black
+        //        UINavigationBar.appearance().tintColor = .black
+        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.backgroundColor = .black
+    }
 	func sceneDidDisconnect(_ scene: UIScene) {
 		// Called as the scene is being released by the system.
 		// This occurs shortly after the scene enters the background, or when its session is discarded.
