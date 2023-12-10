@@ -8,11 +8,7 @@ import UIKit
 import SnapKit
 
 class MoreMenuView: UIView {
-    var myIntrinsicSize: CGSize = .zero
-    override var intrinsicContentSize: CGSize {
-        return myIntrinsicSize
-    }
-    
+ 
     private lazy var introLabel: UILabel = {
         let label = UILabel()
         label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
@@ -56,7 +52,7 @@ class MoreMenuView: UIView {
     
     private lazy var modifiedButton: UIButton = {
         let button = UIButton()
-        button.frame = CGRect(x: 0, y: 0, width: 48, height: 0)
+        button.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
         button.contentEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: 8)
         button.layer.cornerRadius = 10
         button.setTitleColor(.black, for: .normal)
@@ -105,7 +101,7 @@ class MoreMenuView: UIView {
         }
         
         nicknameStack.snp.makeConstraints {
-            $0.top.equalTo(introLabel.snp.bottom).offset(42)
+            $0.top.equalTo(introLabel.snp.bottom).offset(48)
             $0.left.right.equalToSuperview().inset(24)
             $0.height.equalTo(51)
         }
@@ -118,15 +114,14 @@ class MoreMenuView: UIView {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
 //            $0.top.bottom.equalTo(nicknameStack.snp.top).inset(8)
-//            $0.height.equalTo(16)
+            $0.height.equalTo(24)
         }
         bookmarkStack.snp.makeConstraints {
             $0.top.equalTo(nicknameStack.snp.bottom).offset(24)
             $0.left.equalToSuperview().inset(24)
             $0.height.equalTo(51)
         }
-//        bookmarkIcon.setContentCompressionResistancePriority(.init(1000), for: .horizontal)
-//        bookmarkIcon.setContentHuggingPriority(.init(251), for: .horizontal)
+
         
         bookmarkIcon.snp.makeConstraints {
             $0.centerY.equalToSuperview()

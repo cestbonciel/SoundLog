@@ -33,7 +33,7 @@
                         <outlet property="homeTabBar" destination="kd2-RT-tBX" id="GLK-dw-BVF"/>
                         <segue destination="rhw-ca-8Nb" kind="relationship" relationship="viewControllers" id="LTo-TB-wRz"/>
                         <segue destination="OyC-Qv-DxC" kind="relationship" relationship="viewControllers" id="w6l-Ii-H7D"/>
-                        <segue destination="uEK-9z-Pf3" kind="relationship" relationship="viewControllers" id="ISb-1S-1gH"/>
+                        <segue destination="FM7-ww-dZX" kind="relationship" relationship="viewControllers" id="jNt-MO-yKW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWW-th-59h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -49,7 +49,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-Q7-g3x" userLabel="AppTitle Stack">
-                                <rect key="frame" x="197" y="79" width="163" height="52"/>
+                                <rect key="frame" x="197" y="64" width="163" height="52"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소리의 기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADt-nx-acz">
                                         <rect key="frame" x="0.0" y="0.0" width="163" height="32"/>
@@ -69,7 +69,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="160" translatesAutoresizingMaskIntoConstraints="NO" id="hzg-NJ-1Ah">
-                                <rect key="frame" x="30" y="179" width="330" height="32"/>
+                                <rect key="frame" x="30" y="164" width="330" height="32"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bga-7e-95c">
                                         <rect key="frame" x="0.0" y="0.0" width="109" height="32"/>
@@ -112,7 +112,7 @@
                         <viewLayoutGuide key="safeArea" id="Vfp-Ei-fsV"/>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="EN8-Q7-g3x" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="32" id="EVJ-6A-0fW"/>
+                            <constraint firstItem="EN8-Q7-g3x" firstAttribute="top" secondItem="D3B-lc-uhz" secondAttribute="top" constant="64" id="EVJ-6A-0fW"/>
                             <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="EN8-Q7-g3x" secondAttribute="trailing" constant="30" id="VJZ-1h-ZGe"/>
                             <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="hzg-NJ-1Ah" secondAttribute="trailing" constant="30" id="bze-fO-wQb"/>
                             <constraint firstItem="hzg-NJ-1Ah" firstAttribute="top" secondItem="EN8-Q7-g3x" secondAttribute="bottom" constant="48" id="lcz-8y-c4f"/>
@@ -163,6 +163,39 @@
             </objects>
             <point key="canvasLocation" x="-2003.0769230769231" y="-59.004739336492889"/>
         </scene>
+        <!--더보기-->
+        <scene sceneID="dI9-El-rdq">
+            <objects>
+                <navigationController id="FM7-ww-dZX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="더보기" image="moreIcon" selectedImage="more_highlight" id="4Al-ay-bx4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aT2-1M-r32">
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dQG-tJ-lWo" kind="relationship" relationship="rootViewController" id="Df2-ld-AQt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kCG-Uk-83r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1003" y="-45"/>
+        </scene>
+        <!--More Menu View Controller-->
+        <scene sceneID="J3g-VL-Ngg">
+            <objects>
+                <viewController storyboardIdentifier="MoreMenuViewController" id="dQG-tJ-lWo" customClass="MoreMenuViewController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uJN-ad-7Zq">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="bCU-pu-Z1R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GU6-cs-wG8"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eFg-dt-rgi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-171" y="-45"/>
+        </scene>
         <!--Shazam-->
         <scene sceneID="JRf-h1-w2X">
             <objects>
@@ -170,47 +203,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vlc-ew-1SY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2003" y="380"/>
-        </scene>
-        <!--MoreMenus-->
-        <scene sceneID="Q4B-5e-3Fd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="More" referencedIdentifier="MoreMenus" id="ooS-LX-RTp" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="2W7-iw-Iyx"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bi3-em-abQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-978" y="416"/>
-        </scene>
-        <!--더보기-->
-        <scene sceneID="o2k-ct-B8m">
-            <objects>
-                <viewController storyboardIdentifier="Setting" id="uEK-9z-Pf3" sceneMemberID="viewController">
-                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="4vq-TV-i5n">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMe-O8-RZZ">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                                <connections>
-                                    <segue destination="ooS-LX-RTp" kind="embed" id="lCo-4K-Zbj"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="KWP-2h-IzU"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <color key="tintColor" systemColor="systemYellowColor"/>
-                        <constraints>
-                            <constraint firstItem="bMe-O8-RZZ" firstAttribute="top" secondItem="4vq-TV-i5n" secondAttribute="top" id="CyS-Ky-FVq"/>
-                            <constraint firstItem="bMe-O8-RZZ" firstAttribute="trailing" secondItem="KWP-2h-IzU" secondAttribute="trailing" id="h8W-Gr-thv"/>
-                            <constraint firstItem="bMe-O8-RZZ" firstAttribute="leading" secondItem="KWP-2h-IzU" secondAttribute="leading" id="kIG-kS-shg"/>
-                            <constraint firstAttribute="bottom" secondItem="bMe-O8-RZZ" secondAttribute="bottom" id="xe0-vz-56T"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="더보기" image="moreIcon" selectedImage="more_highlight" id="kCw-lI-1Pg"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jd9-7W-S6H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-977" y="-58"/>
         </scene>
         <!--Theme View Controller-->
         <scene sceneID="RHs-z6-LJN">
