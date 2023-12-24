@@ -13,19 +13,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        var rootViewController: UIViewController
+        guard let _ = (scene as? UIWindowScene) else { return }
+//        var rootViewController: UIViewController
         
         if UserDefaults.standard.string(forKey: "nickname") == nil {
-            let startViewController = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as! StartViewController
-            rootViewController = UINavigationController(rootViewController: startViewController)
+            if let mainVC = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as? StartViewController {
+                window?.rootViewController = mainVC
+            }
         } else {
-            // 닉네임이 이미 저장되어 있다면 메인 화면을 표시
             let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
-            rootViewController = UINavigationController(rootViewController: tabBarVC)
+            window?.rootViewController = tabBarVC
         }
+//        if UserDefaults.standard.string(forKey: "nickname") == nil {
+//            let startViewController = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as! StartViewController
+//            rootViewController = UINavigationController(rootViewController: startViewController)
+//        } else {
+//            // 닉네임이 이미 저장되어 있다면 메인 화면을 표시
+//            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
+//            rootViewController = UINavigationController(rootViewController: tabBarVC)
+//        }
         
         
-        window?.rootViewController = rootViewController
+//        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         
         
@@ -34,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
 //        UINavigationBar.appearance().tintColor = .black
         //        UINavigationBar.appearance().tintColor = .black
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
         
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.backgroundColor = .black

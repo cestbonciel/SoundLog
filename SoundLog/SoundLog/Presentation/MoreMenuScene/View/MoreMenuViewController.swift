@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class MoreMenuViewController: UIViewController {
+class MoreMenuViewController: UIViewController {
     
     lazy var moreMenuView = MoreMenuView()
     
@@ -17,17 +17,15 @@ final class MoreMenuViewController: UIViewController {
         view.backgroundColor = .pastelSkyblue
         navigationController?.navigationBar.tintColor = .label
         configureNaviBarButton()
-        
-        
     }
     
     override func loadView() {
         self.view = moreMenuView
-        
+
     }
-    
+
     private func configureNaviBarButton() {
-        navigationController?.navigationBar.barTintColor = .yellow
+//        navigationController?.navigationBar.barTintColor = .yellow
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "gearshape.fill"),
             style: .plain,
@@ -37,13 +35,11 @@ final class MoreMenuViewController: UIViewController {
     }
     
     @objc func moveToSettingView() {
-        // 네비게이션 컨트롤러가 nil이 아니라면 pushViewController 수행
         if let navigationController = self.navigationController {
             let settingViewController = SettingViewController()
             settingViewController.hidesBottomBarWhenPushed = true
             navigationController.pushViewController(settingViewController, animated: true)
         } else {
-            // 네비게이션 컨트롤러가 nil이라면 처리할 로직을 추가
             print("네비게이션 컨트롤러가 nil입니다. 예외 처리가 필요합니다.")
         }
     }

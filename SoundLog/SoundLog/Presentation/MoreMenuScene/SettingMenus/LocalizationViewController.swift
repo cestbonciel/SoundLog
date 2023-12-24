@@ -29,7 +29,9 @@ class LocalizationViewController: UIViewController {
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = .label
         button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        button.layer.borderColor = UIColor.magenta.cgColor
+        button.layer.borderWidth = 1
+        button.frame = CGRect(x: 340, y: 16, width: 32, height: 32)
         button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -48,7 +50,7 @@ class LocalizationViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 24),
+            closeButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -48),
             closeButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 48)
         ])
     }

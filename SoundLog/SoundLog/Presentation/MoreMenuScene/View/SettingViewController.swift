@@ -6,28 +6,9 @@
 //
 
 import UIKit
+import UserNotifications
+
 import SnapKit
-
-struct Section {
-    let title: String
-    let options: [SettingsCellType]
-}
-
-enum SettingsCellType {
-    case staticCell(model: SettingsOption)
-    case switchCell(model: SettingSwitchOption)
-}
-
-struct SettingSwitchOption {
-    let title: String
-    var isOn: Bool
-    let handler: (() -> Void)
-}
-
-struct SettingsOption {
-    let title: String
-    let handler: (() -> Void)
-}
 
 class SettingViewController: UIViewController {
     var models = [Section]()
@@ -41,20 +22,25 @@ class SettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        configure()
+        view.backgroundColor = .pastelSkyblue
         title = "설정"
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.isScrollEnabled = false
         tableView.backgroundColor = .clear
-        view.backgroundColor = .pastelSkyblue
+        
+        setupUI()
+        configure()
+        
+        UNUserNotificationCenter.current().delegate = self
+        
     }
     
     private func setupUI() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(120)
+            $0.top.equalToSuperview().inset(80)
             $0.left.right.equalToSuperview().inset(24)
             $0.bottom.equalToSuperview().inset(100)
         }
@@ -62,23 +48,40 @@ class SettingViewController: UIViewController {
     
     func configure() {
         models.append(Section(title: "사용자 설정", options: [
-            .staticCell(model: SettingsOption(title: "알람설정", handler: {
+            .staticCell(model: SettingsOption(title: "알림설정", handler: {
+                let alert = UIAlertController(title: "알림설정", message: "시간을 설정해주세요", preferredStyle: .actionSheet)
+                let datePicker = UIDatePicker()
+                datePicker.datePickerMode = .time
+                datePicker.preferredDatePickerStyle = .wheels
+                datePicker.locale = Locale(identifier: "ko_KR")
                 
+                // 한국 시간대로 설정
+                if let koreaTimeZone = TimeZone(identifier: "Asia/Seoul") {
+                    datePicker.timeZone = koreaTimeZone
+                } else {
+                    print("Invalid time zone identifier")
+                }
+                
+                let ok = UIAlertAction(title: "설정완료", style: .cancel) { action in
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.locale = Locale(identifier: "ko_KR")
+                    dateFormatter.timeZone = datePicker.timeZone
+                    dateFormatter.dateFormat = "a hh:mm"
+                    
+                    print(dateFormatter.string(from: datePicker.date))
+                }
+
+                alert.addAction(ok)
+                let vc = UIViewController()
+                vc.view = datePicker
+                alert.setValue(vc, forKey: "contentViewController")
+                self.present(alert, animated: true)
             })),
             .staticCell(model: SettingsOption(title: "언어변경", handler: {
                 let langVC = LocalizationViewController()
                 langVC.isModalInPresentation = true
                 langVC.modalPresentationStyle = .pageSheet
                 self.present(langVC, animated: true, completion: nil)
-                
-                /*
-                 let mapVC = MapViewController()
-                 mapVC.currentLocationAddress = addressLabel.text
-                 mapVC.mapDelegate = self
-                 mapVC.isModalInPresentation = true
-                 mapVC.modalPresentationStyle = .popover
-                 self.present(mapVC, animated: true, completion: nil)
-                 */
             }))
         ]))
         models.append(Section(title: "APP 정보", options: [
@@ -143,4 +146,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = .clear
     }
+}
+
+//MARK: - User Notification Delegate
+extension SettingViewController: UNUserNotificationCenterDelegate {
+    
 }
