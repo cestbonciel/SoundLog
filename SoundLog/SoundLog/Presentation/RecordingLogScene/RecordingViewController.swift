@@ -13,35 +13,37 @@ class RecordingViewController: UIViewController {
 	var audioRecorder: AVAudioRecorder!
 	var audioPlayer: AVAudioPlayer!
 	var progressTimer: Timer!
-
-	var isRecording = false
-	var isPlaying = false
-	
-
+    let maxVolume: Float = 10.0
+    
+    var isRecording: Bool = false
+    var isPlaying: Bool = false
+    var isPaused: Bool = false
+    var statePlaying: Bool = false
+    
 	var audioFileURL: URL!
-
-	
-	let maxVolume: Float = 10.0
 
 	//MARK: - viewDidLoad()
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.setupUI()
 		view.backgroundColor = .pastelSkyblue
-		
-		setPlayAndRecordSession()
-//		setupAudioRecorder()
-		// default Record
-		updateUIForRecording(false, true, false)
+        
+        stopButton.isEnabled = false
+        playButton.isEnabled = false
+        setSessionPlayback()
+	}
 	
-	}//: viewDidLoad()
-	
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        audioRecorder = nil
+        audioPlayer = nil
+    }
+    
 	// MARK: - Recording Objects
 	lazy var mainLabel: UILabel = {
 		let label = UILabel()
 		label.text = "음성 녹음"
-		label.font = UIFont(name: "GmarketSansMedium", size: 16.0)
+        label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
 		label.textColor = .black
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
@@ -49,14 +51,12 @@ class RecordingViewController: UIViewController {
 	// MARK: - the State of Playing
 	lazy var progressView: UIProgressView = {
 		let progressView = UIProgressView(progressViewStyle: .bar)
-//		progressView.setProgress(0.0, animated: true)
+		progressView.setProgress(0.0, animated: true)
 		progressView.trackTintColor = UIColor.systemGray6
 		progressView.progressTintColor = UIColor.neonPurple
 		progressView.translatesAutoresizingMaskIntoConstraints = false
 		return progressView
 	}()
-
-
 
 	lazy var timerLabel: UILabel = {
 		let label = UILabel()
@@ -113,7 +113,7 @@ class RecordingViewController: UIViewController {
 		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
 		button.layer.cornerRadius = button.frame.width / 2
 		button.translatesAutoresizingMaskIntoConstraints = false
-		
+        button.addTarget(self, action: #selector(startRecording), for: .touchUpInside)
 		return button
 	}()
 	//MARK: - PLAY BUTTON
@@ -126,18 +126,17 @@ class RecordingViewController: UIViewController {
 		let button = UIButton(configuration: config)
 		button.configuration = config
 		button.tintColor = .white
-//		button.layer.masksToBounds = false
 		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
 		button.layer.cornerRadius = button.frame.width / 2
 		button.translatesAutoresizingMaskIntoConstraints = false
-
-//		button.addTarget(self, action: #selector(playButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(startPlaying), for: .touchUpInside)
 		return button
 	}()
 	//MARK: - STOP BUTTON
 	lazy var stopButton: UIButton = {
 		var attString = AttributedString("정지")
 		attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        
 		var config = UIButton.Configuration.borderedTinted()
 		config.attributedTitle = attString
 		config.baseBackgroundColor = .systemRed
@@ -148,6 +147,7 @@ class RecordingViewController: UIViewController {
 		button.tintColor = .systemRed
 		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
 		button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(stopButtonPressed), for: .touchUpInside)
 		return button
 	}()
 
