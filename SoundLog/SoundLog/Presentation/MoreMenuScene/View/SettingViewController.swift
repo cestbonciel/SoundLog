@@ -48,7 +48,7 @@ class SettingViewController: UIViewController {
     
     func configure() {
         models.append(Section(title: "사용자 설정", options: [
-            .staticCell(model: SettingsOption(title: "알림설정", handler: {
+            .switchCell(model: SettingSwitchOption(title: "알림설정", isOn: false, handler: {
                 let alert = UIAlertController(title: "알림설정", message: "시간을 설정해주세요", preferredStyle: .actionSheet)
                 let datePicker = UIDatePicker()
                 datePicker.datePickerMode = .time

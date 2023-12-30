@@ -9,6 +9,11 @@ import UIKit
 
 class SwitchTableViewCell: UITableViewCell {
     static let identifier = "SwitchTableViewCell"
+    public var switchValueChanged: ((Bool) -> Void)?
+    
+    @objc private func changedSwitchValue(_ sender: UISwitch) {
+        switchValueChanged?(sender.isOn)
+    }
     
     private let label: UILabel = {
         let label = UILabel()
@@ -63,5 +68,10 @@ class SwitchTableViewCell: UITableViewCell {
     public func configure(with model: SettingSwitchOption) {
         label.text = model.title
         onOffSwitch.isOn = model.isOn
+        switchValueChanged = { isOn in
+            model.handler()
+        }
+        
+        onOffSwitch.addTarget(self, action: #selector(changedSwitchValue(_:)), for: .valueChanged)
     }
 }
