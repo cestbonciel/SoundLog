@@ -9,37 +9,9 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-	
-	@available(iOS 13.0, *)
-	func customNavBarAppearance() -> UINavigationBarAppearance {
-		 let customNavBarAppearance = UINavigationBarAppearance()
-
-		 // Apply a red background.
-		 customNavBarAppearance.configureWithOpaqueBackground()
-		 customNavBarAppearance.backgroundColor = .white
-
-		 // Apply white colored normal and large titles.
-		 customNavBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-		 customNavBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
-
-
-		 // Apply white color to all the nav bar buttons.
-		let barButtonItemAppearance = UIBarButtonItemAppearance(style: .plain)
-
-		 barButtonItemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.black]
-		 barButtonItemAppearance.disabled.titleTextAttributes = [.foregroundColor: UIColor.lightText]
-		 barButtonItemAppearance.highlighted.titleTextAttributes = [.foregroundColor: UIColor.label]
-		 barButtonItemAppearance.focused.titleTextAttributes = [.foregroundColor: UIColor.black]
-		 customNavBarAppearance.buttonAppearance = barButtonItemAppearance
-		 customNavBarAppearance.backButtonAppearance = barButtonItemAppearance
-		 customNavBarAppearance.doneButtonAppearance = barButtonItemAppearance
-
-		 return customNavBarAppearance
-	}
-
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
+//		 Override point for customization after application launch.
 		UINavigationBar.appearance().tintColor = UIColor.black // NavigationBar의 아이템 색상을 흰색으로 설정
 		UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black] // NavigationBar 타이틀 색상을 흰색으로 설정
 		
@@ -48,17 +20,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		barButtonItemAppearance.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal) // UIBarButtonItem의 일반 상태 텍스트 색상을 흰색으로 설정
 		
 		
-		let newNavBarAppearance = customNavBarAppearance()
+//		let newNavBarAppearance = customNavBarAppearance()
 		
 		let appearance = UINavigationBar.appearance()
-		appearance.scrollEdgeAppearance = newNavBarAppearance
-		appearance.compactAppearance = newNavBarAppearance
-		appearance.standardAppearance = newNavBarAppearance
+//		appearance.scrollEdgeAppearance = newNavBarAppearance
+//		appearance.compactAppearance = newNavBarAppearance
+//		appearance.standardAppearance = newNavBarAppearance
 		
 		
 		
 		if #available(iOS 15.0, *) {
-			appearance.compactScrollEdgeAppearance = newNavBarAppearance
+//			appearance.compactScrollEdgeAppearance = newNavBarAppearance
 		}
 
 		return true

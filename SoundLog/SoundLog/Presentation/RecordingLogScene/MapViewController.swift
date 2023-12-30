@@ -19,13 +19,9 @@ class MapViewController: UIViewController {
 	var currentLocationAddress: String?
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		setupUI()
-		
 	}
 	
-	
-//	
 //	override func viewWillDisappear(_ animated: Bool) {
 //		super.viewWillDisappear(animated)
 //		

@@ -10,126 +10,93 @@ import AVFoundation
 
 extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 	
-	// MARK: - RECORDING
-	@objc func recordButtonPressed(_ sender: UIButton) {
-		
-		if audioPlayer != nil && audioPlayer.isPlaying {
-			print("stopping")
-			audioPlayer.stop()
-		}
-		
-		if audioRecorder == nil {
-			print("recording.. recorder nil.")
-			progressView.progress = 0.0
-			recordButton.setImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
-			playButton.isEnabled = false
-			stopButton.isEnabled = true
-			startRecording(true)
-//			progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-//			sliderVolume.value = 1.0
-//			audioPlayer?.volume = sliderVolume.value
-//			timerLabel.text = formatTime(0)
-			return
-		}
-		
-		if audioRecorder != nil && audioRecorder.isRecording {
-			print("Pausing")
-			audioRecorder.pause()
-			recordButton.setImage(UIImage(systemName: "mic.circle.fill"), for: .normal)
-			
-		} else {
-			print("Recording")
-			recordButton.setImage(UIImage(systemName: "pause.circle.fill"), for: .normal)
-			playButton.isEnabled = false
-			stopButton.isEnabled = true
-			startRecording(false)
-		}
-		
-	}
-	
-	//MARK: - Setup audio session
-	func setPlayAndRecordSession() {
-		let audioSession = AVAudioSession.sharedInstance()
-		do {
-			try audioSession.setCategory(.playAndRecord, mode: .default)
-		} catch {
-			print("Error setting up audio session: \(error.localizedDescription)")
-		}
-		
-		do {
-			try audioSession.setActive(true)
-		} catch  let error as NSError {
-			print("Error-setActive: \(error)")
-		}
-	}
 	// MARK: Feature - Setup AudioRecorder
 	func setupAudioRecorder() {
-		let audioSettings: [String: Any] = [
-			AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-			AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
-			AVEncoderBitRateKey: 320000,
-			AVNumberOfChannelsKey: 2,
-			AVSampleRateKey: 44100]
+		let dateFormatter = DateFormatter()
+        dateFormatter.locale = .current
+        dateFormatter.timeZone = .current
+		dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
 		
-		let format = DateFormatter()
-		format.dateFormat = "yyyy-MM-dd-HH-mm-ss"
+		let currentFileName = "your_sound_\(dateFormatter.string(from: Date())).m4a"
+        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        self.audioFileURL = documentsDirectory.appendingPathComponent(currentFileName)
 		
-		let currentFileName = "recording-\(format.string(from: Date()))"
-		let uniformTypeIdentifier = UTType.audio
-		print(currentFileName)
-		
-		let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-		self.audioFileURL = documentsDirectory.appendingPathComponent(currentFileName, conformingTo: uniformTypeIdentifier)
-		print("writing to soundfile url: \(audioFileURL!)")
-		
-		if FileManager.default.fileExists(atPath: audioFileURL.absoluteString) {
-			print("audio File \(audioFileURL.absoluteString) exists")
-		}
-		
+        let audioSettings: [String: Any] = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
+            AVEncoderBitRateKey: 320000,
+            AVNumberOfChannelsKey: 2,
+            AVSampleRateKey: 44100
+        ]
+        
 		do {
-			audioRecorder = try AVAudioRecorder(url: audioFileURL, settings: audioSettings)
-			audioRecorder?.delegate = self
-			audioRecorder?.isMeteringEnabled = true
-			audioRecorder?.prepareToRecord()
-			
-		} catch let error as NSError {
-			print("Error-initRecord: \(error)")
+			audioRecorder = try AVAudioRecorder(
+                url: audioFileURL,
+                settings: audioSettings
+            )
+            audioRecorder.delegate = self
+            audioRecorder.isMeteringEnabled = true
+            audioRecorder.prepareToRecord()
+		} catch  {
+			audioRecorder = nil
+            print(error.localizedDescription)
 		}
 	}
 
 	
 	// MARK: - functions_ Record
-	func startRecording(_ setup: Bool) {
-		AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] granted in
-			if granted {
-				DispatchQueue.main.async {
-					self.setPlayAndRecordSession()
-					if setup {
-						self.setupAudioRecorder()
-					}
-					self.audioRecorder.record()
-					
-					self.progressTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
-				}
-			} else {
-				print("Permission to record not granted.")
-			}
-		}
-		
-		if AVAudioSession.sharedInstance().recordPermission == .denied {
-			print("permission denied.")
-		}
-	
+	@objc func startRecording(_ sender: UIButton) {
+        if audioPlayer != nil && audioPlayer.isPlaying {
+            print("stopping.")
+            audioPlayer.stop()
+        }
+        
+        if audioRecorder == nil {
+            print("recording.. recorder nil")
+            recordButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            playButton.isEnabled = false
+            stopButton.isEnabled = true
+            recordingWithPermission(true)
+            return
+        }
+        
+        if audioRecorder != nil && audioRecorder.isRecording  {
+            audioRecorder.pause()
+            recordButton.setImage(UIImage(systemName: "mic.fill"), for: .normal)
+        } else {
+            recordButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            playButton.isEnabled = false
+            stopButton.isEnabled = true
+            recordingWithPermission(false)
+        }
 	}
 	
-	func stopRecording() {
+    @objc func startPlaying(_ sender: UIButton) {
+        playRecordingFile()
+    }
 	
-	}
-	
-	func playRecordedAudio() {
-
-	}
-	
+    func playRecordingFile() {
+        var recordedFileUrl: URL?
+        
+        if self.audioRecorder != nil {
+            recordedFileUrl = self.audioRecorder.url
+        } else {
+            recordedFileUrl = self.audioFileURL!
+            print("audio File URL: \(String(describing: recordedFileUrl))")
+        }
+        do {
+            self.audioPlayer = try AVAudioPlayer(contentsOf: recordedFileUrl!)
+            stopButton.isEnabled = true
+            audioPlayer.delegate = self
+            audioPlayer.prepareToPlay()
+            audioPlayer.volume = 3.0
+            audioPlayer.play()
+        } catch {
+            self.audioPlayer = nil
+            print(error.localizedDescription)
+        }
+    }
+    
 	func updateUIRecording(isRecording: Bool) {
 		recordButton.isEnabled = !isRecording
 		playButton.isEnabled = !isRecording
@@ -144,9 +111,6 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 			progressTimer?.invalidate()
 		}
 	}
-	
-
-	
 
 	func updateUIForRecording(_ play: Bool,_ record: Bool,_ stop: Bool) {
 		recordButton.isEnabled = record
@@ -159,8 +123,87 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 		playButton.isEnabled = play
 		stopButton.isEnabled = stop
 	}
-	
-
+	// MARK: - RECORD PERMISSION
+    func recordingWithPermission(_ setUp: Bool) {
+        print("\(#function)")
+        
+        AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] granted in
+            if granted {
+                DispatchQueue.main.async {
+                    print("Permission to record granted")
+                    self.setSessionPlayAndRecord()
+                    if setUp {
+                        self.setupAudioRecorder()
+                    }
+                    self.audioRecorder.record()
+                    self.progressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
+                        self.updateAudioMeter(timer: timer)
+                    })
+                    
+                }
+            } else {
+                print("Permission to record not granted.")
+            }
+        }
+        
+        if AVAudioSession.sharedInstance().recordPermission == .denied {
+            print("permission denied.")
+        }
+    }
+    
+    private func updateAudioMeter(timer: Timer) {
+        if let recorder = self.audioRecorder {
+            if recorder.isRecording {
+                let min = Int(recorder.currentTime / 60)
+                let sec = Int(recorder.currentTime.truncatingRemainder(dividingBy: 60))
+                let progressTimer = String(format: "%02d:%02d", min, sec)
+                timerLabel.text = progressTimer
+                audioRecorder.updateMeters()
+            }
+        }
+    }
+    
+    func setSessionPlayback() {
+        print("\(#function)")
+        
+        let session = AVAudioSession.sharedInstance()
+        
+        do {
+            try session.setCategory(AVAudioSession.Category.playback, options: .defaultToSpeaker)
+            
+        } catch {
+            print("could not set session category")
+            print(error.localizedDescription)
+        }
+        
+        do {
+            try session.setActive(true)
+        } catch {
+            print("could not make session active")
+            print(error.localizedDescription)
+        }
+    }
+    
+    func setSessionPlayAndRecord() {
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(
+                AVAudioSession.Category.playAndRecord,
+                options: .defaultToSpeaker
+            )
+        } catch {
+            print("could not set session category.")
+            print(error.localizedDescription)
+        }
+        
+        do {
+            try session.setActive(true)
+        } catch {
+            print("could not make session active.")
+            print(error.localizedDescription)
+        }
+        
+    }
 	//MARK: Progress Bar Timer
 	@objc func updateTimer() {
 		if isRecording || isPlaying {
@@ -180,9 +223,6 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 		return strTime
 	}
 	//MARK: - ADD TARGET : PLAY
-	@objc func playButtonPressed(_ sender: UIButton) {
-		playRecordedAudio()
-	}
 
 	@objc func updatePlayTime(){
 		timerLabel.text = formatTime(audioPlayer.currentTime)
@@ -195,14 +235,21 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 	
 	
 	@objc func stopButtonPressed(_ sender: UIButton) {
-		stopRecording()
-
-		timerLabel.text = formatTime(audioRecorder?.currentTime ?? 0)
-
-		progressTimer?.invalidate()
-		playButton.isEnabled = true
-
-		
+        audioRecorder?.stop()
+        audioPlayer?.stop()
+        progressTimer.invalidate()
+        
+        recordButton.setImage(UIImage(systemName: "mic.fill"), for: .normal)
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setActive(false)
+            playButton.isEnabled = true
+            stopButton.isEnabled = false
+            recordButton.isEnabled = true
+        } catch {
+            print("Could not make session inactive.")
+            print(error.localizedDescription)
+        }
 	}
 	
 //	@objc func sliderValueChanged(_ sender: UISlider) {
@@ -215,11 +262,26 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 	
 	// MARK: - AVFoundation Delegate
 	func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-		if flag {
-			print("Recording finished.")
-		} else {
-			print("Recording failed.")
-		}
+        print("function: \(#function)")
+        
+        print("finished recording \(flag)")
+        stopButton.isEnabled = false
+        playButton.isEnabled = true
+        recordButton.setImage(UIImage(systemName: "mic.fill"), for: UIControl.State())
+        
+        let alert = UIAlertController(title: "소리의 기록",
+                                                message: "녹음이 완료됐어요.",
+                                                preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "유지", style: .default) {[unowned self] _ in
+             print("keep was tapped")
+             self.audioRecorder = nil
+        })
+        alert.addAction(UIAlertAction(title: "지우기", style: .destructive) {[unowned self] _ in
+             print("delete was tapped")
+             self.audioRecorder.deleteRecording()
+        })
+        
+        self.present(alert, animated: true, completion: nil)
 	}
 	
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {

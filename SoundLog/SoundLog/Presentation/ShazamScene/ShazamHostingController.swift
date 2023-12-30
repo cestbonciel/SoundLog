@@ -9,6 +9,10 @@ import UIKit
 import SwiftUI
 
 final class ShazamHostingController: UIHostingController <ContentView> {
+    init() {
+        super.init(rootView: ContentView())
+    }
+    
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder, rootView: ContentView())
 	}
