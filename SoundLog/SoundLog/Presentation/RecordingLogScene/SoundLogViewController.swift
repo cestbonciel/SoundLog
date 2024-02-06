@@ -272,7 +272,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		button.addTarget(self, action: #selector(touchUpbottomSheet), for: .touchUpInside)
 		return button
 	}()
-	
+	// 녹음 화면 presenting view
 	@objc func touchUpbottomSheet(_ sender: UIButton) {
 		let viewController = RecordingViewController()
 		viewController.isModalInPresentation = true
@@ -280,7 +280,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 			sheet.preferredCornerRadius = 20
 			viewController.sheetPresentationController?.detents = [
 				.custom(resolver: { context in
-				0.4 * context.maximumDetentValue
+				0.3 * context.maximumDetentValue
 			})]
 			
 			viewController.sheetPresentationController?.largestUndimmedDetentIdentifier = .medium
