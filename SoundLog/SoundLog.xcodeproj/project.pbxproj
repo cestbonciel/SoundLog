@@ -333,9 +333,9 @@
 				87BFB0612AB830ED00CF839A /* View */,
 				871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */,
 				874418662ABAD97F00233604 /* RecordingViewController.swift */,
+				874418682ABAD98400233604 /* RecordingViewController+AVFoundation.swift */,
 				87B143F72AE6B3DF00EDF23F /* MapViewController.swift */,
 				87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */,
-				874418682ABAD98400233604 /* RecordingViewController+AVFoundation.swift */,
 			);
 			path = RecordingLogScene;
 			sourceTree = "<group>";

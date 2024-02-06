@@ -67,28 +67,28 @@ class RecordingViewController: UIViewController {
 	}()
 	
 	// MARK: - Limit Recording Time
-	private let limitTimeStackView: UIStackView = {
-		let view = UIStackView()
-		view.axis = .horizontal
-		view.distribution = .fillProportionally
-		view.translatesAutoresizingMaskIntoConstraints = false
-		return view
-	}()
+//	private let limitTimeStackView: UIStackView = {
+//		let view = UIStackView()
+//		view.axis = .horizontal
+//		view.distribution = .fillProportionally
+//		view.translatesAutoresizingMaskIntoConstraints = false
+//		return view
+//	}()
 	
-	lazy var limitLabel: UILabel = {
-		let label = UILabel()
-		label.text = "기록 제한시간"
-		label.font = .prtendard(ofSize: 13, weight: .PRTendardMedium)
-		label.textColor = .black
-		label.translatesAutoresizingMaskIntoConstraints = false
-		return label
-	}()
+//	lazy var limitLabel: UILabel = {
+//		let label = UILabel()
+//		label.text = "기록 제한시간"
+//		label.font = .prtendard(ofSize: 13, weight: .PRTendardMedium)
+//		label.textColor = .black
+//		label.translatesAutoresizingMaskIntoConstraints = false
+//		return label
+//	}()
 	
-	lazy var segmentControl: UISegmentedControl = {
-		let segmentControl = UISegmentedControl(items: ["15초", "30초", "60초"])
-		segmentControl.translatesAutoresizingMaskIntoConstraints = false
-		return segmentControl
-	}()
+//	lazy var segmentControl: UISegmentedControl = {
+//		let segmentControl = UISegmentedControl(items: ["15초", "30초", "60초"])
+//		segmentControl.translatesAutoresizingMaskIntoConstraints = false
+//		return segmentControl
+//	}()
 
 	// MARK: - Recorder Button Components
 	private let recorderButtonStackView: UIStackView = {
@@ -220,20 +220,20 @@ class RecordingViewController: UIViewController {
 		view.bringSubviewToFront(timerLabel)
 
 		// MARK: Limit time -
-		view.addSubview(limitTimeStackView)
-		limitTimeStackView.addArrangedSubview(limitLabel)
-		limitTimeStackView.addArrangedSubview(segmentControl)
+//		view.addSubview(limitTimeStackView)
+//		limitTimeStackView.addArrangedSubview(limitLabel)
+//		limitTimeStackView.addArrangedSubview(segmentControl)
 		
 		NSLayoutConstraint.activate([
 			
-			limitTimeStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 32),
-			limitTimeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-			limitTimeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-			
-			limitTimeStackView.heightAnchor.constraint(equalToConstant: 40),
+//			limitTimeStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 32),
+//			limitTimeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+//			limitTimeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+//
+//			limitTimeStackView.heightAnchor.constraint(equalToConstant: 40),
 			
 		])
-		
+		/*
 		NSLayoutConstraint.activate([
 			limitLabel.leadingAnchor.constraint(equalTo: limitTimeStackView.leadingAnchor),
 		
@@ -244,7 +244,7 @@ class RecordingViewController: UIViewController {
 			segmentControl.centerYAnchor.constraint(equalTo: limitLabel.centerYAnchor)
 			
 		])
-		
+		*/
 		
 		// MARK: record Button StackView -
 		view.addSubview(recorderButtonStackView)
@@ -253,7 +253,7 @@ class RecordingViewController: UIViewController {
 		recorderButtonStackView.addArrangedSubview(stopButton)
 
 		NSLayoutConstraint.activate([
-			recorderButtonStackView.topAnchor.constraint(equalTo: limitTimeStackView.bottomAnchor, constant: 32),
+			recorderButtonStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 32),
 			recorderButtonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
 			recorderButtonStackView.heightAnchor.constraint(equalToConstant: 40),
 			recorderButtonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
@@ -290,3 +290,23 @@ fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Categ
 }
 
 
+#if DEBUG
+import SwiftUI
+struct RecordPreview: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> some UIViewController {
+        RecordingViewController()
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+
+    }
+}
+
+struct RecordingViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        Group {
+            RecordPreview()
+        }
+    }
+}
+#endif
