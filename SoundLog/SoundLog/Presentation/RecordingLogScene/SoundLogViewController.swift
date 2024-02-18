@@ -208,7 +208,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		
 		if let firstButton = buttons.first {
 			firstButton.isEnabled = false
-			
 		}
 		
 		return buttons
@@ -244,6 +243,15 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		return view
 	}()
 	
+    private lazy var backgroundView5: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
 	private lazy var recordingStack: UIStackView = {
 		let stackView = UIStackView(arrangedSubviews: [recordLabel, recordingButton])
 
@@ -293,20 +301,20 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 	//MARK: - LOCATION STACK VIEW
 	private lazy var locationStack: UIStackView = {
 		let stackView = UIStackView(arrangedSubviews: [locationLabel, coreLocationButton])
-		stackView.axis = .horizontal
-		stackView.alignment = .leading
-		stackView.distribution = .equalSpacing
-		return stackView
+        stackView.axis = .horizontal
+        stackView.alignment = .leading
+        stackView.distribution = .equalSpacing
+        return stackView
 	}()
 	
 	private lazy var locationLabel: UILabel = {
 		let label = UILabel()
 		label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
 		label.text = "어디서 기록했나요?"
-//		label.attributedText = .attributeFont(font: .GMSansMedium, size: 16, text: "어디서 기록했나요?", lineHeight: 16)
 		return label
 	}()
 	
+    
 	private lazy var coreLocationButton: UIButton = {
 		let button = UIButton()
 		//location.fill
@@ -318,6 +326,65 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		return button
 	}()
 	
+    private lazy var categoryLabel: UILabel = {
+        let label = UILabel()
+        label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        label.text = "카테고리 선택"
+        return label
+    }()
+    
+    private lazy var categoryBtnStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [selectedRecBtn, selectedASMRBtn])
+        stackView.axis = .horizontal
+        stackView.alignment = .leading
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
+    private var selectedButton: UIButton?
+    
+    private lazy var selectedRecBtn: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 56, height: 32)
+        button.layer.cornerRadius = 5
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.black
+        button.setTitle("녹음", for: .normal)
+        button.titleLabel?.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var selectedASMRBtn: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 56, height: 32)
+        button.layer.cornerRadius = 5
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.black
+        button.setTitle("ASMR", for: .normal)
+        button.titleLabel?.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func categoryButtonTapped(_ sender: UIButton) {
+        if sender == selectedButton {
+            sender.backgroundColor = UIColor.black
+            sender.setTitleColor(.white, for: .normal)
+            
+            selectedButton = nil
+        } else {
+            selectedButton?.backgroundColor = .black
+            selectedButton?.setTitleColor(.white, for: .normal)
+            
+            sender.backgroundColor = UIColor.neonYellow
+            sender.setTitleColor(.black, for: .normal)
+        
+            selectedButton = sender
+        }
+    }
+    
+    // MARK: - action method
 	@objc func pinnedCurrentLocation() {
 		let mapVC = MapViewController()
 		mapVC.currentLocationAddress = addressLabel.text
@@ -544,7 +611,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		addressLabel.snp.makeConstraints {
 			$0.top.equalTo(locationStack.snp.top).offset(56)
 			$0.leading.equalTo(locationStack.snp.leading).inset(20)
-			
 		}
 		
 		locationLabel.snp.makeConstraints {
@@ -560,6 +626,49 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 			$0.width.equalTo(32)
 			$0.height.equalTo(32)
 		}
+        
+        contentView.addSubview(backgroundView5)
+        backgroundView5.addSubview(categoryLabel)
+        backgroundView5.addSubview(categoryBtnStack)
+        
+        /*
+         buttonStack.snp.makeConstraints {
+             $0.top.equalTo(contentView.snp.top).inset(48)
+             $0.leading.equalToSuperview().inset(28)
+             $0.trailing.equalToSuperview().inset(28)
+             $0.height.equalTo(40)
+         }
+         */
+        
+        backgroundView5.snp.makeConstraints {
+            $0.top.equalTo(backgroundView4.snp.bottom).offset(24)
+            $0.leading.equalToSuperview().inset(28)
+            $0.trailing.equalToSuperview().inset(28)
+            $0.height.equalTo(48)
+        }
+        
+        categoryLabel.snp.makeConstraints {
+            $0.leading.equalTo(backgroundView5.snp.leading).inset(20)
+            $0.centerY.equalTo(backgroundView5.snp.centerY)
+            $0.width.equalTo(198)
+            $0.height.equalTo(40)
+        }
+        
+        categoryBtnStack.snp.makeConstraints {
+            $0.trailing.equalTo(backgroundView5.snp.trailing).inset(16)
+            $0.centerY.equalTo(backgroundView5.snp.centerY)
+            $0.width.equalTo(134)
+        }
+        
+        selectedRecBtn.snp.makeConstraints {
+            $0.width.equalTo(56)
+            $0.height.equalTo(32)
+        }
+        
+        selectedASMRBtn.snp.makeConstraints {
+            $0.width.equalTo(56)
+            $0.height.equalTo(32)
+        }
 		
 	}// : setupUI
 }
