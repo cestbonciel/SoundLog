@@ -641,7 +641,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
          */
         
         backgroundView5.snp.makeConstraints {
-            $0.top.equalTo(backgroundView4.snp.bottom).offset(24)
+            $0.top.equalTo(backgroundView4.snp.bottom).offset(56)
             $0.leading.equalToSuperview().inset(28)
             $0.trailing.equalToSuperview().inset(28)
             $0.height.equalTo(48)
