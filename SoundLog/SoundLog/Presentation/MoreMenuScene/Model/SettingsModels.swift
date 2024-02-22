@@ -14,14 +14,9 @@ struct Section {
 
 enum SettingsCellType {
     case staticCell(model: SettingsOption)
-    case switchCell(model: SettingSwitchOption)
 }
 
-struct SettingSwitchOption {
-    let title: String
-    var isOn: Bool
-    let handler: (() -> Void)
-}
+
 
 struct SettingsOption {
     let title: String

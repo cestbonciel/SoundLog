@@ -560,6 +560,52 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 			$0.width.equalTo(32)
 			$0.height.equalTo(32)
 		}
+
+
+        
+        contentView.addSubview(backgroundView5)
+        backgroundView5.addSubview(categoryLabel)
+        backgroundView5.addSubview(categoryBtnStack)
+        
+        /*
+         buttonStack.snp.makeConstraints {
+             $0.top.equalTo(contentView.snp.top).inset(48)
+             $0.leading.equalToSuperview().inset(28)
+             $0.trailing.equalToSuperview().inset(28)
+             $0.height.equalTo(40)
+         }
+         */
+        
+        backgroundView5.snp.makeConstraints {
+            $0.top.equalTo(backgroundView4.snp.bottom).offset(56)
+            $0.leading.equalToSuperview().inset(28)
+            $0.trailing.equalToSuperview().inset(28)
+            $0.height.equalTo(48)
+        }
+        
+        categoryLabel.snp.makeConstraints {
+            $0.leading.equalTo(backgroundView5.snp.leading).inset(20)
+            $0.centerY.equalTo(backgroundView5.snp.centerY)
+            $0.width.equalTo(198)
+            $0.height.equalTo(40)
+        }
+        
+        categoryBtnStack.snp.makeConstraints {
+            $0.trailing.equalTo(backgroundView5.snp.trailing).inset(16)
+            $0.centerY.equalTo(backgroundView5.snp.centerY)
+            $0.width.equalTo(134)
+        }
+        
+        selectedRecBtn.snp.makeConstraints {
+            $0.width.equalTo(56)
+            $0.height.equalTo(32)
+        }
+        
+        selectedASMRBtn.snp.makeConstraints {
+            $0.width.equalTo(56)
+            $0.height.equalTo(32)
+        }
+
 		
 	}// : setupUI
 }
