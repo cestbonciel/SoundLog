@@ -84,6 +84,13 @@ class HomeViewController: UIViewController {
 //		return button
 //	}()
 	
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.dataSource = self
+        tableView.delegate = self
+        return tableView
+    }()
+    
 	@objc func tapToggleButton() {
 		if self.calendarView.scope == .month {
 			self.calendarView.setScope(.week, animated: true)
@@ -136,6 +143,8 @@ class HomeViewController: UIViewController {
 			$0.right.equalToSuperview().inset(16)
 			$0.height.equalTo(240)
 		}
+        
+        
 	}
 
 	private func configureCalendar() {
@@ -216,4 +225,17 @@ extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalend
 		let currentPage = calendarView.currentPage
 		headerLabel.text = headerDateFormatter.string(from: currentPage)
 	}
+}
+
+// MARK: - TableView
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    
 }
