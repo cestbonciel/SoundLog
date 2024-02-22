@@ -243,6 +243,16 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
 	}()
+    
+    private lazy var backgroundView5: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        view.layer.cornerRadius = 10
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
 	
 	private lazy var recordingStack: UIStackView = {
 		let stackView = UIStackView(arrangedSubviews: [recordLabel, recordingButton])
@@ -389,6 +399,63 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		return label
 	}()
 	
+    private lazy var categoryLabel: UILabel = {
+        let label = UILabel()
+        label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        label.text = "카테고리 선택"
+        return label
+    }()
+
+    private lazy var categoryBtnStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [selectedRecBtn, selectedASMRBtn])
+        stackView.axis = .horizontal
+        stackView.alignment = .leading
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+
+    private var selectedButton: UIButton?
+
+    private lazy var selectedRecBtn: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 56, height: 32)
+        button.layer.cornerRadius = 5
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.black
+        button.setTitle("녹음", for: .normal)
+        button.titleLabel?.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
+    private lazy var selectedASMRBtn: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 56, height: 32)
+        button.layer.cornerRadius = 5
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = UIColor.black
+        button.setTitle("ASMR", for: .normal)
+        button.titleLabel?.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
+    @objc func categoryButtonTapped(_ sender: UIButton) {
+        if sender == selectedButton {
+            sender.backgroundColor = UIColor.black
+            sender.setTitleColor(.white, for: .normal)
+            
+            selectedButton = nil
+        } else {
+            selectedButton?.backgroundColor = .black
+            selectedButton?.setTitleColor(.white, for: .normal)
+            
+            sender.backgroundColor = UIColor.neonYellow
+            sender.setTitleColor(.black, for: .normal)
+        
+            selectedButton = sender
+        }
+    }
 
 	
 	// MARK: - setupUI
