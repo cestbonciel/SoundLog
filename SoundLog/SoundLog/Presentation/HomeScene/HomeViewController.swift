@@ -10,7 +10,7 @@ import SnapKit
 import FSCalendar
 
 class HomeViewController: UIViewController {
-
+    var soundManager = SoundInfoManager()
 	struct Icon {
 	  static let leftIcon = UIImage(systemName: "chevron.left")?
 		 .withTintColor(.label, renderingMode: .alwaysOriginal)
@@ -230,11 +230,13 @@ extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalend
 // MARK: - TableView
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        return soundManager.sounds.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as! SoundLogTableCell
+        
+        return cell
     }
     
     

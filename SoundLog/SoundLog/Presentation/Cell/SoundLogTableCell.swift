@@ -27,6 +27,37 @@ class SoundLogTableCell: UITableViewCell {
         return icon
     }()
     
+    lazy var locationLabel: UILabel = {
+        let label = UILabel()
+        label.font = .gmsans(ofSize: 10, weight: .GMSansLight)
+        return label
+    }()
+    
+    lazy var bookmarkIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.image = UIImage(systemName: "bookmark")
+        icon.tintColor = .black
+        return icon
+    }()
+    
+    lazy var moodLabel: UILabel = {
+        let moodLabel = UILabel()
+        moodLabel.font = .systemFont(ofSize: 12)
+        return moodLabel
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        return label
+    }()
+    
+    lazy var timeLogLabel: UILabel = {
+        let label = UILabel()
+        label.font = .gmsans(ofSize: 10, weight: .GMSansLight)
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpCellUI()
@@ -36,14 +67,39 @@ class SoundLogTableCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(_ soundInfo: SoundInfo) {
+        self.locationIcon.image = UIImage(named: "soundSpot")
+        self.locationLabel.text = soundInfo.soundLocation
+        self.bookmarkIcon.image = UIImage(systemName: "bookmark")
+        self.moodLabel.text = String(soundInfo.soundMood)
+        self.titleLabel.text = soundInfo.soundTitle
+        self.timeLogLabel.text = soundInfo.createdAt
+    }
+    
     private func setUpCellUI() {
         self.contentView.addSubview(cellView)
         cellView.addSubview(locationIcon)
+        cellView.addSubview(locationLabel)
+        cellView.addSubview(bookmarkIcon)
+        cellView.addSubview(moodLabel)
+        cellView.addSubview(titleLabel)
+        cellView.addSubview(timeLogLabel)
         
         cellView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.left.right.equalToSuperview().inset(18)
             $0.height.equalTo(129)
+        }
+        
+        locationIcon.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(8)
+            $0.left.equalToSuperview().inset(16)
+            $0.height.equalTo(11)
+        }
+        
+        locationLabel.snp.makeConstraints {
+            $0.top.equalTo(locationIcon)
+            $0.left.equalTo(locationIcon.snp.right).offset(5)
         }
     }
     
