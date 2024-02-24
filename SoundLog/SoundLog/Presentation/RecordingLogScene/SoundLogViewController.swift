@@ -456,7 +456,9 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		return label
 	}()
 	
-
+    private func setUpTableViewCell() {
+        
+    }
 	
 	// MARK: - setupUI
 	private func setupUI() {
