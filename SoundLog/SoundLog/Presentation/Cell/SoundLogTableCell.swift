@@ -29,7 +29,8 @@ class SoundLogTableCell: UITableViewCell {
     
     lazy var locationLabel: UILabel = {
         let label = UILabel()
-        label.font = .gmsans(ofSize: 10, weight: .GMSansLight)
+        label.text = "강원도 속초바닷가"
+        label.font = .gmsans(ofSize: 12, weight: .GMSansLight)
         return label
     }()
     
@@ -42,24 +43,28 @@ class SoundLogTableCell: UITableViewCell {
     
     lazy var moodLabel: UILabel = {
         let moodLabel = UILabel()
+        moodLabel.text = "😂"
         moodLabel.font = .systemFont(ofSize: 12)
         return moodLabel
     }()
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.text = "바닷소리가 좋다"
         label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
         return label
     }()
     
     lazy var timeLogLabel: UILabel = {
         let label = UILabel()
+        label.text = "21:00 P.M."
         label.font = .gmsans(ofSize: 10, weight: .GMSansLight)
         return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .clear
         setUpCellUI()
     }
     
@@ -87,12 +92,12 @@ class SoundLogTableCell: UITableViewCell {
         
         cellView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.left.right.equalToSuperview().inset(18)
+            $0.left.right.equalToSuperview()
             $0.height.equalTo(129)
         }
         
         locationIcon.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(8)
+            $0.top.equalToSuperview().inset(16)
             $0.left.equalToSuperview().inset(16)
             $0.height.equalTo(11)
         }
@@ -101,6 +106,8 @@ class SoundLogTableCell: UITableViewCell {
             $0.top.equalTo(locationIcon)
             $0.left.equalTo(locationIcon.snp.right).offset(5)
         }
+        
+        
     }
     
 }
