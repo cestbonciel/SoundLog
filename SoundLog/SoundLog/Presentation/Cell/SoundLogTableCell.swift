@@ -37,15 +37,9 @@ class SoundLogTableCell: UITableViewCell {
     lazy var bookmarkIcon: UIImageView = {
         let icon = UIImageView()
         icon.image = UIImage(systemName: "bookmark")
+        icon.contentMode = .scaleAspectFit
         icon.tintColor = .black
         return icon
-    }()
-    
-    lazy var moodLabel: UILabel = {
-        let moodLabel = UILabel()
-        moodLabel.text = "😂"
-        moodLabel.font = .systemFont(ofSize: 12)
-        return moodLabel
     }()
     
     lazy var titleLabel: UILabel = {
@@ -62,6 +56,23 @@ class SoundLogTableCell: UITableViewCell {
         return label
     }()
     
+    lazy var moodLabel: UILabel = {
+        let moodLabel = UILabel()
+        moodLabel.text = "😂"
+        moodLabel.font = .systemFont(ofSize: 12)
+        return moodLabel
+    }()
+    
+    lazy var rightStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [timeLogLabel, moodLabel])
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.spacing = 4
+        
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
@@ -70,6 +81,18 @@ class SoundLogTableCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        if selected {
+            cellView.layer.borderWidth = 1
+            cellView.layer.borderColor = UIColor.neonPurple.cgColor
+        } else {
+            cellView.layer.borderWidth = 1
+            cellView.layer.borderColor = UIColor.systemDimGray.cgColor
+        }
     }
     
     func configure(_ soundInfo: SoundInfo) {
@@ -86,9 +109,8 @@ class SoundLogTableCell: UITableViewCell {
         cellView.addSubview(locationIcon)
         cellView.addSubview(locationLabel)
         cellView.addSubview(bookmarkIcon)
-        cellView.addSubview(moodLabel)
         cellView.addSubview(titleLabel)
-        cellView.addSubview(timeLogLabel)
+        cellView.addSubview(rightStackView)
         
         cellView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -103,10 +125,26 @@ class SoundLogTableCell: UITableViewCell {
         }
         
         locationLabel.snp.makeConstraints {
-            $0.top.equalTo(locationIcon)
+            $0.top.equalTo(locationIcon.snp.top)
             $0.left.equalTo(locationIcon.snp.right).offset(5)
         }
         
+        bookmarkIcon.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(8)
+            $0.right.equalToSuperview().inset(16)
+            $0.height.equalTo(24)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(locationLabel.snp.bottom).offset(16)
+            $0.left.equalTo(locationIcon.snp.left)
+        }
+        
+        rightStackView.snp.makeConstraints {
+            $0.top.equalTo(bookmarkIcon.snp.bottom).offset(8)
+            $0.right.equalToSuperview().inset(16)
+            
+        }
         
     }
     

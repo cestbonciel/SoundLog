@@ -11,7 +11,7 @@ struct SoundInfo: Codable, Hashable, Identifiable {
     var id: String = UUID().uuidString
     var createdAt: String
     var soundTitle: String
-    var soundMood: Int
+    var soundMood: String
     var recordedFileUrl: String
     var recordedSoundNote: String?
     var soundLocation: String
@@ -25,7 +25,7 @@ extension SoundInfo {
             id:"1",
             createdAt: "2024-02-24",
             soundTitle: "속초 바닷가 파도소리",
-            soundMood: 2,
+            soundMood: "😁",
             recordedFileUrl: "http://",
             soundLocation: "강릉 속초",
             soundCategory: "ASMR"
@@ -34,7 +34,7 @@ extension SoundInfo {
             id:"2",
             createdAt: "2024-02-24",
             soundTitle: "속초 바닷가 파도소리",
-            soundMood: 3,
+            soundMood: "😡",
             recordedFileUrl: "http://",
             soundLocation: "강릉 속초",
             soundCategory: "ASMR"

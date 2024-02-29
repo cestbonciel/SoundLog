@@ -183,11 +183,11 @@ class HomeViewController: UIViewController {
 			$0.right.equalToSuperview().inset(16)
 			$0.height.equalTo(240)
 		}
-        calendarView.layer.borderWidth = 1
+        
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.layer.borderWidth = 1
+        
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints {
@@ -253,6 +253,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let soundInfo = SoundInfo.list[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as! SoundLogTableCell
         cell.configure(soundInfo)
+        cell.selectionStyle = .none
         return cell
     }
     
