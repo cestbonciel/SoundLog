@@ -29,25 +29,11 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		
 		
 	}
-	
-//	override func viewWillAppear(_ animated: Bool) {
-//	  //navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 숨기기
-//		if let mapVC = navigationController?.viewControllers.first as? MapViewController {
-//			addressLabel.text = mapVC.currentLocationAddress
-//		}
-//	}
-//	
-//	override func viewWillDisappear(_ animated: Bool) {
-//	  navigationController?.setNavigationBarHidden(false, animated: true) // 뷰 컨트롤러가 사라질 때 나타내기
-//		
-//	}
 
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		view.endEditing(true)
 	}
-	
-	
-	
+
 	
 	//MARK: - Entire View Scroll
 	private lazy var scrollView: UIScrollView = {
@@ -93,7 +79,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		button.layer.cornerRadius = 10
 		button.setTitleColor(.black, for: .normal)
 		button.backgroundColor = UIColor.neonYellow
-//		button.setAttributedTitle(.attributeFont(font: .GMSansBold, size: 16, text: "저장", lineHeight: 18), for: .normal)
 		button.setTitle("저장", for: .normal)
 		button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
 		
@@ -455,11 +440,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 		
 		return label
 	}()
-	
-    private func setUpTableViewCell() {
-        
-    }
-	
+
 	// MARK: - setupUI
 	private func setupUI() {
 		
