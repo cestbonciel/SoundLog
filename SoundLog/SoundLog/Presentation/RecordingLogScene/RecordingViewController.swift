@@ -180,7 +180,20 @@ class RecordingViewController: UIViewController {
 	}()
 	
 	@objc func cancelButtonTapped() {
-		self.dismiss(animated: true, completion: nil)
+        
+         let alertController = UIAlertController(title: "안내", message: "취소하면 녹음한 기록이 사라집니다.", preferredStyle: .alert)
+         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+         let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in
+             UIView.animate(withDuration: 1.0, delay: 0.8, options: [.curveEaseInOut], animations: {
+                 self.dismiss(animated: true)
+             }, completion: nil)
+
+         }
+         alertController.addAction(cancelAction)
+         alertController.addAction(confirmAction)
+
+         present(alertController, animated: true, completion: nil)
+
 	}
 	
 	lazy var uploadButton: UIButton = {
