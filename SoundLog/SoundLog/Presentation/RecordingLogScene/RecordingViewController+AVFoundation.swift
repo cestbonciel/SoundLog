@@ -91,17 +91,39 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
             audioPlayer.prepareToPlay()
             audioPlayer.volume = 3.0
             audioPlayer.play()
+            startProgressTimer()
         } catch {
             self.audioPlayer = nil
             print(error.localizedDescription)
         }
     }
     
-	func updateUIRecording(isRecording: Bool) {
-		recordButton.isEnabled = !isRecording
-		playButton.isEnabled = !isRecording
-		stopButton.isEnabled = isRecording
-	}
+    private func startProgressTimer() {
+        progressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] timer in
+            guard let self = self, let audioPlayer = self.audioPlayer else {
+                return
+            }
+            self.updateUIForPlaying(with: audioPlayer)
+        }
+    }
+    
+    func updateUIForPlaying(with audioPlayer: AVAudioPlayer) {
+         let currentTime = audioPlayer.currentTime
+         let totalTime = audioPlayer.duration
+
+         let progress = Float(currentTime / totalTime)
+         progressView.progress = progress
+
+         let minutes = Int(currentTime / 60)
+         let seconds = Int(currentTime) % 60
+        timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
+    }
+    
+//	func updateUIRecording(isRecording: Bool) {
+//		recordButton.isEnabled = !isRecording
+//		playButton.isEnabled = !isRecording
+//		stopButton.isEnabled = isRecording
+//	}
 
 	func stopPlaying() {
 		if isPlaying {
@@ -112,11 +134,11 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 		}
 	}
 
-	func updateUIForRecording(_ play: Bool,_ record: Bool,_ stop: Bool) {
-		recordButton.isEnabled = record
-		playButton.isEnabled = play
-		stopButton.isEnabled = stop
-	}
+//	func updateUIForRecording(_ play: Bool,_ record: Bool,_ stop: Bool) {
+//		recordButton.isEnabled = record
+//		playButton.isEnabled = play
+//		stopButton.isEnabled = stop
+//	}
 	
 	// MARK: Feature - Play
 	func setPlayButton(_ play: Bool, stop: Bool) {
@@ -285,13 +307,19 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 	}
 	
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-		if flag {
-			print("Playing finished.")
-		} else {
-			print("Playing failed.")
-		}
-		stopPlaying()
-		progressTimer?.invalidate()
-		
-	}
+        if flag {
+            print("Playing finished \(flag)")
+            self.statePlaying = false
+
+            recordButton.isEnabled = true
+            stopButton.isEnabled = false
+            progressView.setProgress(0.0, animated: false)
+            timerLabel.text = "00:00"
+        } else {
+            print("Playing failed.")
+        }
+        stopPlaying()
+        progressTimer?.invalidate()
+        
+    }
 }

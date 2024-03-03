@@ -193,14 +193,7 @@ class RecordingViewController: UIViewController {
          alertController.addAction(confirmAction)
 
          present(alertController, animated: true, completion: nil)
-         
-//		self.dismiss(animated: true, completion: nil)
-        /*
-         alertController.addAction(cancelAction)
-         alertController.addAction(confirmAction)
 
-         present(alertController, animated: true, completion: nil)
-         */
 	}
 	
 	lazy var uploadButton: UIButton = {
