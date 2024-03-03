@@ -272,7 +272,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         let alert = UIAlertController(title: "소리의 기록",
                                                 message: "녹음이 완료됐어요.",
                                                 preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "유지", style: .default) {[unowned self] _ in
+        alert.addAction(UIAlertAction(title: "녹음유지", style: .default) {[unowned self] _ in
              print("keep was tapped")
              self.audioRecorder = nil
         })

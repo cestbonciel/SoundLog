@@ -19,7 +19,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     
     weak var mapDelegate: MapViewControllerDelegate?
 
-
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,11 +129,14 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             UIView.animate(withDuration: 1.0, delay: 0.8, options: [.curveEaseInOut], animations: {
                 self.dismiss(animated: true)
             }, completion: nil)
-        }
-    }
-	
 
-	
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(confirmAction)
+
+        present(alertController, animated: true, completion: nil)
+        
+    }
     // MARK: - Diary Forms
     private lazy var titleTextField: UITextField = {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 48))
@@ -383,7 +385,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     // MARK: - action method
-
     @objc func pinnedCurrentLocation() {
         let mapVC = MapViewController()
         mapVC.currentLocationAddress = addressLabel.text
@@ -625,247 +626,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             $0.width.equalTo(32)
             $0.height.equalTo(32)
         }
-
-	@objc func pinnedCurrentLocation() {
-		let mapVC = MapViewController()
-		mapVC.currentLocationAddress = addressLabel.text
-		mapVC.mapDelegate = self
-		mapVC.isModalInPresentation = true
-		mapVC.modalPresentationStyle = .popover
-		self.present(mapVC, animated: true, completion: nil)
-		checkLocationPermission()
-	}
-	
-	private func checkLocationPermission() {
-		locationManager2 = CLLocationManager()
-		locationManager2?.delegate = self
-		locationManager2?.requestWhenInUseAuthorization()
-		locationManager2?.desiredAccuracy = kCLLocationAccuracyBest
-		DispatchQueue.global(qos: .userInitiated).async {
-			if CLLocationManager.locationServicesEnabled() {
-				switch self.locationManager2?.authorizationStatus {
-				case .authorizedAlways, .authorizedWhenInUse:
-					// 위치 권한이 승인되어 있는 경우
-					self.locationManager2?.startUpdatingLocation()
-				case .notDetermined:
-					// 위치 권한을 요청받지 않은 경우
-					DispatchQueue.main.async {
-						self.locationManager2?.requestAlwaysAuthorization()
-					}
-				case .denied, .restricted:
-					// 위치 권한이 거부되거나 제한된 경우
-					DispatchQueue.main.async {
-						self.showLocationServicesDisabledAlert2()
-					}
-					break
-				default:
-					break
-				}
-			} else {
-				self.showLocationServicesDisabledAlert2()
-			}
-		}
-	}//: CheckLocationPermission
-	
-	func showLocationServicesDisabledAlert2() {
-		
-		let alertController = UIAlertController(
-			title: "위치 권한 비활성화",
-			message: "위치 정보를 사용하려면 설정에서 위치 서비스를 활성화해야 합니다. 설정으로 이동하시겠습니까?",
-			preferredStyle: .alert
-		)
-		
-		let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-		let settingsAction = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
-			if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-				UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-			}
-		}
-		
-		alertController.addAction(cancelAction)
-		alertController.addAction(settingsAction)
-		
-		present(alertController, animated: true, completion: nil)
-	}
-	
-	let addressLabel: UILabel = {
-		let label = UILabel()
-		label.numberOfLines = 0
-//		label.text = "위치"
-		label.translatesAutoresizingMaskIntoConstraints = false
-		
-		return label
-	}()
-
-	// MARK: - setupUI
-	private func setupUI() {
-		
-		self.view.addSubview(scrollView)
-		scrollView.snp.makeConstraints {
-			$0.top.equalToSuperview().inset(10)
-			$0.centerX.equalToSuperview()
-			$0.bottom.equalToSuperview()
-			$0.width.equalToSuperview()
-		}
-		scrollView.addSubview(contentView)
-		contentView.snp.makeConstraints {
-			$0.edges.equalToSuperview()
-//			$0.top.equalTo(scrollView.snp.top).inset(200)
-//			$0.top.equalTo(scrollView.snp.top).inset(5)
-			$0.width.equalToSuperview()
-			$0.height.equalTo(800)
-		}
-		
-		contentView.addSubview(buttonStack)
-		buttonStack.snp.makeConstraints {
-			$0.top.equalTo(contentView.snp.top).inset(48)
-			$0.leading.equalToSuperview().inset(28)
-			$0.trailing.equalToSuperview().inset(28)
-			$0.height.equalTo(40)
-		}
-		
-		cancelButton.snp.makeConstraints {
-//			$0.leading.equalToSuperview()
-			$0.width.equalTo(72)
-			$0.height.equalTo(40)
-		}
-		
-		saveButton.snp.makeConstraints {
-//			$0.trailing.equalToSuperview()
-			$0.width.equalTo(72)
-			$0.height.equalTo(40)
-		}
-		
-		contentView.addSubview(backgroundView)
-		backgroundView.addSubview(date)
-		
-		backgroundView.snp.makeConstraints {
-			$0.top.equalTo(buttonStack.snp.bottom).offset(24)
-			$0.leading.equalToSuperview().inset(28)
-			$0.trailing.equalToSuperview().inset(28)
-			$0.height.equalTo(48)
-		}
-		
-		date.snp.makeConstraints {
-			$0.centerX.equalToSuperview()
-			$0.centerY.equalToSuperview()
-			$0.height.equalTo(100)
-		}
-		
-		contentView.addSubview(titleTextField)
-		titleTextField.snp.makeConstraints{
-			$0.top.equalTo(backgroundView.snp.bottom).offset(24)
-			$0.leading.equalToSuperview().inset(28)
-			$0.trailing.equalToSuperview().inset(28)
-			$0.height.equalTo(48)
-		}
-		//MARK: - moodButton Autolayout
-		contentView.addSubview(backgroundView2)
-		backgroundView2.snp.makeConstraints {
-			$0.top.equalTo(titleTextField.snp.bottom).offset(24)
-			$0.leading.equalToSuperview().inset(28)
-			$0.trailing.equalToSuperview().inset(28)
-			$0.height.equalTo(48)
-		}
-		backgroundView2.addSubview(moodStackView)
-		moodStackView.snp.makeConstraints {
-			//			$0.top.equalTo(backgroundView2).inset(10)
-//			$0.leading.equalToSuperview().inset(28)
-//			$0.trailing.equalToSuperview().inset(28)
-			$0.left.right.equalTo(backgroundView2).inset(24)
-			$0.edges.equalToSuperview()
-//			$0.centerY.equalToSuperview()
-		}
-		
-		for button in moodButtons {
-			moodStackView.addArrangedSubview(button)
-		}
-		
-		for (_, button) in moodButtons.enumerated() {
-			button.snp.makeConstraints {
-				$0.height.equalTo(32)
-//				$0.width.equalTo(16)
-//				$0.leading.equalTo(moodStackView.snp.leading).inset(24)
-			}
-		}
-		
-		//MARK: - Recording StackView
-//		self.view.addSubview(recordingView)
-//		recordingView.snp.makeConstraints{
-//			$0.top.equalTo(backgroundView2.snp.bottom).offset(24)
-//		}
-		contentView.addSubview(backgroundView3)
-		backgroundView3.addSubview(recordingStack)
-		backgroundView3.snp.makeConstraints {
-			$0.top.equalTo(backgroundView2.snp.bottom).offset(24)
-			$0.leading.equalToSuperview().inset(28)
-			$0.trailing.equalToSuperview().inset(28)
-			$0.height.equalTo(48)
-		}
-		
-		recordingStack.snp.makeConstraints{
-			$0.centerY.equalTo(backgroundView3.snp.centerY)
-			$0.leading.equalTo(backgroundView3.snp.leading).inset(16)
-			$0.trailing.equalTo(backgroundView3.snp.trailing).inset(16)
-		}
-		recordLabel.snp.makeConstraints {
-			$0.centerY.equalTo(recordingStack.snp.centerY)
-		}
-		
-		recordingButton.snp.makeConstraints {
-			$0.centerY.equalTo(recordingStack.snp.centerY)
-			$0.width.equalTo(32)
-			$0.height.equalTo(32)
-		}
-		// MARK: - UITextView
-		soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
-		contentView.addSubview(soundLogTextView)
-		soundLogTextView.translatesAutoresizingMaskIntoConstraints = false
-		soundLogTextView.snp.makeConstraints {
-			$0.top.equalTo(recordingStack.snp.bottom).offset(24)
-			$0.leading.equalToSuperview().inset(28)
-			$0.trailing.equalToSuperview().inset(28)
-			$0.height.equalTo(200)
-		}
-		
-		// MARK: - USER LOCATION
-		contentView.addSubview(backgroundView4)
-		backgroundView4.addSubview(locationStack)
-		contentView.addSubview(addressLabel)
-		
-		backgroundView4.snp.makeConstraints {
-			$0.top.equalTo(soundLogTextView.snp.bottom).offset(24)
-			$0.leading.equalToSuperview().inset(28)
-			$0.trailing.equalToSuperview().inset(28)
-			$0.height.equalTo(48)
-		}
-		
-		locationStack.snp.makeConstraints{
-			$0.centerY.equalToSuperview()
-			$0.leading.equalToSuperview().inset(10)
-			$0.trailing.equalToSuperview().inset(28)
-//			$0.top.equalTo(backgroundView3.snp.top)
-		}
-		
-		addressLabel.snp.makeConstraints {
-			$0.top.equalTo(locationStack.snp.top).offset(56)
-			$0.leading.equalTo(locationStack.snp.leading).inset(20)
-		}
-		
-		locationLabel.snp.makeConstraints {
-			$0.leading.equalTo(locationStack.snp.leading).inset(10)
-			$0.centerY.equalTo(locationStack.snp.centerY)
-			$0.width.equalTo(198)
-			$0.height.equalTo(40)
-		}
-		
-		coreLocationButton.snp.makeConstraints {
-//			$0.trailing.equalToSuperview()
-			$0.centerY.equalTo(locationStack.snp.centerY)
-			$0.width.equalTo(32)
-			$0.height.equalTo(32)
-		}
-
         
         contentView.addSubview(backgroundView5)
         backgroundView5.addSubview(categoryLabel)
