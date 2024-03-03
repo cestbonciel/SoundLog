@@ -20,6 +20,7 @@
 		1A67C4402B88FD4100481B1C /* SoundInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67C43F2B88FD4100481B1C /* SoundInfoManager.swift */; };
 		1A871B292B87C34400F2CD10 /* SoundLogTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A871B282B87C34400F2CD10 /* SoundLogTableCell.swift */; };
 		1A871B2C2B87D74E00F2CD10 /* SoundInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */; };
+		1ACA8FAB2B95046200C4F34A /* CustomPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */; };
 		1AF5E4422B15DFF800E3537A /* ModifyUserNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */; };
 		8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8708D6BA2A9F86E70000CAC5 /* SnapKit */; };
 		871D0EFE2A971F310097D6F1 /* SoundLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */; };
@@ -83,6 +84,7 @@
 		1A67C43F2B88FD4100481B1C /* SoundInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInfoManager.swift; sourceTree = "<group>"; };
 		1A871B282B87C34400F2CD10 /* SoundLogTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogTableCell.swift; sourceTree = "<group>"; };
 		1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInfo.swift; sourceTree = "<group>"; };
+		1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerView.swift; sourceTree = "<group>"; };
 		1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyUserNameController.swift; sourceTree = "<group>"; };
 		871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogViewController.swift; sourceTree = "<group>"; };
 		8731316C2A9CE26700E8B645 /* MoreMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuViewController.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				87EE460C2AD7D651008E553F /* UIView+BackgroundView.swift */,
 				87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */,
 				1A1396992B187C0C0072BC49 /* CustomNaviBarItem.swift */,
+				1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */,
 			);
 			path = ContentViews;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACA8FAB2B95046200C4F34A /* CustomPlayerView.swift in Sources */,
 				874764492AFAB2C900365717 /* RippleView.swift in Sources */,
 				874764472AFAA64600365717 /* SongDetail.swift in Sources */,
 				87BB609F2AD72B2B00B9428D /* LocationService.swift in Sources */,
