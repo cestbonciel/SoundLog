@@ -10,7 +10,9 @@ import SnapKit
 import FSCalendar
 
 class HomeViewController: UIViewController {
-
+    var soundManager = SoundInfoManager()
+//    let soundInfo = SoundInfo
+    let dummyData = ["바닷소리", "음악소리"]
 	struct Icon {
 	  static let leftIcon = UIImage(systemName: "chevron.left")?
 		 .withTintColor(.label, renderingMode: .alwaysOriginal)
@@ -24,8 +26,14 @@ class HomeViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 //		setCalendarView()
+        
 		setupHomeUI()
+        tableView.dataSource = self
+        tableView.delegate = self
 		configureCalendar()
+        
+        let newSound = soundManager.createSound()
+        soundManager.sounds.append(newSound)
 	}
 	
 	var selectedDate: DateComponents? = nil
@@ -69,21 +77,60 @@ class HomeViewController: UIViewController {
 		button.addTarget(self, action: #selector(tapToggleButton), for: .touchUpInside)
 		return button
 	}()
+    // MARK: - Calendar View ---
+    private func configureCalendar() {
+        calendarView.delegate = self
+        calendarView.dataSource = self
+        
+        calendarView.select(Date())
+        
+        calendarView.locale = Locale(identifier: "ko_kr")
+        calendarView.scope = .week
+        calendarView.appearance.headerDateFormat = "YYYY년 MM월 W주차"
+        
+        calendarView.headerHeight = 0
+        calendarView.weekdayHeight = 32
+        
+        calendarView.appearance.weekdayFont = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        calendarView.appearance.headerTitleFont = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        calendarView.appearance.titleFont = .gmsans(ofSize: 14, weight: .GMSansLight)
+        calendarView.appearance.subtitleFont = .gmsans(ofSize: 14, weight: .GMSansLight)
+        
+        calendarView.appearance.headerTitleColor = UIColor.black
+        calendarView.appearance.weekdayTextColor = UIColor.systemDimGray
+        calendarView.appearance.titleDefaultColor = UIColor.black
+        calendarView.appearance.titlePlaceholderColor = UIColor.systemGray2
+        calendarView.appearance.todayColor = UIColor.neonYellow
+        calendarView.appearance.selectionColor = UIColor.neonPurple
+        calendarView.appearance.titleTodayColor = UIColor.black
+        calendarView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func getNextWeek(date: Date) -> Date {
+      return  Calendar.current.date(byAdding: .weekOfMonth, value: 1, to: date)!
+    }
+    
+    func getPreviousWeek(date: Date) -> Date {
+      return  Calendar.current.date(byAdding: .weekOfMonth, value: -1, to: date)!
+    }
+    //MARK: - method for calendar ---
+    @objc func tapNextWeek() {
+      self.calendarView.setCurrentPage(getNextWeek(date: calendarView.currentPage), animated: true)
+    }
+    
+    @objc func tapBeforeWeek() {
+      self.calendarView.setCurrentPage(getPreviousWeek(date: calendarView.currentPage), animated: true)
+    }
 	
-//	private lazy var leftButton: UIButton = {
-//		let button = UIButton()
-//		button.setImage(Icon.leftIcon, for: .normal)
-//		button.addTarget(self, action: #selector(tapBeforeWeek), for: .touchUpInside)
-//		return button
-//	}()
-//
-//	private lazy var rightButton: UIButton = {
-//		let button = UIButton()
-//		button.setImage(Icon.rightIcon, for: .normal)
-//		button.addTarget(self, action: #selector(tapNextWeek), for: .touchUpInside)
-//		return button
-//	}()
-	
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(SoundLogTableCell.self, forCellReuseIdentifier: SoundLogTableCell.identifier)
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        return tableView
+    }()
+    
 	@objc func tapToggleButton() {
 		if self.calendarView.scope == .month {
 			self.calendarView.setScope(.week, animated: true)
@@ -136,51 +183,22 @@ class HomeViewController: UIViewController {
 			$0.right.equalToSuperview().inset(16)
 			$0.height.equalTo(240)
 		}
+        
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        view.addSubview(tableView)
+        
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(calendarView.snp.bottom).offset(8)
+            $0.left.right.equalToSuperview().inset(16)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+
 	}
 
-	private func configureCalendar() {
-		calendarView.delegate = self
-		calendarView.dataSource = self
-		
-		calendarView.select(Date())
-		
-		calendarView.locale = Locale(identifier: "ko_kr")
-		calendarView.scope = .week
-		calendarView.appearance.headerDateFormat = "YYYY년 MM월 W주차"
-		
-		calendarView.headerHeight = 0
-		calendarView.weekdayHeight = 32
-		
-		calendarView.appearance.weekdayFont = .gmsans(ofSize: 16, weight: .GMSansMedium)
-		calendarView.appearance.headerTitleFont = .gmsans(ofSize: 16, weight: .GMSansMedium)
-		calendarView.appearance.titleFont = .gmsans(ofSize: 14, weight: .GMSansLight)
-		calendarView.appearance.subtitleFont = .gmsans(ofSize: 14, weight: .GMSansLight)
-		
-		calendarView.appearance.headerTitleColor = UIColor.black
-		calendarView.appearance.weekdayTextColor = UIColor.systemDimGray
-		calendarView.appearance.titleDefaultColor = UIColor.black
-		calendarView.appearance.titlePlaceholderColor = UIColor.systemGray2
-		calendarView.appearance.todayColor = UIColor.neonYellow
-		calendarView.appearance.selectionColor = UIColor.neonPurple
-		calendarView.appearance.titleTodayColor = UIColor.black
-		calendarView.translatesAutoresizingMaskIntoConstraints = false
-	}
 	
-	func getNextWeek(date: Date) -> Date {
-	  return  Calendar.current.date(byAdding: .weekOfMonth, value: 1, to: date)!
-	}
-	
-	func getPreviousWeek(date: Date) -> Date {
-	  return  Calendar.current.date(byAdding: .weekOfMonth, value: -1, to: date)!
-	}
-	//MARK: - Selector
-	@objc func tapNextWeek() {
-	  self.calendarView.setCurrentPage(getNextWeek(date: calendarView.currentPage), animated: true)
-	}
-	
-	@objc func tapBeforeWeek() {
-	  self.calendarView.setCurrentPage(getPreviousWeek(date: calendarView.currentPage), animated: true)
-	}
 }
 
 //MARK: - Preview Setting
@@ -216,4 +234,30 @@ extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalend
 		let currentPage = calendarView.currentPage
 		headerLabel.text = headerDateFormatter.string(from: currentPage)
 	}
+}
+
+// MARK: - TableView
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return dummyData.count
+        return SoundInfo.list.count
+//        let test = soundManager.sounds.count
+//        print(test)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let soundInfo = SoundInfo.list[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as! SoundLogTableCell
+        cell.configure(soundInfo)
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 146
+    }
 }
