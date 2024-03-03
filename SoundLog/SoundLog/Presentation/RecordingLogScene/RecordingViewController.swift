@@ -66,30 +66,7 @@ class RecordingViewController: UIViewController {
 		return label
 	}()
 	
-	// MARK: - Limit Recording Time
-//	private let limitTimeStackView: UIStackView = {
-//		let view = UIStackView()
-//		view.axis = .horizontal
-//		view.distribution = .fillProportionally
-//		view.translatesAutoresizingMaskIntoConstraints = false
-//		return view
-//	}()
-	
-//	lazy var limitLabel: UILabel = {
-//		let label = UILabel()
-//		label.text = "기록 제한시간"
-//		label.font = .prtendard(ofSize: 13, weight: .PRTendardMedium)
-//		label.textColor = .black
-//		label.translatesAutoresizingMaskIntoConstraints = false
-//		return label
-//	}()
-	
-//	lazy var segmentControl: UISegmentedControl = {
-//		let segmentControl = UISegmentedControl(items: ["15초", "30초", "60초"])
-//		segmentControl.translatesAutoresizingMaskIntoConstraints = false
-//		return segmentControl
-//	}()
-
+    
 	// MARK: - Recorder Button Components
 	private let recorderButtonStackView: UIStackView = {
 		let view = UIStackView()
@@ -99,6 +76,7 @@ class RecordingViewController: UIViewController {
 		view.translatesAutoresizingMaskIntoConstraints = false
 		return view
 	}()
+    
 	//MARK: - RECORD BUTTON
 	lazy var recordButton: UIButton = {
 		var config = UIButton.Configuration.filled()
@@ -109,13 +87,13 @@ class RecordingViewController: UIViewController {
 		let button = UIButton(configuration: config)
 		button.configuration = config
 		button.tintColor = .white
-//		button.layer.masksToBounds = false
 		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
 		button.layer.cornerRadius = button.frame.width / 2
 		button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(startRecording), for: .touchUpInside)
 		return button
 	}()
+    
 	//MARK: - PLAY BUTTON
 	lazy var playButton: UIButton = {
 		var config = UIButton.Configuration.filled()
@@ -132,6 +110,7 @@ class RecordingViewController: UIViewController {
         button.addTarget(self, action: #selector(startPlaying), for: .touchUpInside)
 		return button
 	}()
+    
 	//MARK: - STOP BUTTON
 	lazy var stopButton: UIButton = {
 		var attString = AttributedString("정지")
@@ -150,7 +129,6 @@ class RecordingViewController: UIViewController {
         button.addTarget(self, action: #selector(stopButtonPressed), for: .touchUpInside)
 		return button
 	}()
-
 
 	// MARK: - bottom Button Components
 	private let buttonStackView: UIStackView = {
@@ -232,32 +210,6 @@ class RecordingViewController: UIViewController {
 
 		view.bringSubviewToFront(timerLabel)
 
-		// MARK: Limit time -
-//		view.addSubview(limitTimeStackView)
-//		limitTimeStackView.addArrangedSubview(limitLabel)
-//		limitTimeStackView.addArrangedSubview(segmentControl)
-		
-		NSLayoutConstraint.activate([
-			
-//			limitTimeStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 32),
-//			limitTimeStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-//			limitTimeStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-//
-//			limitTimeStackView.heightAnchor.constraint(equalToConstant: 40),
-			
-		])
-		/*
-		NSLayoutConstraint.activate([
-			limitLabel.leadingAnchor.constraint(equalTo: limitTimeStackView.leadingAnchor),
-		
-			limitLabel.centerYAnchor.constraint(equalTo: limitTimeStackView.centerYAnchor),
-			
-			segmentControl.trailingAnchor.constraint(equalTo: limitTimeStackView.trailingAnchor),
-			segmentControl.heightAnchor.constraint(equalToConstant: 40),
-			segmentControl.centerYAnchor.constraint(equalTo: limitLabel.centerYAnchor)
-			
-		])
-		*/
 		
 		// MARK: record Button StackView -
 		view.addSubview(recorderButtonStackView)
