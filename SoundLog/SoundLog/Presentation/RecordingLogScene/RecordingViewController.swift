@@ -173,14 +173,25 @@ class RecordingViewController: UIViewController {
          present(alertController, animated: true, completion: nil)
 
 	}
-	
+	// MARK: - Save Recorded file
 	lazy var uploadButton: UIButton = {
 		let button = UIButton()
 		button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
 		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
 		button.tintColor = .neonPurple
+        button.addTarget(self, action: #selector(saveRecordedFile), for: .touchUpInside)
 		return button
 	}()
+    
+    @objc func saveRecordedFile() {
+        guard let recordedAudioURL = audioFileURL else { return }
+        do {
+            let audioData = try Data(contentsOf: recordedAudioURL)
+            print("File Size: \(audioData.count) bytes")
+        } catch {
+            print("Error reading audio file: \(error.localizedDescription)")
+        }
+    }
 
 	// MARK: - Set up User Interfaces
 	private func setupUI() {

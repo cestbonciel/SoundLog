@@ -118,12 +118,6 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
          let seconds = Int(currentTime) % 60
         timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
     }
-    
-//	func updateUIRecording(isRecording: Bool) {
-//		recordButton.isEnabled = !isRecording
-//		playButton.isEnabled = !isRecording
-//		stopButton.isEnabled = isRecording
-//	}
 
 	func stopPlaying() {
 		if isPlaying {
@@ -134,11 +128,6 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 		}
 	}
 
-//	func updateUIForRecording(_ play: Bool,_ record: Bool,_ stop: Bool) {
-//		recordButton.isEnabled = record
-//		playButton.isEnabled = play
-//		stopButton.isEnabled = stop
-//	}
 	
 	// MARK: Feature - Play
 	func setPlayButton(_ play: Bool, stop: Bool) {
@@ -274,14 +263,17 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         }
 	}
 	
-//	@objc func sliderValueChanged(_ sender: UISlider) {
-//		audioPlayer?.volume = sliderVolume.value
-//	}
-//
-//	@objc func slChangeVolume(_ sender: UISlider) {
-//		audioPlayer.volume = sliderVolume.value
-//	}
-	
+    func saveRecordedAudio(filePath: String, title: String) {
+        let recordedAudio = StorageSoundLog()
+        recordedAudio.soundId = UUID().uuidString // 랜덤한 ID 생성
+        recordedAudio.createdAt = Date()
+        recordedAudio.soundTitle = title
+        recordedAudio.recordedFileUrl = filePath
+
+        RealmManager.shared.saveObject(recordedAudio)
+        
+        print("File saved successfully. Title: \(title), FilePath: \(filePath)")
+    }
 	// MARK: - AVFoundation Delegate
 	func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("function: \(#function)")
@@ -302,7 +294,13 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
              print("delete was tapped")
              self.audioRecorder.deleteRecording()
         })
-        
+        // Realm에 녹음 파일 정보 저장
+        if flag {
+//            let recordedAudio = StorageSoundLog()
+            let recordedTitle = "소리의기록_\(Date.now.stringFormatShort)"
+            let recordedAudioPath = audioFileURL.absoluteString
+            saveRecordedAudio(filePath: recordedAudioPath, title: recordedTitle)
+        }
         self.present(alert, animated: true, completion: nil)
 	}
 	

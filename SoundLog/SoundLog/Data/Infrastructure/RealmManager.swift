@@ -29,6 +29,20 @@ final class RealmManager {
             print("Error saving object to Realm: \(error)")
         }
     }
+    //MARK: - 특정 id 기록 저장
+    func getSoundLogById(_ soundId: String) -> StorageSoundLog? {
+        do {
+            let realm = try Realm()
+            return realm.object(ofType: StorageSoundLog.self, forPrimaryKey: soundId)
+        } catch {
+            print("Error accessing Realm: \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    func bringSoundId(_ soundId: String) -> StorageSoundLog? {
+        return RealmManager.shared.getSoundLogById(soundId)
+    }
     
     func getAllObjects<T: Object>(_ objectType: T.Type) -> Results<T>? {
         return realm.objects(objectType)

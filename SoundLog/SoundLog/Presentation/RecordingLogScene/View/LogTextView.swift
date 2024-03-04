@@ -24,7 +24,8 @@ final class LogTextView: UITextView {
 		textView.backgroundColor = .clear
 		textView.textColor = TextViewConst.placeholderColor
 		
-		textView.isUserInteractionEnabled = false
+        textView.isUserInteractionEnabled = false
+//		textView.isUserInteractionEnabled = false
 		textView.isAccessibilityElement = false
 		return textView
 	}()
@@ -51,8 +52,19 @@ final class LogTextView: UITextView {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		updateTextView()
+        configureUI()
+        addTapGestureToDismissKeyboard()
 	}
 	
+    private func addTapGestureToDismissKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.delegate = self
+        superview?.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard() {
+        resignFirstResponder()
+    }
 }
 
 extension LogTextView: UITextViewDelegate {
@@ -61,58 +73,67 @@ extension LogTextView: UITextViewDelegate {
 	}
 }
 
+extension LogTextView: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view is UITextView {
+            return false
+        }
+        return true
+    }
+}
+
 //MARK: - Method
 
 private extension LogTextView {
-	func configureUI() {
-		delegate = self
-		backgroundColor = TextViewConst.backgroundColor
-		layer.cornerRadius = TextViewConst.cornerRadius
-		clipsToBounds = true
-		textContainerInset = TextViewConst.containerInset
-		contentInset = .zero
-		addSubview(textView)
-		
-		textView.textContainerInset = TextViewConst.containerInset
-		textView.contentInset = contentInset
-		textView.font = TextViewConst.placeholderFont
-		
-		
-		let mainTextAttributes: [NSAttributedString.Key: Any] = {
-				if let mainFont = TextViewConst.mainTextFont {
-						let style = NSMutableParagraphStyle()
-						style.lineSpacing = TextViewConst.lineHeight - mainFont.lineHeight
-						
-						return [
-								.font: mainFont,
-								.paragraphStyle: style
-						]
-				} else {
-						// 대체할 폰트를 지정하거나 기본 폰트를 사용할 수 있습니다.
-						return [
-								.font: UIFont.systemFont(ofSize: 16.0),
-								.paragraphStyle: {
-										let style = NSMutableParagraphStyle()
-										style.lineSpacing = TextViewConst.lineHeight - UIFont.systemFont(ofSize: 16.0).lineHeight
-										return style
-								}()
-						]
-				}
-		}()
-		self.typingAttributes = mainTextAttributes
-		self.attributedText = NSAttributedString(string: self.text, attributes: mainTextAttributes)
-		
-		self.textContainer.maximumNumberOfLines = 0
-		self.textContainer.lineBreakMode = .byWordWrapping
-		self.isScrollEnabled = true
-	}
-	
-	func updateTextView() {
-		textView.isHidden = !text.isEmpty
-		accessibilityValue = text.isEmpty ? placeholderText ?? "" : text
-		
-		textView.textContainer.exclusionPaths = textContainer.exclusionPaths
-		textView.textContainer.lineFragmentPadding = textContainer.lineFragmentPadding
-		textView.frame = bounds
-	}
+    func configureUI() {
+        delegate = self
+        backgroundColor = TextViewConst.backgroundColor
+        layer.cornerRadius = TextViewConst.cornerRadius
+        clipsToBounds = true
+        textContainerInset = TextViewConst.containerInset
+        contentInset = .zero
+        addSubview(textView)
+        
+        textView.textContainerInset = TextViewConst.containerInset
+        textView.contentInset = contentInset
+        textView.font = TextViewConst.placeholderFont
+        
+        
+        let mainTextAttributes: [NSAttributedString.Key: Any] = {
+            if let mainFont = TextViewConst.mainTextFont {
+                let style = NSMutableParagraphStyle()
+                style.lineSpacing = TextViewConst.lineHeight - mainFont.lineHeight
+                
+                return [
+                    .font: mainFont,
+                    .paragraphStyle: style
+                ]
+            } else {
+                // 대체할 폰트를 지정하거나 기본 폰트를 사용할 수 있습니다.
+                return [
+                    .font: UIFont.gmsans(ofSize: 16, weight: .GMSansLight),
+                    .paragraphStyle: {
+                        let style = NSMutableParagraphStyle()
+                        style.lineSpacing = TextViewConst.lineHeight - UIFont.systemFont(ofSize: 16.0).lineHeight
+                        return style
+                    }()
+                ]
+            }
+        }()
+        self.typingAttributes = mainTextAttributes
+        self.attributedText = NSAttributedString(string: self.text, attributes: mainTextAttributes)
+        
+        self.textContainer.maximumNumberOfLines = 0
+        self.textContainer.lineBreakMode = .byWordWrapping
+        self.isScrollEnabled = true
+    }
+    
+    func updateTextView() {
+        textView.isHidden = !text.isEmpty
+        accessibilityValue = text.isEmpty ? placeholderText ?? "" : text
+        
+        textView.textContainer.exclusionPaths = textContainer.exclusionPaths
+        textView.textContainer.lineFragmentPadding = textContainer.lineFragmentPadding
+        textView.frame = bounds
+    }
 }

@@ -28,4 +28,14 @@ extension Date {
     var stringFormat: String {
         return Date.dateFormatter.string(from: self)
     }
+    
+    static var dateFormatterShort: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy. MM. dd."
+        return formatter
+    }()
+    
+    var stringFormatShort: String {
+        return Date.dateFormatterShort.string(from: self)
+    }
 }
