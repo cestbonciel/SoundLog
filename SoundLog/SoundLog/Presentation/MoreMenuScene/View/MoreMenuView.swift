@@ -52,7 +52,7 @@ class MoreMenuView: UIView {
     
     private lazy var modifiedButton: UIButton = {
         var attrStr = AttributedString("변경")
-        attrStr.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        attrStr.font = .gmsans(ofSize: 14, weight: .GMSansMedium)
         
         var config = UIButton.Configuration.filled()
         config.attributedTitle = attrStr
