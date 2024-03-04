@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 //		let newNavBarAppearance = customNavBarAppearance()
 		
-		let appearance = UINavigationBar.appearance()
+		//let appearance = UINavigationBar.appearance()
 //		appearance.scrollEdgeAppearance = newNavBarAppearance
 //		appearance.compactAppearance = newNavBarAppearance
 //		appearance.standardAppearance = newNavBarAppearance

@@ -36,8 +36,8 @@ class MoreMenuView: UIView {
         stackView.alignment = .firstBaseline
 //        stackView.isLayoutMarginsRelativeArrangement = true
 //        stackView.layoutMargins = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
-        stackView.distribution = .equalCentering
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .equalSpacing
+        
         stackView.spacing = 8
         return stackView
     }()
@@ -45,24 +45,31 @@ class MoreMenuView: UIView {
     private lazy var userNickname: UILabel = {
         let label = UILabel()
         label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        label.text = "뮤덕이" //나중에 사용자 닉네임 값 받아오는 걸로 변경해야함
+        label.text = "뮤덕이" // TODO: - 나중에 사용자 닉네임 값 받아오는 걸로 변경해야함
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var modifiedButton: UIButton = {
-        let button = UIButton()
-        button.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
-        button.contentEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: 8)
-        button.layer.cornerRadius = 10
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = UIColor.lightGray
-        button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        button.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        button.setTitle("변경", for: .normal)
-        return button
+        var attrStr = AttributedString("변경")
+        attrStr.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        
+        var config = UIButton.Configuration.filled()
+        config.attributedTitle = attrStr
+        config.baseForegroundColor = .black
+        config.titlePadding = 8
+        config.imagePadding = 8
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+        
+        let buttonInstance = UIButton(configuration: config)
+        buttonInstance.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
+        buttonInstance.tintColor = .lightGray
+        
+        buttonInstance.layer.cornerRadius = 10
+        
+        return buttonInstance
     }()
-    
+
     
     private lazy var bookmarkLabel: UILabel = {
         let label = UILabel()
@@ -103,7 +110,6 @@ class MoreMenuView: UIView {
         nicknameStack.snp.makeConstraints {
             $0.top.equalTo(introLabel.snp.bottom).offset(48)
             $0.left.right.equalToSuperview().inset(24)
-            $0.height.equalTo(51)
         }
         
         userNickname.snp.makeConstraints {
@@ -113,13 +119,12 @@ class MoreMenuView: UIView {
         modifiedButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
-//            $0.top.bottom.equalTo(nicknameStack.snp.top).inset(8)
             $0.height.equalTo(24)
         }
         bookmarkStack.snp.makeConstraints {
             $0.top.equalTo(nicknameStack.snp.bottom).offset(24)
             $0.left.equalToSuperview().inset(24)
-            $0.height.equalTo(51)
+            $0.height.equalTo(32)
         }
 
         
