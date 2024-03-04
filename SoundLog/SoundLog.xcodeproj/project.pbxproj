@@ -186,13 +186,6 @@
 			path = PersistentStorage;
 			sourceTree = "<group>";
 		};
-		1A499B302B26366F001370B5 /* SettingMenus */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SettingMenus;
-			sourceTree = "<group>";
-		};
 		1A54A9EA2B2B737300FB72DA /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +260,6 @@
 			isa = PBXGroup;
 			children = (
 				1A54A9EA2B2B737300FB72DA /* Model */,
-				1A499B302B26366F001370B5 /* SettingMenus */,
 				1A499B2C2B2600D3001370B5 /* SettingTableViewCell.swift */,
 				1A499B2E2B2634DA001370B5 /* SettingAppVersionCell.swift */,
 				87BFB0622AB830FD00CF839A /* View */,
