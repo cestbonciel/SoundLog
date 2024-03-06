@@ -13,7 +13,7 @@ final class StorageSoundLog: Object {
     @Persisted(primaryKey: true) var soundId: String
     @Persisted var createdAt: Date
     @Persisted var soundTitle: String
-    @Persisted var soundMood: Int
+    @Persisted var soundMood: String
     @Persisted var recordedFileUrl: String
     @Persisted var recordedSoundNote: String?
     @Persisted var soundLocation: String
@@ -23,7 +23,7 @@ final class StorageSoundLog: Object {
         soundId: String,
         createdAt: Date,
         soundTitle: String,
-        soundMood: Int,
+        soundMood: String,
         recordedFileUrl: String,
         recordedSoundNote: String?,
         soundLocation: String,

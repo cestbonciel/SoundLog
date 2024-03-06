@@ -9,28 +9,21 @@ import Foundation
 import RealmSwift
 
 final class RealmManager {
-    static let shared = RealmManager()
-    private let realm: Realm
+    static var realm = try! Realm()
     
-    init() {
-        do {
-            realm = try Realm()
-        } catch {
-            fatalError("Error initializing Realm: \(error)")
-        }
-    }
+  
     
-    func saveObject<T: Object>(_ object: T) {
+    static func saveObject(_ soundStorage: StorageSoundLog)  {
         do {
             try realm.write {
-                realm.add(object)
+                realm.add(soundStorage)
             }
         } catch {
             print("Error saving object to Realm: \(error)")
         }
     }
     //MARK: - 특정 id 기록 저장
-    func getSoundLogById(_ soundId: String) -> StorageSoundLog? {
+    static func getSoundLogById(_ soundId: String) -> StorageSoundLog? {
         do {
             let realm = try Realm()
             return realm.object(ofType: StorageSoundLog.self, forPrimaryKey: soundId)
@@ -40,33 +33,46 @@ final class RealmManager {
         }
     }
     
-    func bringSoundId(_ soundId: String) -> StorageSoundLog? {
-        return RealmManager.shared.getSoundLogById(soundId)
+    static func bringSoundId(_ soundId: String) -> StorageSoundLog? {
+        return RealmManager.getSoundLogById(soundId)
     }
     
-    func getAllObjects<T: Object>(_ objectType: T.Type) -> Results<T>? {
-        return realm.objects(objectType)
+    static func getAllObjects() -> Results<StorageSoundLog> {
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        return realm.objects(StorageSoundLog.self)
     }
-    
-    func updateObject<T: Object>(_ object: T, with dictionary: [String: Any?]) {
-        do {
-            try realm.write {
-                for (key, value) in dictionary {
-                    object.setValue(value, forKey: key)
-                }
-            }
-        } catch {
-            print("Error updating object in Realm: \(error)")
+   
+    static func editSoundLog(
+        _ sound: StorageSoundLog,
+        _ date: Date,
+        _ soundTitle: String,
+        _ soundMood: String,
+        _ recordedFile: String,
+        _ soundLocation: String,
+        _ soundCategory: String
+    ) {
+        try! realm.write {
+            sound.createdAt = date
+            sound.soundTitle = soundTitle
+            sound.soundMood = soundMood
+            sound.recordedFileUrl = recordedFile
+            sound.soundLocation = soundLocation
+            sound.soundCategory = soundCategory
         }
     }
     
-    func deleteObject<T: Object>(_ object: T) {
-        do {
-            try realm.write {
-                realm.delete(object)
-            }
-        } catch {
-            print("Error deleting object from Realm: \(error)")
+//    static func deleteObject<T: Object>(_ object: T) {
+//        do {
+//            try realm.write {
+//                realm.delete(object)
+//            }
+//        } catch {
+//            print("Error deleting object from Realm: \(error)")
+//        }
+//    }
+    static func deleteSoundLog(_ sound: StorageSoundLog) {
+        try! realm.write {
+            realm.delete(sound)
         }
     }
     

@@ -270,7 +270,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         recordedAudio.soundTitle = title
         recordedAudio.recordedFileUrl = filePath
 
-        RealmManager.shared.saveObject(recordedAudio)
+        RealmManager.saveObject(recordedAudio)
         
         print("File saved successfully. Title: \(title), FilePath: \(filePath)")
     }
