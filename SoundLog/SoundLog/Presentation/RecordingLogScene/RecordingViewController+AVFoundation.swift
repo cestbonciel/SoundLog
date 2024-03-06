@@ -216,14 +216,14 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         
     }
 	//MARK: Progress Bar Timer
-	@objc func updateTimer() {
-		if isRecording || isPlaying {
-			// 녹음 중 또는 재생 중일 때
-			let currentTime = isRecording ? audioRecorder.currentTime : audioPlayer.currentTime
-			let formattedTime = formatTime(audioRecorder.currentTime ?? 0)
-
-		}
-	}
+//	@objc func updateTimer() {
+//		if isRecording || isPlaying {
+//			// 녹음 중 또는 재생 중일 때
+//			let currentTime = isRecording ? audioRecorder.currentTime : audioPlayer.currentTime
+//			let formattedTime = formatTime(audioRecorder.currentTime ?? 0)
+//
+//		}
+//	}
 	
 	func formatTime(_ time: TimeInterval) -> String {
 		let min = Int(time / 60)
@@ -240,10 +240,10 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 		progressView.progress = Float(audioPlayer.currentTime/audioPlayer.duration)
 	}
 	
-	@objc func updateRecordTime() {
-		timerLabel.text = formatTime(audioRecorder?.currentTime ?? 0)
-	}
-	
+//	@objc func updateRecordTime() {
+//		timerLabel.text = formatTime(audioRecorder?.currentTime ?? 0)
+//	}
+    
 	
 	@objc func stopButtonPressed(_ sender: UIButton) {
         audioRecorder?.stop()
@@ -261,6 +261,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
             print("Could not make session inactive.")
             print(error.localizedDescription)
         }
+        
 	}
 	
     func saveRecordedAudio(filePath: String, title: String) {
@@ -274,6 +275,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         
         print("File saved successfully. Title: \(title), FilePath: \(filePath)")
     }
+    
 	// MARK: - AVFoundation Delegate
 	func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("function: \(#function)")
@@ -296,10 +298,10 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         })
         // Realm에 녹음 파일 정보 저장
         if flag {
-//            let recordedAudio = StorageSoundLog()
-            let recordedTitle = "소리의기록_\(Date.now.stringFormatShort)"
-            let recordedAudioPath = audioFileURL.absoluteString
-            saveRecordedAudio(filePath: recordedAudioPath, title: recordedTitle)
+            self.audioFileURL = recorder.url
+//            let recordedTitle = "소리의기록_\(Date.now.stringFormatShort)"
+//            let recordedAudioPath = audioFileURL.absoluteString
+//            saveRecordedAudio(filePath: recordedAudioPath, title: recordedTitle)
         }
         self.present(alert, animated: true, completion: nil)
 	}

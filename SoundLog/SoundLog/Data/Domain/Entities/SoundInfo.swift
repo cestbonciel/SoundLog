@@ -25,7 +25,7 @@ struct SoundInfo: Codable, Hashable, Identifiable {
     var soundCategory: SoundCategory
 
 }
-
+// MARK: - Dummy Data
 extension SoundInfo {
     static let list = [
         SoundInfo(

@@ -28,7 +28,13 @@ class CustomPlayerView: UIView {
     init() {
         super.init(frame: .zero)
         setupUI()
-        queueSound()
+        makeTimer()
+    }
+    
+    convenience init(url: URL) {
+        self.init()
+        setupUI()
+        queueSound(url: url)
         makeTimer()
     }
     
@@ -110,20 +116,14 @@ class CustomPlayerView: UIView {
         )
     }
     
-    private func queueSound() {
-
-        if let contentURL = Bundle.main.path(forResource: "Wood Fire", ofType: "wav") {
-            let url = URL(fileURLWithPath: contentURL)
-            do {
-                self.audioPlayer = try AVAudioPlayer(contentsOf: url)
-                audioPlayer?.delegate = self
-                audioPlayer?.volume = 1.0
-                audioPlayer?.prepareToPlay() // 추가된 부분: 사전에 오디오 준비
-            } catch {
-                print("오디오 플레이어 생성 오류: \(error)")
-            }
-        } else {
-            print("Error: Audio file not found.")
+    // TODO: - 녹음된 파일 전달되어야 하는 메소드
+    func queueSound(url: URL) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.delegate = self
+            audioPlayer?.prepareToPlay()
+        } catch {
+            print("Error AudioPlayer: \(error.localizedDescription)")
         }
     }
 

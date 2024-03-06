@@ -11,8 +11,7 @@ import MapKit
 
 class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     private let soundLogTextView = LogTextView()
-    
-    
+    let customPlayerView = CustomPlayerView()
     
     //MARK: - CLLocation
     var locationManager2: CLLocationManager?
@@ -26,21 +25,10 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         setupUI()
         
         navigationController?.hidesBarsOnSwipe = true
-        
+        scrollView.delegate = self
         
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//      //navigationController?.setNavigationBarHidden(true, animated: true) // 뷰 컨트롤러가 나타날 때 숨기기
-//        if let mapVC = navigationController?.viewControllers.first as? MapViewController {
-//            addressLabel.text = mapVC.currentLocationAddress
-//        }
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//      navigationController?.setNavigationBarHidden(false, animated: true) // 뷰 컨트롤러가 사라질 때 나타내기
-//
-//    }
+
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
@@ -147,7 +135,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         textField.leftViewMode = .always
         textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         textField.attributedPlaceholder = NSAttributedString(string: "3자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
-//        textField.attributedPlaceholder = .attributeFont(font: .GMSansMedium, size: 16, text: "제목 - 3자 이상 7자 미만.", lineHeight: 48)
         
         textField.layer.cornerRadius = 10
         textField.clearButtonMode = .whileEditing
@@ -298,6 +285,26 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         present(viewController, animated: true)
         
     }
+    
+    func didFinishRecording(url: URL) {
+        customPlayerView.queueSound(url: url)
+        
+        //view.addSubview(customPlayerView)
+        updateUI(withPlayer: true)
+    }
+    
+    func updateUI(withPlayer: Bool) {
+        if withPlayer {
+            contentView.addSubview(customPlayerView)
+            
+            customPlayerView.snp.makeConstraints {
+                $0.top.equalTo(backgroundView5.snp.bottom).offset(16)
+                $0.left.right.equalToSuperview().inset(24)
+                $0.height.equalTo(32)
+            }
+        }
+    }
+    
     //MARK: - LOCATION STACK VIEW
     private lazy var locationStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [locationLabel, coreLocationButton])
@@ -456,6 +463,14 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         return label
     }()
     
+    private lazy var bottomStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [soundLogTextView, backgroundView4, backgroundView5])
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        stackView.layer.borderColor = UIColor.magenta.cgColor
+        stackView.layer.borderWidth = 1
+        return stackView
+    }()
 
     
     // MARK: - setupUI
@@ -463,16 +478,15 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
         self.view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.width.equalToSuperview()
+            $0.edges.equalToSuperview()
+//            $0.top.equalToSuperview().inset(10)
+//            $0.centerX.equalToSuperview()
+//            $0.bottom.equalToSuperview()
+//            $0.width.equalToSuperview()
         }
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
-//            $0.top.equalTo(scrollView.snp.top).inset(200)
-//            $0.top.equalTo(scrollView.snp.top).inset(5)
             $0.width.equalToSuperview()
             $0.height.equalTo(800)
         }
@@ -486,13 +500,11 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
         
         cancelButton.snp.makeConstraints {
-//            $0.leading.equalToSuperview()
             $0.width.equalTo(72)
             $0.height.equalTo(40)
         }
         
         saveButton.snp.makeConstraints {
-//            $0.trailing.equalToSuperview()
             $0.width.equalTo(72)
             $0.height.equalTo(40)
         }
@@ -530,12 +542,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
         backgroundView2.addSubview(moodStackView)
         moodStackView.snp.makeConstraints {
-            //            $0.top.equalTo(backgroundView2).inset(10)
-//            $0.leading.equalToSuperview().inset(28)
-//            $0.trailing.equalToSuperview().inset(28)
             $0.left.right.equalTo(backgroundView2).inset(24)
             $0.edges.equalToSuperview()
-//            $0.centerY.equalToSuperview()
         }
         
         for button in moodButtons {
@@ -545,16 +553,11 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         for (_, button) in moodButtons.enumerated() {
             button.snp.makeConstraints {
                 $0.height.equalTo(32)
-//                $0.width.equalTo(16)
-//                $0.leading.equalTo(moodStackView.snp.leading).inset(24)
             }
         }
         
         //MARK: - Recording StackView
-//        self.view.addSubview(recordingView)
-//        recordingView.snp.makeConstraints{
-//            $0.top.equalTo(backgroundView2.snp.bottom).offset(24)
-//        }
+
         contentView.addSubview(backgroundView3)
         backgroundView3.addSubview(recordingStack)
         backgroundView3.snp.makeConstraints {
@@ -578,34 +581,40 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             $0.width.equalTo(32)
             $0.height.equalTo(32)
         }
+        
+        
         // MARK: - UITextView
         soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
-        contentView.addSubview(soundLogTextView)
-        soundLogTextView.translatesAutoresizingMaskIntoConstraints = false
-        soundLogTextView.snp.makeConstraints {
-            $0.top.equalTo(recordingStack.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(28)
-            $0.trailing.equalToSuperview().inset(28)
-            $0.height.equalTo(200)
+//        contentView.addSubview(soundLogTextView)
+        contentView.addSubview(bottomStack)
+        
+        bottomStack.snp.makeConstraints {
+            $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
+            $0.left.right.equalToSuperview().inset(28)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
+//        soundLogTextView.translatesAutoresizingMaskIntoConstraints = false
+        soundLogTextView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(180)
+        }
+        // 200 + 24 + 48 +
         // MARK: - USER LOCATION
-        contentView.addSubview(backgroundView4)
+//        contentView.addSubview(backgroundView4)
         backgroundView4.addSubview(locationStack)
         contentView.addSubview(addressLabel)
         
         backgroundView4.snp.makeConstraints {
             $0.top.equalTo(soundLogTextView.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(28)
-            $0.trailing.equalToSuperview().inset(28)
+            $0.left.right.equalToSuperview()
             $0.height.equalTo(48)
         }
         
         locationStack.snp.makeConstraints{
             $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview().inset(10)
-            $0.trailing.equalToSuperview().inset(28)
-//            $0.top.equalTo(backgroundView3.snp.top)
+            $0.left.right.equalToSuperview().inset(10)
         }
         
         addressLabel.snp.makeConstraints {
@@ -621,29 +630,20 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
         
         coreLocationButton.snp.makeConstraints {
-//            $0.trailing.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(16)
             $0.centerY.equalTo(locationStack.snp.centerY)
             $0.width.equalTo(32)
             $0.height.equalTo(32)
         }
         
-        contentView.addSubview(backgroundView5)
+//        contentView.addSubview(backgroundView5)
         backgroundView5.addSubview(categoryLabel)
         backgroundView5.addSubview(categoryBtnStack)
-        
-        /*
-         buttonStack.snp.makeConstraints {
-             $0.top.equalTo(contentView.snp.top).inset(48)
-             $0.leading.equalToSuperview().inset(28)
-             $0.trailing.equalToSuperview().inset(28)
-             $0.height.equalTo(40)
-         }
-         */
+
         
         backgroundView5.snp.makeConstraints {
             $0.top.equalTo(backgroundView4.snp.bottom).offset(56)
-            $0.leading.equalToSuperview().inset(28)
-            $0.trailing.equalToSuperview().inset(28)
+            $0.left.right.equalToSuperview()
             $0.height.equalTo(48)
         }
         

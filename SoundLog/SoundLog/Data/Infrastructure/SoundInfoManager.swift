@@ -14,7 +14,7 @@ class SoundInfoManager {
 
     func createSound() -> SoundInfo {
         let today = Date.now.stringFormat
-        return SoundInfo(id: "1", createdAt: today, soundTitle: "", soundMood: "2", recordedFileUrl: "", soundLocation: "", soundCategory: "ASMR")
+        return SoundInfo(id: "1", createdAt: today, soundTitle: "", soundMood: "2", recordedFileUrl: "", soundLocation: "", soundCategory: SoundInfo.SoundCategory(rawValue: "ASMR") ?? .recording)
     }
 }
 
