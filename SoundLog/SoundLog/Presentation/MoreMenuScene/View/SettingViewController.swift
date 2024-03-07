@@ -14,6 +14,7 @@ import SnapKit
 class SettingViewController: UIViewController, MFMailComposeViewControllerDelegate {
     var models = [Section]()
     
+    
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .plain)
         table.register(SettingTableViewCell.self, forCellReuseIdentifier: SettingTableViewCell.identifier)
@@ -42,6 +43,7 @@ class SettingViewController: UIViewController, MFMailComposeViewControllerDelega
             $0.left.right.equalToSuperview().inset(24)
             $0.bottom.equalToSuperview().inset(100)
         }
+        
     }
     
     func configure() {
@@ -118,10 +120,6 @@ class SettingViewController: UIViewController, MFMailComposeViewControllerDelega
 }
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        let section = models[section]
-//        return section.title
-//    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count

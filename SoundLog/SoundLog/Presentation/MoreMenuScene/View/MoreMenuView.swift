@@ -8,7 +8,10 @@ import UIKit
 import SnapKit
 
 class MoreMenuView: UIView {
- 
+    var onModifiedButtonTapped: (() -> Void)?
+    
+    
+    
     private lazy var introLabel: UILabel = {
         let label = UILabel()
         label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
@@ -56,20 +59,27 @@ class MoreMenuView: UIView {
         
         var config = UIButton.Configuration.filled()
         config.attributedTitle = attrStr
-        config.baseForegroundColor = .black
-        config.titlePadding = 8
-        config.imagePadding = 8
-        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+        config.baseForegroundColor = .white
+        config.titlePadding = 16
+        config.imagePadding = 16
+        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
         
         let buttonInstance = UIButton(configuration: config)
-        buttonInstance.frame = CGRect(x: 0, y: 0, width: 48, height: 24)
-        buttonInstance.tintColor = .lightGray
-        
+        buttonInstance.frame = CGRect(x: 0, y: 0, width: 48, height: 32)
+        buttonInstance.tintColor = .neonPurple
         buttonInstance.layer.cornerRadius = 10
-        
+        buttonInstance.addTarget(self, action: #selector(modifiedButtonTapped), for: .touchUpInside)
         return buttonInstance
     }()
 
+    
+    @objc func modifiedButtonTapped() {
+        view.backgroundColor = .systemGreen.withAlphaComponent(0.4)
+        let viewController = MoreMenuViewController()
+        viewController.modalTransitionStyle = .crossDissolve
+        view.modalPresentationStyle = .overFullScreen
+        present(viewController, animated: true, completion: nil)
+    }
     
     private lazy var bookmarkLabel: UILabel = {
         let label = UILabel()
@@ -119,7 +129,7 @@ class MoreMenuView: UIView {
         modifiedButton.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.height.equalTo(24)
+            $0.height.equalTo(32)
         }
         bookmarkStack.snp.makeConstraints {
             $0.top.equalTo(nicknameStack.snp.bottom).offset(24)

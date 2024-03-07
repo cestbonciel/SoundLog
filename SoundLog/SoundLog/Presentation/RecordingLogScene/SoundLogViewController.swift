@@ -81,7 +81,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         button.layer.cornerRadius = 10
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = UIColor.neonYellow
-//        button.setAttributedTitle(.attributeFont(font: .GMSansBold, size: 16, text: "저장", lineHeight: 18), for: .normal)
+
         button.setTitle("저장", for: .normal)
         button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         
