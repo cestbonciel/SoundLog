@@ -71,7 +71,7 @@ class MoreMenuView: UIView {
     }()
 
     
-<<<<<<< HEAD
+
 
     @objc func modifiedButtonTapped() {
         //view.backgroundColor = .systemGreen.withAlphaComponent(0.4)
@@ -82,8 +82,6 @@ class MoreMenuView: UIView {
     }
     
 
-=======
->>>>>>> parent of ac76acb (Design: try to make modal popupView on MoreMenuView)
     private lazy var bookmarkLabel: UILabel = {
         let label = UILabel()
         label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
