@@ -59,16 +59,22 @@ class SettingViewController: UIViewController {
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 797ff56 (Feat: Setting App Information about opensource, inquiry mail, app verison)
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = models[section]
         return section.title
     }
+<<<<<<< HEAD
 =======
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        let section = models[section]
 //        return section.title
 //    }
 >>>>>>> parent of ac76acb (Design: try to make modal popupView on MoreMenuView)
+=======
+>>>>>>> parent of 797ff56 (Feat: Setting App Information about opensource, inquiry mail, app verison)
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
