@@ -40,7 +40,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     //MARK: - Entire View Scroll
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        
         //        scrollView.backgroundColor = .cyan
         //        scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = true
@@ -478,11 +478,11 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
         self.view.addSubview(scrollView)
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-//            $0.top.equalToSuperview().inset(10)
-//            $0.centerX.equalToSuperview()
-//            $0.bottom.equalToSuperview()
-//            $0.width.equalToSuperview()
+//            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview().inset(10)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.width.equalToSuperview()
         }
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints {
@@ -585,36 +585,37 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
         // MARK: - UITextView
         soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
-//        contentView.addSubview(soundLogTextView)
-        contentView.addSubview(bottomStack)
+        contentView.addSubview(soundLogTextView)
+//        contentView.addSubview(bottomStack)
         
-        bottomStack.snp.makeConstraints {
-            $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
-            $0.left.right.equalToSuperview().inset(28)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
+//        bottomStack.snp.makeConstraints {
+//            $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
+//            $0.left.right.equalToSuperview().inset(28)
+//            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+//        }
         
 //        soundLogTextView.translatesAutoresizingMaskIntoConstraints = false
         soundLogTextView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.left.right.equalToSuperview()
+            $0.top.equalTo(recordingStack.snp.bottom).offset(24)
+            $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(180)
         }
         // 200 + 24 + 48 +
         // MARK: - USER LOCATION
-//        contentView.addSubview(backgroundView4)
+        contentView.addSubview(backgroundView4)
         backgroundView4.addSubview(locationStack)
         contentView.addSubview(addressLabel)
         
         backgroundView4.snp.makeConstraints {
             $0.top.equalTo(soundLogTextView.snp.bottom).offset(24)
-            $0.left.right.equalToSuperview()
+            $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }
         
         locationStack.snp.makeConstraints{
             $0.centerY.equalToSuperview()
-            $0.left.right.equalToSuperview().inset(10)
+            $0.left.equalToSuperview().inset(10)
+            $0.right.equalToSuperview().inset(16)
         }
         
         addressLabel.snp.makeConstraints {
@@ -636,14 +637,14 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             $0.height.equalTo(32)
         }
         
-//        contentView.addSubview(backgroundView5)
+        contentView.addSubview(backgroundView5)
         backgroundView5.addSubview(categoryLabel)
         backgroundView5.addSubview(categoryBtnStack)
 
         
         backgroundView5.snp.makeConstraints {
             $0.top.equalTo(backgroundView4.snp.bottom).offset(56)
-            $0.left.right.equalToSuperview()
+            $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }
         
