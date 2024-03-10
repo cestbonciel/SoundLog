@@ -21,9 +21,9 @@ class MoreMenuViewController: UIViewController {
     
     override func loadView() {
         self.view = moreMenuView
-        
+
     }
-    
+
     private func configureNaviBarButton() {
 //        navigationController?.navigationBar.barTintColor = .yellow
         navigationItem.rightBarButtonItem = UIBarButtonItem(

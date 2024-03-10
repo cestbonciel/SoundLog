@@ -23,8 +23,6 @@
 		1ABA88DA2B99C21900DAE9FE /* AcknowList in Frameworks */ = {isa = PBXBuildFile; productRef = 1ABA88D92B99C21900DAE9FE /* AcknowList */; };
 		1ABA88DC2B99C37E00DAE9FE /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 1ABA88DB2B99C37E00DAE9FE /* Package.resolved */; };
 		1ABA88DE2B99F62900DAE9FE /* DeviceVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABA88DD2B99F62900DAE9FE /* DeviceVersion.swift */; };
-		1ABA88E02B9A2F6E00DAE9FE /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABA88DF2B9A2F6E00DAE9FE /* ProfileDetailView.swift */; };
-		1ABA88E22B9A40F400DAE9FE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABA88E12B9A40F400DAE9FE /* ProfileViewModel.swift */; };
 		1ACA8FAB2B95046200C4F34A /* CustomPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */; };
 		1AF5E4422B15DFF800E3537A /* ModifyUserNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */; };
 		8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8708D6BA2A9F86E70000CAC5 /* SnapKit */; };
@@ -89,10 +87,8 @@
 		1A67C43F2B88FD4100481B1C /* SoundInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInfoManager.swift; sourceTree = "<group>"; };
 		1A871B282B87C34400F2CD10 /* SoundLogTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogTableCell.swift; sourceTree = "<group>"; };
 		1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInfo.swift; sourceTree = "<group>"; };
-		1ABA88DB2B99C37E00DAE9FE /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = SoundLog.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved; sourceTree = SOURCE_ROOT; };
+		1ABA88DB2B99C37E00DAE9FE /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = file; name = Package.resolved; path = SoundLog.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved; sourceTree = SOURCE_ROOT; };
 		1ABA88DD2B99F62900DAE9FE /* DeviceVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceVersion.swift; sourceTree = "<group>"; };
-		1ABA88DF2B9A2F6E00DAE9FE /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
-		1ABA88E12B9A40F400DAE9FE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerView.swift; sourceTree = "<group>"; };
 		1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyUserNameController.swift; sourceTree = "<group>"; };
 		871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogViewController.swift; sourceTree = "<group>"; };
@@ -419,9 +415,9 @@
 		87BFB0622AB830FD00CF839A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1A09B5122B1A4FD600510108 /* MoreMenuView.swift */,
 				8731316C2A9CE26700E8B645 /* MoreMenuViewController.swift */,
 				1A13969D2B18895C0072BC49 /* SettingViewController.swift */,
+				1A09B5122B1A4FD600510108 /* MoreMenuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -442,8 +438,6 @@
 				87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */,
 				1A1396992B187C0C0072BC49 /* CustomNaviBarItem.swift */,
 				1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */,
-				1ABA88DF2B9A2F6E00DAE9FE /* ProfileDetailView.swift */,
-				1ABA88E12B9A40F400DAE9FE /* ProfileViewModel.swift */,
 			);
 			path = ContentViews;
 			sourceTree = "<group>";
@@ -556,13 +550,11 @@
 				87BB609F2AD72B2B00B9428D /* LocationService.swift in Sources */,
 				8747643B2AFAA45300365717 /* ContentView.swift in Sources */,
 				877DAC912A7AD46C00AE3038 /* AppDelegate.swift in Sources */,
-				1ABA88E22B9A40F400DAE9FE /* ProfileViewModel.swift in Sources */,
 				877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */,
 				87612BCD2ADAEF36008A4F42 /* TextfieldContentView.swift in Sources */,
 				1A499B2F2B2634DA001370B5 /* SettingAppVersionCell.swift in Sources */,
 				1A871B292B87C34400F2CD10 /* SoundLogTableCell.swift in Sources */,
 				8747643D2AFAA46C00365717 /* ShazamView.swift in Sources */,
-				1ABA88E02B9A2F6E00DAE9FE /* ProfileDetailView.swift in Sources */,
 				1A13969A2B187C0C0072BC49 /* CustomNaviBarItem.swift in Sources */,
 				1ABA88DE2B99F62900DAE9FE /* DeviceVersion.swift in Sources */,
 				876B9A842AEFE33700D566D0 /* UIFont+Extension.swift in Sources */,
