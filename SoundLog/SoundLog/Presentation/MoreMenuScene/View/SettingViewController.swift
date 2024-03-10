@@ -118,24 +118,12 @@ class SettingViewController: UIViewController, MFMailComposeViewControllerDelega
 }
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
-<<<<<<< HEAD
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = models[section]
-        return section.title
-    }
-
-=======
->>>>>>> feature/recording
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        let section = models[section]
 //        return section.title
 //    }
-<<<<<<< HEAD
 
-=======
->>>>>>> feature/recording
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
     }
