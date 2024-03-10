@@ -41,9 +41,9 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .cyan
+//        scrollView.backgroundColor = .cyan
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = true
+//        scrollView.showsVerticalScrollIndicator = true
         return scrollView
     }()
     
