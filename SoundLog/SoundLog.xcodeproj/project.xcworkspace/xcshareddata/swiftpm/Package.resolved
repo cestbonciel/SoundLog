@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "acknowlist",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vtourraine/AcknowList",
+      "state" : {
+        "revision" : "50fcf866db4717c8bf246a6eeea3b97f7d1703ad",
+        "version" : "3.1.0"
+      }
+    },
+    {
       "identity" : "fscalendar",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/WenchaoD/FSCalendar.git",

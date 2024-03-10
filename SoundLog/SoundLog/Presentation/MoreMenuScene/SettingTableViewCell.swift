@@ -17,6 +17,8 @@ class SettingTableViewCell: UITableViewCell {
         return label
     }()
     
+    private var subtextLabel: UILabel!
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(label)
@@ -42,5 +44,20 @@ class SettingTableViewCell: UITableViewCell {
     
     public func configure(with model: SettingsOption) {
         label.text = model.title
+        
+        if model.title == "버전정보" {
+            subtextLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: self.frame.height))
+            subtextLabel.text = Device.getAppVersion()
+            subtextLabel.textColor = .bgGray
+            subtextLabel.textAlignment = .right
+            subtextLabel.sizeToFit()
+            self.accessoryView = subtextLabel
+        }
+    }
+    
+    func setFonts() {
+        label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        guard let subtext = subtextLabel else { return }
+        subtext.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
     }
 }

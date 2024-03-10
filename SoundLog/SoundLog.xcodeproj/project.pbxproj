@@ -20,6 +20,9 @@
 		1A67C4402B88FD4100481B1C /* SoundInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67C43F2B88FD4100481B1C /* SoundInfoManager.swift */; };
 		1A871B292B87C34400F2CD10 /* SoundLogTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A871B282B87C34400F2CD10 /* SoundLogTableCell.swift */; };
 		1A871B2C2B87D74E00F2CD10 /* SoundInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */; };
+		1A9C0FFF2B9DE8700026D92D /* AcknowList in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9C0FFE2B9DE8700026D92D /* AcknowList */; };
+		1A9C10012B9DE8CB0026D92D /* DeviceVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9C10002B9DE8CB0026D92D /* DeviceVersion.swift */; };
+		1A9C10032B9DEAD80026D92D /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C10022B9DEAD80026D92D /* Package.resolved */; };
 		1ACA8FAB2B95046200C4F34A /* CustomPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */; };
 		1AF5E4422B15DFF800E3537A /* ModifyUserNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */; };
 		8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8708D6BA2A9F86E70000CAC5 /* SnapKit */; };
@@ -84,6 +87,8 @@
 		1A67C43F2B88FD4100481B1C /* SoundInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInfoManager.swift; sourceTree = "<group>"; };
 		1A871B282B87C34400F2CD10 /* SoundLogTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogTableCell.swift; sourceTree = "<group>"; };
 		1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInfo.swift; sourceTree = "<group>"; };
+		1A9C10002B9DE8CB0026D92D /* DeviceVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceVersion.swift; sourceTree = "<group>"; };
+		1A9C10022B9DEAD80026D92D /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = file; name = Package.resolved; path = SoundLog.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved; sourceTree = SOURCE_ROOT; };
 		1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerView.swift; sourceTree = "<group>"; };
 		1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyUserNameController.swift; sourceTree = "<group>"; };
 		871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A9C0FFF2B9DE8700026D92D /* AcknowList in Frameworks */,
 				1A1877C32B868195001DB607 /* RealmSwift in Frameworks */,
 				1A1877C12B868195001DB607 /* Realm in Frameworks */,
 				8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */,
@@ -287,6 +293,7 @@
 		877DAC8F2A7AD46C00AE3038 /* SoundLog */ = {
 			isa = PBXGroup;
 			children = (
+				1A9C10022B9DEAD80026D92D /* Package.resolved */,
 				87BB609D2AD72B1A00B9428D /* Service */,
 				87BFB05F2AB82BDE00CF839A /* Applications */,
 				1A1877BA2B867C8E001DB607 /* Data */,
@@ -333,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				87BB609E2AD72B2B00B9428D /* LocationService.swift */,
+				1A9C10002B9DE8CB0026D92D /* DeviceVersion.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -455,6 +463,7 @@
 				874764352AF95E2D00365717 /* FSCalendar */,
 				1A1877C02B868195001DB607 /* Realm */,
 				1A1877C22B868195001DB607 /* RealmSwift */,
+				1A9C0FFE2B9DE8700026D92D /* AcknowList */,
 			);
 			productName = OmyAk;
 			productReference = 877DAC8D2A7AD46C00AE3038 /* SoundLog.app */;
@@ -488,6 +497,7 @@
 				8708D6B92A9F86E70000CAC5 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				874764342AF95E2D00365717 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				1A1877BF2B868195001DB607 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				1A9C0FFD2B9DE8700026D92D /* XCRemoteSwiftPackageReference "AcknowList" */,
 			);
 			productRefGroup = 877DAC8E2A7AD46C00AE3038 /* Products */;
 			projectDirPath = "";
@@ -519,6 +529,7 @@
 				87E94C5D2AEBE5B3007DD30C /* GmarketSansTTFBold.ttf in Resources */,
 				87BFB0582AB8179900CF839A /* GmarketSansBold.otf in Resources */,
 				87E94C5F2AEBE5B3007DD30C /* GmarketSansTTFLight.ttf in Resources */,
+				1A9C10032B9DEAD80026D92D /* Package.resolved in Resources */,
 				87BFB05A2AB8179900CF839A /* GmarketSansMedium.otf in Resources */,
 				877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */,
 				877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */,
@@ -545,6 +556,7 @@
 				1A871B292B87C34400F2CD10 /* SoundLogTableCell.swift in Sources */,
 				8747643D2AFAA46C00365717 /* ShazamView.swift in Sources */,
 				1A13969A2B187C0C0072BC49 /* CustomNaviBarItem.swift in Sources */,
+				1A9C10012B9DE8CB0026D92D /* DeviceVersion.swift in Sources */,
 				876B9A842AEFE33700D566D0 /* UIFont+Extension.swift in Sources */,
 				878864D42A8E745D008340E2 /* UIColor+Extension.swift in Sources */,
 				1A67C4402B88FD4100481B1C /* SoundInfoManager.swift in Sources */,
@@ -811,6 +823,14 @@
 				minimumVersion = 10.47.0;
 			};
 		};
+		1A9C0FFD2B9DE8700026D92D /* XCRemoteSwiftPackageReference "AcknowList" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vtourraine/AcknowList";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
 		8708D6B92A9F86E70000CAC5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -839,6 +859,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1A1877BF2B868195001DB607 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		1A9C0FFE2B9DE8700026D92D /* AcknowList */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A9C0FFD2B9DE8700026D92D /* XCRemoteSwiftPackageReference "AcknowList" */;
+			productName = AcknowList;
 		};
 		8708D6BA2A9F86E70000CAC5 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
