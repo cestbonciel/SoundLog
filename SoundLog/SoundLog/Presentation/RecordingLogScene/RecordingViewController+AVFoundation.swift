@@ -264,16 +264,14 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         
 	}
 	
-    func saveRecordedAudio(filePath: String, title: String) {
+    func saveRecordedAudio(filePath: RecordedFile, title: String) {
         let recordedAudio = StorageSoundLog()
-        recordedAudio.soundId = UUID().uuidString // 랜덤한 ID 생성
-        recordedAudio.createdAt = Date()
-        recordedAudio.soundTitle = title
+       
         recordedAudio.recordedFileUrl = filePath
 
-        RealmManager.saveObject(recordedAudio)
         
-        print("File saved successfully. Title: \(title), FilePath: \(filePath)")
+        
+        
     }
     
 	// MARK: - AVFoundation Delegate
