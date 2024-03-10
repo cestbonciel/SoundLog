@@ -22,20 +22,18 @@ final class RealmManager {
             print("Error saving object to Realm: \(error)")
         }
     }
-    //MARK: - 특정 id 기록 저장
-    static func getSoundLogById(_ soundId: String) -> StorageSoundLog? {
+    static func saveRecordedFile(_ recordedFile: RecordedFile, completion: @escaping (Bool) -> Void) {
         do {
-            let realm = try Realm()
-            return realm.object(ofType: StorageSoundLog.self, forPrimaryKey: soundId)
+            try realm.write {
+                realm.add(recordedFile)
+                completion(true)
+            }
         } catch {
-            print("Error accessing Realm: \(error.localizedDescription)")
-            return nil
+            print("Error saving recorded file to Realm: \(error)")
+            completion(false)
         }
     }
     
-    static func bringSoundId(_ soundId: String) -> StorageSoundLog? {
-        return RealmManager.getSoundLogById(soundId)
-    }
     
     static func getAllObjects() -> Results<StorageSoundLog> {
         print(Realm.Configuration.defaultConfiguration.fileURL!)
@@ -47,7 +45,7 @@ final class RealmManager {
         _ date: Date,
         _ soundTitle: String,
         _ soundMood: String,
-        _ recordedFile: String,
+        _ recordedFile: RecordedFile?,
         _ soundLocation: String,
         _ soundCategory: String
     ) {

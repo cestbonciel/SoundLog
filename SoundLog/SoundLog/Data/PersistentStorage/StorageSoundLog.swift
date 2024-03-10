@@ -9,29 +9,32 @@ import Foundation
 
 import RealmSwift
 
+final class RecordedFile: Object {
+    @Persisted var recordedFileUrl: String
+}
+
 final class StorageSoundLog: Object {
-    @Persisted(primaryKey: true) var soundId: String
+    @Persisted(primaryKey: true) var soundId: ObjectId
     @Persisted var createdAt: Date
+    @Persisted var updatedAt: String?
     @Persisted var soundTitle: String
     @Persisted var soundMood: String
-    @Persisted var recordedFileUrl: String
+    @Persisted var recordedFileUrl: RecordedFile?
     @Persisted var recordedSoundNote: String?
     @Persisted var soundLocation: String
     @Persisted var soundCategory: String
 
     convenience init(
-        soundId: String,
         createdAt: Date,
         soundTitle: String,
         soundMood: String,
-        recordedFileUrl: String,
+        recordedFileUrl: RecordedFile?,
         recordedSoundNote: String?,
         soundLocation: String,
         soundCategory: String
     ) {
         self.init()
         
-        self.soundId = soundId
         self.createdAt = createdAt
         self.soundTitle = soundTitle
         self.soundMood = soundMood
