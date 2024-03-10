@@ -58,10 +58,17 @@ class SettingViewController: UIViewController {
 }
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
+<<<<<<< HEAD
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let section = models[section]
         return section.title
     }
+=======
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        let section = models[section]
+//        return section.title
+//    }
+>>>>>>> parent of ac76acb (Design: try to make modal popupView on MoreMenuView)
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
