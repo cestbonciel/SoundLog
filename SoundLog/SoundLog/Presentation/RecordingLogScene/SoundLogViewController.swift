@@ -41,8 +41,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        //        scrollView.backgroundColor = .cyan
-        //        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.backgroundColor = .cyan
+        scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = true
         return scrollView
     }()
@@ -69,8 +69,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         button.backgroundColor = UIColor.lightGray
         button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         button.setTitle("취소", for: .normal)
-//        button.setAttributedTitle(.attributeFont(font: .GMSansMedium, size: 16, text: "취소", lineHeight: 18), for: .normal)
-        
         button.addTarget(self, action: #selector(actCancelButton), for: .touchUpInside)
         return button
     }()
@@ -161,7 +159,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     //MARK: - Choose mood
     private lazy var moodStackView: UIStackView = {
         let stackView = UIStackView()
-//        stackView.layer.borderWidth = 1
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.distribution = .fillEqually
@@ -253,7 +250,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         label.text = "당신의 소리를 기록해보세요."
         label.numberOfLines = 0
         label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-//        label.font = .prtendard(ofSize: 16, weight: .PRTendardMedium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -462,15 +458,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
         return label
     }()
-    
-    private lazy var bottomStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [soundLogTextView, backgroundView4, backgroundView5])
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.layer.borderColor = UIColor.magenta.cgColor
-        stackView.layer.borderWidth = 1
-        return stackView
-    }()
+
 
     
     // MARK: - setupUI
@@ -585,15 +573,15 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
         // MARK: - UITextView
         soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
-//        contentView.addSubview(soundLogTextView)
-        contentView.addSubview(bottomStack)
+        contentView.addSubview(soundLogTextView)
+//        contentView.addSubview(bottomStack)
         
-        bottomStack.snp.makeConstraints {
-            $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
-            $0.left.right.equalToSuperview().inset(28)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-        
+//        bottomStack.snp.makeConstraints {
+//            $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
+//            $0.left.right.equalToSuperview().inset(28)
+//            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+//        }
+//
 //        soundLogTextView.translatesAutoresizingMaskIntoConstraints = false
         soundLogTextView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -602,7 +590,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
         // 200 + 24 + 48 +
         // MARK: - USER LOCATION
-//        contentView.addSubview(backgroundView4)
+        contentView.addSubview(backgroundView4)
         backgroundView4.addSubview(locationStack)
         contentView.addSubview(addressLabel)
         
@@ -636,7 +624,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             $0.height.equalTo(32)
         }
         
-//        contentView.addSubview(backgroundView5)
+        contentView.addSubview(backgroundView5)
         backgroundView5.addSubview(categoryLabel)
         backgroundView5.addSubview(categoryBtnStack)
 

@@ -74,11 +74,11 @@ class MoreMenuView: UIView {
 
     
     @objc func modifiedButtonTapped() {
-        view.backgroundColor = .systemGreen.withAlphaComponent(0.4)
+        //view.backgroundColor = .systemGreen.withAlphaComponent(0.4)
         let viewController = MoreMenuViewController()
         viewController.modalTransitionStyle = .crossDissolve
-        view.modalPresentationStyle = .overFullScreen
-        present(viewController, animated: true, completion: nil)
+        //view.modalPresentationStyle = .overFullScreen
+        //present(viewController, animated: true, completion: nil)
     }
     
     private lazy var bookmarkLabel: UILabel = {

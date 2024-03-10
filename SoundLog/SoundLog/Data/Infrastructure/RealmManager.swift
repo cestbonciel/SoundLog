@@ -60,16 +60,7 @@ final class RealmManager {
             sound.soundCategory = soundCategory
         }
     }
-    
-//    static func deleteObject<T: Object>(_ object: T) {
-//        do {
-//            try realm.write {
-//                realm.delete(object)
-//            }
-//        } catch {
-//            print("Error deleting object from Realm: \(error)")
-//        }
-//    }
+
     static func deleteSoundLog(_ sound: StorageSoundLog) {
         try! realm.write {
             realm.delete(sound)
