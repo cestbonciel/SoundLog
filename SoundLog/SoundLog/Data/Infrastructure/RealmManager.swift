@@ -71,4 +71,8 @@ final class RealmManager {
         }
     }
     
+    static func fetchDate(date: Date) -> Results<StorageSoundLog> {
+        return realm.objects(StorageSoundLog.self).filter("date >= %@ AND date < %@", Date(timeInterval: 86400, since: date))
+    }
+    
 }

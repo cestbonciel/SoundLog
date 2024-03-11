@@ -11,11 +11,10 @@ import MapKit
 
 class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     private let soundLogTextView = LogTextView()
-    let customPlayerView = CustomPlayerView()
+    private let customPlayerView = CustomPlayerView()
     
     //MARK: - CLLocation
     var locationManager2: CLLocationManager?
-    
     weak var mapDelegate: MapViewControllerDelegate?
 
     //MARK: - viewDidLoad
@@ -36,9 +35,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     //MARK: - Entire View Scroll
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        
-        //        scrollView.backgroundColor = .cyan
-        //        scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = true
         return scrollView
     }()
@@ -57,6 +53,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         stackView.distribution = .equalSpacing
         return stackView
     }()
+    
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 72, height: 40)
@@ -91,7 +88,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         return view
     }()
     
-    private lazy var date: UIDatePicker = {
+    // MARK: - Date
+    private lazy var soundLogDate: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .dateAndTime
         if #available(iOS 14.0, *) {
@@ -119,7 +117,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
     }
     // MARK: - Diary Forms
-    private lazy var titleTextField: UITextField = {
+    private lazy var soundLogTitle: UITextField = {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: 300, height: 48))
         
         
@@ -236,7 +234,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         label.text = "당신의 소리를 기록해보세요."
         label.numberOfLines = 0
         label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-//        label.font = .prtendard(ofSize: 16, weight: .PRTendardMedium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -250,7 +247,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         button.addTarget(self, action: #selector(touchUpbottomSheet), for: .touchUpInside)
         return button
     }()
-    // 녹음 화면 presenting view
+    
+    // MARK: - Presenting view for REC
     @objc func touchUpbottomSheet(_ sender: UIButton) {
         let viewController = RecordingViewController()
         viewController.isModalInPresentation = true
@@ -266,25 +264,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
 
         present(viewController, animated: true)
-        
-    }
-    
-    func didFinishRecording(url: URL) {
-        customPlayerView.queueSound(url: url)
-
-        updateUI(withPlayer: true)
-    }
-    
-    func updateUI(withPlayer: Bool) {
-        if withPlayer {
-            contentView.addSubview(customPlayerView)
-            
-            customPlayerView.snp.makeConstraints {
-                $0.top.equalTo(backgroundView5.snp.bottom).offset(16)
-                $0.left.right.equalToSuperview().inset(24)
-                $0.height.equalTo(32)
-            }
-        }
     }
     
     //MARK: - LOCATION STACK VIEW
@@ -302,7 +281,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         label.text = "어디서 기록했나요?"
         return label
     }()
-    
     
     private lazy var coreLocationButton: UIButton = {
         let button = UIButton()
@@ -440,7 +418,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         let label = UILabel()
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
-        
+        label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
         return label
     }()
     
@@ -481,7 +459,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
         
         contentView.addSubview(backgroundView)
-        backgroundView.addSubview(date)
+        backgroundView.addSubview(soundLogDate)
         
         backgroundView.snp.makeConstraints {
             $0.top.equalTo(buttonStack.snp.bottom).offset(24)
@@ -490,14 +468,14 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             $0.height.equalTo(48)
         }
         
-        date.snp.makeConstraints {
+        soundLogDate.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalToSuperview()
             $0.height.equalTo(100)
         }
         
-        contentView.addSubview(titleTextField)
-        titleTextField.snp.makeConstraints{
+        contentView.addSubview(soundLogTitle)
+        soundLogTitle.snp.makeConstraints{
             $0.top.equalTo(backgroundView.snp.bottom).offset(24)
             $0.leading.equalToSuperview().inset(28)
             $0.trailing.equalToSuperview().inset(28)
@@ -506,7 +484,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         //MARK: - moodButton Autolayout
         contentView.addSubview(backgroundView2)
         backgroundView2.snp.makeConstraints {
-            $0.top.equalTo(titleTextField.snp.bottom).offset(24)
+            $0.top.equalTo(soundLogTitle.snp.bottom).offset(24)
             $0.leading.equalToSuperview().inset(28)
             $0.trailing.equalToSuperview().inset(28)
             $0.height.equalTo(48)
@@ -595,7 +573,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
         addressLabel.snp.makeConstraints {
             $0.top.equalTo(locationStack.snp.top).offset(56)
-            $0.leading.equalTo(locationStack.snp.leading).inset(20)
+            $0.right.equalTo(coreLocationButton.snp.right)
         }
        
         
@@ -663,7 +641,7 @@ extension SoundLogViewController: MapViewControllerDelegate {
     }
 }
 
-//MARK: - Preview Setting
+//MARK: - SwiftUI Preview Setting
 #if canImport(SwiftUI) && DEBUG
 import SwiftUI
 struct SoundLogViewControllerRepresentable: UIViewControllerRepresentable {

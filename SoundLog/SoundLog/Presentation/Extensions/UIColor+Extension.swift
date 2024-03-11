@@ -36,4 +36,8 @@ extension UIColor {
     class var vividBlueGreen: UIColor {
         return UIColor(red: 15.0/255.0, green: 163.0/255.0, blue: 177.0/255.0, alpha: 1)
     }
+    
+    class var vividRedPurple: UIColor {
+        return UIColor(red: 192.0/255.0, green: 60.0/255.0, blue: 139.0/255.0, alpha: 1)
+    }
 }

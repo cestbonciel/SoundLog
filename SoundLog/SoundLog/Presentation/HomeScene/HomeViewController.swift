@@ -12,9 +12,7 @@ import SnapKit
 import RealmSwift
 
 class HomeViewController: UIViewController {
-    var soundLogs: Results<StorageSoundLog>?
     
-//    let soundInfo = SoundInfo
     let dummyData = ["바닷소리", "음악소리"]
 	struct Icon {
 	  static let leftIcon = UIImage(systemName: "chevron.left")?
@@ -38,7 +36,13 @@ class HomeViewController: UIViewController {
         
 	}
 	
-	var selectedDate: DateComponents? = nil
+    var soundLogs: Results<StorageSoundLog>! {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+//	var selectedDate: DateComponents? = nil
 	
 	@IBOutlet weak var AddButton: UIButton!
 	
@@ -60,23 +64,42 @@ class HomeViewController: UIViewController {
 		headerDate.translatesAutoresizingMaskIntoConstraints = false
 		return headerDate
 	}()
-	
+	/*
+     let button = UIButton(type: .custom)
+     
+     button.layer.borderWidth = 1
+     button.layer.cornerRadius = 13
+     button.layer.borderColor = NagazaAsset.Colors.gray5.color.cgColor
+     
+     var config = UIButton.Configuration.plain()
+     config.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12)
+     config.attributedTitle = AttributedString("내 정보 보기", attributes: AttributeContainer([NSAttributedString.Key.font: UIFont.ngaP2Sb,
+          NSAttributedString.Key.foregroundColor: NagazaAsset.Colors.gray5.color
+         ])
+     )
+     button.configuration = config
+     */
 	lazy var togglePeriodButton: UIButton = {
-		
-		let button = UIButton()
-		button.setTitle("주", for: .normal)
-		button.titleLabel?.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
-		button.setTitleColor(.label, for: .normal)
-		button.setImage(UIImage(systemName: "arrowtriangle.down.fill"), for: .normal)
-		button.tintColor = .black
-		button.backgroundColor = .systemGray6
-		button.semanticContentAttribute = .forceRightToLeft
-		button.contentEdgeInsets = .init(top: 4, left: 8, bottom: 4, right: 16)
-		button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 12.0,
-														  bottom: 0, right: 0)
-		button.layer.cornerRadius = 4.0
-		button.translatesAutoresizingMaskIntoConstraints = false
+        var config = UIButton.Configuration.filled()
+        
+        var titleContainer = AttributeContainer()
+        titleContainer.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        config.attributedTitle = AttributedString("주", attributes:  titleContainer)
+        
+        config.image = UIImage(systemName: "arrowtriangle.down.fill")
+        config.imagePadding = 2
+        config.titlePadding = 2
+        config.contentInsets = NSDirectionalEdgeInsets.init(top: 4, leading: 8, bottom: 4, trailing: 8)
+        
+        let button = UIButton()
+        
+        config.imagePlacement = NSDirectionalRectEdge.trailing
+        button.configuration = config
+        button.tintColor = .white
+        button.layer.cornerRadius = 4
+        
 		button.addTarget(self, action: #selector(tapToggleButton), for: .touchUpInside)
+        
 		return button
 	}()
     // MARK: - Calendar View ---
@@ -95,17 +118,20 @@ class HomeViewController: UIViewController {
         
         calendarView.appearance.weekdayFont = .gmsans(ofSize: 16, weight: .GMSansMedium)
         calendarView.appearance.headerTitleFont = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        calendarView.appearance.titleFont = .gmsans(ofSize: 14, weight: .GMSansLight)
+        calendarView.appearance.titleFont = .gmsans(ofSize: 14, weight: .GMSansMedium)
         calendarView.appearance.subtitleFont = .gmsans(ofSize: 14, weight: .GMSansLight)
         
         calendarView.appearance.headerTitleColor = UIColor.black
         calendarView.appearance.weekdayTextColor = UIColor.systemDimGray
         calendarView.appearance.titleDefaultColor = UIColor.black
+        
+        calendarView.appearance.titleWeekendColor = .vividRedPurple
+        
         calendarView.appearance.titlePlaceholderColor = UIColor.systemGray2
         calendarView.appearance.todayColor = UIColor.neonYellow
         calendarView.appearance.selectionColor = UIColor.neonPurple
         calendarView.appearance.titleTodayColor = UIColor.black
-        calendarView.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     
     func getNextWeek(date: Date) -> Date {
@@ -152,9 +178,7 @@ class HomeViewController: UIViewController {
 	
 	
 	lazy var calendarView = FSCalendar(frame: .zero)
-	
 
-	
 	@IBAction func leaveLogButtonTapped(_ sender: Any) {
 		let viewController = SoundLogViewController()
 		viewController.isModalInPresentation = true
