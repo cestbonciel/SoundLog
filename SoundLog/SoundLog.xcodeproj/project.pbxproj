@@ -310,7 +310,6 @@
 				87BFB05F2AB82BDE00CF839A /* Applications */,
 				1A1877BA2B867C8E001DB607 /* Data */,
 				87BFB05E2AB82B9800CF839A /* Presentation */,
-				87BFB0632AB8316600CF839A /* Extensions */,
 				877DACA42A7ADC9100AE3038 /* Resources */,
 			);
 			path = SoundLog;
@@ -379,17 +378,18 @@
 		87BFB05E2AB82B9800CF839A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				87BFB0632AB8316600CF839A /* Extensions */,
+				87EE460B2AD7D614008E553F /* ContentViews */,
 				1A52406C2B9EE6D20015FEAC /* Components */,
 				1A871B272B87C2FC00F2CD10 /* Cell */,
 				87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */,
 				877DAC962A7AD46C00AE3038 /* Main.storyboard */,
 				878864D12A8E73A6008340E2 /* MainTabBarController.swift */,
 				87E9769D2A8D4BEA00756C18 /* StartViewController.swift */,
-				87BFB0602AB82F4100CF839A /* RecordingLogScene */,
 				87BFB05C2AB82A7A00CF839A /* HomeScene */,
+				87BFB0602AB82F4100CF839A /* RecordingLogScene */,
 				87BFB05B2AB82A7300CF839A /* ShazamScene */,
 				8777A7E62A9BBCD3005526D1 /* MoreMenuScene */,
-				87EE460B2AD7D614008E553F /* ContentViews */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
