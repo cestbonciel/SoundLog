@@ -101,7 +101,9 @@
                                         <rect key="frame" x="283" y="0.0" width="47" height="32"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="plus" catalog="system">
+                                            <color key="baseBackgroundColor" systemColor="labelColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="leaveLogButtonTapped:" destination="rhw-ca-8Nb" eventType="touchUpInside" id="XtG-d4-2aQ"/>
                                         </connections>
@@ -205,6 +207,7 @@
             <point key="canvasLocation" x="-2003" y="380"/>
         </scene>
     </scenes>
+    <color key="tintColor" systemColor="labelColor"/>
     <resources>
         <image name="_monthlylbl_bg" width="109" height="13"/>
         <image name="homeIcon" width="24" height="24"/>
@@ -213,6 +216,9 @@
         <image name="more_highlight" width="24" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="shazam" width="60" height="60"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

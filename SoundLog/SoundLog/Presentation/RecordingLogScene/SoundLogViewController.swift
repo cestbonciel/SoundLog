@@ -453,16 +453,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         return label
     }()
     
-    private lazy var bottomStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [soundLogTextView, backgroundView4, backgroundView5])
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.layer.borderColor = UIColor.magenta.cgColor
-        stackView.layer.borderWidth = 1
-        return stackView
-    }()
-
-    
     // MARK: - setupUI
     private func setupUI() {
         
@@ -669,16 +659,7 @@ extension SoundLogViewController: UITextFieldDelegate {
     }
 }
 
-
-extension CLPlacemark {
-    var formattedAddress: String? {
-        if let name = name, let locality = subLocality, let administrativeArea = administrativeArea {
-            return "\(name), \(locality), \(administrativeArea)"
-        }
-        return nil
-    }
-}
-
+// MARK: - Map
 extension SoundLogViewController: MapViewControllerDelegate {
     func didSelectLocationWithAddress(_ address: String?) {
          if let address = address {

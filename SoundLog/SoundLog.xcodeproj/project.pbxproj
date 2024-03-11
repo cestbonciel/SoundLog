@@ -24,6 +24,7 @@
 		1A9C0FFF2B9DE8700026D92D /* AcknowList in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9C0FFE2B9DE8700026D92D /* AcknowList */; };
 		1A9C10012B9DE8CB0026D92D /* DeviceVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9C10002B9DE8CB0026D92D /* DeviceVersion.swift */; };
 		1A9C10032B9DEAD80026D92D /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 1A9C10022B9DEAD80026D92D /* Package.resolved */; };
+		1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */; };
 		1ACA8FAB2B95046200C4F34A /* CustomPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */; };
 		1AF5E4422B15DFF800E3537A /* ModifyUserNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */; };
 		8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8708D6BA2A9F86E70000CAC5 /* SnapKit */; };
@@ -91,6 +92,7 @@
 		1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInfo.swift; sourceTree = "<group>"; };
 		1A9C10002B9DE8CB0026D92D /* DeviceVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceVersion.swift; sourceTree = "<group>"; };
 		1A9C10022B9DEAD80026D92D /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = SoundLog.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved; sourceTree = SOURCE_ROOT; };
+		1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlackMark+Extension.swift"; sourceTree = "<group>"; };
 		1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerView.swift; sourceTree = "<group>"; };
 		1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyUserNameController.swift; sourceTree = "<group>"; };
 		871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogViewController.swift; sourceTree = "<group>"; };
@@ -308,7 +310,7 @@
 				87BFB05F2AB82BDE00CF839A /* Applications */,
 				1A1877BA2B867C8E001DB607 /* Data */,
 				87BFB05E2AB82B9800CF839A /* Presentation */,
-				87BFB0632AB8316600CF839A /* Commons */,
+				87BFB0632AB8316600CF839A /* Extensions */,
 				877DACA42A7ADC9100AE3038 /* Resources */,
 			);
 			path = SoundLog;
@@ -433,13 +435,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		87BFB0632AB8316600CF839A /* Commons */ = {
+		87BFB0632AB8316600CF839A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				878864D32A8E745D008340E2 /* UIColor+Extension.swift */,
 				876B9A832AEFE33700D566D0 /* UIFont+Extension.swift */,
+				1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */,
 			);
-			path = Commons;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		87EE460B2AD7D614008E553F /* ContentViews */ = {
@@ -588,6 +591,7 @@
 				878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */,
 				8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */,
 				8731316D2A9CE26700E8B645 /* MoreMenuViewController.swift in Sources */,
+				1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */,
 				874418692ABAD98400233604 /* RecordingViewController+AVFoundation.swift in Sources */,
 				1A1877C62B8688B2001DB607 /* StorageSoundLog.swift in Sources */,
 				1A54A9EC2B2B739A00FB72DA /* SettingsModels.swift in Sources */,
