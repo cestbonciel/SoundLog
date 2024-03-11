@@ -33,12 +33,17 @@ class SoundLogTableCell: UITableViewCell {
         label.font = .gmsans(ofSize: 12, weight: .GMSansLight)
         return label
     }()
-    
+   
     lazy var bookmarkIcon: UIImageView = {
         let icon = UIImageView()
         icon.image = UIImage(systemName: "bookmark")
         icon.contentMode = .scaleAspectFit
         icon.tintColor = .black
+        return icon
+    }()
+    
+    private lazy var categoryIcon: CategoryIconView = {
+        let icon = CategoryIconView(type: .asmr)
         return icon
     }()
     
@@ -110,6 +115,7 @@ class SoundLogTableCell: UITableViewCell {
         self.contentView.addSubview(cellView)
         cellView.addSubview(locationIcon)
         cellView.addSubview(locationLabel)
+        cellView.addSubview(categoryIcon)
         cellView.addSubview(bookmarkIcon)
         cellView.addSubview(titleLabel)
         cellView.addSubview(rightStackView)
@@ -131,11 +137,17 @@ class SoundLogTableCell: UITableViewCell {
             $0.top.equalTo(locationIcon.snp.top)
             $0.left.equalTo(locationIcon.snp.right).offset(5)
         }
-        
+
         bookmarkIcon.snp.makeConstraints {
             $0.top.equalToSuperview().inset(8)
             $0.right.equalToSuperview().inset(16)
             $0.height.equalTo(24)
+        }
+        
+        categoryIcon.snp.makeConstraints {
+            $0.centerY.equalTo(bookmarkIcon.snp.centerY)
+            $0.right.equalTo(bookmarkIcon.snp.left).offset(-16)
+            $0.height.equalTo(16)
         }
         
         titleLabel.snp.makeConstraints {
