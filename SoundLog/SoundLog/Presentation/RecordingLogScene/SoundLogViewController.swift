@@ -29,14 +29,10 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
     }
 
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
-    
-    
-    
-    
+
     //MARK: - Entire View Scroll
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -69,8 +65,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         button.backgroundColor = UIColor.lightGray
         button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         button.setTitle("취소", for: .normal)
-//        button.setAttributedTitle(.attributeFont(font: .GMSansMedium, size: 16, text: "취소", lineHeight: 18), for: .normal)
-        
         button.addTarget(self, action: #selector(actCancelButton), for: .touchUpInside)
         return button
     }()
@@ -81,7 +75,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         button.layer.cornerRadius = 10
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = UIColor.neonYellow
-//        button.setAttributedTitle(.attributeFont(font: .GMSansBold, size: 16, text: "저장", lineHeight: 18), for: .normal)
         button.setTitle("저장", for: .normal)
         button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         
@@ -161,7 +154,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     //MARK: - Choose mood
     private lazy var moodStackView: UIStackView = {
         let stackView = UIStackView()
-//        stackView.layer.borderWidth = 1
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.distribution = .fillEqually
@@ -288,8 +280,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     
     func didFinishRecording(url: URL) {
         customPlayerView.queueSound(url: url)
-        
-        //view.addSubview(customPlayerView)
+
         updateUI(withPlayer: true)
     }
     
@@ -457,7 +448,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     let addressLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-//        label.text = "위치"
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -586,21 +576,13 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         // MARK: - UITextView
         soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
         contentView.addSubview(soundLogTextView)
-//        contentView.addSubview(bottomStack)
-        
-//        bottomStack.snp.makeConstraints {
-//            $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
-//            $0.left.right.equalToSuperview().inset(28)
-//            $0.bottom.equalTo(view.safeAreaLayoutGuide)
-//        }
-        
-//        soundLogTextView.translatesAutoresizingMaskIntoConstraints = false
+
         soundLogTextView.snp.makeConstraints {
             $0.top.equalTo(recordingStack.snp.bottom).offset(24)
             $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(180)
         }
-        // 200 + 24 + 48 +
+
         // MARK: - USER LOCATION
         contentView.addSubview(backgroundView4)
         backgroundView4.addSubview(locationStack)

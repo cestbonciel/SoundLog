@@ -216,14 +216,6 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         
     }
 	//MARK: Progress Bar Timer
-//	@objc func updateTimer() {
-//		if isRecording || isPlaying {
-//			// 녹음 중 또는 재생 중일 때
-//			let currentTime = isRecording ? audioRecorder.currentTime : audioPlayer.currentTime
-//			let formattedTime = formatTime(audioRecorder.currentTime ?? 0)
-//
-//		}
-//	}
 	
 	func formatTime(_ time: TimeInterval) -> String {
 		let min = Int(time / 60)
@@ -264,16 +256,6 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         
 	}
 	
-    func saveRecordedAudio(filePath: RecordedFile, title: String) {
-        let recordedAudio = StorageSoundLog()
-       
-        recordedAudio.recordedFileUrl = filePath
-
-        
-        
-        
-    }
-    
 	// MARK: - AVFoundation Delegate
 	func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("function: \(#function)")
@@ -284,11 +266,11 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         recordButton.setImage(UIImage(systemName: "mic.fill"), for: UIControl.State())
         
         let alert = UIAlertController(title: "소리의 기록",
-                                                message: "녹음이 완료됐어요.",
-                                                preferredStyle: .alert)
+                                      message: "녹음이 완료됐어요.",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "녹음유지", style: .default) {[unowned self] _ in
-             print("keep was tapped")
-             self.audioRecorder = nil
+            print("keep was tapped")
+            self.audioRecorder = nil
         })
         alert.addAction(UIAlertAction(title: "지우기", style: .destructive) {[unowned self] _ in
              print("delete was tapped")

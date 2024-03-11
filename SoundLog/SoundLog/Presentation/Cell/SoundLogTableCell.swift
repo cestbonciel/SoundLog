@@ -73,6 +73,8 @@ class SoundLogTableCell: UITableViewCell {
         return stackView
     }()
     
+    private lazy var customPlayerView: CustomPlayerView = CustomPlayerView()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
@@ -111,6 +113,7 @@ class SoundLogTableCell: UITableViewCell {
         cellView.addSubview(bookmarkIcon)
         cellView.addSubview(titleLabel)
         cellView.addSubview(rightStackView)
+        cellView.addSubview(customPlayerView)
         
         cellView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -138,6 +141,12 @@ class SoundLogTableCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(locationLabel.snp.bottom).offset(16)
             $0.left.equalTo(locationIcon.snp.left)
+        }
+        
+        customPlayerView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
+            $0.left.right.equalToSuperview()
+            
         }
         
         rightStackView.snp.makeConstraints {

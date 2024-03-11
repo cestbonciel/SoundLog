@@ -128,6 +128,7 @@ class CustomPlayerView: UIView {
     }
 
 
+
     
     @objc private func updatePlayTime() {
         guard let player = audioPlayer else { return }
@@ -145,24 +146,14 @@ class CustomPlayerView: UIView {
     
     
     private func setupUI() {
-        let title = UILabel()
-        self.addSubview(title)
-        title.text = "소리의 기록"
-        title.textColor = .black
-        title.adjustsFontForContentSizeCategory = true
-        title.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(playerBGView)
         playerBGView.addSubview(playAndPauseBtn)
         playerBGView.addSubview(audioPlayTimeLabel)
         playerBGView.addSubview(playStateBar)
-        title.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalToSuperview().inset(64)
-        }
-        
+       
         playerBGView.snp.makeConstraints {
-            $0.top.equalTo(title.snp.bottom).offset(160)
-            $0.left.right.equalToSuperview().inset(24)
+            $0.centerY.equalToSuperview()
+            $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(32)
         }
         

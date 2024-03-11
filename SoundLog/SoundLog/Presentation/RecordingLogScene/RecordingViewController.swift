@@ -185,11 +185,28 @@ class RecordingViewController: UIViewController {
     
     @objc func saveRecordedFile() {
         guard let recordedAudioURL = audioFileURL else { return }
-        do {
-            let audioData = try Data(contentsOf: recordedAudioURL)
-            print("File Size: \(audioData.count) bytes")
-        } catch {
-            print("Error reading audio file: \(error.localizedDescription)")
+        
+        // RealmManager를 사용하여 녹음된 파일 URL을 저장
+        RealmManager.saveRecordedFile(recordedAudioURL) { success in
+            DispatchQueue.main.async {
+                if success {
+                    // 성공적으로 저장된 경우, UI 업데이트를 메인 스레드에서 수행
+                    print("Recorded file URL saved successfully.")
+                    let alert = UIAlertController(title: "소리의 기록",
+                                                  message: "녹음파일을 저장했어요.",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default) { [unowned self] _ in
+                        print("recorded file saved")
+                        self.audioRecorder = nil
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    // 실패한 경우, 사용자에게 실패 메시지 표시
+                    print("Failed to save recorded file URL.")
+                }
+                
+            }
+            
         }
     }
 

@@ -6,11 +6,14 @@
 //
 
 import UIKit
-import SnapKit
+
 import FSCalendar
+import SnapKit
+import RealmSwift
 
 class HomeViewController: UIViewController {
-    var soundManager = SoundInfoManager()
+    var soundLogs: Results<StorageSoundLog>?
+    
 //    let soundInfo = SoundInfo
     let dummyData = ["바닷소리", "음악소리"]
 	struct Icon {
@@ -32,8 +35,7 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
 		configureCalendar()
         
-        let newSound = soundManager.createSound()
-        soundManager.sounds.append(newSound)
+        
 	}
 	
 	var selectedDate: DateComponents? = nil

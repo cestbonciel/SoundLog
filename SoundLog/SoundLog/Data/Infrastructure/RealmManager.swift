@@ -22,7 +22,10 @@ final class RealmManager {
             print("Error saving object to Realm: \(error)")
         }
     }
-    static func saveRecordedFile(_ recordedFile: RecordedFile, completion: @escaping (Bool) -> Void) {
+    
+    static func saveRecordedFile(_ url: URL, completion: @escaping (Bool) -> Void) {
+        let recordedFile = RecordedFile()
+        recordedFile.recordedFileUrl = url.absoluteString
         do {
             try realm.write {
                 realm.add(recordedFile)
@@ -34,7 +37,10 @@ final class RealmManager {
         }
     }
     
-    
+    static func printRealmFilePath() {
+        print("Realm file path: \(Realm.Configuration.defaultConfiguration.fileURL!)")
+    }
+
     static func getAllObjects() -> Results<StorageSoundLog> {
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         return realm.objects(StorageSoundLog.self)
