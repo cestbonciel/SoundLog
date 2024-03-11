@@ -532,8 +532,9 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
         backgroundView2.addSubview(moodStackView)
         moodStackView.snp.makeConstraints {
-            $0.left.right.equalTo(backgroundView2).inset(24)
-            $0.edges.equalToSuperview()
+            $0.left.equalToSuperview().inset(4)
+            $0.right.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
         }
         
         for button in moodButtons {
@@ -596,28 +597,26 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
         locationStack.snp.makeConstraints{
             $0.centerY.equalToSuperview()
-            $0.left.equalToSuperview().inset(10)
+            $0.left.equalToSuperview().inset(16)
             $0.right.equalToSuperview().inset(16)
+        }
+
+        locationLabel.snp.makeConstraints {
+            $0.left.equalToSuperview()
+            $0.centerY.equalTo(locationStack.snp.centerY)
+        }
+        
+        coreLocationButton.snp.makeConstraints {
+            $0.right.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.width.height.equalTo(32)
         }
         
         addressLabel.snp.makeConstraints {
             $0.top.equalTo(locationStack.snp.top).offset(56)
             $0.leading.equalTo(locationStack.snp.leading).inset(20)
         }
-        
-        locationLabel.snp.makeConstraints {
-            $0.leading.equalTo(locationStack.snp.leading).inset(10)
-            $0.centerY.equalTo(locationStack.snp.centerY)
-            $0.width.equalTo(198)
-            $0.height.equalTo(40)
-        }
-        
-        coreLocationButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(16)
-            $0.centerY.equalTo(locationStack.snp.centerY)
-            $0.width.equalTo(32)
-            $0.height.equalTo(32)
-        }
+       
         
         contentView.addSubview(backgroundView5)
         backgroundView5.addSubview(categoryLabel)
