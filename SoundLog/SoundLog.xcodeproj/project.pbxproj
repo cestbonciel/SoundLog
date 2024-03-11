@@ -420,7 +420,6 @@
 			isa = PBXGroup;
 			children = (
 				8744185C2AB8966200233604 /* RecordingSound.storyboard */,
-				8744187C2ABB5CFD00233604 /* LogTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -452,6 +451,7 @@
 				87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */,
 				1A1396992B187C0C0072BC49 /* CustomNaviBarItem.swift */,
 				1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */,
+				8744187C2ABB5CFD00233604 /* LogTextView.swift */,
 			);
 			path = ContentViews;
 			sourceTree = "<group>";

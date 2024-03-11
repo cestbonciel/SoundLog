@@ -13,8 +13,8 @@ final class LogTextView: UITextView {
 		static let cornerRadius = 10.0
 		static let containerInset = UIEdgeInsets(top: 20, left: 20, bottom: 30, right: 20)
 		static let placeholderColor = UIColor.systemDimGray
-		static let placeholderFont = UIFont(name: "GmarketSansLight", size: 16.0)
-		static let mainTextFont = UIFont(name: "GmarketSansLight", size: 16.0)
+		static let placeholderFont = UIFont(name: "GmarketSansTTFMedium", size: 16.0)
+		static let mainTextFont = UIFont(name: "GmarketSansTTFLight", size: 16.0)
 		static let lineHeight: CGFloat = 24.0
 	}
 	
@@ -23,9 +23,7 @@ final class LogTextView: UITextView {
 		let textView = UITextView()
 		textView.backgroundColor = .clear
 		textView.textColor = TextViewConst.placeholderColor
-		
         textView.isUserInteractionEnabled = false
-//		textView.isUserInteractionEnabled = false
 		textView.isAccessibilityElement = false
 		return textView
 	}()
@@ -39,8 +37,6 @@ final class LogTextView: UITextView {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	
 	
 	var placeholderText: String? {
 		didSet {
