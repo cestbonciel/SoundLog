@@ -22,6 +22,7 @@
 		1A7A518F2BA0B5CF004D33BD /* SoundLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A518E2BA0B5CF004D33BD /* SoundLogViewModel.swift */; };
 		1A7A51912BA0B8E3004D33BD /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A51902BA0B8E3004D33BD /* Date+Extension.swift */; };
 		1A7A51932BA0BE12004D33BD /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A51922BA0BE12004D33BD /* Observable.swift */; };
+		1A7A519A2BA105E7004D33BD /* MoodEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7A51992BA105E7004D33BD /* MoodEmoji.swift */; };
 		1A871B292B87C34400F2CD10 /* SoundLogTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A871B282B87C34400F2CD10 /* SoundLogTableCell.swift */; };
 		1A871B2C2B87D74E00F2CD10 /* SoundInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */; };
 		1A9C0FFF2B9DE8700026D92D /* AcknowList in Frameworks */ = {isa = PBXBuildFile; productRef = 1A9C0FFE2B9DE8700026D92D /* AcknowList */; };
@@ -94,6 +95,7 @@
 		1A7A518E2BA0B5CF004D33BD /* SoundLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogViewModel.swift; sourceTree = "<group>"; };
 		1A7A51902BA0B8E3004D33BD /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		1A7A51922BA0BE12004D33BD /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		1A7A51992BA105E7004D33BD /* MoodEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEmoji.swift; sourceTree = "<group>"; };
 		1A871B282B87C34400F2CD10 /* SoundLogTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogTableCell.swift; sourceTree = "<group>"; };
 		1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInfo.swift; sourceTree = "<group>"; };
 		1A9C10002B9DE8CB0026D92D /* DeviceVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceVersion.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		1A52406C2B9EE6D20015FEAC /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8744187C2ABB5CFD00233604 /* LogTextView.swift */,
 				1A52406D2B9EE6FA0015FEAC /* CategoryIconView.swift */,
 			);
 			path = Components;
@@ -247,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */,
+				1A7A51992BA105E7004D33BD /* MoodEmoji.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -476,7 +480,6 @@
 				87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */,
 				1A1396992B187C0C0072BC49 /* CustomNaviBarItem.swift */,
 				1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */,
-				8744187C2ABB5CFD00233604 /* LogTextView.swift */,
 			);
 			path = ContentViews;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				1A871B292B87C34400F2CD10 /* SoundLogTableCell.swift in Sources */,
 				8747643D2AFAA46C00365717 /* ShazamView.swift in Sources */,
 				1A13969A2B187C0C0072BC49 /* CustomNaviBarItem.swift in Sources */,
+				1A7A519A2BA105E7004D33BD /* MoodEmoji.swift in Sources */,
 				1A9C10012B9DE8CB0026D92D /* DeviceVersion.swift in Sources */,
 				876B9A842AEFE33700D566D0 /* UIFont+Extension.swift in Sources */,
 				878864D42A8E745D008340E2 /* UIColor+Extension.swift in Sources */,

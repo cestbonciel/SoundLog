@@ -10,9 +10,7 @@ import RealmSwift
 
 final class RealmManager {
     static var realm = try! Realm()
-    
-  
-    
+ 
     static func saveObject(_ soundStorage: StorageSoundLog)  {
         do {
             try realm.write {

@@ -5,7 +5,7 @@
 //  Created by Nat Kim on 2024/03/13.
 //
 
-import Foundation
+import UIKit
 
 class SoundLogViewModel {
     private var sounds: [StorageSoundLog] = Array(RealmManager.getAllObjects())
@@ -30,6 +30,35 @@ class SoundLogViewModel {
         } else {
             return false
         }
+    }
+    
+    var moodIsValid: Bool {
+        if soundMood.value.isEmpty {
+             return false
+        }
+        return true
+    }
+    
+    var soundIsValid: Bool {
+        if let url = recordedFileUrl.value, !url.isEmpty {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var locationIsValid: Bool {
+        if soundLocation.value.isEmpty {
+            return false
+        }
+        return true
+    }
+    
+    var categoryIsValid: Bool {
+        if soundCategory.value.isEmpty {
+            return false
+        }
+        return true
     }
     
     func createRecordedFile() -> RecordedFile? {

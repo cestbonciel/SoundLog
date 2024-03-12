@@ -6,10 +6,16 @@
 //
 
 import UIKit
-import SnapKit
 import MapKit
 
+import SnapKit
+
+
 class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
+    
+    var viewModel = SoundLogViewModel()
+    
+    //private let soundLogView = SoundLogView()
     private let soundLogTextView = LogTextView()
     private let customPlayerView = CustomPlayerView()
     
@@ -17,12 +23,12 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     var locationManager2: CLLocationManager?
     weak var mapDelegate: MapViewControllerDelegate?
 
-    //MARK: - viewDidLoad
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.pastelSkyblue
         setupUI()
-        
+         
         navigationController?.hidesBarsOnSwipe = true
         scrollView.delegate = self
         
@@ -66,6 +72,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         return button
     }()
     
+     
+    // MARK: - Save 녹음 일기 ⭐️
     private lazy var saveButton: UIButton = {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 72, height: 40)
@@ -100,7 +108,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         return datePicker
     }()
     
-    @objc func actCancelButton() {
+    @objc func actCancelButton(_ sender: UIButton) {
         
         let alertController = UIAlertController(title: "안내", message: "취소하면 작성한 내용이 사라집니다.", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -191,7 +199,13 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         sender.backgroundColor = UIColor.neonPurple
         sender.layer.cornerRadius = sender.layer.frame.height / 2
         sender.clipsToBounds = true
+        
+        if let moodEmoji = MoodEmoji(rawValue: sender.tag) {
+            let moodString = moodEmoji.emojiString
+            viewModel.soundMood.value = moodString
+        }
     }
+    
     // MARK: - Feature : Recording
     private lazy var backgroundView3: UIView = {
         let view = UIView()
@@ -613,6 +627,16 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
         
     }// : setupUI
+    
+    // MARK: - 제목, 내용 글자 수 제한 --
+    func updateForm() {
+        let titleLength = viewModel.titlelimit
+        let mood = viewModel.moodIsValid
+        let sound = viewModel.soundIsValid
+        let location = viewModel.locationIsValid
+        let category = viewModel.categoryIsValid
+        saveButton.isEnabled = titleLength && mood && sound && location && category
+    }
 }
 
 extension SoundLogViewController: UIScrollViewDelegate {
