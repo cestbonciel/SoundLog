@@ -9,7 +9,9 @@ import UIKit
 import AVFoundation
 
 class RecordingViewController: UIViewController {
-	
+    // MARK: - viewModel
+    var viewModel: SoundLogViewModel!
+    
 	var audioRecorder: AVAudioRecorder!
 	var audioPlayer: AVAudioPlayer!
 	var progressTimer: Timer!
@@ -27,7 +29,7 @@ class RecordingViewController: UIViewController {
 		super.viewDidLoad()
 		self.setupUI()
 		view.backgroundColor = .pastelSkyblue
-        
+        viewModel = SoundLogViewModel()
         stopButton.isEnabled = false
         playButton.isEnabled = false
         setSessionPlayback()
@@ -186,28 +188,33 @@ class RecordingViewController: UIViewController {
     @objc func saveRecordedFile() {
         guard let recordedAudioURL = audioFileURL else { return }
         
-        // RealmManager를 사용하여 녹음된 파일 URL을 저장
-        RealmManager.saveRecordedFile(recordedAudioURL) { success in
-            DispatchQueue.main.async {
-                if success {
-                    // 성공적으로 저장된 경우, UI 업데이트를 메인 스레드에서 수행
-                    print("Recorded file URL saved successfully.")
-                    let alert = UIAlertController(title: "소리의 기록",
-                                                  message: "녹음파일을 저장했어요.",
-                                                  preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "확인", style: .default) { [unowned self] _ in
-                        print("recorded file saved")
-                        self.audioRecorder = nil
-                    })
-                    self.present(alert, animated: true, completion: nil)
-                } else {
-                    // 실패한 경우, 사용자에게 실패 메시지 표시
-                    print("Failed to save recorded file URL.")
+        viewModel.recordedFileUrl.value = recordedAudioURL.absoluteString
+        
+        if let recordedFile = viewModel.createRecordedFile() {
+            // RealmManager를 사용하여 녹음된 파일 URL을 저장
+            RealmManager.saveRecordedFile(recordedAudioURL) { success in
+                DispatchQueue.main.async {
+                    if success {
+                        // 성공적으로 저장된 경우, UI 업데이트를 메인 스레드에서 수행
+                        print("Recorded file URL saved successfully.")
+                        let alert = UIAlertController(title: "소리의 기록",
+                                                      message: "녹음파일을 저장했어요.",
+                                                      preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "확인", style: .default) { [unowned self] _ in
+                            print("recorded file saved")
+                            self.audioRecorder = nil
+                        })
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        // 실패한 경우, 사용자에게 실패 메시지 표시
+                        print("Failed to save recorded file URL.")
+                    }
+                    
                 }
                 
             }
-            
         }
+        
     }
 
 	// MARK: - Set up User Interfaces
@@ -219,7 +226,6 @@ class RecordingViewController: UIViewController {
 		NSLayoutConstraint.activate([
 			mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			mainLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 32),
-
 		])
 
 		view.addSubview(timerLabel)
@@ -264,11 +270,9 @@ class RecordingViewController: UIViewController {
 			buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 32),
 			buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -32),
 			buttonStackView.heightAnchor.constraint(equalToConstant: 40),
-			
 
 			cancelButton.leadingAnchor.constraint(equalTo: buttonStackView.leadingAnchor),
 			cancelButton.centerYAnchor.constraint(equalTo: buttonStackView.centerYAnchor),
-
 			uploadButton.trailingAnchor.constraint(equalTo: buttonStackView.trailingAnchor),
 			uploadButton.centerYAnchor.constraint(equalTo: buttonStackView.centerYAnchor)
 

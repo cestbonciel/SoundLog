@@ -226,6 +226,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		1A7A51942BA0DC44004D33BD /* RecorderScene */ = {
+			isa = PBXGroup;
+			children = (
+				874418662ABAD97F00233604 /* RecordingViewController.swift */,
+				874418682ABAD98400233604 /* RecordingViewController+AVFoundation.swift */,
+			);
+			path = RecorderScene;
+			sourceTree = "<group>";
+		};
 		1A871B272B87C2FC00F2CD10 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,7 +411,7 @@
 				878864D12A8E73A6008340E2 /* MainTabBarController.swift */,
 				87E9769D2A8D4BEA00756C18 /* StartViewController.swift */,
 				87BFB05C2AB82A7A00CF839A /* HomeScene */,
-				87BFB0602AB82F4100CF839A /* RecordingLogScene */,
+				87BFB0602AB82F4100CF839A /* SoundLogScene */,
 				87BFB05B2AB82A7300CF839A /* ShazamScene */,
 				8777A7E62A9BBCD3005526D1 /* MoreMenuScene */,
 			);
@@ -418,18 +427,17 @@
 			path = Applications;
 			sourceTree = "<group>";
 		};
-		87BFB0602AB82F4100CF839A /* RecordingLogScene */ = {
+		87BFB0602AB82F4100CF839A /* SoundLogScene */ = {
 			isa = PBXGroup;
 			children = (
+				87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */,
+				87B143F72AE6B3DF00EDF23F /* MapViewController.swift */,
 				1A7A518D2BA0B15D004D33BD /* ViewModel */,
 				87BFB0612AB830ED00CF839A /* View */,
 				871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */,
-				874418662ABAD97F00233604 /* RecordingViewController.swift */,
-				87B143F92AE6B3EC00EDF23F /* SharedDelegate.swift */,
-				874418682ABAD98400233604 /* RecordingViewController+AVFoundation.swift */,
-				87B143F72AE6B3DF00EDF23F /* MapViewController.swift */,
+				1A7A51942BA0DC44004D33BD /* RecorderScene */,
 			);
-			path = RecordingLogScene;
+			path = SoundLogScene;
 			sourceTree = "<group>";
 		};
 		87BFB0612AB830ED00CF839A /* View */ = {

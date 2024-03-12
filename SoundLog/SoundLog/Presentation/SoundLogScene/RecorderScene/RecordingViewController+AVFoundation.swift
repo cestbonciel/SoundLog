@@ -231,11 +231,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 		timerLabel.text = formatTime(audioPlayer.currentTime)
 		progressView.progress = Float(audioPlayer.currentTime/audioPlayer.duration)
 	}
-	
-//	@objc func updateRecordTime() {
-//		timerLabel.text = formatTime(audioRecorder?.currentTime ?? 0)
-//	}
-    
+
 	
 	@objc func stopButtonPressed(_ sender: UIButton) {
         audioRecorder?.stop()
@@ -276,12 +272,10 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
              print("delete was tapped")
              self.audioRecorder.deleteRecording()
         })
-        // Realm에 녹음 파일 정보 저장
+        
         if flag {
             self.audioFileURL = recorder.url
-//            let recordedTitle = "소리의기록_\(Date.now.stringFormatShort)"
-//            let recordedAudioPath = audioFileURL.absoluteString
-//            saveRecordedAudio(filePath: recordedAudioPath, title: recordedTitle)
+
         }
         self.present(alert, animated: true, completion: nil)
 	}

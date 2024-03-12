@@ -32,7 +32,7 @@ class SoundLogViewModel {
         }
     }
     
-    private func createRecordedFile() -> RecordedFile? {
+    func createRecordedFile() -> RecordedFile? {
         guard let urlString = recordedFileUrl.value,
               !urlString.isEmpty else { return nil }
         let recordedFile = RecordedFile()
