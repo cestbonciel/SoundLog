@@ -16,7 +16,6 @@ final class RecordedFile: Object {
 final class StorageSoundLog: Object {
     @Persisted(primaryKey: true) var soundId: ObjectId
     @Persisted var createdAt: Date
-    @Persisted var updatedAt: String?
     @Persisted var soundTitle: String
     @Persisted var soundMood: String
     @Persisted var recordedFileUrl: RecordedFile?

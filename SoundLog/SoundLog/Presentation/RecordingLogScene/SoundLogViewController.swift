@@ -289,6 +289,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         button.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
         button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
         button.tintColor = .black
+        button.tintColor = .black
         button.addTarget(self, action: #selector(pinnedCurrentLocation), for: .touchUpInside)
         return button
     }()

@@ -108,7 +108,7 @@ class SoundLogTableCell: UITableViewCell {
         self.bookmarkIcon.image = UIImage(systemName: "bookmark")
         self.moodLabel.text = String(soundInfo.soundMood)
         self.titleLabel.text = soundInfo.soundTitle
-        self.timeLogLabel.text = soundInfo.createdAt
+        self.timeLogLabel.text = soundInfo.createdAt.toTimeString
     }
     
     private func setUpCellUI() {

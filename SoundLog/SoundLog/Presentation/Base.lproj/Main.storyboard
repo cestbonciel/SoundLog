@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fEf-Vj-Qik">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -49,16 +48,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-Q7-g3x" userLabel="AppTitle Stack">
-                                <rect key="frame" x="197" y="64" width="163" height="52"/>
+                                <rect key="frame" x="212.66666666666663" y="64" width="147.33333333333337" height="57.333333333333343"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소리의 기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADt-nx-acz">
-                                        <rect key="frame" x="0.0" y="0.0" width="163" height="32"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="147.33333333333334" height="37.333333333333336"/>
                                         <fontDescription key="fontDescription" name="GmarketSansBold" family="Gmarket Sans" pointSize="32"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Log" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-Lr-gDE">
-                                        <rect key="frame" x="0.0" y="32" width="163" height="20"/>
+                                        <rect key="frame" x="0.0" y="37.333333333333329" width="147.33333333333334" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="wjF-cQ-6e5"/>
                                         </constraints>
@@ -69,16 +68,16 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="160" translatesAutoresizingMaskIntoConstraints="NO" id="hzg-NJ-1Ah">
-                                <rect key="frame" x="30" y="164" width="330" height="32"/>
+                                <rect key="frame" x="30" y="169.33333333333334" width="330" height="32"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bga-7e-95c">
                                         <rect key="frame" x="0.0" y="0.0" width="109" height="32"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="_monthlylbl_bg" translatesAutoresizingMaskIntoConstraints="NO" id="OIt-wt-5jL">
-                                                <rect key="frame" x="0.0" y="11" width="109" height="13"/>
+                                                <rect key="frame" x="0.0" y="12.333333333333314" width="109" height="13"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월별 음악기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-M8-wIR">
-                                                <rect key="frame" x="0.0" y="8" width="109" height="16"/>
+                                                <rect key="frame" x="0.0" y="6.6666666666666572" width="109" height="18.666666666666668"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="109" id="3Tj-A2-xNQ"/>
                                                 </constraints>
@@ -105,7 +104,7 @@
                                             <color key="baseBackgroundColor" systemColor="labelColor"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="leaveLogButtonTapped:" destination="rhw-ca-8Nb" eventType="touchUpInside" id="XtG-d4-2aQ"/>
+                                            <action selector="addLogButtonTapped:" destination="rhw-ca-8Nb" eventType="touchUpInside" id="XtG-d4-2aQ"/>
                                         </connections>
                                     </button>
                                 </subviews>

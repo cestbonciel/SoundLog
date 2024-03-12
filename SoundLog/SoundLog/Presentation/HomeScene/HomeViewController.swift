@@ -14,6 +14,7 @@ import RealmSwift
 class HomeViewController: UIViewController {
     
     let dummyData = ["바닷소리", "음악소리"]
+    
 	struct Icon {
 	  static let leftIcon = UIImage(systemName: "chevron.left")?
 		 .withTintColor(.label, renderingMode: .alwaysOriginal)
@@ -27,13 +28,11 @@ class HomeViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 //		setCalendarView()
-        
 		setupHomeUI()
         tableView.dataSource = self
         tableView.delegate = self
 		configureCalendar()
-        
-        
+
 	}
 	
     var soundLogs: Results<StorageSoundLog>! {
@@ -54,8 +53,6 @@ class HomeViewController: UIViewController {
 		return date
 	}()
 	
-	
-	
 	private lazy var headerLabel: UILabel = {
 		let headerDate = UILabel()
 		headerDate.font = .gmsans(ofSize: 16.0, weight: .GMSansBold)
@@ -64,31 +61,17 @@ class HomeViewController: UIViewController {
 		headerDate.translatesAutoresizingMaskIntoConstraints = false
 		return headerDate
 	}()
-	/*
-     let button = UIButton(type: .custom)
-     
-     button.layer.borderWidth = 1
-     button.layer.cornerRadius = 13
-     button.layer.borderColor = NagazaAsset.Colors.gray5.color.cgColor
-     
-     var config = UIButton.Configuration.plain()
-     config.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12)
-     config.attributedTitle = AttributedString("내 정보 보기", attributes: AttributeContainer([NSAttributedString.Key.font: UIFont.ngaP2Sb,
-          NSAttributedString.Key.foregroundColor: NagazaAsset.Colors.gray5.color
-         ])
-     )
-     button.configuration = config
-     */
+
 	lazy var togglePeriodButton: UIButton = {
         var config = UIButton.Configuration.filled()
         
         var titleContainer = AttributeContainer()
-        titleContainer.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        titleContainer.font = .gmsans(ofSize: 10, weight: .GMSansMedium)
         config.attributedTitle = AttributedString("주", attributes:  titleContainer)
         
         config.image = UIImage(systemName: "arrowtriangle.down.fill")
         config.imagePadding = 2
-        config.titlePadding = 2
+//        config.titlePadding = 2
         config.contentInsets = NSDirectionalEdgeInsets.init(top: 4, leading: 8, bottom: 4, trailing: 8)
         
         let button = UIButton()
@@ -150,7 +133,7 @@ class HomeViewController: UIViewController {
       self.calendarView.setCurrentPage(getPreviousWeek(date: calendarView.currentPage), animated: true)
     }
 	
-    
+    // MARK: - TableView: SoundLogs
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SoundLogTableCell.self, forCellReuseIdentifier: SoundLogTableCell.identifier)
@@ -179,11 +162,12 @@ class HomeViewController: UIViewController {
 	
 	lazy var calendarView = FSCalendar(frame: .zero)
 
-	@IBAction func leaveLogButtonTapped(_ sender: Any) {
-		let viewController = SoundLogViewController()
-		viewController.isModalInPresentation = true
-		viewController.modalPresentationStyle = .fullScreen
-		self.present(viewController, animated: true)
+	@IBAction func addLogButtonTapped(_ sender: Any) {
+		let vc = SoundLogViewController()
+        
+		vc.isModalInPresentation = true
+		vc.modalPresentationStyle = .fullScreen
+		self.present(vc, animated: true)
 	}
 	
 

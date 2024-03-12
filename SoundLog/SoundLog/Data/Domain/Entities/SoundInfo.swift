@@ -16,7 +16,7 @@ struct SoundInfo: Codable, Hashable, Identifiable {
     }
     
     var id: String = UUID().uuidString
-    var createdAt: String
+    var createdAt: Date
     var soundTitle: String
     var soundMood: String
     var recordedFileUrl: String
@@ -30,7 +30,7 @@ extension SoundInfo {
     static let list = [
         SoundInfo(
             id:"1",
-            createdAt: "2024-02-24",
+            createdAt: Date(),
             soundTitle: "속초 바닷가 파도소리",
             soundMood: "😁",
             recordedFileUrl: "http://",
@@ -39,7 +39,7 @@ extension SoundInfo {
         ),
         SoundInfo(
             id:"2",
-            createdAt: "2024-02-24",
+            createdAt: Date(),
             soundTitle: "지나가다 들은 버스킹하는 사람의 기타 연주",
             soundMood: "😄",
             recordedFileUrl: "http://",

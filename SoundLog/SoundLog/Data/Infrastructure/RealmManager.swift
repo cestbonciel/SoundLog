@@ -47,19 +47,21 @@ final class RealmManager {
     }
    
     static func editSoundLog(
-        _ sound: StorageSoundLog,
-        _ date: Date,
-        _ soundTitle: String,
-        _ soundMood: String,
-        _ recordedFile: RecordedFile?,
-        _ soundLocation: String,
-        _ soundCategory: String
+        sound: StorageSoundLog,
+        date: Date,
+        soundTitle: String,
+        soundMood: String,
+        recordedFile: RecordedFile?,
+        soundNote: String,
+        soundLocation: String,
+        soundCategory: String
     ) {
         try! realm.write {
             sound.createdAt = date
             sound.soundTitle = soundTitle
             sound.soundMood = soundMood
             sound.recordedFileUrl = recordedFile
+            sound.recordedSoundNote = soundNote
             sound.soundLocation = soundLocation
             sound.soundCategory = soundCategory
         }
