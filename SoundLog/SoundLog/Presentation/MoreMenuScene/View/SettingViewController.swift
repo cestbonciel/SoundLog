@@ -104,6 +104,10 @@ class SettingViewController: UIViewController, MFMailComposeViewControllerDelega
                 vc.navigationItem.title = "오픈소스"
                 self.navigationController?.pushViewController(vc, animated: true)
             })),
+            .staticCell(model: SettingsOption(title: "개인정보처리방침", handler: {
+                let privacy = URL(string: "https://kimseohyun.notion.site/ee26ce1f5d934c709e2ece9566e09dea?pvs=4")
+                UIApplication.shared.open(privacy!)
+            })),
             .staticCell(model: SettingsOption(title: "버전정보", handler: {
                 
                 
