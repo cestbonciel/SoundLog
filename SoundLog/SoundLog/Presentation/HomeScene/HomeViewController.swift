@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
     
 //	var selectedDate: DateComponents? = nil
 	
-	@IBOutlet weak var AddButton: UIButton!
+	@IBOutlet weak var addButton: UIButton!
 	
 	let headerDateFormatter: DateFormatter = {
 		let date = DateFormatter()

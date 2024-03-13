@@ -133,7 +133,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         textField.leftView = leftInsetView
         textField.leftViewMode = .always
         textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        textField.attributedPlaceholder = NSAttributedString(string: "3자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
         textField.layer.cornerRadius = 10
         textField.clearButtonMode = .whileEditing
@@ -144,9 +144,20 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         textField.returnKeyType = .done
         textField.delegate = self
         textField.layer.backgroundColor = UIColor.white.cgColor
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.addTarget(self, action: #selector(titleTextFieldDidChange), for: .editingChanged)
         return textField
     }()
+    
+    @objc func titleTextFieldDidChange(_ sender: UITextField) {
+        if sender.text?.count == 1 {
+            if sender.text?.first == " " {
+                sender.text = ""
+                return
+            }
+        }
+        viewModel.soundTitle.value = sender.text ?? ""
+        updateForm()
+    }
     
     private lazy var backgroundView2: UIView = {
         let view = UIView()
@@ -646,11 +657,34 @@ extension SoundLogViewController: UIScrollViewDelegate {
         }
     }
 }
+// MARK: - TextField
 extension SoundLogViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else {
+            return false
+        }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        if updatedText.count < 1 && updatedText.count > 7 {
+            presentAlertForInputLimit()
+            return false
+        }
+        
+        return true
+    }
+    
+    private func presentAlertForInputLimit() {
+        let alertController = UIAlertController(title: "경고", message: "제목은 7자를 초과할 수 없습니다.", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alertController.addAction(confirmAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: - Map
