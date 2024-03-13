@@ -133,7 +133,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         textField.leftView = leftInsetView
         textField.leftViewMode = .always
         textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 10자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
         textField.layer.cornerRadius = 10
         textField.clearButtonMode = .whileEditing
@@ -147,16 +147,61 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         textField.addTarget(self, action: #selector(titleTextFieldDidChange), for: .editingChanged)
         return textField
     }()
-    
+    /*
+     // SoundLogViewController
+
+     @objc func titleTextFieldDidChange(_ sender: UITextField) {
+         guard let text = sender.text, !text.isEmpty else { return }
+         
+         // 공백으로 시작하는 입력 방지
+         if text.count == 1 && text.first == " " {
+             sender.text = ""
+             return
+         }
+         
+         viewModel.soundTitle.value = text
+         
+         // 문자 수 제한 초과 시
+         if viewModel.titleLimitExceeded {
+             sender.text = String(sender.text!.prefix(7)) // 7자로 제한
+             showLimitAlert() // 경고 표시 함수 호출
+         }
+         
+         updateForm()
+     }
+
+     // 문자 수 제한 초과 시 사용자에게 경고를 표시하는 메서드
+     private func showLimitAlert() {
+         let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 7자 미만이어야 합니다.", preferredStyle: .alert)
+         let action = UIAlertAction(title: "확인", style: .default)
+         alertController.addAction(action)
+         present(alertController, animated: true)
+     }
+     */
     @objc func titleTextFieldDidChange(_ sender: UITextField) {
-        if sender.text?.count == 1 {
+        guard let text = sender.text, !text.isEmpty else { return }
+    
+        if sender.text?.count == 1 && text.first == " " {
             if sender.text?.first == " " {
                 sender.text = ""
                 return
             }
         }
-        viewModel.soundTitle.value = sender.text ?? ""
+        viewModel.soundTitle.value = text
+        
+        if viewModel.titleLimitExceeded {
+            sender.text = String(sender.text!.prefix(10))
+            showLimitAlert()
+        }
+        
         updateForm()
+    }
+    
+    private func showLimitAlert() {
+        let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 10자 미만이어야 합니다.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
     }
     
     private lazy var backgroundView2: UIView = {
@@ -663,7 +708,7 @@ extension SoundLogViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
+    /*
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else {
@@ -684,7 +729,7 @@ extension SoundLogViewController: UITextFieldDelegate {
         alertController.addAction(confirmAction)
         present(alertController, animated: true, completion: nil)
     }
-    
+    */
 }
 
 // MARK: - Map

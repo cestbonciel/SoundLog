@@ -32,6 +32,10 @@ class SoundLogViewModel {
         }
     }
     
+    var titleLimitExceeded: Bool {
+        return !(1...10).contains(soundTitle.value.count)
+    }
+    
     var moodIsValid: Bool {
         if soundMood.value.isEmpty {
              return false
