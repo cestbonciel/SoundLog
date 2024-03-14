@@ -11,7 +11,7 @@ import SnapKit
 
 final class SoundLogView: UIView, UIScrollViewDelegate {
     private let soundLogTextView = LogTextView()
-    private let customPlayerView = CustomPlayerView()
+    //private let customPlayerView = CustomPlayerView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
