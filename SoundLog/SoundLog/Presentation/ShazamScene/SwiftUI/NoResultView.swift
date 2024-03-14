@@ -16,7 +16,7 @@ struct NoResultView: View {
 			 Image(systemName: "headphones.circle")
 				 .font(.system(size: 40, weight: .light))
 				 .foregroundColor(Color.black.opacity(0.8))
-			 Text("No Result Found")
+			 Text("노래를 찾을 수 없어요.")
 				 .font(.headline)
 				 .foregroundColor(Color.black.opacity(0.8))
 			 
@@ -25,7 +25,7 @@ struct NoResultView: View {
 			 Button(
 				action: { buttonAction() },
 				label: {
-					Text("Try again")
+					Text("다시 탐색")
 						.font(.system(size: 14, weight: .bold, design: .default))
 						.foregroundColor(.white)
 						.frame(width: 200, height: 48, alignment: .center)

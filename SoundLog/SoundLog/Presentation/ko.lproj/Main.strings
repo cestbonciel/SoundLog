@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "Sound Log"; ObjectID = "1M7-Lr-gDE"; */
+"1M7-Lr-gDE.text" = "Sound Log";
+
+/* Class = "UITabBarItem"; title = "더보기"; ObjectID = "4Al-ay-bx4"; */
+"4Al-ay-bx4.title" = "더보기";
+
+/* Class = "UILabel"; text = "소리의 기록"; ObjectID = "ADt-nx-acz"; */
+"ADt-nx-acz.text" = "소리의 기록";
+
+/* Class = "UITabBarItem"; title = "홈"; ObjectID = "HV1-bD-WDe"; */
+"HV1-bD-WDe.title" = "홈";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "q6J-fv-VGE"; */
+"q6J-fv-VGE.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "월별 음악기록"; ObjectID = "sU1-M8-wIR"; */
+"sU1-M8-wIR.text" = "월별 음악기록";

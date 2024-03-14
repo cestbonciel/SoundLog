@@ -143,12 +143,6 @@ struct ShazamView: View {
 
 	}
 
-//	@ViewBuilder
-//	private var footerText: some View {
-//		 Text("Shazam Clone")
-//			  .font(.footnote)
-//			  .foregroundColor(Color.black.opacity(0.7))
-//	}
 
 	private func bindViewModel() {
 		 shazamViewModel.$viewState.sink { viewState in
