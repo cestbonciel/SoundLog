@@ -36,18 +36,27 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         return view
     }()
     
-    //MARK: - Buttons: save, cancel
     lazy var buttonStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [cancelButton, saveButton])
+        let stackView = UIStackView(arrangedSubviews: [cancelButton, rightButtonStack])
         stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.distribution = .equalSpacing
         return stackView
     }()
     
+    //MARK: - Buttons: save, cancel
+    lazy var rightButtonStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [deleteButton, editButton])
+        stackView.axis = .horizontal
+        stackView.alignment = .leading
+        stackView.spacing = 16
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+    
     lazy var cancelButton: UIButton = {
         let button = UIButton()
-        button.frame = CGRect(x: 0, y: 0, width: 72, height: 40)
+        button.frame = CGRect(x: 0, y: 0, width: 56, height: 40)
         button.layer.cornerRadius = 10
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = UIColor.lightGray
@@ -56,13 +65,25 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         return button
     }()
     // MARK: - Save 녹음 일기 ⭐️
-    lazy var saveButton: UIButton = {
+    lazy var deleteButton: UIButton = {
         let button = UIButton()
-        button.frame = CGRect(x: 0, y: 0, width: 72, height: 40)
+        button.frame = CGRect(x: 0, y: 0, width: 56, height: 40)
+        button.layer.cornerRadius = 10
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = UIColor.dimRed
+        button.setTitle("삭제", for: .normal)
+        button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        
+        return button
+    }()
+    
+    lazy var editButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 56, height: 40)
         button.layer.cornerRadius = 10
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = UIColor.neonYellow
-        button.setTitle("저장", for: .normal)
+        button.setTitle("수정", for: .normal)
         button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         
         return button
@@ -71,7 +92,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     // MARK: - Common background  ( 나중에 컴포넌트화 하자)
     private lazy var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -124,7 +145,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     
     lazy var backgroundView2: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         
@@ -160,16 +181,15 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     // MARK: - Feature : Recording
     private lazy var backgroundView3: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var backgroundView4: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         
@@ -178,10 +198,9 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     
     private lazy var backgroundView5: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -209,7 +228,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         button.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
         button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
         button.tintColor = .black
-        //button.addTarget(self, action: #selector(touchUpbottomSheet), for: .touchUpInside)
+
         return button
     }()
     
@@ -304,21 +323,29 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
             $0.width.equalToSuperview()
             $0.height.equalTo(800)
         }
-        
         contentView.addSubview(buttonStack)
         buttonStack.snp.makeConstraints {
             $0.top.equalTo(contentView.snp.top).inset(48)
-            $0.leading.equalToSuperview().inset(28)
-            $0.trailing.equalToSuperview().inset(28)
+            $0.left.equalToSuperview().inset(28)
+            $0.right.equalToSuperview().inset(28)
             $0.height.equalTo(40)
         }
-        
         cancelButton.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview()
             $0.width.equalTo(72)
             $0.height.equalTo(40)
         }
-        
-        saveButton.snp.makeConstraints {
+//        contentView.addSubview(rightButtonStack)
+        rightButtonStack.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            //$0.left.equalTo(cancelButton.snp.right).offset(148)
+            $0.right.equalToSuperview()
+            $0.width.equalTo(126)
+            $0.height.equalTo(40)
+        }
+
+        editButton.snp.makeConstraints {
             $0.width.equalTo(72)
             $0.height.equalTo(40)
         }
@@ -327,7 +354,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         backgroundView.addSubview(soundLogDate)
         
         backgroundView.snp.makeConstraints {
-            $0.top.equalTo(buttonStack.snp.bottom).offset(24)
+            $0.top.equalTo(rightButtonStack.snp.bottom).offset(24)
             $0.leading.equalToSuperview().inset(28)
             $0.trailing.equalToSuperview().inset(28)
             $0.height.equalTo(48)

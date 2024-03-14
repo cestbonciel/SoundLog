@@ -39,21 +39,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
-
-    //MARK: - Entire View Scroll
-//    private lazy var scrollView: UIScrollView = {
-//        let scrollView = UIScrollView()
-//        scrollView.showsVerticalScrollIndicator = true
-//        return scrollView
-//    }()
-//
-//    private lazy var contentView: UIView = {
-//        let view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-//
-
+    
     // MARK: - Objc Action 관리 ⭐️
     func setTargetActions() {
         soundLogView.cancelButton.addTarget(self, action: #selector(actCancelButton), for: .touchUpInside)
