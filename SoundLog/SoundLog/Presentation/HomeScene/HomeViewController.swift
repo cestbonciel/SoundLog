@@ -24,24 +24,28 @@ class HomeViewController: UIViewController {
 	
 	@IBOutlet weak var topSideStackView: UIStackView!
 	@IBOutlet weak var monthlyArchive: UILabel!
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-//		setCalendarView()
-		setupHomeUI()
-        tableView.dataSource = self
-        tableView.delegate = self
-		configureCalendar()
-
-	}
-	
+    
     var soundLogs: Results<StorageSoundLog>! {
         didSet {
             tableView.reloadData()
         }
     }
     
-//	var selectedDate: DateComponents? = nil
+    // MARK: - Life Cycle
+    
+	override func viewDidLoad() {
+		super.viewDidLoad()
+//		setCalendarView()
+		setupHomeUI()
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        soundLogs = RealmManager.fetchDate(date: Date())
+        
+		configureCalendar()
+
+	}
+	
 	
 	@IBOutlet weak var addButton: UIButton!
 	
@@ -161,10 +165,10 @@ class HomeViewController: UIViewController {
 	
 	
 	lazy var calendarView = FSCalendar(frame: .zero)
-
+    // MARK: - SoundLogViewController
 	@IBAction func addLogButtonTapped(_ sender: Any) {
 		let vc = SoundLogViewController()
-        
+        vc.viewModel.createdAt.value = calendarView.selectedDate ?? Date()
 		vc.isModalInPresentation = true
 		vc.modalPresentationStyle = .fullScreen
 		self.present(vc, animated: true)
@@ -211,25 +215,6 @@ class HomeViewController: UIViewController {
 	
 }
 
-//MARK: - Preview Setting
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-struct HomeViewControllerRepresentable: UIViewControllerRepresentable {
-	func makeUIViewController(context: Context) -> some UIViewController {
-		return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Home")
-	}
-	
-	func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-		
-	}
-}
-
-struct HomeViewController_Preview: PreviewProvider {
-	static var previews: some View {
-		HomeViewControllerRepresentable()
-	}
-}
-#endif
 
 extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
 	func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
@@ -253,16 +238,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return dummyData.count
-        return SoundInfo.list.count
-//        let test = soundManager.sounds.count
-//        print(test)
+        return soundLogs.count
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let soundInfo = SoundInfo.list[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as! SoundLogTableCell
-        cell.configure(soundInfo)
+        
         cell.selectionStyle = .none
         return cell
     }

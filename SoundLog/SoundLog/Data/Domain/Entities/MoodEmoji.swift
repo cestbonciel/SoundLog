@@ -10,7 +10,7 @@ import UIKit
 enum MoodEmoji: Int {
     case happy = 1, excited, sad, angry
     
-    var emojiString: String {
+     var emojiString: String {
         switch self {
         case .happy:
             return "😚"

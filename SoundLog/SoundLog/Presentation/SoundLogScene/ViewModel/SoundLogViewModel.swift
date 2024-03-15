@@ -12,7 +12,7 @@ class SoundLogViewModel {
     
     var createdAt: Observable<Date> = Observable(Date())
     var soundTitle: Observable<String> = Observable("")
-    var soundMood: Observable<String> = Observable("😚")
+    var soundMood: Observable<String> = Observable("")
     var recordedFileUrl: Observable<String?> = Observable(nil)
 //    var recordedFileUrl: Observable<String> = Observable("")
     var recordedSoundNote: Observable<String> = Observable("")

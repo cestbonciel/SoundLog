@@ -43,6 +43,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     // MARK: - Objc Action 관리 ⭐️
     func setTargetActions() {
         soundLogView.cancelButton.addTarget(self, action: #selector(actCancelButton), for: .touchUpInside)
+        soundLogView.saveButton.addTarget(self, action: #selector(saveSoundLogs), for: .touchUpInside)
         soundLogView.soundLogDate.addTarget(self, action: #selector(handleDatePicker), for: .valueChanged)
         soundLogView.soundLogTitle.addTarget(self, action: #selector(titleTextFieldDidChange), for: .editingChanged)
         soundLogView.moodButtons.forEach { button in
@@ -52,6 +53,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         soundLogView.coreLocationButton.addTarget(self, action: #selector(pinnedCurrentLocation), for: .touchUpInside)
         soundLogView.selectedRecBtn.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         soundLogView.selectedASMRBtn.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
+        
         
     }
     
@@ -84,14 +86,18 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         alertController.addAction(action)
         present(alertController, animated: true)
     }
+    var selectedMood: MoodEmoji?
     
     @objc private func selectMood(_ sender: UIButton) {
-        var moodTag: Int = 1
+        //var moodTag: Int = 1
         soundLogView.moodButtons.forEach { mood in
             mood.backgroundColor = .clear
         }
         
-        moodTag = sender.tag
+        let selectedMood = MoodEmoji(rawValue: sender.tag)?.emojiString ?? "😄"
+        //moodTag = sender.tag
+        viewModel.soundMood.value = selectedMood
+        
         sender.backgroundColor = UIColor.neonPurple
         sender.layer.cornerRadius = sender.layer.frame.height / 2
         sender.clipsToBounds = true
@@ -112,6 +118,11 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 
         present(alertController, animated: true, completion: nil)
         
+    }
+    
+    @objc func saveSoundLogs(_ sender: UIButton) {
+        viewModel.create()
+        dismiss(animated: true)
     }
    
     // MARK: - Presenting view for REC
@@ -261,23 +272,3 @@ extension SoundLogViewController: MapViewControllerDelegate {
 }
 
 
-
-//MARK: - SwiftUI Preview Setting
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-struct SoundLogViewControllerRepresentable: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> some UIViewController {
-        return UIStoryboard(name: "RecordingSound", bundle: nil).instantiateViewController(withIdentifier: "Record")
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        
-    }
-}
-
-struct SoundLogViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        SoundLogViewControllerRepresentable()
-    }
-}
-#endif

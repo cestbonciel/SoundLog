@@ -143,7 +143,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
     
     lazy var moodButtons: [UIButton] = {
         var buttons = [UIButton]()
-        let mood = [1: "기분", 2: "😚", 3: "😡", 4: "😢", 5: "🥳"]
+        let mood = [1: "기분", 2: "😁", 3: "😡", 4: "😭", 5: "😍"]
         for (index, moodText) in mood.sorted(by: {  $0.key < $1.key }) {
             let button = UIButton()
             button.tag = index
