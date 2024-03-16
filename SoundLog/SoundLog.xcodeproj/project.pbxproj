@@ -100,8 +100,6 @@
 		1A7A51922BA0BE12004D33BD /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		1A7A51992BA105E7004D33BD /* MoodEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodEmoji.swift; sourceTree = "<group>"; };
 		1A8605E52BA21A1B00AA2A55 /* SoundLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogView.swift; sourceTree = "<group>"; };
-		1A8605E72BA229C600AA2A55 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
-		1A8605E82BA229C700AA2A55 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		1A871B282B87C34400F2CD10 /* SoundLogTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogTableCell.swift; sourceTree = "<group>"; };
 		1A871B2B2B87D74E00F2CD10 /* SoundInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundInfo.swift; sourceTree = "<group>"; };
 		1A9C10002B9DE8CB0026D92D /* DeviceVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceVersion.swift; sourceTree = "<group>"; };
@@ -544,7 +542,6 @@
 			knownRegions = (
 				en,
 				Base,
-				ko,
 			);
 			mainGroup = 877DAC842A7AD46C00AE3038;
 			packageReferences = (
@@ -657,7 +654,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				877DAC972A7AD46C00AE3038 /* Base */,
-				1A8605E72BA229C600AA2A55 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -666,7 +662,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				877DAC9C2A7AD46D00AE3038 /* Base */,
-				1A8605E82BA229C700AA2A55 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

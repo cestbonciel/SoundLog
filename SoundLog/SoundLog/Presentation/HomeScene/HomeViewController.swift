@@ -32,6 +32,11 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: - Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        let defaultDate = calendarView.selectedDate ?? calendarView.today!
+        soundLogs = RealmManager.fetchDate(date: defaultDate)
+        calendarView.reloadData()
+    }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -166,7 +171,7 @@ class HomeViewController: UIViewController {
 	
 	lazy var calendarView = FSCalendar(frame: .zero)
     // MARK: - SoundLogViewController
-	@IBAction func addLogButtonTapped(_ sender: Any) {
+	@IBAction func addLogButtonTapped() {
 		let vc = SoundLogViewController()
         vc.viewModel.createdAt.value = calendarView.selectedDate ?? Date()
 		vc.isModalInPresentation = true
@@ -229,6 +234,26 @@ extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalend
 		let currentPage = calendarView.currentPage
 		headerLabel.text = headerDateFormatter.string(from: currentPage)
 	}
+    
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-DD"
+        
+        switch dateFormatter.string(from: date) {
+        case dateFormatter.string(from: Date()):
+            return "오늘"
+        default:
+            return nil
+        }
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        headerLabel.text = headerDateFormatter.string(from: date)
+    }
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        return RealmManager.fetchDate(date: date).count
+    }
 }
 
 // MARK: - TableView
@@ -239,13 +264,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return soundLogs.count
-
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as! SoundLogTableCell
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as? SoundLogTableCell else { fatalError("Unable to dequeue SoundLogTableCell") }
+        let soundLog = soundLogs[indexPath.row]
+        cell.configure(with: soundLog)
         cell.selectionStyle = .none
         return cell
     }

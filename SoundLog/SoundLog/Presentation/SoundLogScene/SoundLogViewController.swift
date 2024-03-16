@@ -225,7 +225,29 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
         present(alertController, animated: true, completion: nil)
     }
-
+    
+    func bind() {
+        viewModel.createdAt.bind { date in
+            self.soundLogView.soundLogDate.date = date
+        }
+        
+        viewModel.soundTitle.bind { text in
+            self.soundLogView.soundLogTitle.text = text
+        }
+        
+        viewModel.soundMood.bind { mood in
+            self.soundLogView.moodButtons.forEach { button in
+                if button.title(for: .normal) == mood {
+                    button.backgroundColor = UIColor.neonPurple
+                    button.layer.cornerRadius = button.frame.height / 2
+                    button.clipsToBounds = true
+                } else {
+                    button.backgroundColor = .clear
+                }
+            }
+        }
+    }
+    
     // MARK: - 제목, 내용 글자 수 제한 --
     func updateForm() {
         let titleLength = viewModel.titlelimit
