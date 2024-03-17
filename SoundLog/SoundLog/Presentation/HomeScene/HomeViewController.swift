@@ -12,9 +12,7 @@ import SnapKit
 import RealmSwift
 
 class HomeViewController: UIViewController {
-    
-    let dummyData = ["바닷소리", "음악소리"]
-    
+
 	struct Icon {
 	  static let leftIcon = UIImage(systemName: "chevron.left")?
 		 .withTintColor(.label, renderingMode: .alwaysOriginal)
@@ -34,25 +32,22 @@ class HomeViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewWillAppear(_ animated: Bool) {
         let defaultDate = calendarView.selectedDate ?? calendarView.today!
-        soundLogs = RealmManager.fetchDate(date: defaultDate)
+        soundLogs = StorageSoundLog.fetchDate(date: defaultDate)
         calendarView.reloadData()
     }
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
-//		setCalendarView()
+
 		setupHomeUI()
         tableView.dataSource = self
         tableView.delegate = self
         
-        soundLogs = RealmManager.fetchDate(date: Date())
+        soundLogs = StorageSoundLog.fetchDate(date: Date())
         
 		configureCalendar()
 
 	}
-	
-	
-	@IBOutlet weak var addButton: UIButton!
 	
 	let headerDateFormatter: DateFormatter = {
 		let date = DateFormatter()
@@ -111,7 +106,7 @@ class HomeViewController: UIViewController {
         calendarView.appearance.weekdayFont = .gmsans(ofSize: 16, weight: .GMSansMedium)
         calendarView.appearance.headerTitleFont = .gmsans(ofSize: 16, weight: .GMSansMedium)
         calendarView.appearance.titleFont = .gmsans(ofSize: 14, weight: .GMSansMedium)
-        calendarView.appearance.subtitleFont = .gmsans(ofSize: 14, weight: .GMSansLight)
+        calendarView.appearance.subtitleFont = .gmsans(ofSize: 8, weight: .GMSansLight)
         
         calendarView.appearance.headerTitleColor = UIColor.black
         calendarView.appearance.weekdayTextColor = UIColor.systemDimGray
@@ -171,7 +166,7 @@ class HomeViewController: UIViewController {
 	
 	lazy var calendarView = FSCalendar(frame: .zero)
     // MARK: - SoundLogViewController
-	@IBAction func addLogButtonTapped() {
+    @IBAction func addLogButtonTapped(_ sender: UIButton) {
 		let vc = SoundLogViewController()
         vc.viewModel.createdAt.value = calendarView.selectedDate ?? Date()
 		vc.isModalInPresentation = true
@@ -252,7 +247,7 @@ extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalend
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        return RealmManager.fetchDate(date: date).count
+        return StorageSoundLog.fetchDate(date: date).count
     }
 }
 
@@ -267,11 +262,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        //var categoryIcon = CategoryIconType.Type.self
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as? SoundLogTableCell else { fatalError("Unable to dequeue SoundLogTableCell") }
         let soundLog = soundLogs[indexPath.row]
-        cell.configure(with: soundLog)
+
         cell.selectionStyle = .none
+        cell.configure(with: soundLog)
         return cell
     }
     

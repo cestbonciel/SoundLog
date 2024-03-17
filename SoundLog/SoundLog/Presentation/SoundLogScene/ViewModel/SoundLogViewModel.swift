@@ -8,7 +8,7 @@
 import UIKit
 
 class SoundLogViewModel {
-    private var sounds: [StorageSoundLog] = Array(RealmManager.getAllObjects())
+    private var sounds: [StorageSoundLog] = Array(StorageSoundLog.getAllObjects())
     
     var createdAt: Observable<Date> = Observable(Date())
     var soundTitle: Observable<String> = Observable("")
@@ -83,11 +83,11 @@ class SoundLogViewModel {
         newOne.soundCategory = soundCategory.value
         
         self.sounds.append(newOne)
-        RealmManager.saveObject(newOne)
+        StorageSoundLog.saveObject(newOne)
     }
     
     func edit(_ oldValue: StorageSoundLog) {
-        RealmManager.editSoundLog(
+        StorageSoundLog.editSoundLog(
             sound: oldValue,
             date: createdAt.value,
             soundTitle: soundTitle.value,

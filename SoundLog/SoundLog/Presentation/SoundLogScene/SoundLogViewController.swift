@@ -161,6 +161,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
             selectedButton = sender
         }
+        
+        viewModel.soundCategory.value = sender == soundLogView.selectedRecBtn ? "Recording" : "ASMR"
     }
     
     // MARK: - action method

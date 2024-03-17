@@ -42,8 +42,9 @@ class SoundLogTableCell: UITableViewCell {
         return icon
     }()
     
-    private lazy var categoryIcon: CategoryIconView = {
+    lazy var categoryIcon: CategoryIconView = {
         let icon = CategoryIconView(type: .asmr)
+  
         return icon
     }()
     
@@ -56,7 +57,7 @@ class SoundLogTableCell: UITableViewCell {
     
     lazy var timeLogLabel: UILabel = {
         let label = UILabel()
-        label.text = "21:00 P.M."
+        label.text = ""
         label.font = .gmsans(ofSize: 10, weight: .GMSansLight)
         return label
     }()
@@ -118,8 +119,17 @@ class SoundLogTableCell: UITableViewCell {
         self.bookmarkIcon.image = UIImage(systemName: "bookmark")
         self.moodLabel.text = soundLog.soundMood
         self.titleLabel.text = soundLog.soundTitle
-        //self.timeLogLabel.text = DateFormatter.localizedString(from: soundLog.createdAt, dateStyle: .medium, timeStyle: .short)
         self.timeLogLabel.text = soundLog.createdAt.toTimeString
+        let categoryType: CategoryIconType = soundLog.soundCategory == "ASMR" ? .asmr : .recording
+        categoryIcon.setupView(type: categoryType)
+        
+        if let recordedFileName = soundLog.recordedFileUrl?.recordedFileUrl {
+            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let recordedFileURL = documentDirectory.appendingPathComponent(recordedFileName)
+            customPlayerView.queueSound(url: recordedFileURL)
+        }
+
+        
     }
     
     private func setUpCellUI() {

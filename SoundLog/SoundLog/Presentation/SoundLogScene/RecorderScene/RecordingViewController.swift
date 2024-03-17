@@ -192,7 +192,7 @@ class RecordingViewController: UIViewController {
         
         if let recordedFile = viewModel.createRecordedFile() {
             // RealmManager를 사용하여 녹음된 파일 URL을 저장
-            RealmManager.saveRecordedFile(recordedAudioURL) { success in
+            StorageSoundLog.saveRecordedFile(recordedAudioURL) { success in
                 DispatchQueue.main.async {
                     if success {
                         // 성공적으로 저장된 경우, UI 업데이트를 메인 스레드에서 수행

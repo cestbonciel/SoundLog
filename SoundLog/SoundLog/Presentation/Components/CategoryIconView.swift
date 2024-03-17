@@ -17,7 +17,7 @@ enum CategoryIconType {
         case .asmr:
             return "ASMR"
         case .recording:
-            return "REC"
+            return "Recording"
         }
     }
 
@@ -32,6 +32,9 @@ enum CategoryIconType {
 }
 
 final class CategoryIconView: UIView {
+    //var type: CategoryIconType!
+    
+    //var onTap: ((CategoryIconType) -> Void)?
     private let iconLabel: UILabel = {
         let label = UILabel()
         label.font = .gmsans(ofSize: 8, weight: .GMSansMedium)
@@ -42,14 +45,18 @@ final class CategoryIconView: UIView {
 
     init(type: CategoryIconType) {
         super.init(frame: .zero)
+        //self.type = type
         setupView(type: type)
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 
-    private func setupView(type: CategoryIconType) {
+    
+    func setupView(type: CategoryIconType) {
         self.backgroundColor = type.backgroundColor
         self.layer.cornerRadius = 4
         self.clipsToBounds = true
@@ -63,5 +70,10 @@ final class CategoryIconView: UIView {
             make.left.equalToSuperview().offset(8) // 좌측 여백
             make.right.equalToSuperview().offset(-8) // 우측 여백
         }
+    }
+    
+    func updateType(type: CategoryIconType) {
+        iconLabel.text = type.title
+        backgroundColor = type.backgroundColor
     }
 }

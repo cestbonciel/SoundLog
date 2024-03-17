@@ -6,9 +6,10 @@
 //
 
 import Foundation
-import RealmSwift
+//import RealmSwift
 
 final class RealmManager {
+    /*
     static var realm = try! Realm()
  
     static func saveObject(_ soundStorage: StorageSoundLog)  {
@@ -74,5 +75,5 @@ final class RealmManager {
     static func fetchDate(date: Date) -> Results<StorageSoundLog> {
         return realm.objects(StorageSoundLog.self).filter("date >= %@ AND date < %@", Date(timeInterval: 86400, since: date))
     }
-    
+    */
 }
