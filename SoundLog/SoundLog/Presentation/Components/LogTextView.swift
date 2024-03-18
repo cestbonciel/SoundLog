@@ -133,3 +133,5 @@ private extension LogTextView {
         textView.frame = bounds
     }
 }
+
+

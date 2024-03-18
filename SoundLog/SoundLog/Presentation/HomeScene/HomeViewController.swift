@@ -12,7 +12,6 @@ import SnapKit
 import RealmSwift
 
 class HomeViewController: UIViewController {
-
 	struct Icon {
 	  static let leftIcon = UIImage(systemName: "chevron.left")?
 		 .withTintColor(.label, renderingMode: .alwaysOriginal)
@@ -167,13 +166,18 @@ class HomeViewController: UIViewController {
 	lazy var calendarView = FSCalendar(frame: .zero)
     // MARK: - SoundLogViewController
     @IBAction func addLogButtonTapped(_ sender: UIButton) {
-		let vc = SoundLogViewController()
-        vc.viewModel.createdAt.value = calendarView.selectedDate ?? Date()
-		vc.isModalInPresentation = true
-		vc.modalPresentationStyle = .fullScreen
-		self.present(vc, animated: true)
+        self.performSegue(withIdentifier: "showSoundLogVC", sender: self)
 	}
 	
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSoundLogVC",
+           let soundLogVC = segue.destination as? SoundLogViewController {
+            soundLogVC.viewModel.createdAt.value = calendarView.selectedDate ?? Date()
+            soundLogVC.isModalInPresentation = true
+            soundLogVC.modalPresentationStyle = .fullScreen
+            soundLogVC.delegate = self
+        }
+    }
 
 	private func setupHomeUI() {
 		view.addSubview(topSideStackView)
@@ -273,5 +277,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 146
+    }
+}
+
+extension HomeViewController: SoundLogViewControllerDelegate {
+    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController) {
+        let defaultDate = calendarView.selectedDate ?? calendarView.today!
+        soundLogs = StorageSoundLog.fetchDate(date: defaultDate)
+        //calendarView.reloadData()
+        
     }
 }

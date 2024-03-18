@@ -9,8 +9,13 @@ import MapKit
 
 import SnapKit
 
+protocol SoundLogViewControllerDelegate: AnyObject {
+    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController)
+}
+
 
 class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
+    weak var delegate: SoundLogViewControllerDelegate?
     
     var viewModel = SoundLogViewModel()
     
@@ -33,7 +38,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         setTargetActions()
         navigationController?.hidesBarsOnSwipe = true
 //        scrollView.delegate = self
-        
+        soundLogView.soundLogTitle.delegate = self
+        soundLogView.soundLogTextView.delegate = self
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -89,14 +95,15 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     var selectedMood: MoodEmoji?
     
     @objc private func selectMood(_ sender: UIButton) {
-        //var moodTag: Int = 1
+        var moodTag: Int = 1
         soundLogView.moodButtons.forEach { mood in
             mood.backgroundColor = .clear
         }
         
+        moodTag = sender.tag
         let selectedMood = MoodEmoji(rawValue: sender.tag)?.emojiString ?? "😄"
-        //moodTag = sender.tag
         viewModel.soundMood.value = selectedMood
+        
         
         sender.backgroundColor = UIColor.neonPurple
         sender.layer.cornerRadius = sender.layer.frame.height / 2
@@ -122,7 +129,9 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     
     @objc func saveSoundLogs(_ sender: UIButton) {
         viewModel.create()
-        dismiss(animated: true)
+        
+        delegate?.soundLogViewControllerDidSaveLog(self)
+        self.navigationController?.popViewController(animated: true)
     }
    
     // MARK: - Presenting view for REC
@@ -270,16 +279,38 @@ extension SoundLogViewController: UIScrollViewDelegate {
 }
 extension SoundLogViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("textFieldShouldReturn called")
         textField.resignFirstResponder()
         return true
     }
 }
 extension SoundLogViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        viewModel.recordedSoundNote.value = textView.text ?? ""
-        if textView.text.count > 100 {
-            textView.deleteBackward()
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText = textView.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
+        
+        // 새로운 텍스트의 길이가 100자를 넘는지 확인합니다.
+        if changedText.count > 100 {
+            // 여기서 경고창을 표시합니다.
+            showAlertWithMessage("글자 수는 100자를 넘길 수 없습니다.")
+            return false
         }
+        return true
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        // 여기에서 텍스트뷰의 스크롤을 활성화할 수 있습니다.
+        textView.isScrollEnabled = true
+        // 텍스트뷰의 내용을 뷰모델에 업데이트합니다.
+        viewModel.recordedSoundNote.value = textView.text
+    }
+    
+    // 경고창을 표시하는 메서드
+    private func showAlertWithMessage(_ message: String) {
+        let alertController = UIAlertController(title: "경고", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "확인", style: .default))
+        present(alertController, animated: true)
     }
 }
 // MARK: - Map

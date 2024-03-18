@@ -10,7 +10,8 @@ import UIKit
 import SnapKit
 
 final class SoundLogView: UIView, UIScrollViewDelegate {
-    private let soundLogTextView = LogTextView()
+    weak var textFieldDelegate: UITextFieldDelegate?
+    weak var textViewDelegate: UITextViewDelegate?
     //private let customPlayerView = CustomPlayerView()
     
     override init(frame: CGRect) {
@@ -116,7 +117,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         textField.autocapitalizationType = .none
         
         textField.returnKeyType = .done
-//        textField.delegate = self
+        textField.delegate = textFieldDelegate
         textField.layer.backgroundColor = UIColor.white.cgColor
         
         return textField
@@ -143,7 +144,8 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
     
     lazy var moodButtons: [UIButton] = {
         var buttons = [UIButton]()
-        let mood = [1: "기분", 2: "😁", 3: "😡", 4: "😭", 5: "😍"]
+        let mood = [0: "기분", 1: "😁", 2: "😡", 3: "😭", 4: "😍"]
+        //let mood = [1: "기분", 2: "😁", 3: "😡", 4: "😭", 5: "😍"]
         for (index, moodText) in mood.sorted(by: {  $0.key < $1.key }) {
             let button = UIButton()
             button.tag = index
@@ -153,6 +155,11 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
             button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
             
             buttons.append(button)
+        }
+        
+        if let firstButton = buttons.first {
+            firstButton.isEnabled = false
+            
         }
         return buttons
     }()
@@ -211,6 +218,12 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         button.tintColor = .black
         //button.addTarget(self, action: #selector(touchUpbottomSheet), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var soundLogTextView: LogTextView = {
+        let textView = LogTextView()
+        textView.delegate = textViewDelegate
+        return textView
     }()
     
     //MARK: - LOCATION STACK VIEW

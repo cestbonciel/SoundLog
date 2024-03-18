@@ -203,8 +203,10 @@ class RecordingViewController: UIViewController {
                         alert.addAction(UIAlertAction(title: "확인", style: .default) { [unowned self] _ in
                             print("recorded file saved")
                             self.audioRecorder = nil
+                            self.dismiss(animated: true)
                         })
                         self.present(alert, animated: true, completion: nil)
+
                     } else {
                         // 실패한 경우, 사용자에게 실패 메시지 표시
                         print("Failed to save recorded file URL.")
