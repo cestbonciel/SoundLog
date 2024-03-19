@@ -339,10 +339,10 @@
 			isa = PBXGroup;
 			children = (
 				1A9C10022B9DEAD80026D92D /* Package.resolved */,
-				87BB609D2AD72B1A00B9428D /* Helper */,
 				87BFB05F2AB82BDE00CF839A /* Applications */,
-				1A1877BA2B867C8E001DB607 /* Data */,
+				87BB609D2AD72B1A00B9428D /* Helper */,
 				87BFB05E2AB82B9800CF839A /* Presentation */,
+				1A1877BA2B867C8E001DB607 /* Data */,
 				877DACA42A7ADC9100AE3038 /* Resources */,
 			);
 			path = SoundLog;
@@ -412,8 +412,6 @@
 		87BFB05E2AB82B9800CF839A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				87BFB0632AB8316600CF839A /* Extensions */,
-				87EE460B2AD7D614008E553F /* ContentViews */,
 				1A52406C2B9EE6D20015FEAC /* Components */,
 				1A871B272B87C2FC00F2CD10 /* Cell */,
 				87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */,
@@ -424,6 +422,8 @@
 				87BFB0602AB82F4100CF839A /* SoundLogScene */,
 				87BFB05B2AB82A7300CF839A /* ShazamScene */,
 				8777A7E62A9BBCD3005526D1 /* MoreMenuScene */,
+				87BFB0632AB8316600CF839A /* Extensions */,
+				87EE460B2AD7D614008E553F /* ContentViews */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";

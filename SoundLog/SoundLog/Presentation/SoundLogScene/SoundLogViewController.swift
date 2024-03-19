@@ -36,7 +36,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.pastelSkyblue
         setTargetActions()
-        navigationController?.hidesBarsOnSwipe = true
+        //navigationController?.hidesBarsOnSwipe = true
 //        scrollView.delegate = self
         soundLogView.soundLogTitle.delegate = self
         soundLogView.soundLogTextView.delegate = self
