@@ -166,18 +166,13 @@ class HomeViewController: UIViewController {
 	lazy var calendarView = FSCalendar(frame: .zero)
     // MARK: - SoundLogViewController
     @IBAction func addLogButtonTapped(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "showSoundLogVC", sender: self)
+        let vc = SoundLogViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
 	}
 	
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showSoundLogVC",
-           let soundLogVC = segue.destination as? SoundLogViewController {
-            soundLogVC.viewModel.createdAt.value = calendarView.selectedDate ?? Date()
-            soundLogVC.isModalInPresentation = true
-            soundLogVC.modalPresentationStyle = .fullScreen
-            soundLogVC.delegate = self
-        }
-    }
+   
 
 	private func setupHomeUI() {
 		view.addSubview(topSideStackView)
@@ -280,11 +275,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension HomeViewController: SoundLogViewControllerDelegate {
-    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController) {
-        let defaultDate = calendarView.selectedDate ?? calendarView.today!
-        soundLogs = StorageSoundLog.fetchDate(date: defaultDate)
-        //calendarView.reloadData()
-        
-    }
-}
+//extension HomeViewController: SoundLogViewControllerDelegate {
+//    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController) {
+//        let defaultDate = calendarView.selectedDate ?? calendarView.today!
+//        soundLogs = StorageSoundLog.fetchDate(date: defaultDate)
+//        //calendarView.reloadData()
+//        
+//    }
+//}

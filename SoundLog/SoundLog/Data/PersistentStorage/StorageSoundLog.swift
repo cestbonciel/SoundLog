@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 final class RecordedFile: Object {
-    @Persisted var recordedFileUrl: String
+    @Persisted var recordedFileUrl: URL
 }
 
 final class StorageSoundLog: Object {
@@ -18,15 +18,15 @@ final class StorageSoundLog: Object {
     @Persisted var createdAt: Date = Date()
     @Persisted var soundTitle: String = ""
     @Persisted var soundMood: String = ""
-    @Persisted var recordedFileUrl: RecordedFile?
-    @Persisted var recordedSoundNote: String?
+    @Persisted var recordedFileUrl: RecordedFile
+    @Persisted var soundNote: String?
     @Persisted var soundLocation: String = ""
     @Persisted var soundCategory: String = "Recording"
 }
 
 extension StorageSoundLog {
     static var realm = try! Realm()
- 
+    /*
     static func saveObject(_ soundStorage: StorageSoundLog)  {
         do {
             try realm.write {
@@ -36,7 +36,7 @@ extension StorageSoundLog {
             print("Error saving object to Realm: \(error)")
         }
     }
-    
+    */
     static func saveRecordedFile(_ url: URL, completion: @escaping (Bool) -> Void) {
         let recordedFile = RecordedFile()
         recordedFile.recordedFileUrl = url.absoluteString
@@ -47,6 +47,35 @@ extension StorageSoundLog {
             }
         } catch {
             print("Error saving recorded file to Realm: \(error)")
+            completion(false)
+        }
+    }
+    
+    static func saveObjectAllWithRecord(
+        url: URL,
+        title: String,
+        mood: String,
+        note: String?,
+        location: String,
+        category: String = "Recording",
+        completion: @escaping (Bool) -> Void
+    ) {
+        guard let recordedFile = realm.objects(RecordedFile.self).filter("recordedFileUrl == %@", url.absoluteString).first else { return }
+        let soundLog = StorageSoundLog()
+        soundLog.createdAt = Date()
+        soundLog.soundTitle = title
+        soundLog.soundMood = mood
+        soundLog.recordedFileUrl = recordedFile
+        soundLog.soundNote = note
+        soundLog.soundLocation = location
+        soundLog.soundCategory = category
+        do {
+            try realm.write {
+                realm.add(soundLog)
+            }
+            completion(true)
+        } catch {
+            print("Error saving soundLog object to Realm: \(error)")
             completion(false)
         }
     }
@@ -75,7 +104,7 @@ extension StorageSoundLog {
             sound.soundTitle = soundTitle
             sound.soundMood = soundMood
             sound.recordedFileUrl = recordedFile
-            sound.recordedSoundNote = soundNote
+            sound.soundNote = soundNote
             sound.soundLocation = soundLocation
             sound.soundCategory = soundCategory
         }

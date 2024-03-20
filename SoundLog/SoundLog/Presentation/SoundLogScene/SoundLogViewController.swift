@@ -9,13 +9,13 @@ import MapKit
 
 import SnapKit
 
-protocol SoundLogViewControllerDelegate: AnyObject {
-    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController)
-}
+//protocol SoundLogViewControllerDelegate: AnyObject {
+//    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController)
+//}
 
 
 class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
-    weak var delegate: SoundLogViewControllerDelegate?
+    //weak var delegate: SoundLogViewControllerDelegate?
     
     var viewModel = SoundLogViewModel()
     
@@ -36,12 +36,14 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.pastelSkyblue
         setTargetActions()
-        //navigationController?.hidesBarsOnSwipe = true
+        navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.navigationBar.isHidden = true
 //        scrollView.delegate = self
         soundLogView.soundLogTitle.delegate = self
         soundLogView.soundLogTextView.delegate = self
     }
-
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
@@ -127,11 +129,11 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
     }
     
-    @objc func saveSoundLogs(_ sender: UIButton) {
+    @objc func saveSoundLogs() {
         viewModel.create()
-        
-        delegate?.soundLogViewControllerDidSaveLog(self)
-        self.navigationController?.popViewController(animated: true)
+        print(viewModel)
+        //delegate?.soundLogViewControllerDidSaveLog(self)
+        dismiss(animated: true)
     }
    
     // MARK: - Presenting view for REC
@@ -257,6 +259,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
                 }
             }
         }
+        
+        
     }
     
     // MARK: - 제목, 내용 글자 수 제한 --

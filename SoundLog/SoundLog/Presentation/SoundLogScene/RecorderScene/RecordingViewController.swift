@@ -217,7 +217,7 @@ class RecordingViewController: UIViewController {
             }
         }
         
-    }
+    } //: saveRecordedFile()
 
 	// MARK: - Set up User Interfaces
 	private func setupUI() {

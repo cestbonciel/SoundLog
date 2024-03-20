@@ -109,7 +109,6 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="addLogButtonTapped:" destination="rhw-ca-8Nb" eventType="touchUpInside" id="XtG-d4-2aQ"/>
-                                            <segue destination="TGz-On-dUT" kind="show" identifier="showSoundLogVC" id="Mxp-0j-xpG"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -137,16 +136,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fod-1u-eDs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3054" y="-58"/>
-        </scene>
-        <!--SoundLogViewController-->
-        <scene sceneID="Wsd-Me-9tf">
-            <objects>
-                <viewControllerPlaceholder storyboardName="RecordingSound" referencedIdentifier="SoundLogViewController" id="TGz-On-dUT" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="vjz-1y-Xs1"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9sC-dK-y77" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2501" y="-212"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="WE5-cv-9pD">

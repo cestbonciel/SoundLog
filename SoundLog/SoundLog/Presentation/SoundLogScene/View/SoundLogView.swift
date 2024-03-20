@@ -24,14 +24,14 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
     }
     
     //MARK: - Entire View Scroll
-    private lazy var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = true
         scrollView.delegate = self
         return scrollView
     }()
     
-    private lazy var contentView: UIView = {
+    lazy var contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -299,19 +299,24 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
         return label
     }()
-    
+
     // MARK: - setupUI
     private func setupUI() {
         
         addSubview(scrollView)
         scrollView.snp.makeConstraints {
-//            $0.edges.equalToSuperview()
-            $0.top.equalToSuperview().inset(10)
+            //$0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            $0.top.equalToSuperview()
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.width.equalToSuperview()
         }
         scrollView.addSubview(contentView)
+        scrollView.contentInsetAdjustmentBehavior = .never
+    
+        contentView.layer.borderColor = UIColor.yellow.cgColor
+        contentView.layer.borderWidth = 1
+        
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalToSuperview()
@@ -319,8 +324,11 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         }
         
         contentView.addSubview(buttonStack)
+        buttonStack.layer.borderColor = UIColor.magenta.cgColor
+        buttonStack.layer.borderWidth = 1
+        
         buttonStack.snp.makeConstraints {
-            $0.top.equalTo(contentView.snp.top).inset(48)
+            $0.top.equalTo(scrollView.safeAreaLayoutGuide.snp.top).inset(16)
             $0.leading.equalToSuperview().inset(28)
             $0.trailing.equalToSuperview().inset(28)
             $0.height.equalTo(40)
