@@ -15,6 +15,7 @@ class SoundLogViewModel {
     var soundMood: Observable<String> = Observable("")
     //var recordedFileUrl: Observable<String?> = Observable(nil)
     var recordedFileUrl: Observable<RecordedFile?> = Observable(nil)
+    //Cannot convert value of type 'RecordedFile.Type' to expected argument type 'RecordedFile'
     var recordedSoundNote: Observable<String> = Observable("")
     var soundLocation: Observable<String> = Observable("")
     var soundCategory: Observable<String> = Observable("Recording")
@@ -44,11 +45,15 @@ class SoundLogViewModel {
     }
     
     var soundIsValid: Bool {
+        /*
         if let url = recordedFileUrl.value {
+            //Initializer for conditional binding must have Optional type, not 'RecordedFile'
             return recordedFileUrl.value != nil
         } else {
             return false
         }
+        */
+        return recordedFileUrl.value != nil
     }
     
     var locationIsValid: Bool {
@@ -56,6 +61,7 @@ class SoundLogViewModel {
             return false
         }
         return true
+
     }
     
     var categoryIsValid: Bool {
@@ -90,15 +96,13 @@ class SoundLogViewModel {
     
     func create(completion: @escaping (Bool) -> Void) {
         guard let recordedFile = recordedFileUrl.value,
-              let urlString = recordedFile.recordedFileUrl,
-              // Error: Initializer for conditional binding must have Optional type, not 'String'
-              let url = URL(string: urlString) else {
+              let urlString = URL(string: recordedFile.recordedFileUrl) else {
             completion(false)
             return
         }
         
         StorageSoundLog.saveObjectAllWithRecord(
-            url: url, // URL 객체를 사용합니다.
+            url: urlString, // URL 객체를 사용합니다.
             title: soundTitle.value,
             mood: soundMood.value,
             note: recordedSoundNote.value,
@@ -109,14 +113,16 @@ class SoundLogViewModel {
     }
     
     func edit(_ oldValue: StorageSoundLog) {
+        guard let recordedFile = recordedFileUrl.value else { return }
         StorageSoundLog.editSoundLog(
             sound: oldValue,
             date: createdAt.value,
             soundTitle: soundTitle.value,
             soundMood: soundMood.value,
-            recordedFile: createRecordedFile(), // 바꿔야함
+            recordedFile: oldValue.soundRecordFile,
+            // Value of type 'StorageSoundLog' has no member 'recordedFileUrl'
             soundNote: recordedSoundNote.value,
-            soundLocation: soundLocation.value,
+            soundLocation: oldValue.soundLocation,
             soundCategory: soundCategory.value
         )
     }

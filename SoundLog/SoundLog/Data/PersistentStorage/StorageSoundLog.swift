@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 final class RecordedFile: Object {
-    @Persisted var recordedFileUrl: URL
+    @Persisted var recordedFileUrl: String
 }
 
 final class StorageSoundLog: Object {
@@ -18,7 +18,7 @@ final class StorageSoundLog: Object {
     @Persisted var createdAt: Date = Date()
     @Persisted var soundTitle: String = ""
     @Persisted var soundMood: String = ""
-    @Persisted var recordedFileUrl: RecordedFile
+    @Persisted var soundRecordFile: RecordedFile?
     @Persisted var soundNote: String?
     @Persisted var soundLocation: String = ""
     @Persisted var soundCategory: String = "Recording"
@@ -65,7 +65,7 @@ extension StorageSoundLog {
         soundLog.createdAt = Date()
         soundLog.soundTitle = title
         soundLog.soundMood = mood
-        soundLog.recordedFileUrl = recordedFile
+        soundLog.soundRecordFile = recordedFile
         soundLog.soundNote = note
         soundLog.soundLocation = location
         soundLog.soundCategory = category
@@ -103,7 +103,7 @@ extension StorageSoundLog {
             sound.createdAt = date
             sound.soundTitle = soundTitle
             sound.soundMood = soundMood
-            sound.recordedFileUrl = recordedFile
+            sound.soundRecordFile = recordedFile
             sound.soundNote = soundNote
             sound.soundLocation = soundLocation
             sound.soundCategory = soundCategory

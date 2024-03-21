@@ -188,10 +188,29 @@ class RecordingViewController: UIViewController {
     @objc func saveRecordedFile() {
         guard let recordedAudioURL = audioFileURL else { return }
         
-        viewModel.recordedFileUrl.value = recordedAudioURL.absoluteString
-        
+        viewModel.createRecordedFile(url: recordedAudioURL) { success in
+            DispatchQueue.main.async {
+                if success {
+                    print("Recorded file URL saved successfully.")
+                    let alert = UIAlertController(title: "소리의 기록",
+                                                  message: "녹음파일을 저장했어요.",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default) { [unowned self] _ in
+                        print("Recorded file saved")
+                        self.dismiss(animated: true)
+                    })
+                    self.present(alert, animated: true)
+                } else {
+                    print("Failed to save recorded file URL.")
+                }
+            }//: dispatchQueue
+            
+        }
+        //viewModel.recordedFileUrl.value = recordedAudioURL.absoluteString
+        // error: Cannot assign value of type 'String' to type 'RecordedFile?'
+        /*
         if let recordedFile = viewModel.createRecordedFile() {
-            // RealmManager를 사용하여 녹음된 파일 URL을 저장
+            //Missing arguments for parameters 'url', 'completion' in call
             StorageSoundLog.saveRecordedFile(recordedAudioURL) { success in
                 DispatchQueue.main.async {
                     if success {
@@ -216,7 +235,7 @@ class RecordingViewController: UIViewController {
                 
             }
         }
-        
+        */
     } //: saveRecordedFile()
 
 	// MARK: - Set up User Interfaces

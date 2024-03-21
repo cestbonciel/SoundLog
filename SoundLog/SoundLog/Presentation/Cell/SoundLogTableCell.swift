@@ -123,12 +123,18 @@ class SoundLogTableCell: UITableViewCell {
         let categoryType: CategoryIconType = soundLog.soundCategory == "ASMR" ? .asmr : .recording
         categoryIcon.setupView(type: categoryType)
         
-        if let recordedFileName = soundLog.recordedFileUrl?.recordedFileUrl {
+        if let recordedFileName = soundLog.soundRecordFile?.recordedFileUrl {
+            //Initializer for conditional binding must have Optional type, not 'String'
             let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let recordedFileURL = documentDirectory.appendingPathComponent(recordedFileName)
             customPlayerView.queueSound(url: recordedFileURL)
         }
-
+        
+        /*
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let recordedFileURL = documentDirectory.appendingPathComponent(soundLog.recordedFileUrl.recordedFileUrl)
+        customPlayerView.queueSound(url: recordedFileURL)
+        */
         
     }
     

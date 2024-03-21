@@ -19,19 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let barButtonItemAppearance = UIBarButtonItem.appearance()
 		barButtonItemAppearance.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal) // UIBarButtonItem의 일반 상태 텍스트 색상을 흰색으로 설정
 		
-		
-//		let newNavBarAppearance = customNavBarAppearance()
-		
-		//let appearance = UINavigationBar.appearance()
-//		appearance.scrollEdgeAppearance = newNavBarAppearance
-//		appearance.compactAppearance = newNavBarAppearance
-//		appearance.standardAppearance = newNavBarAppearance
-		
-		
-		
-		if #available(iOS 15.0, *) {
-//			appearance.compactScrollEdgeAppearance = newNavBarAppearance
-		}
+        
 
 		return true
 	}

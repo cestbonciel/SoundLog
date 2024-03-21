@@ -130,10 +130,18 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     @objc func saveSoundLogs() {
-        viewModel.create()
-        print(viewModel)
-        //delegate?.soundLogViewControllerDidSaveLog(self)
-        dismiss(animated: true)
+        viewModel.create { [weak self] success in
+            DispatchQueue.main.async {
+                if success {
+                    print("Data Save successfully.")
+                    self?.dismiss(animated: true)
+                } else {
+                    print("Failede to save data")
+                }
+                
+            }
+            
+        }
     }
    
     // MARK: - Presenting view for REC
@@ -240,14 +248,15 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     func bind() {
+        //1. 날짜
         viewModel.createdAt.bind { date in
             self.soundLogView.soundLogDate.date = date
         }
-        
+        //2. 제목
         viewModel.soundTitle.bind { text in
             self.soundLogView.soundLogTitle.text = text
         }
-        
+        //3. 감정
         viewModel.soundMood.bind { mood in
             self.soundLogView.moodButtons.forEach { button in
                 if button.title(for: .normal) == mood {
@@ -259,6 +268,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
                 }
             }
         }
+        
+        //4.
         
         
     }
