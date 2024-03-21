@@ -99,6 +99,15 @@ class MoreMenuView: UIView {
         return icon
     }()
     
+    lazy var noticeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .gmsans(ofSize: 15, weight: .GMSansMedium)
+        label.text = "북마크한 소리의 기록이 없습니다."
+        label.textColor = .systemDimGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -112,9 +121,10 @@ class MoreMenuView: UIView {
         self.addSubview(introLabel)
         //self.addSubview(nicknameStack)
         self.addSubview(bookmarkStack)
+        self.addSubview(noticeLabel)
         introLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(120)
-            $0.right.equalToSuperview().inset(24)
+            $0.left.equalToSuperview().inset(24)
         }
         
 //        nicknameStack.snp.makeConstraints {
@@ -147,6 +157,11 @@ class MoreMenuView: UIView {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
             
+        }
+        
+        noticeLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.centerX.equalToSuperview()
         }
         
     }
