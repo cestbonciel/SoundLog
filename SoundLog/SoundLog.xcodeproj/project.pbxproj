@@ -34,7 +34,6 @@
 		1AAC0EDC2BA365A6001E8992 /* SoundLogDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC0EDB2BA365A6001E8992 /* SoundLogDetailView.swift */; };
 		1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */; };
 		1AC61D622BACA9FE00631BAD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC61D612BACA9FE00631BAD /* Lottie */; };
-		1AC61D662BACB70000631BAD /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC61D652BACB70000631BAD /* LaunchViewController.swift */; };
 		1ACA8FAB2B95046200C4F34A /* CustomPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */; };
 		1AF5E4422B15DFF800E3537A /* ModifyUserNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */; };
 		8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8708D6BA2A9F86E70000CAC5 /* SnapKit */; };
@@ -109,7 +108,6 @@
 		1AAC0ED92BA3609D001E8992 /* SoundLogDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogDetailViewController.swift; sourceTree = "<group>"; };
 		1AAC0EDB2BA365A6001E8992 /* SoundLogDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogDetailView.swift; sourceTree = "<group>"; };
 		1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlackMark+Extension.swift"; sourceTree = "<group>"; };
-		1AC61D652BACB70000631BAD /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerView.swift; sourceTree = "<group>"; };
 		1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyUserNameController.swift; sourceTree = "<group>"; };
 		871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogViewController.swift; sourceTree = "<group>"; };
@@ -283,7 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				877DAC9B2A7AD46D00AE3038 /* LaunchScreen.storyboard */,
-				1AC61D652BACB70000631BAD /* LaunchViewController.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -659,7 +656,6 @@
 				8731316D2A9CE26700E8B645 /* MoreMenuViewController.swift in Sources */,
 				1A8605E62BA21A1B00AA2A55 /* SoundLogView.swift in Sources */,
 				1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */,
-				1AC61D662BACB70000631BAD /* LaunchViewController.swift in Sources */,
 				874418692ABAD98400233604 /* RecordingViewController+AVFoundation.swift in Sources */,
 				1A1877C62B8688B2001DB607 /* StorageSoundLog.swift in Sources */,
 				1A54A9EC2B2B739A00FB72DA /* SettingsModels.swift in Sources */,
