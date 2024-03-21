@@ -189,12 +189,14 @@ class HomeViewController: UIViewController {
 			
 			$0.trailing.equalTo(topSideStackView.snp.trailing)
 		}
-		
+        calendarView.layer.borderColor = UIColor.magenta.cgColor
+        calendarView.layer.borderWidth = 1
+        //self.calendarView.headerHeight = 68
 		calendarView.snp.makeConstraints {
 			$0.top.equalTo(topSideStackView.snp.bottom).offset(64)
 			$0.left.equalToSuperview().inset(16)
 			$0.right.equalToSuperview().inset(16)
-			$0.height.equalTo(240)
+			$0.height.equalTo(320)
 		}
         
         
@@ -240,6 +242,14 @@ extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalend
             return nil
         }
     }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, subtitleDefaultColorFor date: Date) -> UIColor? {
+        if Calendar.current.isDateInToday(date) {
+            return UIColor.black // "오늘" 부제목을 검은색으로 설정
+        }
+        return nil
+    }
+    
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         headerLabel.text = headerDateFormatter.string(from: date)

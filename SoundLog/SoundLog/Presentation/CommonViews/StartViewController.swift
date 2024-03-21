@@ -8,6 +8,7 @@
 import UIKit
 
 class StartViewController: UIViewController {
+    /*
 	var userNickname: String?
 	@IBOutlet weak var nicknameTextField: UITextField!
 	@IBOutlet weak var appNamelabel: UILabel!
@@ -51,5 +52,5 @@ class StartViewController: UIViewController {
 		tabBarVC.modalPresentationStyle = .fullScreen
 		present(tabBarVC, animated: true)
 	}
-
+*/
 }

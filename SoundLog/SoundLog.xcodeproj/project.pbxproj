@@ -34,6 +34,13 @@
 		1AAC0EDC2BA365A6001E8992 /* SoundLogDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC0EDB2BA365A6001E8992 /* SoundLogDetailView.swift */; };
 		1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */; };
 		1AC61D622BACA9FE00631BAD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC61D612BACA9FE00631BAD /* Lottie */; };
+
+		1AC61D662BACB70000631BAD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC61D652BACB70000631BAD /* SplashViewController.swift */; };
+		1AC61D682BACBE6E00631BAD /* CustomLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AC61D672BACBE6E00631BAD /* CustomLaunch.storyboard */; };
+		1AC61D6C2BACC73000631BAD /* soundLogAni.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AC61D6B2BACC73000631BAD /* soundLogAni.json */; };
+		1AC61D702BACCAB500631BAD /* soundlog_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AC61D6F2BACCAB500631BAD /* soundlog_animation.json */; };
+		1AC61D742BACCE0D00631BAD /* soundLogBlue.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AC61D732BACCE0D00631BAD /* soundLogBlue.json */; };
+
 		1ACA8FAB2B95046200C4F34A /* CustomPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */; };
 		1AF5E4422B15DFF800E3537A /* ModifyUserNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */; };
 		8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8708D6BA2A9F86E70000CAC5 /* SnapKit */; };
@@ -66,7 +73,6 @@
 		877DAC932A7AD46C00AE3038 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877DAC922A7AD46C00AE3038 /* SceneDelegate.swift */; };
 		877DAC982A7AD46C00AE3038 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 877DAC962A7AD46C00AE3038 /* Main.storyboard */; };
 		877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 877DAC992A7AD46D00AE3038 /* Assets.xcassets */; };
-		877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 877DAC9B2A7AD46D00AE3038 /* LaunchScreen.storyboard */; };
 		878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D12A8E73A6008340E2 /* MainTabBarController.swift */; };
 		878864D42A8E745D008340E2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878864D32A8E745D008340E2 /* UIColor+Extension.swift */; };
 		879BD0752AD45C0E00ED7C77 /* SoundDateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BD0742AD45C0E00ED7C77 /* SoundDateDatabase.swift */; };
@@ -108,6 +114,13 @@
 		1AAC0ED92BA3609D001E8992 /* SoundLogDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogDetailViewController.swift; sourceTree = "<group>"; };
 		1AAC0EDB2BA365A6001E8992 /* SoundLogDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogDetailView.swift; sourceTree = "<group>"; };
 		1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlackMark+Extension.swift"; sourceTree = "<group>"; };
+
+		1AC61D652BACB70000631BAD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		1AC61D672BACBE6E00631BAD /* CustomLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomLaunch.storyboard; sourceTree = "<group>"; };
+		1AC61D6B2BACC73000631BAD /* soundLogAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = soundLogAni.json; sourceTree = "<group>"; };
+		1AC61D6F2BACCAB500631BAD /* soundlog_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = soundlog_animation.json; sourceTree = "<group>"; };
+		1AC61D732BACCE0D00631BAD /* soundLogBlue.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = soundLogBlue.json; sourceTree = "<group>"; };
+
 		1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerView.swift; sourceTree = "<group>"; };
 		1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyUserNameController.swift; sourceTree = "<group>"; };
 		871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogViewController.swift; sourceTree = "<group>"; };
@@ -140,7 +153,6 @@
 		877DAC922A7AD46C00AE3038 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		877DAC972A7AD46C00AE3038 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		877DAC992A7AD46D00AE3038 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		877DAC9C2A7AD46D00AE3038 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		877DAC9E2A7AD46D00AE3038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		878864D12A8E73A6008340E2 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		878864D32A8E745D008340E2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -280,7 +292,10 @@
 		1AC61D642BACB6CC00631BAD /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				877DAC9B2A7AD46D00AE3038 /* LaunchScreen.storyboard */,
+
+				1AC61D672BACBE6E00631BAD /* CustomLaunch.storyboard */,
+				1AC61D652BACB70000631BAD /* SplashViewController.swift */,
+
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -377,6 +392,9 @@
 			children = (
 				877DAC992A7AD46D00AE3038 /* Assets.xcassets */,
 				877DAC9E2A7AD46D00AE3038 /* Info.plist */,
+				1AC61D732BACCE0D00631BAD /* soundLogBlue.json */,
+				1AC61D6F2BACCAB500631BAD /* soundlog_animation.json */,
+				1AC61D6B2BACC73000631BAD /* soundLogAni.json */,
 				877DACAB2A7ADDA900AE3038 /* Fonts */,
 			);
 			path = Resources;
@@ -590,21 +608,24 @@
 				8744185D2AB8966200233604 /* RecordingSound.storyboard in Resources */,
 				874418782ABB45FB00233604 /* Pretendard-Bold.otf in Resources */,
 				874418772ABB45FB00233604 /* Pretendard-ExtraBold.otf in Resources */,
+				1AC61D682BACBE6E00631BAD /* CustomLaunch.storyboard in Resources */,
 				874418752ABB45FB00233604 /* Pretendard-ExtraLight.otf in Resources */,
 				874418792ABB45FB00233604 /* Pretendard-Regular.otf in Resources */,
 				874418742ABB45FB00233604 /* Pretendard-Medium.otf in Resources */,
 				874418732ABB45FB00233604 /* Pretendard-Thin.otf in Resources */,
 				874418762ABB45FB00233604 /* Pretendard-Light.otf in Resources */,
+				1AC61D702BACCAB500631BAD /* soundlog_animation.json in Resources */,
 				8744187A2ABB45FB00233604 /* Pretendard-SemiBold.otf in Resources */,
 				87BFB0592AB8179900CF839A /* GmarketSansLight.otf in Resources */,
 				87E94C5D2AEBE5B3007DD30C /* GmarketSansTTFBold.ttf in Resources */,
 				87BFB0582AB8179900CF839A /* GmarketSansBold.otf in Resources */,
 				87E94C5F2AEBE5B3007DD30C /* GmarketSansTTFLight.ttf in Resources */,
+				1AC61D742BACCE0D00631BAD /* soundLogBlue.json in Resources */,
 				1A9C10032B9DEAD80026D92D /* Package.resolved in Resources */,
 				87BFB05A2AB8179900CF839A /* GmarketSansMedium.otf in Resources */,
-				877DAC9D2A7AD46D00AE3038 /* LaunchScreen.storyboard in Resources */,
 				877DAC9A2A7AD46D00AE3038 /* Assets.xcassets in Resources */,
 				87E94C5E2AEBE5B3007DD30C /* GmarketSansTTFMedium.ttf in Resources */,
+				1AC61D6C2BACC73000631BAD /* soundLogAni.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +677,9 @@
 				8731316D2A9CE26700E8B645 /* MoreMenuViewController.swift in Sources */,
 				1A8605E62BA21A1B00AA2A55 /* SoundLogView.swift in Sources */,
 				1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */,
+
+				1AC61D662BACB70000631BAD /* SplashViewController.swift in Sources */,
+
 				874418692ABAD98400233604 /* RecordingViewController+AVFoundation.swift in Sources */,
 				1A1877C62B8688B2001DB607 /* StorageSoundLog.swift in Sources */,
 				1A54A9EC2B2B739A00FB72DA /* SettingsModels.swift in Sources */,
@@ -676,14 +700,6 @@
 				877DAC972A7AD46C00AE3038 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		877DAC9B2A7AD46D00AE3038 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				877DAC9C2A7AD46D00AE3038 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -824,7 +840,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치를 등록하려면 사용자의 위치 권한을 허용해야합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "녹음을 기록하려면 마이크 사용 허용해야합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = CustomLaunch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -856,7 +872,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치를 등록하려면 사용자의 위치 권한을 허용해야합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "녹음을 기록하려면 마이크 사용 허용해야합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = CustomLaunch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

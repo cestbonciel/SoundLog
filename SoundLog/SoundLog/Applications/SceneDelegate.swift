@@ -7,47 +7,28 @@
 
 import UIKit
 
+import Lottie
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-
+    var launchImageView: UIImageView?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+
         guard let _ = (scene as? UIWindowScene) else { return }
-//        var rootViewController: UIViewController
-        
-//        if UserDefaults.standard.string(forKey: "nickname") == nil {
-//            if let mainVC = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as? StartViewController {
-//                window?.rootViewController = mainVC
-//            }
-//        } else {
-//            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
-//            window?.rootViewController = tabBarVC
-//        }
-//        if UserDefaults.standard.string(forKey: "nickname") == nil {
-//            let startViewController = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as! StartViewController
-//            rootViewController = UINavigationController(rootViewController: startViewController)
-//        } else {
-//            // 닉네임이 이미 저장되어 있다면 메인 화면을 표시
-//            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
-//            rootViewController = UINavigationController(rootViewController: tabBarVC)
-//        }
-        
-        
-//        window?.rootViewController = rootViewController
-        window?.makeKeyAndVisible()
-        
-        
-//        let appearance = UINavigationBarAppearance()
-//        let backItemAppearance = UIBarButtonItemAppearance()
-        
-//        UINavigationBar.appearance().tintColor = .black
-        //        UINavigationBar.appearance().tintColor = .black
-        
+        let storyboard = UIStoryboard(name: "CustomLaunch", bundle: nil)
+        let initVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
+        self.window!.backgroundColor = UIColor.white
+        self.window?.rootViewController = initVC
+        self.window?.makeKeyAndVisible()
         
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.backgroundColor = .black
     }
+    
+   
+    
 	func sceneDidDisconnect(_ scene: UIScene) {
 		// Called as the scene is being released by the system.
 		// This occurs shortly after the scene enters the background, or when its session is discarded.
