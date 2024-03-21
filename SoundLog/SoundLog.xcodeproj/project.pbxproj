@@ -33,6 +33,8 @@
 		1AAC0EDA2BA3609D001E8992 /* SoundLogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC0ED92BA3609D001E8992 /* SoundLogDetailViewController.swift */; };
 		1AAC0EDC2BA365A6001E8992 /* SoundLogDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC0EDB2BA365A6001E8992 /* SoundLogDetailView.swift */; };
 		1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */; };
+		1AC61D622BACA9FE00631BAD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC61D612BACA9FE00631BAD /* Lottie */; };
+		1AC61D662BACB70000631BAD /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC61D652BACB70000631BAD /* LaunchViewController.swift */; };
 		1ACA8FAB2B95046200C4F34A /* CustomPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */; };
 		1AF5E4422B15DFF800E3537A /* ModifyUserNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */; };
 		8708D6BB2A9F86E70000CAC5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8708D6BA2A9F86E70000CAC5 /* SnapKit */; };
@@ -107,6 +109,7 @@
 		1AAC0ED92BA3609D001E8992 /* SoundLogDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogDetailViewController.swift; sourceTree = "<group>"; };
 		1AAC0EDB2BA365A6001E8992 /* SoundLogDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogDetailView.swift; sourceTree = "<group>"; };
 		1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlackMark+Extension.swift"; sourceTree = "<group>"; };
+		1AC61D652BACB70000631BAD /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerView.swift; sourceTree = "<group>"; };
 		1AF5E4412B15DFF800E3537A /* ModifyUserNameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyUserNameController.swift; sourceTree = "<group>"; };
 		871D0EFD2A971F310097D6F1 /* SoundLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 				1A133D922BAC5FB7002382D4 /* Realm in Frameworks */,
 				1A133D972BAC6098002382D4 /* FSCalendar in Frameworks */,
 				1A133D942BAC5FB7002382D4 /* RealmSwift in Frameworks */,
+				1AC61D622BACA9FE00631BAD /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +263,29 @@
 				1A7A51992BA105E7004D33BD /* MoodEmoji.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		1AC61D632BACB69C00631BAD /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				1AC61D642BACB6CC00631BAD /* Screen */,
+				87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */,
+				877DAC962A7AD46C00AE3038 /* Main.storyboard */,
+				878864D12A8E73A6008340E2 /* MainTabBarController.swift */,
+				87E9769D2A8D4BEA00756C18 /* StartViewController.swift */,
+				1A871B272B87C2FC00F2CD10 /* Cell */,
+				1A52406C2B9EE6D20015FEAC /* Components */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		1AC61D642BACB6CC00631BAD /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				877DAC9B2A7AD46D00AE3038 /* LaunchScreen.storyboard */,
+				1AC61D652BACB70000631BAD /* LaunchViewController.swift */,
+			);
+			path = Screen;
 			sourceTree = "<group>";
 		};
 		874764392AFAA3EE00365717 /* SwiftUI */ = {
@@ -352,7 +379,6 @@
 			isa = PBXGroup;
 			children = (
 				877DAC992A7AD46D00AE3038 /* Assets.xcassets */,
-				877DAC9B2A7AD46D00AE3038 /* LaunchScreen.storyboard */,
 				877DAC9E2A7AD46D00AE3038 /* Info.plist */,
 				877DACAB2A7ADDA900AE3038 /* Fonts */,
 			);
@@ -412,12 +438,7 @@
 		87BFB05E2AB82B9800CF839A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				1A52406C2B9EE6D20015FEAC /* Components */,
-				1A871B272B87C2FC00F2CD10 /* Cell */,
-				87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */,
-				877DAC962A7AD46C00AE3038 /* Main.storyboard */,
-				878864D12A8E73A6008340E2 /* MainTabBarController.swift */,
-				87E9769D2A8D4BEA00756C18 /* StartViewController.swift */,
+				1AC61D632BACB69C00631BAD /* CommonViews */,
 				87BFB05C2AB82A7A00CF839A /* HomeScene */,
 				87BFB0602AB82F4100CF839A /* SoundLogScene */,
 				87BFB05B2AB82A7300CF839A /* ShazamScene */,
@@ -515,6 +536,7 @@
 				1A133D912BAC5FB7002382D4 /* Realm */,
 				1A133D932BAC5FB7002382D4 /* RealmSwift */,
 				1A133D962BAC6098002382D4 /* FSCalendar */,
+				1AC61D612BACA9FE00631BAD /* Lottie */,
 			);
 			productName = OmyAk;
 			productReference = 877DAC8D2A7AD46C00AE3038 /* SoundLog.app */;
@@ -549,6 +571,7 @@
 				1A9C0FFD2B9DE8700026D92D /* XCRemoteSwiftPackageReference "AcknowList" */,
 				1A133D902BAC5FB7002382D4 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				1A133D952BAC6098002382D4 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				1AC61D602BACA9FE00631BAD /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 877DAC8E2A7AD46C00AE3038 /* Products */;
 			projectDirPath = "";
@@ -636,6 +659,7 @@
 				8731316D2A9CE26700E8B645 /* MoreMenuViewController.swift in Sources */,
 				1A8605E62BA21A1B00AA2A55 /* SoundLogView.swift in Sources */,
 				1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */,
+				1AC61D662BACB70000631BAD /* LaunchViewController.swift in Sources */,
 				874418692ABAD98400233604 /* RecordingViewController+AVFoundation.swift in Sources */,
 				1A1877C62B8688B2001DB607 /* StorageSoundLog.swift in Sources */,
 				1A54A9EC2B2B739A00FB72DA /* SettingsModels.swift in Sources */,
@@ -720,6 +744,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "소리의 기록";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -777,6 +802,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "소리의 기록";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -901,6 +927,14 @@
 				minimumVersion = 3.1.0;
 			};
 		};
+		1AC61D602BACA9FE00631BAD /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.1;
+			};
+		};
 		8708D6B92A9F86E70000CAC5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -931,6 +965,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1A9C0FFD2B9DE8700026D92D /* XCRemoteSwiftPackageReference "AcknowList" */;
 			productName = AcknowList;
+		};
+		1AC61D612BACA9FE00631BAD /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AC61D602BACA9FE00631BAD /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
 		};
 		8708D6BA2A9F86E70000CAC5 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

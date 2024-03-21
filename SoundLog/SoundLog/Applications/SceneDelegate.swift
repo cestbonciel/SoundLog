@@ -16,14 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
 //        var rootViewController: UIViewController
         
-        if UserDefaults.standard.string(forKey: "nickname") == nil {
-            if let mainVC = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as? StartViewController {
-                window?.rootViewController = mainVC
-            }
-        } else {
-            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
-            window?.rootViewController = tabBarVC
-        }
+//        if UserDefaults.standard.string(forKey: "nickname") == nil {
+//            if let mainVC = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as? StartViewController {
+//                window?.rootViewController = mainVC
+//            }
+//        } else {
+//            let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBar")
+//            window?.rootViewController = tabBarVC
+//        }
 //        if UserDefaults.standard.string(forKey: "nickname") == nil {
 //            let startViewController = UIStoryboard(name: "startEnter", bundle: nil).instantiateViewController(withIdentifier: "InputNickname") as! StartViewController
 //            rootViewController = UINavigationController(rootViewController: startViewController)

@@ -41,6 +41,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 //        scrollView.delegate = self
         soundLogView.soundLogTitle.delegate = self
         soundLogView.soundLogTextView.delegate = self
+        
+        bind()
     }
     
     
@@ -269,9 +271,10 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             }
         }
         
-        //4.
-        
-        
+        //4.녹음
+        //5.내용
+        //6.위치
+        //7.카테고리선택
     }
     
     // MARK: - 제목, 내용 글자 수 제한 --

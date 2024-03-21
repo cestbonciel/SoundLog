@@ -11,7 +11,7 @@ class MoreMenuView: UIView {
  
     private lazy var introLabel: UILabel = {
         let label = UILabel()
-        label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        label.font = .gmsans(ofSize: 15, weight: .GMSansMedium)
         label.text = "당신을 위한 소리 기록장"
         label.textColor = .systemDimGray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +84,7 @@ class MoreMenuView: UIView {
     private lazy var bookmarkLabel: UILabel = {
         let label = UILabel()
         label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        label.text = "북마크"
+        label.text = "북마크한 소리기록"
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -110,29 +110,29 @@ class MoreMenuView: UIView {
     
     private func setupUI() {
         self.addSubview(introLabel)
-        self.addSubview(nicknameStack)
+        //self.addSubview(nicknameStack)
         self.addSubview(bookmarkStack)
         introLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(120)
-            $0.left.right.equalToSuperview().offset(30)
+            $0.right.equalToSuperview().inset(24)
         }
         
-        nicknameStack.snp.makeConstraints {
-            $0.top.equalTo(introLabel.snp.bottom).offset(48)
-            $0.left.right.equalToSuperview().inset(24)
-        }
-        
-        userNickname.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.leading.equalToSuperview()
-        }
-        modifiedButton.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview()
-            $0.height.equalTo(32)
-        }
+//        nicknameStack.snp.makeConstraints {
+//            $0.top.equalTo(introLabel.snp.bottom).offset(48)
+//            $0.left.right.equalToSuperview().inset(24)
+//        }
+//
+//        userNickname.snp.makeConstraints {
+//            $0.centerY.equalToSuperview()
+//            $0.leading.equalToSuperview()
+//        }
+//        modifiedButton.snp.makeConstraints {
+//            $0.centerY.equalToSuperview()
+//            $0.trailing.equalToSuperview()
+//            $0.height.equalTo(32)
+//        }
         bookmarkStack.snp.makeConstraints {
-            $0.top.equalTo(nicknameStack.snp.bottom).offset(24)
+            $0.top.equalTo(introLabel.snp.bottom).offset(24)
             $0.left.equalToSuperview().inset(24)
             $0.height.equalTo(32)
         }
