@@ -9,20 +9,20 @@ import MapKit
 
 import SnapKit
 
-//protocol SoundLogViewControllerDelegate: AnyObject {
-//    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController)
-//}
+protocol SoundLogViewControllerDelegate: AnyObject {
+    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController)
+}
 
 
 class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
-    //weak var delegate: SoundLogViewControllerDelegate?
+    weak var delegate: SoundLogViewControllerDelegate?
     
     var viewModel = SoundLogViewModel()
     
     private let soundLogView = SoundLogView()
     private let soundLogTextView = LogTextView()
     private let customPlayerView = CustomPlayerView()
-    
+    private let categoryIconView = CategoryIconView(type: .recording)
     //MARK: - CLLocation
     var locationManager2: CLLocationManager?
     weak var mapDelegate: MapViewControllerDelegate?
@@ -42,7 +42,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         soundLogView.soundLogTitle.delegate = self
         soundLogView.soundLogTextView.delegate = self
         
-        bind()
+        //bind()
     }
     
     
@@ -74,13 +74,13 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     @objc func titleTextFieldDidChange(_ sender: UITextField) {
         guard let text = sender.text, !text.isEmpty else { return }
     
-        if sender.text?.count == 1 && text.first == " " {
-            if sender.text?.first == " " {
-                sender.text = ""
-                return
-            }
+        /// 텍스트의 첫 글자가 공백인 경우 삭제합니다.
+        if sender.text?.first == " " {
+            sender.text = String(sender.text!.dropFirst())
+            return
         }
-        viewModel.soundTitle.value = text
+        
+        viewModel.soundTitle.value = sender.text ?? ""
         
         if viewModel.titleLimitExceeded {
             sender.text = String(sender.text!.prefix(10))
@@ -96,18 +96,18 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         alertController.addAction(action)
         present(alertController, animated: true)
     }
-    var selectedMood: MoodEmoji?
+    //var selectedMood: MoodEmoji?
     
     @objc private func selectMood(_ sender: UIButton) {
-        var moodTag: Int = 1
+        //var moodTag: Int = 1
         soundLogView.moodButtons.forEach { mood in
             mood.backgroundColor = .clear
         }
         
-        moodTag = sender.tag
-        let selectedMood = MoodEmoji(rawValue: sender.tag)?.emojiString ?? "😄"
-        viewModel.soundMood.value = selectedMood
+        //moodTag = sender.tag
+        let emojiiString = MoodEmoji[sender.tag]
         
+        viewModel.soundMood.value = emojiiString
         
         sender.backgroundColor = UIColor.neonPurple
         sender.layer.cornerRadius = sender.layer.frame.height / 2
@@ -272,19 +272,45 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
         
         //4.녹음
+        viewModel.recordedFileUrl.bind { [weak self] recordFile in
+            // recordFile -> UI 에 반영하는 로직
+            // HomeViewController -> SoundLogTableCell 에 띄우는건가? 아님 SoundLogVC
+            guard let url = recordFile?.recordedFileUrl, let urlObject = URL(string: url) else { return }
+            // Initializer for conditional binding must have Optional type, not 'SoundLogViewController'
+            self?.customPlayerView.queueSound(url: urlObject)
+        }
         //5.내용
+        viewModel.recordedSoundNote.bind { note in
+            self.soundLogView.soundLogTextView.text = note
+        }
         //6.위치
+        viewModel.soundLocation.bind { location in
+            self.soundLogView.addressLabel.text = location
+        }
         //7.카테고리선택
+        viewModel.soundCategory.bind { [weak self] category in
+            guard let strongSelf = self else { return }
+            let categoryType: CategoryIconType
+            switch category {
+            case "Recording":
+                categoryType = .recording
+            case "ASMR":
+                categoryType = .asmr
+            default:
+                categoryType = .recording
+            }
+            strongSelf.categoryIconView.updateType(type: categoryType)
+        }
     }
     
     // MARK: - 제목, 내용 글자 수 제한 --
     func updateForm() {
         let titleLength = viewModel.titlelimit
-        let mood = viewModel.moodIsValid
+        //let mood = viewModel.moodIsValid
         let sound = viewModel.soundIsValid
         let location = viewModel.locationIsValid
         let category = viewModel.categoryIsValid
-        soundLogView.saveButton.isEnabled = titleLength && mood && sound && location && category
+        soundLogView.saveButton.isEnabled = titleLength && sound && location && category
     }
 }
 

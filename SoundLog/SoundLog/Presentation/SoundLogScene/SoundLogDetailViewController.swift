@@ -40,20 +40,6 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         view.endEditing(true)
     }
 
-    //MARK: - Entire View Scroll
-//    private lazy var scrollView: UIScrollView = {
-//        let scrollView = UIScrollView()
-//        scrollView.showsVerticalScrollIndicator = true
-//        return scrollView
-//    }()
-//
-//    private lazy var contentView: UIView = {
-//        let view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-//
-
     // MARK: - Objc Action 관리 ⭐️
     func setTargetActions() {
         soundLogView.cancelButton.addTarget(self, action: #selector(actCancelButton), for: .touchUpInside)
@@ -232,11 +218,11 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     // MARK: - 제목, 내용 글자 수 제한 --
     func updateForm() {
         let titleLength = viewModel.titlelimit
-        let mood = viewModel.moodIsValid
+        //let mood = viewModel.moodIsValid
         let sound = viewModel.soundIsValid
         let location = viewModel.locationIsValid
         let category = viewModel.categoryIsValid
-        soundLogView.saveButton.isEnabled = titleLength && mood && sound && location && category
+        soundLogView.saveButton.isEnabled = titleLength && sound && location && category
     }
 }
 

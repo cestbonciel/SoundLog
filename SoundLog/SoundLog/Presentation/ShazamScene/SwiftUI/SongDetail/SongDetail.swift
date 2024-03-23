@@ -18,7 +18,8 @@ struct SongDetail: View {
 						 if let image = phase.image {
 							 image.resizable()
 								 .aspectRatio(contentMode: .fill)
-								 .frame(maxHeight: 200)
+                                 .frame(maxHeight: 160)
+								 //.frame(maxHeight: 200)
 								 .clipped()
 						 } else if phase.error != nil {
 							 Color.blue
@@ -26,7 +27,8 @@ struct SongDetail: View {
 							 ProgressView()
 						 }
 					 }
-					 .frame(height: 200, alignment: .center)
+                     .frame(height: 160, alignment: .center)
+					 //.frame(height: 200, alignment: .center)
 					 
 					 VStack(alignment: .leading) {
 						  Text(song.title)
@@ -61,11 +63,12 @@ struct SongDetail: View {
 									 .foregroundColor(.white)
 									 .frame(width: geometry.size.width - 64, height: 48)
 									 .background(
-										  RoundedRectangle(cornerRadius: 10).fill(Color.red)
+										  RoundedRectangle(cornerRadius: 10).fill(Color.slneonPurple)
 												.shadow(radius: 1)
 									 )
 						  })
 						  .padding(.bottom)
+                             
 					 }
 				 }
 				 .clipShape(RoundedRectangle(cornerRadius: 10))

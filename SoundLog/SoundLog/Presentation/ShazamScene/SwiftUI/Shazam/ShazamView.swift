@@ -93,7 +93,7 @@ struct ShazamView: View {
 	private var infoAlert: Alert {
 		 Alert(
 			  title: Text("소리의 기록"),
-			  message: Text("Tap the record button to listen to music around you"),
+			  message: Text("버튼을 누르고 주변 소음 외에 음악만 녹음해주세요."),
 			  dismissButton: .default(Text("OK"))
 		 )
 	}
@@ -130,17 +130,18 @@ struct ShazamView: View {
 	private var recordButton: some View {
 		 Button(action: {
 			  onRecordButtonTapped()
+             //shazamViewModel.toggleShazam()
 		 }, label: {
 			  Image(systemName: "mic")
 					.font(.system(size: 24, weight: .bold))
 					.foregroundColor(.white)
 					.frame(width: 100, height: 100, alignment: .center)
 					.background(
-						 Circle().fill(Color.blue)
+                        Circle().fill(Color.slneonPurple)
 							  .shadow(radius: 1)
 					)
 		 })
-
+         .padding(.bottom, 48)
 	}
 
 
@@ -194,4 +195,8 @@ struct ShazamView_Previews: PreviewProvider {
 	 static var previews: some View {
 		 ShazamView()
 	 }
+}
+
+extension Color {
+    static let slneonPurple = Color("soundLogPurple")
 }

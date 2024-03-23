@@ -129,13 +129,6 @@ class SoundLogTableCell: UITableViewCell {
             let recordedFileURL = documentDirectory.appendingPathComponent(recordedFileName)
             customPlayerView.queueSound(url: recordedFileURL)
         }
-        
-        /*
-        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let recordedFileURL = documentDirectory.appendingPathComponent(soundLog.recordedFileUrl.recordedFileUrl)
-        customPlayerView.queueSound(url: recordedFileURL)
-        */
-        
     }
     
     private func setUpCellUI() {

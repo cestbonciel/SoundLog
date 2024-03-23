@@ -9,12 +9,13 @@ import Foundation
 
 import RealmSwift
 
+
 final class RecordedFile: Object {
     @Persisted var recordedFileUrl: String
 }
 
 final class StorageSoundLog: Object {
-    @Persisted(primaryKey: true) var soundId: ObjectId
+    @Persisted(primaryKey: true) var _soundId: ObjectId
     @Persisted var createdAt: Date = Date()
     @Persisted var soundTitle: String = ""
     @Persisted var soundMood: String = ""
@@ -25,18 +26,13 @@ final class StorageSoundLog: Object {
 }
 
 extension StorageSoundLog {
+   
     static var realm = try! Realm()
-    /*
-    static func saveObject(_ soundStorage: StorageSoundLog)  {
-        do {
-            try realm.write {
-                realm.add(soundStorage)
-            }
-        } catch {
-            print("Error saving object to Realm: \(error)")
-        }
+    static func getAllObjects() -> Results<StorageSoundLog> {
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        return realm.objects(StorageSoundLog.self)
     }
-    */
+   
     static func saveRecordedFile(_ url: URL, completion: @escaping (Bool) -> Void) {
         let recordedFile = RecordedFile()
         recordedFile.recordedFileUrl = url.absoluteString
@@ -50,7 +46,17 @@ extension StorageSoundLog {
             completion(false)
         }
     }
+    static func saveObjectWithRecord(_ soundLogs: StorageSoundLog) {
+        do {
+            try realm.write {
+                realm.add(soundLogs)
+            }
+        } catch {
+            print("Error saving soundLog object to Realm: \(error)")
+        }
+    }
     
+    /*
     static func saveObjectAllWithRecord(
         url: URL,
         title: String,
@@ -79,16 +85,11 @@ extension StorageSoundLog {
             completion(false)
         }
     }
-    
+   */
     static func printRealmFilePath() {
         print("Realm file path: \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
 
-    static func getAllObjects() -> Results<StorageSoundLog> {
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-        return realm.objects(StorageSoundLog.self)
-    }
-   
     static func editSoundLog(
         sound: StorageSoundLog,
         date: Date,
@@ -119,4 +120,5 @@ extension StorageSoundLog {
     static func fetchDate(date: Date) -> Results<StorageSoundLog> {
         return realm.objects(StorageSoundLog.self).filter("createdAt >= %@ AND createdAt < %@", date, Date(timeInterval: 86400, since: date))
     }
+   
 }

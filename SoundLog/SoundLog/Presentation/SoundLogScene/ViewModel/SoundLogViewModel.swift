@@ -8,11 +8,11 @@
 import UIKit
 
 class SoundLogViewModel {
-    private var sounds: [StorageSoundLog] = Array(StorageSoundLog.getAllObjects())
+    private var soundLogs: [StorageSoundLog] = Array(StorageSoundLog.getAllObjects())
     
     var createdAt: Observable<Date> = Observable(Date())
     var soundTitle: Observable<String> = Observable("")
-    var soundMood: Observable<String> = Observable("")
+    var soundMood: Observable<String> = Observable(MoodEmoji[1])
     //var recordedFileUrl: Observable<String?> = Observable(nil)
     var recordedFileUrl: Observable<RecordedFile?> = Observable(nil)
     //Cannot convert value of type 'RecordedFile.Type' to expected argument type 'RecordedFile'
@@ -37,12 +37,13 @@ class SoundLogViewModel {
         return !(1...10).contains(soundTitle.value.count)
     }
     
-    var moodIsValid: Bool {
-        if soundMood.value.isEmpty {
-             return false
-        }
-        return true
-    }
+//    var moodIsValid: Bool {
+//        if soundMood.value.isEmpty {
+//            // Value of type 'MoodEmoji' has no member 'isEmpty'
+//             return false
+//        }
+//        return true
+//    }
     
     var soundIsValid: Bool {
         /*
@@ -79,6 +80,11 @@ class SoundLogViewModel {
         return recordedFile
     }
     */
+    
+    func updateMood(with selectedIndex: Int) {
+        soundMood.value = MoodEmoji[selectedIndex]
+    }
+    
     func createRecordedFile(url: URL, completion: @escaping (Bool) -> Void) {
         StorageSoundLog.saveRecordedFile(url) { [weak self] success in
             DispatchQueue.main.async {
@@ -95,12 +101,16 @@ class SoundLogViewModel {
     }
     
     func create(completion: @escaping (Bool) -> Void) {
+        let newOne = StorageSoundLog()
         guard let recordedFile = recordedFileUrl.value,
               let urlString = URL(string: recordedFile.recordedFileUrl) else {
             completion(false)
             return
         }
         
+        self.soundLogs.append(newOne)
+        StorageSoundLog.saveObjectWithRecord(newOne)
+        /*
         StorageSoundLog.saveObjectAllWithRecord(
             url: urlString, // URL 객체를 사용합니다.
             title: soundTitle.value,
@@ -110,6 +120,7 @@ class SoundLogViewModel {
             category: soundCategory.value,
             completion: completion
         )
+        */
     }
     
     func edit(_ oldValue: StorageSoundLog) {

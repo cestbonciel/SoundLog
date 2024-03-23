@@ -12,8 +12,10 @@ import ShazamKit
 class ShazamViewModel: NSObject, ObservableObject {
 	private var session = SHSession()
 	private let audioEngine = AVAudioEngine()
+    
 	@Published var viewState: ViewState = .initial
-	
+    @Published var isShazamActive: Bool = false
+    
 	override init() {
 		super.init()
 		session.delegate = self
@@ -43,6 +45,15 @@ class ShazamViewModel: NSObject, ObservableObject {
 	func stopListening() {
 		stopRecording()
 	}
+    
+    func toggleShazam() {
+        if isShazamActive {
+            stopListening()
+        } else {
+            startListening()
+        }
+        isShazamActive.toggle()
+    }
 	
 	private func requestRecordPermission(audioSession: AVAudioSession) {
 		audioSession.requestRecordPermission { [weak self] status in

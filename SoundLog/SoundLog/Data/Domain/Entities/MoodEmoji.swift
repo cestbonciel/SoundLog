@@ -7,10 +7,11 @@
 
 import UIKit
 
-enum MoodEmoji: Int {
-    case happy = 1, excited, sad, angry
+/*
+enum MoodEmoji: Int, CaseIterable {
+    case none = 0, happy, excited, sad, angry
     
-     var emojiString: String {
+     var emojiString: String? {
         switch self {
         case .happy:
             return "😚"
@@ -20,7 +21,25 @@ enum MoodEmoji: Int {
             return "😢"
         case .angry:
             return "😡"
+        case .none:
+            return nil
         }
     }
 }
+*/
 
+struct MoodEmoji {
+    static let emojis: [String] = [
+        "", // 기분 선택을 위한 빈 문자열(선택하지 않음을 나타냄)
+        "😚", // happy
+        "🥳", // excited
+        "😢", // sad
+        "😡"  // angry
+        // 여기에 추가 이모지를 계속 넣을 수 있습니다.
+    ]
+    
+    static subscript(index: Int) -> String {
+        guard emojis.indices.contains(index) else { return "" }
+        return emojis[index]
+    }
+}

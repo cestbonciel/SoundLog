@@ -12,7 +12,6 @@ import SnapKit
 final class SoundLogView: UIView, UIScrollViewDelegate {
     weak var textFieldDelegate: UITextFieldDelegate?
     weak var textViewDelegate: UITextViewDelegate?
-    //private let customPlayerView = CustomPlayerView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -144,23 +143,28 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
     
     lazy var moodButtons: [UIButton] = {
         var buttons = [UIButton]()
-        let mood = [0: "기분", 1: "😁", 2: "😡", 3: "😭", 4: "😍"]
-        //let mood = [1: "기분", 2: "😁", 3: "😡", 4: "😭", 5: "😍"]
-        for (index, moodText) in mood.sorted(by: {  $0.key < $1.key }) {
+        let moodLabelButton = UIButton()
+        moodLabelButton.setTitle("기분", for: .normal)
+        moodLabelButton.setTitleColor(.black, for: .normal)
+        moodLabelButton.isEnabled = false 
+        moodLabelButton.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        buttons.append(moodLabelButton)
+        
+        for (index, emojiString) in MoodEmoji.emojis.enumerated() where index != 0 {
+            // '기분'에 해당하는 빈 문자열을 가진 첫 번째 버튼을 스킵합니다.
             let button = UIButton()
             button.tag = index
-            button.setTitle("\(moodText)", for: .normal)
+            button.setTitle(emojiString, for: .normal)
             button.setTitleColor(.black, for: .normal)
             
-            button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-            
+            button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium) // Example replacement
             buttons.append(button)
         }
         
-        if let firstButton = buttons.first {
-            firstButton.isEnabled = false
-            
+        if let firstValidEmotionButton = buttons.first(where: { $0.tag > 0 }) {
+            firstValidEmotionButton.isEnabled = true
         }
+        
         return buttons
     }()
 
