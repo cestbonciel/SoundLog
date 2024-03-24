@@ -217,7 +217,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
 
     // MARK: - 제목, 내용 글자 수 제한 --
     func updateForm() {
-        let titleLength = viewModel.titlelimit
+        let titleLength = !viewModel.titleLimitExceeded
         //let mood = viewModel.moodIsValid
         let sound = viewModel.soundIsValid
         let location = viewModel.locationIsValid
@@ -239,14 +239,14 @@ extension SoundLogDetailViewController: UITextFieldDelegate {
         return true
     }
 }
-extension SoundLogDetailViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        viewModel.recordedSoundNote.value = textView.text ?? ""
-        if textView.text.count > 100 {
-            textView.deleteBackward()
-        }
-    }
-}
+//extension SoundLogDetailViewController: UITextViewDelegate {
+//    func textViewDidChange(_ textView: UITextView) {
+//        viewModel.recordedSoundNote.value = textView.text ?? ""
+//        if textView.text.count > 100 {
+//            textView.deleteBackward()
+//        }
+//    }
+//}
 // MARK: - Map
 extension SoundLogDetailViewController: MapViewControllerDelegate {
     func didSelectLocationWithAddress(_ address: String?) {

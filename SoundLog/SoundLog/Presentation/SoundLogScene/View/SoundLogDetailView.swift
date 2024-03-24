@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class SoundLogDetailView: UIView, UIScrollViewDelegate {
-    private let soundLogTextView = LogTextView()
+    //private let soundLogTextView = LogTextView()
     private let customPlayerView = CustomPlayerView()
     
     override init(frame: CGRect) {
@@ -426,22 +426,22 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         
         
         // MARK: - UITextView
-        soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
-        contentView.addSubview(soundLogTextView)
+        //soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
+        //contentView.addSubview(soundLogTextView)
 
-        soundLogTextView.snp.makeConstraints {
+        /*soundLogTextView.snp.makeConstraints {
             $0.top.equalTo(recordingStack.snp.bottom).offset(24)
             $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(180)
-        }
-
+        }*/
+        
         // MARK: - USER LOCATION
         contentView.addSubview(backgroundView4)
         backgroundView4.addSubview(locationStack)
         contentView.addSubview(addressLabel)
         
         backgroundView4.snp.makeConstraints {
-            $0.top.equalTo(soundLogTextView.snp.bottom).offset(24)
+            $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
             $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }

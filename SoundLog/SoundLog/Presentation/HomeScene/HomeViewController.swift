@@ -189,8 +189,8 @@ class HomeViewController: UIViewController {
 			
 			$0.trailing.equalTo(topSideStackView.snp.trailing)
 		}
-        calendarView.layer.borderColor = UIColor.magenta.cgColor
-        calendarView.layer.borderWidth = 1
+//        calendarView.layer.borderColor = UIColor.magenta.cgColor
+//        calendarView.layer.borderWidth = 1
         //self.calendarView.headerHeight = 68
 		calendarView.snp.makeConstraints {
 			$0.top.equalTo(topSideStackView.snp.bottom).offset(64)

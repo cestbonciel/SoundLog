@@ -50,7 +50,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         button.frame = CGRect(x: 0, y: 0, width: 72, height: 40)
         button.layer.cornerRadius = 10
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = UIColor.lightGray
+        button.backgroundColor = UIColor.neonLightPurple
         button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         button.setTitle("취소", for: .normal)
         return button
@@ -60,13 +60,19 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         let button = UIButton()
         button.frame = CGRect(x: 0, y: 0, width: 72, height: 40)
         button.layer.cornerRadius = 10
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = UIColor.neonYellow
+        button.setTitleColor(.gray, for: .normal)
+        button.backgroundColor = UIColor.lightGray
         button.setTitle("저장", for: .normal)
         button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         
         return button
     }()
+    
+    // 저장 버튼 상태를 업데이트하는 메소드
+    func updateSaveButton(isEnabled: Bool) {
+        saveButton.isEnabled = isEnabled
+        saveButton.backgroundColor = isEnabled ? UIColor.neonYellow : UIColor.lightGray
+    }
     
     // MARK: - Common background  ( 나중에 컴포넌트화 하자)
     private lazy var backgroundView: UIView = {
@@ -107,7 +113,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         textField.leftView = leftInsetView
         textField.leftViewMode = .always
         textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        textField.attributedPlaceholder = NSAttributedString(string: "3자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
         textField.layer.cornerRadius = 10
         textField.clearButtonMode = .whileEditing
@@ -144,27 +150,23 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
     lazy var moodButtons: [UIButton] = {
         var buttons = [UIButton]()
         let moodLabelButton = UIButton()
-        moodLabelButton.setTitle("기분", for: .normal)
+           moodLabelButton.setTitle("기분", for: .normal)
         moodLabelButton.setTitleColor(.black, for: .normal)
-        moodLabelButton.isEnabled = false 
+           moodLabelButton.isEnabled = false // 버튼을 비활성화하여 선택되지 않도록 합니다.
         moodLabelButton.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        buttons.append(moodLabelButton)
+           buttons.append(moodLabelButton)
         
         for (index, emojiString) in MoodEmoji.emojis.enumerated() where index != 0 {
-            // '기분'에 해당하는 빈 문자열을 가진 첫 번째 버튼을 스킵합니다.
-            let button = UIButton()
-            button.tag = index
-            button.setTitle(emojiString, for: .normal)
-            button.setTitleColor(.black, for: .normal)
-            
-            button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium) // Example replacement
-            buttons.append(button)
-        }
-        
-        if let firstValidEmotionButton = buttons.first(where: { $0.tag > 0 }) {
-            firstValidEmotionButton.isEnabled = true
-        }
-        
+                // '기분'에 해당하는 빈 문자열을 가진 첫 번째 버튼을 스킵합니다.
+                let button = UIButton()
+                button.tag = index
+                button.setTitle(emojiString, for: .normal)
+                button.setTitleColor(.black, for: .normal)
+                
+            button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+                buttons.append(button)
+            }
+
         return buttons
     }()
 
@@ -220,15 +222,18 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         button.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
         button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
         button.tintColor = .black
-        //button.addTarget(self, action: #selector(touchUpbottomSheet), for: .touchUpInside)
+    
         return button
     }()
-    
+   
+    /*
+    // MARK: - 내용 입력 삭제
     lazy var soundLogTextView: LogTextView = {
         let textView = LogTextView()
         textView.delegate = textViewDelegate
         return textView
     }()
+    */
     
     //MARK: - LOCATION STACK VIEW
     lazy var locationStack: UIStackView = {
@@ -328,8 +333,8 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         }
         
         contentView.addSubview(buttonStack)
-        buttonStack.layer.borderColor = UIColor.magenta.cgColor
-        buttonStack.layer.borderWidth = 1
+//        buttonStack.layer.borderColor = UIColor.magenta.cgColor
+//        buttonStack.layer.borderWidth = 1
         
         buttonStack.snp.makeConstraints {
             $0.top.equalTo(scrollView.safeAreaLayoutGuide.snp.top).inset(16)
@@ -424,6 +429,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         
         
         // MARK: - UITextView
+        /*
         soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
         contentView.addSubview(soundLogTextView)
 
@@ -432,14 +438,14 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
             $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(180)
         }
-
+        */
         // MARK: - USER LOCATION
         contentView.addSubview(backgroundView4)
         backgroundView4.addSubview(locationStack)
         contentView.addSubview(addressLabel)
         
         backgroundView4.snp.makeConstraints {
-            $0.top.equalTo(soundLogTextView.snp.bottom).offset(24)
+            $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
             $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }

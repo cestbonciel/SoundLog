@@ -9,18 +9,11 @@ import MapKit
 
 import SnapKit
 
-protocol SoundLogViewControllerDelegate: AnyObject {
-    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController)
-}
-
-
 class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
-    weak var delegate: SoundLogViewControllerDelegate?
     
     var viewModel = SoundLogViewModel()
     
     private let soundLogView = SoundLogView()
-    private let soundLogTextView = LogTextView()
     private let customPlayerView = CustomPlayerView()
     private let categoryIconView = CategoryIconView(type: .recording)
     //MARK: - CLLocation
@@ -38,14 +31,13 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         setTargetActions()
         navigationController?.hidesBarsOnSwipe = true
         self.navigationController?.navigationBar.isHidden = true
-//        scrollView.delegate = self
-        soundLogView.soundLogTitle.delegate = self
-        soundLogView.soundLogTextView.delegate = self
+       //scrollView.delegate = self
+
         
-        //bind()
+        bind()
+        
     }
-    
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
@@ -63,8 +55,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         soundLogView.coreLocationButton.addTarget(self, action: #selector(pinnedCurrentLocation), for: .touchUpInside)
         soundLogView.selectedRecBtn.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         soundLogView.selectedASMRBtn.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
-        
-        
     }
     
     @objc func handleDatePicker(_ sender: UIDatePicker) {
@@ -87,7 +77,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             showLimitAlert()
         }
         
-        updateForm()
+        updateSaveButtonState()
     }
     
     private func showLimitAlert() {
@@ -99,19 +89,17 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     //var selectedMood: MoodEmoji?
     
     @objc private func selectMood(_ sender: UIButton) {
-        //var moodTag: Int = 1
-        soundLogView.moodButtons.forEach { mood in
-            mood.backgroundColor = .clear
+        soundLogView.moodButtons.forEach { button in
+            button.backgroundColor = .clear
+            button.layer.cornerRadius = 0
+            button.clipsToBounds = true
         }
-        
-        //moodTag = sender.tag
-        let emojiiString = MoodEmoji[sender.tag]
-        
-        viewModel.soundMood.value = emojiiString
-        
         sender.backgroundColor = UIColor.neonPurple
         sender.layer.cornerRadius = sender.layer.frame.height / 2
         sender.clipsToBounds = true
+
+        viewModel.updateMood(with: sender.tag)
+        updateSaveButtonState()
     }
  
     @objc func actCancelButton(_ sender: UIButton) {
@@ -132,18 +120,21 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     @objc func saveSoundLogs() {
-        viewModel.create { [weak self] success in
+        viewModel.create { success in
             DispatchQueue.main.async {
                 if success {
-                    print("Data Save successfully.")
-                    self?.dismiss(animated: true)
+                    // 저장 성공 시, 예를 들어 홈 화면으로 돌아간다거나 사용자에게 성공 알림을 표시합니다.
+                    self.dismiss(animated: true)
                 } else {
-                    print("Failede to save data")
+                    // 저장 실패 시, 사용자에게 실패 알림을 표시합니다.
+                    let alertController = UIAlertController(title: "경고", message: "기록을 입력하고 저장해주세요.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true)
                 }
-                
             }
-            
         }
+        //dismiss(animated: true)
     }
    
     // MARK: - Presenting view for REC
@@ -163,27 +154,24 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
 
         present(viewController, animated: true)
     }
-    
-   
+       
     private var selectedButton: UIButton?
   
     @objc func categoryButtonTapped(_ sender: UIButton) {
         if sender == selectedButton {
             sender.backgroundColor = UIColor.black
             sender.setTitleColor(.white, for: .normal)
-            
             selectedButton = nil
         } else {
             selectedButton?.backgroundColor = .black
             selectedButton?.setTitleColor(.white, for: .normal)
-            
             sender.backgroundColor = UIColor.neonYellow
             sender.setTitleColor(.black, for: .normal)
-        
             selectedButton = sender
         }
         
         viewModel.soundCategory.value = sender == soundLogView.selectedRecBtn ? "Recording" : "ASMR"
+        updateSaveButtonState()
     }
     
     // MARK: - action method
@@ -195,6 +183,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         mapVC.modalPresentationStyle = .popover
         self.present(mapVC, animated: true, completion: nil)
         checkLocationPermission()
+        updateSaveButtonState()
     }
     
     private func checkLocationPermission() {
@@ -273,21 +262,17 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         
         //4.녹음
         viewModel.recordedFileUrl.bind { [weak self] recordFile in
-            // recordFile -> UI 에 반영하는 로직
-            // HomeViewController -> SoundLogTableCell 에 띄우는건가? 아님 SoundLogVC
             guard let url = recordFile?.recordedFileUrl, let urlObject = URL(string: url) else { return }
-            // Initializer for conditional binding must have Optional type, not 'SoundLogViewController'
+
             self?.customPlayerView.queueSound(url: urlObject)
+            self?.updateSaveButtonState()
         }
-        //5.내용
-        viewModel.recordedSoundNote.bind { note in
-            self.soundLogView.soundLogTextView.text = note
-        }
-        //6.위치
+
+        //5.위치
         viewModel.soundLocation.bind { location in
             self.soundLogView.addressLabel.text = location
         }
-        //7.카테고리선택
+        //6.카테고리선택
         viewModel.soundCategory.bind { [weak self] category in
             guard let strongSelf = self else { return }
             let categoryType: CategoryIconType
@@ -304,13 +289,15 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     // MARK: - 제목, 내용 글자 수 제한 --
-    func updateForm() {
-        let titleLength = viewModel.titlelimit
-        //let mood = viewModel.moodIsValid
+    func updateSaveButtonState() {
+        let titleLength = !viewModel.titleLimitExceeded
+        let mood = viewModel.moodIsSelected
         let sound = viewModel.soundIsValid
         let location = viewModel.locationIsValid
         let category = viewModel.categoryIsValid
-        soundLogView.saveButton.isEnabled = titleLength && sound && location && category
+        //soundLogView.saveButton.isEnabled = titleLength && sound && location && category
+        let formIsValid = titleLength && mood && sound && location && category
+        soundLogView.updateSaveButton(isEnabled: formIsValid)
     }
 }
 
@@ -328,35 +315,7 @@ extension SoundLogViewController: UITextFieldDelegate {
         return true
     }
 }
-extension SoundLogViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let currentText = textView.text ?? ""
-        guard let stringRange = Range(range, in: currentText) else { return false }
-        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
-        
-        // 새로운 텍스트의 길이가 100자를 넘는지 확인합니다.
-        if changedText.count > 100 {
-            // 여기서 경고창을 표시합니다.
-            showAlertWithMessage("글자 수는 100자를 넘길 수 없습니다.")
-            return false
-        }
-        return true
-    }
-    
-    func textViewDidChange(_ textView: UITextView) {
-        // 여기에서 텍스트뷰의 스크롤을 활성화할 수 있습니다.
-        textView.isScrollEnabled = true
-        // 텍스트뷰의 내용을 뷰모델에 업데이트합니다.
-        viewModel.recordedSoundNote.value = textView.text
-    }
-    
-    // 경고창을 표시하는 메서드
-    private func showAlertWithMessage(_ message: String) {
-        let alertController = UIAlertController(title: "경고", message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "확인", style: .default))
-        present(alertController, animated: true)
-    }
-}
+
 // MARK: - Map
 extension SoundLogViewController: MapViewControllerDelegate {
     func didSelectLocationWithAddress(_ address: String?) {

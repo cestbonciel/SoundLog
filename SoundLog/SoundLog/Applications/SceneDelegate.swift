@@ -17,12 +17,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // TODO: - 마지막에 다시 활성화시켜주기
+        /*
         let storyboard = UIStoryboard(name: "CustomLaunch", bundle: nil)
         let initVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
-        self.window!.backgroundColor = UIColor.white
+        self.window!.backgroundColor = UIColor.pastelSkyblue
         self.window?.rootViewController = initVC
         self.window?.makeKeyAndVisible()
-        
+        */
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.backgroundColor = .black
     }
