@@ -72,6 +72,9 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
     func updateSaveButton(isEnabled: Bool) {
         saveButton.isEnabled = isEnabled
         saveButton.backgroundColor = isEnabled ? UIColor.neonYellow : UIColor.lightGray
+        
+        let fontColor: UIColor = isEnabled ? .black : .gray
+        saveButton.setTitleColor(fontColor, for: .normal)
     }
     
     // MARK: - Common background  ( 나중에 컴포넌트화 하자)
@@ -116,13 +119,14 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
         textField.layer.cornerRadius = 10
+        textField.keyboardType = .default
         textField.clearButtonMode = .whileEditing
         textField.autocorrectionType = .no
         textField.spellCheckingType = .no
         textField.autocapitalizationType = .none
         
         textField.returnKeyType = .done
-        textField.delegate = textFieldDelegate
+        
         textField.layer.backgroundColor = UIColor.white.cgColor
         
         return textField

@@ -9,24 +9,17 @@ import UIKit
 import MapKit
 import CoreLocation
 
-
-
 class MapViewController: UIViewController {
 	
 	var locationManager = CLLocationManager()
 	weak var mapDelegate: MapViewControllerDelegate?
-	
+    weak var viewModel: SoundLogViewModel!
 	var currentLocationAddress: String?
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupUI()
 	}
 	
-//	override func viewWillDisappear(_ animated: Bool) {
-//		super.viewWillDisappear(animated)
-//		
-////		self.navigationController?.isNavigationBarHidden = false
-//	}
 	private lazy var mapView: MKMapView = {
 		let mapView = MKMapView()
 		mapView.delegate = self
@@ -36,15 +29,16 @@ class MapViewController: UIViewController {
 	
 	private lazy var confirmButton: UIButton = {
 		var configuration = UIButton.Configuration.plain()
+        
+        var titleContainer = AttributeContainer()
+        titleContainer.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        configuration.attributedTitle = AttributedString("확인", attributes: titleContainer)
 		configuration.baseForegroundColor = .black
-		configuration.title = "확인"
+		//configuration.title = "확인"
 		configuration.contentInsets = NSDirectionalEdgeInsets.init(top: 8, leading: 8, bottom: 8, trailing: 8)
 		let button = UIButton(configuration: configuration)
-		button.backgroundColor = .white
+        button.backgroundColor = .neonLightPurple
 		button.layer.cornerRadius = 8
-		
-//		button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
-//		button.frame = CGRect(x: 0, y: 0, width: 200, height: 50)
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.addTarget(self, action: #selector(downPopViewButton), for: .touchUpInside)
 		return button
@@ -74,19 +68,14 @@ class MapViewController: UIViewController {
 		geocoder.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
 			if let placemark = placemarks?.first {
 				if let address = placemark.formattedAddress {
-					self.currentLocationAddress = address
+                    self.viewModel.soundLocation.value = address
 					self.mapDelegate?.didSelectLocationWithAddress(address)
 				}
 			}
-//			self.dismiss(animated: true, completion: nil)
 		}
 		
 	}
-	
-	
-//	private func configureLocationService() {
-//		locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-//	}
+
 	
 	 func requestLocationPermission() {
 		locationManager = CLLocationManager()
@@ -118,8 +107,6 @@ class MapViewController: UIViewController {
 			}
 		}
 	}
-	
-
 	
 	func showLocationServicesDisabledAlert() {
 		

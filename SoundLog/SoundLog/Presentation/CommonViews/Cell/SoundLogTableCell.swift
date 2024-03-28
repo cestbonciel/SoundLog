@@ -102,16 +102,6 @@ class SoundLogTableCell: UITableViewCell {
             cellView.layer.borderColor = UIColor.systemDimGray.cgColor
         }
     }
-    /*
-    func configure(_ soundInfo: SoundInfo) {
-        self.locationIcon.image = UIImage(named: "soundSpot")
-        self.locationLabel.text = soundInfo.soundLocation
-        self.bookmarkIcon.image = UIImage(systemName: "bookmark")
-        self.moodLabel.text = String(soundInfo.soundMood)
-        self.titleLabel.text = soundInfo.soundTitle
-        self.timeLogLabel.text = soundInfo.createdAt.toTimeString
-    }
-    */
     
     func configure(with soundLog: StorageSoundLog) {
         self.locationIcon.image = UIImage(named: "soundSpot")
@@ -123,12 +113,68 @@ class SoundLogTableCell: UITableViewCell {
         let categoryType: CategoryIconType = soundLog.soundCategory == "ASMR" ? .asmr : .recording
         categoryIcon.setupView(type: categoryType)
         
-        if let recordedFileName = soundLog.soundRecordFile?.recordedFileUrl {
-            //Initializer for conditional binding must have Optional type, not 'String'
-            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let recordedFileURL = documentDirectory.appendingPathComponent(recordedFileName)
-            customPlayerView.queueSound(url: recordedFileURL)
+        if let recordedFileUrlString = soundLog.soundRecordFile?.recordedFileUrl,
+           let url = URL(string: recordedFileUrlString) {
+            print("녹음된 파일: \(url)")
+            // 파일 시스템 상에서 실제 파일 존재 여부를 로그로 출력합니다.
+            let fileExists = FileManager.default.fileExists(atPath: url.path)
+            print("@@@ 파일 존재 여부: \(fileExists) @@@")
+            
+            if fileExists {
+                customPlayerView.queueSound(url: url)
+            } else {
+                print("@@@ file Error: 오디오 파일 URL이 유효하지 않습니다. 경로: \(url.path)")
+                // 여기서 사용자에게 오류 메시지를 표시하거나 적절한 처리를 할 수 있습니다.
+            }
+        } else {
+            print("file Error: 녹음된 파일의 URL이 없거나 잘못되었습니다.")
+            // 적절한 사용자 피드백을 제공합니다.
         }
+    }
+    /*
+     
+     if let recordedFileName = soundLog.soundRecordFile?.recordedFileUrl,
+        let url = URL(string: recordedFileName) {
+         print("녹음된 파일: \(url)")
+         if FileManager.default.fileExists(atPath: url.path) {
+             print("파일이 존재함: \(url.path)")
+             customPlayerView.queueSound(url: url)
+         } else {
+             print("file Error: 파일이 존재하지 않음. 경로: \(url.path)")
+             // 경로가 유효하지 않을 때 보다 상세한 디버깅 정보를 출력할 수 있습니다.
+         }
+         customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
+     } else {
+         print("file Error: 저장된 녹음 파일 URL이 잘못되었거나 없음.")
+     }
+     
+     if let recordedFileName = soundLog.soundRecordFile,
+        let url = URL(string: recordedFileName.recordedFileUrl) {
+         //Initializer for conditional binding must have Optional type, not 'String'
+         print("녹음된 파일: \(url)")
+         if FileManager.default.fileExists(atPath: url.path) {
+             customPlayerView.queueSound(url: url)
+         } else {
+             print("file Error: 오디오 파일 URL 이 유효하지 않음.")
+         }
+         customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
+     }
+     
+    if let recordedFileName = soundLog.soundRecordFile,
+       let url = URL(string: recordedFileName.recordedFileUrl) {
+        //Initializer for conditional binding must have Optional type, not 'String'
+        print("녹음된 파일: \(url)")
+        if FileManager.default.fileExists(atPath: url.path) {
+            customPlayerView.queueSound(url: url)
+        } else {
+            print("file Error: 오디오 파일 URL 이 유효하지 않음.")
+        }
+        customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
+    }
+    */
+    @objc func playRecordAudio() {
+        print("재생 버튼이 눌림")
+        customPlayerView.playbuttonTapped()
     }
     
     private func setUpCellUI() {
@@ -190,3 +236,12 @@ class SoundLogTableCell: UITableViewCell {
     }
     
 }
+
+/*
+ if let recordedFileName = soundLog.soundRecordFile?.recordedFileUrl {
+     //Initializer for conditional binding must have Optional type, not 'String'
+     let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+     let recordedFileURL = documentDirectory.appendingPathComponent(recordedFileName)
+     customPlayerView.queueSound(url: recordedFileURL)
+ }
+ */

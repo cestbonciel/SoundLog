@@ -12,12 +12,9 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 	
 	// MARK: Feature - Setup AudioRecorder
 	func setupAudioRecorder() {
-		let dateFormatter = DateFormatter()
-        dateFormatter.locale = .current
-        dateFormatter.timeZone = .current
-		dateFormatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
 		
-		let currentFileName = "your_sound_\(dateFormatter.string(from: Date())).m4a"
+        
+        let currentFileName = "your_sound_\(Date().toRecordTimeString).m4a"
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         self.audioFileURL = documentsDirectory.appendingPathComponent(currentFileName)
 		
@@ -180,7 +177,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         let session = AVAudioSession.sharedInstance()
         
         do {
-            try session.setCategory(AVAudioSession.Category.playback, options: .defaultToSpeaker)
+            try session.setCategory(AVAudioSession.Category.playback, mode: .default)
             
         } catch {
             print("could not set session category")

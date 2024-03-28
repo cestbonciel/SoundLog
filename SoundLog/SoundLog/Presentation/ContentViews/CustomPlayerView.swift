@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+
 import SnapKit
 
 class CustomPlayerView: UIView {
@@ -53,7 +54,7 @@ class CustomPlayerView: UIView {
         return view
     }()
     
-    private lazy var playAndPauseBtn: UIButton = {
+    lazy var playAndPauseBtn: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
         button.setPreferredSymbolConfiguration(.init(pointSize: 16, weight: .regular, scale: .default), forImageIn: .normal)
@@ -81,6 +82,15 @@ class CustomPlayerView: UIView {
         return progress
     }()
     
+    func setupAudioSessionForPlayback() {
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try session.setCategory(.playback, mode: .default)
+        } catch {
+            print("Failed to set up audio session for playback: \(error.localizedDescription)")
+        }
+    }
+    
     private func setButtonState() {
 
         switch currentPlayerState {
@@ -91,8 +101,24 @@ class CustomPlayerView: UIView {
         }
     }
 
-    
-    @objc private func playbuttonTapped() {
+    @objc func playbuttonTapped() {
+        guard let player = audioPlayer else {
+            print("audioPlayer 인스턴스가 없습니다.")
+            return
+        }
+
+        if player.isPlaying {
+            currentPlayerState = .paused
+            player.pause()
+            print("재생이 일시 정지되었습니다.")
+        } else {
+            currentPlayerState = .playing
+            player.play()
+            print("재생이 시작되었습니다.")
+        }
+    }
+    /*
+    @objc func playbuttonTapped() {
 
         if currentPlayerState == .playing {
             currentPlayerState = .paused
@@ -102,7 +128,7 @@ class CustomPlayerView: UIView {
             audioPlayer?.play()
         }
     }
-    
+    */
     private func makeTimer() {
         if audioTimer != nil {
             audioTimer!.invalidate()
@@ -118,18 +144,21 @@ class CustomPlayerView: UIView {
     
     // TODO: - 녹음된 파일 전달되어야 하는 메소드
     func queueSound(url: URL) {
+        setupAudioSessionForPlayback()
         do {
+            let isFileExists = FileManager.default.fileExists(atPath: url.path)
+            print("@@@ 파일 존재여부: \(isFileExists) @@@")
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.delegate = self
             audioPlayer?.prepareToPlay()
+            if !isFileExists {
+                print("Error: 파일이 존재하지 않습니다.")
+            }
         } catch {
             print("Error AudioPlayer: \(error.localizedDescription)")
         }
     }
 
-
-
-    
     @objc private func updatePlayTime() {
         guard let player = audioPlayer else { return }
         audioPlayTimeLabel.text = formatTimeInterval2String(player.currentTime)

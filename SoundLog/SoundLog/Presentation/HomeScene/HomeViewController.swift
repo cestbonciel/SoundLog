@@ -165,8 +165,10 @@ class HomeViewController: UIViewController {
 	
 	lazy var calendarView = FSCalendar(frame: .zero)
     // MARK: - SoundLogViewController
+    
     @IBAction func addLogButtonTapped(_ sender: UIButton) {
         let vc = SoundLogViewController()
+        vc.viewModel.createdAt.value = calendarView.selectedDate ?? Date()
         let navVC = UINavigationController(rootViewController: vc)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
@@ -253,6 +255,7 @@ extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource, FSCalend
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         headerLabel.text = headerDateFormatter.string(from: date)
+        soundLogs = StorageSoundLog.fetchDate(date: date)
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {

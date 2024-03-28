@@ -10,7 +10,7 @@ import AVFoundation
 
 class RecordingViewController: UIViewController {
     // MARK: - viewModel
-    var viewModel: SoundLogViewModel!
+    weak var viewModel: SoundLogViewModel!
     
 	var audioRecorder: AVAudioRecorder!
 	var audioPlayer: AVAudioPlayer!
@@ -29,7 +29,7 @@ class RecordingViewController: UIViewController {
 		super.viewDidLoad()
 		self.setupUI()
 		view.backgroundColor = .pastelSkyblue
-        viewModel = SoundLogViewModel()
+        
         stopButton.isEnabled = false
         playButton.isEnabled = false
         setSessionPlayback()
@@ -278,24 +278,3 @@ fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Categ
 	return input.rawValue
 }
 
-
-#if DEBUG
-import SwiftUI
-struct RecordPreview: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> some UIViewController {
-        RecordingViewController()
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-
-    }
-}
-
-struct RecordingViewController_Preview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            RecordPreview()
-        }
-    }
-}
-#endif

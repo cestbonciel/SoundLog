@@ -32,7 +32,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         navigationController?.hidesBarsOnSwipe = true
         self.navigationController?.navigationBar.isHidden = true
        //scrollView.delegate = self
-
+        soundLogView.soundLogTitle.delegate = self
+        
         
         bind()
         
@@ -97,11 +98,20 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         sender.backgroundColor = UIColor.neonPurple
         sender.layer.cornerRadius = sender.layer.frame.height / 2
         sender.clipsToBounds = true
-
+        
+       
         viewModel.updateMood(with: sender.tag)
+        
         updateSaveButtonState()
     }
- 
+    
+    private func diselectMoodAlert() {
+        let alertController = UIAlertController(title: "안내", message: "감정을 선택해주세요.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "확인", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+    
     @objc func actCancelButton(_ sender: UIButton) {
         
         let alertController = UIAlertController(title: "안내", message: "취소하면 작성한 내용이 사라집니다.", preferredStyle: .alert)
@@ -120,6 +130,12 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     @objc func saveSoundLogs() {
+        viewModel.create()
+        dismiss(animated: true)
+        
+    }
+        
+        /*
         viewModel.create { success in
             DispatchQueue.main.async {
                 if success {
@@ -134,12 +150,14 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
                 }
             }
         }
+        */
         //dismiss(animated: true)
-    }
+    
    
     // MARK: - Presenting view for REC
     @objc func touchUpbottomSheet(_ sender: UIButton) {
         let viewController = RecordingViewController()
+        viewController.viewModel = viewModel
         viewController.isModalInPresentation = true
         if let sheet = viewController.presentationController as? UISheetPresentationController {
             sheet.preferredCornerRadius = 20
@@ -177,6 +195,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     // MARK: - action method
     @objc func pinnedCurrentLocation(_ sender: UIButton) {
         let mapVC = MapViewController()
+        mapVC.viewModel = viewModel
         mapVC.currentLocationAddress = soundLogView.addressLabel.text
         mapVC.mapDelegate = self
         mapVC.isModalInPresentation = true
@@ -296,8 +315,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         let location = viewModel.locationIsValid
         let category = viewModel.categoryIsValid
         //soundLogView.saveButton.isEnabled = titleLength && sound && location && category
-        let formIsValid = titleLength && mood && sound && location && category
-        soundLogView.updateSaveButton(isEnabled: formIsValid)
+        //let formIsValid = titleLength && mood && sound && location && category
+        soundLogView.updateSaveButton(isEnabled: true)
     }
 }
 
@@ -320,6 +339,7 @@ extension SoundLogViewController: UITextFieldDelegate {
 extension SoundLogViewController: MapViewControllerDelegate {
     func didSelectLocationWithAddress(_ address: String?) {
          if let address = address {
+             viewModel.soundLocation.value = address
              soundLogView.addressLabel.text = address
          }
     }

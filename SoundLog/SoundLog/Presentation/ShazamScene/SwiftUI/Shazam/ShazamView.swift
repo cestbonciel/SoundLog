@@ -75,15 +75,10 @@ struct ShazamView: View {
 					 
 					 Spacer()
 				 }
-
-//				 VStack {
-//					 Spacer()
-//					 footerText.padding(.bottom, 16)
-//				 }
 				 
 			 }// : ZSTACK
 			 .padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
-			
+             
 		 }
 		 .onAppear(perform: { bindViewModel() })
 		 .onDisappear(perform: { shazamViewModel.stopListening() })
@@ -92,7 +87,7 @@ struct ShazamView: View {
 	
 	private var infoAlert: Alert {
 		 Alert(
-			  title: Text("소리의 기록"),
+			  title: Text("소리의기록 - Shazam 검색"),
 			  message: Text("버튼을 누르고 주변 소음 외에 음악만 녹음해주세요."),
 			  dismissButton: .default(Text("OK"))
 		 )
@@ -113,7 +108,7 @@ struct ShazamView: View {
 	}
 
 	@ViewBuilder
-	private var infoButton: some View {
+	var infoButton: some View {
 		 Button(action: {
 			  shazamViewModel.showInfo()
 		 }, label: {
@@ -123,6 +118,7 @@ struct ShazamView: View {
 					.scaledToFit()
 					.foregroundColor(Color.black.opacity(0.7))
 		 })
+         .padding(.top, 32)
 
 	}
 
