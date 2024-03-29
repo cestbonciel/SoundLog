@@ -15,7 +15,6 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     var viewModel = SoundLogViewModel()
     
     private let soundLogView = SoundLogView()
-    private let soundLogTextView = LogTextView()
     private let customPlayerView = CustomPlayerView()
     
     //MARK: - CLLocation

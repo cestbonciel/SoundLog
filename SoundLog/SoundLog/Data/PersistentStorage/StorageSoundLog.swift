@@ -95,5 +95,9 @@ extension StorageSoundLog {
     static func fetchDate(date: Date) -> Results<StorageSoundLog> {
         return realm.objects(StorageSoundLog.self).filter("createdAt >= %@ AND createdAt < %@", date, Date(timeInterval: 86400, since: date))
     }
-   
+
 }
+
+//    var isBookmarked: Bool {
+//        return !(realm?.objects(BookmarkSoundLog.self).filter("soundLog == %@", self).isEmpty ?? true)
+//    }

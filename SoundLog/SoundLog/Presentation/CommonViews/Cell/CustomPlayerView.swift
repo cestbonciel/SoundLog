@@ -25,7 +25,7 @@ class CustomPlayerView: UIView {
     
     var audioPlayer: AVAudioPlayer?
     var audioTimer: Timer?
-    
+
     init() {
         super.init(frame: .zero)
         setupUI()
@@ -117,18 +117,7 @@ class CustomPlayerView: UIView {
             print("재생이 시작되었습니다.")
         }
     }
-    /*
-    @objc func playbuttonTapped() {
-
-        if currentPlayerState == .playing {
-            currentPlayerState = .paused
-            audioPlayer?.pause()
-        } else {
-            currentPlayerState = .playing
-            audioPlayer?.play()
-        }
-    }
-    */
+   
     private func makeTimer() {
         if audioTimer != nil {
             audioTimer!.invalidate()
@@ -144,16 +133,12 @@ class CustomPlayerView: UIView {
     
     // TODO: - 녹음된 파일 전달되어야 하는 메소드
     func queueSound(url: URL) {
-        setupAudioSessionForPlayback()
         do {
-            let isFileExists = FileManager.default.fileExists(atPath: url.path)
-            print("@@@ 파일 존재여부: \(isFileExists) @@@")
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             audioPlayer?.delegate = self
             audioPlayer?.prepareToPlay()
-            if !isFileExists {
-                print("Error: 파일이 존재하지 않습니다.")
-            }
+            audioPlayer?.volume = 3.0
+            
         } catch {
             print("Error AudioPlayer: \(error.localizedDescription)")
         }
@@ -207,6 +192,7 @@ class CustomPlayerView: UIView {
 extension CustomPlayerView: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
+            audioTimer?.invalidate()
             currentPlayerState = .paused
             setButtonState()
         } else {
@@ -214,3 +200,17 @@ extension CustomPlayerView: AVAudioPlayerDelegate {
         }
     }
 }
+
+
+/*
+@objc func playbuttonTapped() {
+
+    if currentPlayerState == .playing {
+        currentPlayerState = .paused
+        audioPlayer?.pause()
+    } else {
+        currentPlayerState = .playing
+        audioPlayer?.play()
+    }
+}
+*/

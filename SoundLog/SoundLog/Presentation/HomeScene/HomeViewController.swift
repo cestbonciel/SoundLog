@@ -45,7 +45,7 @@ class HomeViewController: UIViewController {
         soundLogs = StorageSoundLog.fetchDate(date: Date())
         
 		configureCalendar()
-
+        
 	}
 	
 	let headerDateFormatter: DateFormatter = {
@@ -277,9 +277,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         //var categoryIcon = CategoryIconType.Type.self
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as? SoundLogTableCell else { fatalError("Unable to dequeue SoundLogTableCell") }
         let soundLog = soundLogs[indexPath.row]
-
+        cell.delegate = self
         cell.selectionStyle = .none
         cell.configure(with: soundLog)
+        
         return cell
     }
     
@@ -288,11 +289,27 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
+extension HomeViewController: SoundLogTableCellDelegate {
+    func didToggleBookmark(for cell: SoundLogTableCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let soundLog = soundLogs[indexPath.row]
+        
+        if BookmarkSoundLog.isBookmarked(for: soundLog) {
+            BookmarkSoundLog.removeBookmark(for: soundLog)
+        } else {
+            BookmarkSoundLog.addBookmark(for: soundLog)
+        }
+        
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+}
+
 //extension HomeViewController: SoundLogViewControllerDelegate {
 //    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController) {
 //        let defaultDate = calendarView.selectedDate ?? calendarView.today!
 //        soundLogs = StorageSoundLog.fetchDate(date: defaultDate)
 //        //calendarView.reloadData()
-//        
+//
 //    }
 //}

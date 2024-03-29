@@ -272,9 +272,3 @@ class RecordingViewController: UIViewController {
 		
 	}
 }
-
-
-fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
-	return input.rawValue
-}
-

@@ -33,6 +33,7 @@
 		1AAC0EDA2BA3609D001E8992 /* SoundLogDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC0ED92BA3609D001E8992 /* SoundLogDetailViewController.swift */; };
 		1AAC0EDC2BA365A6001E8992 /* SoundLogDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC0EDB2BA365A6001E8992 /* SoundLogDetailView.swift */; };
 		1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */; };
+		1AC340AD2BB73ED300C4DECE /* BookmarkSoundLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC340AC2BB73ED300C4DECE /* BookmarkSoundLog.swift */; };
 		1AC61D622BACA9FE00631BAD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC61D612BACA9FE00631BAD /* Lottie */; };
 		1AC61D662BACB70000631BAD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC61D652BACB70000631BAD /* SplashViewController.swift */; };
 		1AC61D682BACBE6E00631BAD /* CustomLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AC61D672BACBE6E00631BAD /* CustomLaunch.storyboard */; };
@@ -56,7 +57,6 @@
 		874418782ABB45FB00233604 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8744186F2ABB45FA00233604 /* Pretendard-Bold.otf */; };
 		874418792ABB45FB00233604 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 874418702ABB45FB00233604 /* Pretendard-Regular.otf */; };
 		8744187A2ABB45FB00233604 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */; };
-		8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8744187C2ABB5CFD00233604 /* LogTextView.swift */; };
 		874764382AFAA3CD00365717 /* ShazamHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874764372AFAA3CD00365717 /* ShazamHostingController.swift */; };
 		8747643B2AFAA45300365717 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747643A2AFAA45300365717 /* ContentView.swift */; };
 		8747643D2AFAA46C00365717 /* ShazamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8747643C2AFAA46C00365717 /* ShazamView.swift */; };
@@ -111,6 +111,7 @@
 		1AAC0ED92BA3609D001E8992 /* SoundLogDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogDetailViewController.swift; sourceTree = "<group>"; };
 		1AAC0EDB2BA365A6001E8992 /* SoundLogDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundLogDetailView.swift; sourceTree = "<group>"; };
 		1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CLPlackMark+Extension.swift"; sourceTree = "<group>"; };
+		1AC340AC2BB73ED300C4DECE /* BookmarkSoundLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkSoundLog.swift; sourceTree = "<group>"; };
 		1AC61D652BACB70000631BAD /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		1AC61D672BACBE6E00631BAD /* CustomLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomLaunch.storyboard; sourceTree = "<group>"; };
 		1AC61D6B2BACC73000631BAD /* soundLogAni.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = soundLogAni.json; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		8744186F2ABB45FA00233604 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		874418702ABB45FB00233604 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		874418712ABB45FB00233604 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
-		8744187C2ABB5CFD00233604 /* LogTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTextView.swift; sourceTree = "<group>"; };
 		874764372AFAA3CD00365717 /* ShazamHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamHostingController.swift; sourceTree = "<group>"; };
 		8747643A2AFAA45300365717 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8747643C2AFAA46C00365717 /* ShazamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShazamView.swift; sourceTree = "<group>"; };
@@ -214,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				1A1877C52B8688B2001DB607 /* StorageSoundLog.swift */,
+				1AC340AC2BB73ED300C4DECE /* BookmarkSoundLog.swift */,
 			);
 			path = PersistentStorage;
 			sourceTree = "<group>";
@@ -221,7 +222,6 @@
 		1A52406C2B9EE6D20015FEAC /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				8744187C2ABB5CFD00233604 /* LogTextView.swift */,
 				1A52406D2B9EE6FA0015FEAC /* CategoryIconView.swift */,
 			);
 			path = Components;
@@ -256,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				1A871B282B87C34400F2CD10 /* SoundLogTableCell.swift */,
+				1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -515,7 +516,6 @@
 				87EE460C2AD7D651008E553F /* UIView+BackgroundView.swift */,
 				87612BCC2ADAEF36008A4F42 /* TextfieldContentView.swift */,
 				1A1396992B187C0C0072BC49 /* CustomNaviBarItem.swift */,
-				1ACA8FAA2B95046200C4F34A /* CustomPlayerView.swift */,
 			);
 			path = ContentViews;
 			sourceTree = "<group>";
@@ -649,6 +649,7 @@
 				1A67C4402B88FD4100481B1C /* SoundInfoManager.swift in Sources */,
 				874764402AFAA48900365717 /* SongData.swift in Sources */,
 				1A52406E2B9EE6FA0015FEAC /* CategoryIconView.swift in Sources */,
+				1AC340AD2BB73ED300C4DECE /* BookmarkSoundLog.swift in Sources */,
 				87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */,
 				87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */,
 				87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */,
@@ -663,7 +664,6 @@
 				1A7A51932BA0BE12004D33BD /* Observable.swift in Sources */,
 				1A7A518F2BA0B5CF004D33BD /* SoundLogViewModel.swift in Sources */,
 				878864D22A8E73A6008340E2 /* MainTabBarController.swift in Sources */,
-				8744187D2ABB5CFD00233604 /* LogTextView.swift in Sources */,
 				8731316D2A9CE26700E8B645 /* MoreMenuViewController.swift in Sources */,
 				1A8605E62BA21A1B00AA2A55 /* SoundLogView.swift in Sources */,
 				1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */,

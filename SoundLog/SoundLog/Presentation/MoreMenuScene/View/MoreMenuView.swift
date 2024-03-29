@@ -17,69 +17,16 @@ class MoreMenuView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    private lazy var nicknameStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [userNickname, modifiedButton])
-        stackView.axis = .horizontal
-        stackView.alignment = .leading
-        stackView.distribution = .equalSpacing
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return stackView
-    }()
-    
+
     private lazy var bookmarkStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [bookmarkIcon, bookmarkLabel])
         stackView.axis = .horizontal
         stackView.alignment = .firstBaseline
-//        stackView.isLayoutMarginsRelativeArrangement = true
-//        stackView.layoutMargins = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
         stackView.distribution = .equalSpacing
         
         stackView.spacing = 8
         return stackView
     }()
-    
-    private lazy var userNickname: UILabel = {
-        let label = UILabel()
-        label.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        label.text = "뮤덕이" // TODO: - 나중에 사용자 닉네임 값 받아오는 걸로 변경해야함
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private lazy var modifiedButton: UIButton = {
-        var attrStr = AttributedString("변경")
-        attrStr.font = .gmsans(ofSize: 14, weight: .GMSansMedium)
-        
-        var config = UIButton.Configuration.filled()
-        config.attributedTitle = attrStr
-        config.baseForegroundColor = .white
-        config.titlePadding = 16
-        config.imagePadding = 16
-        config.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-        
-        let buttonInstance = UIButton(configuration: config)
-        buttonInstance.frame = CGRect(x: 0, y: 0, width: 48, height: 32)
-        buttonInstance.tintColor = .neonPurple
-        buttonInstance.layer.cornerRadius = 10
-        buttonInstance.addTarget(self, action: #selector(modifiedButtonTapped), for: .touchUpInside)
-        return buttonInstance
-    }()
-
-    
-
-
-    @objc func modifiedButtonTapped() {
-        //view.backgroundColor = .systemGreen.withAlphaComponent(0.4)
-        let viewController = MoreMenuViewController()
-        viewController.modalTransitionStyle = .crossDissolve
-        //view.modalPresentationStyle = .overFullScreen
-        //present(viewController, animated: true, completion: nil)
-    }
-    
 
     private lazy var bookmarkLabel: UILabel = {
         let label = UILabel()
@@ -108,6 +55,14 @@ class MoreMenuView: UIView {
         return label
     }()
     
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(SoundLogTableCell.self, forCellReuseIdentifier: SoundLogTableCell.identifier)
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        return tableView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -122,25 +77,12 @@ class MoreMenuView: UIView {
         //self.addSubview(nicknameStack)
         self.addSubview(bookmarkStack)
         self.addSubview(noticeLabel)
+        
         introLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(120)
             $0.left.equalToSuperview().inset(24)
         }
-        
-//        nicknameStack.snp.makeConstraints {
-//            $0.top.equalTo(introLabel.snp.bottom).offset(48)
-//            $0.left.right.equalToSuperview().inset(24)
-//        }
-//
-//        userNickname.snp.makeConstraints {
-//            $0.centerY.equalToSuperview()
-//            $0.leading.equalToSuperview()
-//        }
-//        modifiedButton.snp.makeConstraints {
-//            $0.centerY.equalToSuperview()
-//            $0.trailing.equalToSuperview()
-//            $0.height.equalTo(32)
-//        }
+
         bookmarkStack.snp.makeConstraints {
             $0.top.equalTo(introLabel.snp.bottom).offset(24)
             $0.left.equalToSuperview().inset(24)
@@ -164,5 +106,41 @@ class MoreMenuView: UIView {
             $0.centerX.equalToSuperview()
         }
         
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        self.addSubview(tableView)
+        
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(bookmarkStack.snp.bottom).offset(8)
+            $0.left.right.equalToSuperview().inset(16)
+            $0.bottom.equalTo(safeAreaLayoutGuide)
+        }
+
     }
 }
+/*
+extension MoreMenuView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //var categoryIcon = CategoryIconType.Type.self
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as? SoundLogTableCell else { fatalError("Unable to dequeue SoundLogTableCell") }
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 146
+    }
+    
+    
+}
+*/

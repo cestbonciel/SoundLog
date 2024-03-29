@@ -8,8 +8,14 @@
 import UIKit
 import SnapKit
 
+protocol SoundLogTableCellDelegate: AnyObject {
+    func didToggleBookmark(for cell: SoundLogTableCell)
+}
+
 class SoundLogTableCell: UITableViewCell {
     static let identifier: String = "SoundLogCell"
+    
+    weak var delegate: SoundLogTableCellDelegate?
     
     private lazy var cellView: UIView = {
         let view = UIView()
@@ -29,7 +35,7 @@ class SoundLogTableCell: UITableViewCell {
     
     lazy var locationLabel: UILabel = {
         let label = UILabel()
-        label.text = "강원도 속초바닷가"
+        label.text = ""
         label.font = .gmsans(ofSize: 12, weight: .GMSansLight)
         return label
     }()
@@ -38,7 +44,7 @@ class SoundLogTableCell: UITableViewCell {
         let icon = UIImageView()
         icon.image = UIImage(systemName: "bookmark")
         icon.contentMode = .scaleAspectFit
-        icon.tintColor = .black
+        icon.tintColor = .neonPurple
         return icon
     }()
     
@@ -50,7 +56,7 @@ class SoundLogTableCell: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "바닷소리가 좋다"
+        label.text = ""
         label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
         return label
     }()
@@ -103,10 +109,18 @@ class SoundLogTableCell: UITableViewCell {
         }
     }
     
+    // MARK: - Configure
     func configure(with soundLog: StorageSoundLog) {
         self.locationIcon.image = UIImage(named: "soundSpot")
         self.locationLabel.text = soundLog.soundLocation
-        self.bookmarkIcon.image = UIImage(systemName: "bookmark")
+        
+       
+        //self.bookmarkIcon.image = UIImage(systemName: "bookmark")
+        let isBookmarked = BookmarkSoundLog.isBookmarked(for: soundLog)
+        updateBookmarkIcon(isBookmarked: isBookmarked)
+        
+        setupBookmarkGesture()
+    
         self.moodLabel.text = soundLog.soundMood
         self.titleLabel.text = soundLog.soundTitle
         self.timeLogLabel.text = soundLog.createdAt.toTimeString
@@ -119,9 +133,11 @@ class SoundLogTableCell: UITableViewCell {
             // 파일 시스템 상에서 실제 파일 존재 여부를 로그로 출력합니다.
             let fileExists = FileManager.default.fileExists(atPath: url.path)
             print("@@@ 파일 존재 여부: \(fileExists) @@@")
+            print("@@@ 파일 존재 여부: \(url.path) @@@")
             
             if fileExists {
                 customPlayerView.queueSound(url: url)
+                
             } else {
                 print("@@@ file Error: 오디오 파일 URL이 유효하지 않습니다. 경로: \(url.path)")
                 // 여기서 사용자에게 오류 메시지를 표시하거나 적절한 처리를 할 수 있습니다.
@@ -131,47 +147,23 @@ class SoundLogTableCell: UITableViewCell {
             // 적절한 사용자 피드백을 제공합니다.
         }
     }
-    /*
-     
-     if let recordedFileName = soundLog.soundRecordFile?.recordedFileUrl,
-        let url = URL(string: recordedFileName) {
-         print("녹음된 파일: \(url)")
-         if FileManager.default.fileExists(atPath: url.path) {
-             print("파일이 존재함: \(url.path)")
-             customPlayerView.queueSound(url: url)
-         } else {
-             print("file Error: 파일이 존재하지 않음. 경로: \(url.path)")
-             // 경로가 유효하지 않을 때 보다 상세한 디버깅 정보를 출력할 수 있습니다.
-         }
-         customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
-     } else {
-         print("file Error: 저장된 녹음 파일 URL이 잘못되었거나 없음.")
-     }
-     
-     if let recordedFileName = soundLog.soundRecordFile,
-        let url = URL(string: recordedFileName.recordedFileUrl) {
-         //Initializer for conditional binding must have Optional type, not 'String'
-         print("녹음된 파일: \(url)")
-         if FileManager.default.fileExists(atPath: url.path) {
-             customPlayerView.queueSound(url: url)
-         } else {
-             print("file Error: 오디오 파일 URL 이 유효하지 않음.")
-         }
-         customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
-     }
-     
-    if let recordedFileName = soundLog.soundRecordFile,
-       let url = URL(string: recordedFileName.recordedFileUrl) {
-        //Initializer for conditional binding must have Optional type, not 'String'
-        print("녹음된 파일: \(url)")
-        if FileManager.default.fileExists(atPath: url.path) {
-            customPlayerView.queueSound(url: url)
-        } else {
-            print("file Error: 오디오 파일 URL 이 유효하지 않음.")
-        }
-        customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
+    
+    private func updateBookmarkIcon(isBookmarked: Bool) {
+        let bookmarkImageName = isBookmarked ? "bookmark.fill" : "bookmark"
+        bookmarkIcon.image = UIImage(systemName: bookmarkImageName)
     }
-    */
+    
+    private func setupBookmarkGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleBookmark))
+        bookmarkIcon.isUserInteractionEnabled = true
+        bookmarkIcon.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func toggleBookmark() {
+        print("Bookmark icon tapped.")
+        delegate?.didToggleBookmark(for: self)
+    }
+    
     @objc func playRecordAudio() {
         print("재생 버튼이 눌림")
         customPlayerView.playbuttonTapped()
@@ -238,6 +230,8 @@ class SoundLogTableCell: UITableViewCell {
 }
 
 /*
+ customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
+ 
  if let recordedFileName = soundLog.soundRecordFile?.recordedFileUrl {
      //Initializer for conditional binding must have Optional type, not 'String'
      let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -245,3 +239,45 @@ class SoundLogTableCell: UITableViewCell {
      customPlayerView.queueSound(url: recordedFileURL)
  }
  */
+
+/*
+ 
+ if let recordedFileName = soundLog.soundRecordFile?.recordedFileUrl,
+    let url = URL(string: recordedFileName) {
+     print("녹음된 파일: \(url)")
+     if FileManager.default.fileExists(atPath: url.path) {
+         print("파일이 존재함: \(url.path)")
+         customPlayerView.queueSound(url: url)
+     } else {
+         print("file Error: 파일이 존재하지 않음. 경로: \(url.path)")
+         // 경로가 유효하지 않을 때 보다 상세한 디버깅 정보를 출력할 수 있습니다.
+     }
+     customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
+ } else {
+     print("file Error: 저장된 녹음 파일 URL이 잘못되었거나 없음.")
+ }
+ 
+ if let recordedFileName = soundLog.soundRecordFile,
+    let url = URL(string: recordedFileName.recordedFileUrl) {
+     //Initializer for conditional binding must have Optional type, not 'String'
+     print("녹음된 파일: \(url)")
+     if FileManager.default.fileExists(atPath: url.path) {
+         customPlayerView.queueSound(url: url)
+     } else {
+         print("file Error: 오디오 파일 URL 이 유효하지 않음.")
+     }
+     customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
+ }
+ 
+if let recordedFileName = soundLog.soundRecordFile,
+   let url = URL(string: recordedFileName.recordedFileUrl) {
+    //Initializer for conditional binding must have Optional type, not 'String'
+    print("녹음된 파일: \(url)")
+    if FileManager.default.fileExists(atPath: url.path) {
+        customPlayerView.queueSound(url: url)
+    } else {
+        print("file Error: 오디오 파일 URL 이 유효하지 않음.")
+    }
+    customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
+}
+*/
