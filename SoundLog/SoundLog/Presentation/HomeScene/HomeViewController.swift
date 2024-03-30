@@ -301,7 +301,8 @@ extension HomeViewController: SoundLogTableCellDelegate {
             BookmarkSoundLog.addBookmark(for: soundLog)
         }
         
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        //tableView.reloadRows(at: [indexPath], with: .automatic)
+        cell.updateBookmarkIcon(isBookmarked: BookmarkSoundLog.isBookmarked(for: soundLog))
     }
 }
 

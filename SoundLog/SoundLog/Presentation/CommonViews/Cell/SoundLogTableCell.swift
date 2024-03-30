@@ -114,10 +114,8 @@ class SoundLogTableCell: UITableViewCell {
         self.locationIcon.image = UIImage(named: "soundSpot")
         self.locationLabel.text = soundLog.soundLocation
         
-       
-        //self.bookmarkIcon.image = UIImage(systemName: "bookmark")
-        let isBookmarked = BookmarkSoundLog.isBookmarked(for: soundLog)
-        updateBookmarkIcon(isBookmarked: isBookmarked)
+    
+        updateBookmarkIcon(isBookmarked: BookmarkSoundLog.isBookmarked(for: soundLog))
         
         setupBookmarkGesture()
     
@@ -148,7 +146,7 @@ class SoundLogTableCell: UITableViewCell {
         }
     }
     
-    private func updateBookmarkIcon(isBookmarked: Bool) {
+    func updateBookmarkIcon(isBookmarked: Bool) {
         let bookmarkImageName = isBookmarked ? "bookmark.fill" : "bookmark"
         bookmarkIcon.image = UIImage(systemName: bookmarkImageName)
     }
