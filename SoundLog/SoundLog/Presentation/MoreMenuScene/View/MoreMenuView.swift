@@ -55,6 +55,12 @@ class MoreMenuView: UIView {
         return label
     }()
     
+    lazy var lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(SoundLogTableCell.self, forCellReuseIdentifier: SoundLogTableCell.identifier)
@@ -88,7 +94,6 @@ class MoreMenuView: UIView {
             $0.left.equalToSuperview().inset(24)
             $0.height.equalTo(32)
         }
-
         
         bookmarkIcon.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -99,6 +104,14 @@ class MoreMenuView: UIView {
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview()
             
+        }
+        
+        self.addSubview(lineView)
+        
+        lineView.snp.makeConstraints {
+            $0.top.equalTo(bookmarkStack.snp.bottom).offset(16)
+            $0.left.right.equalToSuperview().inset(16)
+            $0.height.equalTo(2)
         }
         
         noticeLabel.snp.makeConstraints {
@@ -112,7 +125,7 @@ class MoreMenuView: UIView {
         self.addSubview(tableView)
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(bookmarkStack.snp.bottom).offset(8)
+            $0.top.equalTo(bookmarkStack.snp.bottom).offset(24)
             $0.left.right.equalToSuperview().inset(16)
             $0.bottom.equalTo(safeAreaLayoutGuide)
         }

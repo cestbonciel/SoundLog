@@ -66,7 +66,7 @@ class MoreMenuViewController: UIViewController {
             BookmarkSoundLog.isBookmarked(for: $0)
         }
         moreMenuView.tableView.reloadData()
-        //Reference to member 'reloadData' cannot be resolved without a contextual type
+
     }
     
 }
@@ -83,7 +83,8 @@ extension MoreMenuViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SoundLogTableCell.identifier, for: indexPath) as? SoundLogTableCell else { fatalError("Unable to dequeue SoundLogTableCell") }
         let soundLog = bookmarkedLogs[indexPath.row]
         cell.configure(with: soundLog)
-        
+        cell.delegate = self
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -95,6 +96,20 @@ extension MoreMenuViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+extension MoreMenuViewController: SoundLogTableCellDelegate {
+    func didToggleBookmark(for cell: SoundLogTableCell) {
+        guard let indexPath = moreMenuView.tableView.indexPath(for: cell),
+              let soundLog = cell.soundLog else { return }
+        //Value of type 'SoundLogTableCell' has no member 'soundLog'
+        if BookmarkSoundLog.isBookmarked(for: soundLog) {
+            BookmarkSoundLog.removeBookmark(for: soundLog)
+        } else {
+            BookmarkSoundLog.addBookmark(for: soundLog)
+        }
+        
+        updateUI()
+    }
+}
 
 
 

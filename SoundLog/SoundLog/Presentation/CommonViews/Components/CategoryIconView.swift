@@ -40,6 +40,9 @@ final class CategoryIconView: UIView {
         label.font = .gmsans(ofSize: 8, weight: .GMSansMedium)
         label.textAlignment = .center
         label.textColor = .white
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+
         return label
     }()
 
@@ -64,11 +67,8 @@ final class CategoryIconView: UIView {
         addSubview(iconLabel)
         iconLabel.text = type.title
         
-        iconLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(4) // 상단 여백
-            make.bottom.equalToSuperview().offset(-4) // 하단 여백
-            make.left.equalToSuperview().offset(8) // 좌측 여백
-            make.right.equalToSuperview().offset(-8) // 우측 여백
+        iconLabel.snp.makeConstraints {
+            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 2, left: 4, bottom: 2, right: 4))
         }
     }
     

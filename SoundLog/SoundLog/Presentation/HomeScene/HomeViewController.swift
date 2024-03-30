@@ -116,8 +116,8 @@ class HomeViewController: UIViewController {
         calendarView.appearance.titlePlaceholderColor = UIColor.systemGray2
         calendarView.appearance.todayColor = UIColor.neonYellow
         calendarView.appearance.selectionColor = UIColor.neonPurple
+        calendarView.appearance.eventDefaultColor = .vividBlueGreen
         calendarView.appearance.titleTodayColor = UIColor.black
-        
     }
     
     func getNextWeek(date: Date) -> Date {

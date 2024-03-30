@@ -15,6 +15,7 @@ protocol SoundLogTableCellDelegate: AnyObject {
 class SoundLogTableCell: UITableViewCell {
     static let identifier: String = "SoundLogCell"
     
+    var soundLog: StorageSoundLog?
     weak var delegate: SoundLogTableCellDelegate?
     
     private lazy var cellView: UIView = {
@@ -111,6 +112,7 @@ class SoundLogTableCell: UITableViewCell {
     
     // MARK: - Configure
     func configure(with soundLog: StorageSoundLog) {
+        self.soundLog = soundLog
         self.locationIcon.image = UIImage(named: "soundSpot")
         self.locationLabel.text = soundLog.soundLocation
         
