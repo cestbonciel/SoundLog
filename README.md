@@ -9,9 +9,6 @@
 ![sound log_cover2](https://github.com/cestbonciel/SoundLog/assets/46340978/32aa7cec-0a57-4455-8ecf-3118a37a3cc5)
 
 ## 그 날의 소리들을 기록하고 담으세요.
-<p style="float:left, box-sizing:inherit">  
-  <img src="https://github.com/cestbonciel/SoundLog/assets/46340978/f0ff802f-80a9-4f4f-a7a4-9cbfa1b687f7" align="left" width="50%">  
-  <img src="https://github.com/cestbonciel/SoundLog/assets/46340978/ae3c8507-f0e1-4ffe-ab51-90509fc4d3c7" align="right" width="50%"> 
-</p>
+![github00](https://github.com/cestbonciel/SoundLog/assets/46340978/aec0b49e-eaca-4920-a1ad-336c3b127081)
+![github01](https://github.com/cestbonciel/SoundLog/assets/46340978/5cb59bec-cdb0-496f-bd68-e47f3cbef3d0)
 
- 
