@@ -12,3 +12,11 @@
 ![github00](https://github.com/cestbonciel/SoundLog/assets/46340978/aec0b49e-eaca-4920-a1ad-336c3b127081)
 
 ![github01](https://github.com/cestbonciel/SoundLog/assets/46340978/b6c5b229-1176-49fe-a357-2782e2de391c)
+
+---
+
+### 개발기간: 2023.08 ~ 2024.04 (7개월)
+
+### 프로젝트 인원: 1인 개발, 디자인, 기획
+
+### 목적: 평소 소리와 음악에 관심이 많아서 나만의 개인 소리 기록장을 만들고 싶었습니다. 
