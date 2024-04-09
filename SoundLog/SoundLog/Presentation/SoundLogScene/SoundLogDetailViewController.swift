@@ -11,11 +11,11 @@ import MapKit
 import SnapKit
 
 class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate {
-    
-    var viewModel = SoundLogViewModel()
-    
-    private let soundLogView = SoundLogView()
+    var editSoundLog: StorageSoundLog?
+    var editViewModel: SoundLogViewModel!
+    private let soundLogDetailView = SoundLogDetailView()
     private let customPlayerView = CustomPlayerView()
+    private let editCategoryIcon = CategoryIconView(type: .recording)
     
     //MARK: - CLLocation
     var locationManager2: CLLocationManager?
@@ -23,16 +23,96 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
 
     //MARK: - Life Cycle
     override func loadView() {
-        view = soundLogView
+        view = soundLogDetailView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.pastelSkyblue
+        self.view.backgroundColor = UIColor.white
         setTargetActions()
         navigationController?.hidesBarsOnSwipe = true
-//        scrollView.delegate = self
+
+        loadSavedData()
+        bindViewModelToView()
+    }
+    
+    func loadSavedData() {
+        if let editSoundLog = editSoundLog {
+            editViewModel.createdAt.value = editSoundLog.createdAt
+            editViewModel.soundTitle.value = editSoundLog.soundTitle
+            editViewModel.soundMood.value = editSoundLog.soundMood
+            editViewModel.recordedFileUrl.value = editSoundLog.soundRecordFile
+            editViewModel.soundLocation.value = editSoundLog.soundLocation
+            editViewModel.soundCategory.value = editSoundLog.soundCategory
+        }
+    }
+    
+    private func bindViewModelToView() {
+        // 1. 날짜
+        editViewModel.createdAt.bind { [weak self] date in
+            self?.soundLogDetailView.soundLogDate.date = date
+        }
+        // 2. 제목
+        editViewModel.soundTitle.bind { [weak self] title in
+            self?.soundLogDetailView.soundLogTitle.text = title
+        }
+        // 3. 감정
+        editViewModel.soundMood.bind { [weak self] mood in
+            guard let moodIndex = MoodEmoji.emojis.firstIndex(of: mood) else { return }
+            self?.soundLogDetailView.moodButtons.forEach { button in
+                button.backgroundColor = .clear
+                if button.tag == moodIndex {
+                    button.isSelected = true
+                    button.backgroundColor = .neonPurple
+                }
+            }
+        }
         
+        // 4. 녹음
+        editViewModel.recordedFileUrl.bind { [weak self] recordedFile in
+            if let urlString = recordedFile?.recordedFileUrl,
+               let url = URL(string: urlString) {
+                self?.customPlayerView.queueSound(url: url)
+            }
+        }
+        // 5. 위치
+        editViewModel.soundLocation.bind { [weak self] location in
+            DispatchQueue.main.async {
+                self?.soundLogDetailView.addressLabel.text = location
+            }
+        }
+        // 6. 카테고리
+        editViewModel.soundCategory.bind { [weak self] category in
+            DispatchQueue.main.async {
+                self?.updateCategorySelection(category: category)
+            }
+            /*
+            guard let strongSelf = self else { return }
+            let categoryType: CategoryIconType
+            switch category {
+            case "Recording":
+                categoryType = .recording
+            case "ASMR":
+                categoryType = .asmr
+            default:
+                categoryType = .recording
+            }
+            strongSelf.editCategoryIcon.updateType(type: categoryType)
+            */
+        }
+    }
+    
+    private func updateCategorySelection(category: String) {
+        let isASMR = category == "ASMR"
+        soundLogDetailView.selectedASMRBtn.isSelected = isASMR
+        soundLogDetailView.selectedRecBtn.isSelected = !isASMR
+        
+        // 이 부분은 버튼의 UI 업데이트를 담당합니다. 예를 들어, 버튼이 선택되었을 때의 배경색 등을 설정할 수 있습니다.
+        soundLogDetailView.selectedASMRBtn.backgroundColor = isASMR ? .neonYellow : .black
+        soundLogDetailView.selectedRecBtn.backgroundColor = isASMR ? .black : .neonYellow
+        
+        soundLogDetailView.selectedASMRBtn.setTitleColor(isASMR ? .black : .white, for: .normal)
+        soundLogDetailView.selectedRecBtn.setTitleColor(isASMR ? .white : .black, for: .normal)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -41,21 +121,28 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
 
     // MARK: - Objc Action 관리 ⭐️
     func setTargetActions() {
-        soundLogView.cancelButton.addTarget(self, action: #selector(actCancelButton), for: .touchUpInside)
-        soundLogView.soundLogDate.addTarget(self, action: #selector(handleDatePicker), for: .valueChanged)
-        soundLogView.soundLogTitle.addTarget(self, action: #selector(titleTextFieldDidChange), for: .editingChanged)
-        soundLogView.moodButtons.forEach { button in
+        soundLogDetailView.cancelButton.addTarget(self, action: #selector(actCancelButton), for: .touchUpInside)
+        soundLogDetailView.editButton.addTarget(self, action: #selector(editSave), for: .touchUpInside)
+        soundLogDetailView.soundLogDate.addTarget(self, action: #selector(handleDatePicker), for: .valueChanged)
+        soundLogDetailView.soundLogTitle.addTarget(self, action: #selector(titleTextFieldDidChange), for: .editingChanged)
+        soundLogDetailView.moodButtons.forEach { button in
             button.addTarget(self, action: #selector(selectMood), for: .touchUpInside)
         }
-        soundLogView.recordingButton.addTarget(self, action: #selector(touchUpbottomSheet), for: .touchUpInside)
-        soundLogView.coreLocationButton.addTarget(self, action: #selector(pinnedCurrentLocation), for: .touchUpInside)
-        soundLogView.selectedRecBtn.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
-        soundLogView.selectedASMRBtn.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
+        soundLogDetailView.recordingButton.addTarget(self, action: #selector(alertRecordingButtonTapped), for: .touchUpInside)
+        soundLogDetailView.coreLocationButton.addTarget(self, action: #selector(alertLocationButtonTapped), for: .touchUpInside)
+        soundLogDetailView.selectedRecBtn.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
+        soundLogDetailView.selectedASMRBtn.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         
     }
     
+    @objc func editSave() {
+        if let editLog = editSoundLog {
+            editViewModel.edit(editLog)
+        }
+    }
+    
     @objc func handleDatePicker(_ sender: UIDatePicker) {
-        viewModel.createdAt.value = sender.date
+        editViewModel.createdAt.value = sender.date
     }
     
     @objc func titleTextFieldDidChange(_ sender: UITextField) {
@@ -67,9 +154,9 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
                 return
             }
         }
-        viewModel.soundTitle.value = text
+        editViewModel.soundTitle.value = text
         
-        if viewModel.titleLimitExceeded {
+        if editViewModel.titleLimitExceeded {
             sender.text = String(sender.text!.prefix(10))
             showLimitAlert()
         }
@@ -86,7 +173,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     
     @objc private func selectMood(_ sender: UIButton) {
         var moodTag: Int = 1
-        soundLogView.moodButtons.forEach { mood in
+        soundLogDetailView.moodButtons.forEach { mood in
             mood.backgroundColor = .clear
         }
         
@@ -114,23 +201,19 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
    
     // MARK: - Presenting view for REC
-    @objc func touchUpbottomSheet(_ sender: UIButton) {
-        let viewController = RecordingViewController()
-        viewController.isModalInPresentation = true
-        if let sheet = viewController.presentationController as? UISheetPresentationController {
-            sheet.preferredCornerRadius = 20
-            viewController.sheetPresentationController?.detents = [
-                .custom(resolver: { context in
-                0.3 * context.maximumDetentValue
-            })]
-            
-            viewController.sheetPresentationController?.largestUndimmedDetentIdentifier = .medium
-            viewController.sheetPresentationController?.prefersGrabberVisible = true
-        }
-
-        present(viewController, animated: true)
+    @objc func alertRecordingButtonTapped() {
+        // 녹음 수정 불가 경고창 표시
+        let alert = UIAlertController(title: "알림", message: "녹음 파일은 수정할 수 없습니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        present(alert, animated: true)
     }
-    
+
+    @objc func alertLocationButtonTapped() {
+        // 위치 수정 불가 경고창 표시
+        let alert = UIAlertController(title: "알림", message: "위치 정보는 수정할 수 없습니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .default))
+        present(alert, animated: true)
+    }
    
     private var selectedButton: UIButton?
   
@@ -151,77 +234,16 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         }
     }
     
-    // MARK: - action method
-    @objc func pinnedCurrentLocation(_ sender: UIButton) {
-        let mapVC = MapViewController()
-        mapVC.currentLocationAddress = soundLogView.addressLabel.text
-        mapVC.mapDelegate = self
-        mapVC.isModalInPresentation = true
-        mapVC.modalPresentationStyle = .popover
-        self.present(mapVC, animated: true, completion: nil)
-        checkLocationPermission()
-    }
     
-    private func checkLocationPermission() {
-        locationManager2 = CLLocationManager()
-        locationManager2?.delegate = self
-        locationManager2?.requestWhenInUseAuthorization()
-        locationManager2?.desiredAccuracy = kCLLocationAccuracyBest
-        DispatchQueue.global(qos: .userInitiated).async {
-            if CLLocationManager.locationServicesEnabled() {
-                switch self.locationManager2?.authorizationStatus {
-                case .authorizedAlways, .authorizedWhenInUse:
-                    // 위치 권한이 승인되어 있는 경우
-                    self.locationManager2?.startUpdatingLocation()
-                case .notDetermined:
-                    // 위치 권한을 요청받지 않은 경우
-                    DispatchQueue.main.async {
-                        self.locationManager2?.requestAlwaysAuthorization()
-                    }
-                case .denied, .restricted:
-                    // 위치 권한이 거부되거나 제한된 경우
-                    DispatchQueue.main.async {
-                        self.showLocationServicesDisabledAlert2()
-                    }
-                    break
-                default:
-                    break
-                }
-            } else {
-                self.showLocationServicesDisabledAlert2()
-            }
-        }
-    }//: CheckLocationPermission
-    
-    func showLocationServicesDisabledAlert2() {
-        
-        let alertController = UIAlertController(
-            title: "위치 권한 비활성화",
-            message: "위치 정보를 사용하려면 설정에서 위치 서비스를 활성화해야 합니다. 설정으로 이동하시겠습니까?",
-            preferredStyle: .alert
-        )
-        
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        let settingsAction = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
-            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
-            }
-        }
-        
-        alertController.addAction(cancelAction)
-        alertController.addAction(settingsAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
 
     // MARK: - 제목, 내용 글자 수 제한 --
     func updateForm() {
-        let titleLength = !viewModel.titleLimitExceeded
+        let titleLength = !editViewModel.titleLimitExceeded
         //let mood = viewModel.moodIsValid
-        let sound = viewModel.soundIsValid
-        let location = viewModel.locationIsValid
-        let category = viewModel.categoryIsValid
-        soundLogView.saveButton.isEnabled = titleLength && sound && location && category
+        let sound = editViewModel.soundIsValid
+        let location = editViewModel.locationIsValid
+        let category = editViewModel.categoryIsValid
+        soundLogDetailView.editButton.isEnabled = titleLength && sound && location && category
     }
 }
 
@@ -238,19 +260,13 @@ extension SoundLogDetailViewController: UITextFieldDelegate {
         return true
     }
 }
-//extension SoundLogDetailViewController: UITextViewDelegate {
-//    func textViewDidChange(_ textView: UITextView) {
-//        viewModel.recordedSoundNote.value = textView.text ?? ""
-//        if textView.text.count > 100 {
-//            textView.deleteBackward()
-//        }
-//    }
-//}
+
 // MARK: - Map
 extension SoundLogDetailViewController: MapViewControllerDelegate {
     func didSelectLocationWithAddress(_ address: String?) {
          if let address = address {
-             soundLogView.addressLabel.text = address
+             editViewModel.soundLocation.value = address
+             soundLogDetailView.addressLabel.text = address
          }
     }
     
@@ -258,3 +274,26 @@ extension SoundLogDetailViewController: MapViewControllerDelegate {
          dismiss(animated: true, completion: nil)
     }
 }
+
+
+/*
+private func updateUIWithStoredData() {
+    guard let editSoundLog = editSoundLog else { return }
+    
+    soundLogDetailView.soundLogDate
+}
+*/
+
+
+/*
+if let editSoundLog = editSoundLog {
+    self.editViewModel = SoundLogViewModel(log: editSoundLog)
+    // ViewModel의 상태를 콘솔에 출력
+    print("ViewModel의 날짜: \(editViewModel.createdAt.value)")
+    print("ViewModel의 제목: \(editViewModel.soundTitle.value)")
+    print("ViewModel의 감정: \(editViewModel.soundMood.value)")
+    print("ViewModel의 녹음 파일 URL: \(String(describing: editViewModel.recordedFileUrl.value?.recordedFileUrl))")
+    print("ViewModel의 위치: \(editViewModel.soundLocation.value)")
+    print("ViewModel의 카테고리: \(editViewModel.soundCategory.value)")
+}
+ */

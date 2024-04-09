@@ -25,9 +25,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window!.backgroundColor = UIColor.pastelSkyblue
         self.window?.rootViewController = initVC
         self.window?.makeKeyAndVisible()
-        */
+        
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.backgroundColor = .black
+        */
     }
     
    

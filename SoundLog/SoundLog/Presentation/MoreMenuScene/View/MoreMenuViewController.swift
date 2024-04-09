@@ -88,15 +88,25 @@ extension MoreMenuViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 146
+        return 180
     }
-    
-    
+
 }
 
-
 extension MoreMenuViewController: SoundLogTableCellDelegate {
+    func didTapEditButton(for cell: SoundLogTableCell) {
+        guard let indexPath = moreMenuView.tableView.indexPath(for: cell) else { return }
+        
+        let soundLog = bookmarkedLogs[indexPath.row]
+        
+        let detailVC = SoundLogDetailViewController()
+        detailVC.editSoundLog = soundLog
+        //Value of type 'SoundLogDetailViewController' has no member 'soundLog'
+        present(detailVC, animated: true)
+    }
+    
     func didToggleBookmark(for cell: SoundLogTableCell) {
         guard let indexPath = moreMenuView.tableView.indexPath(for: cell),
               let soundLog = cell.soundLog else { return }

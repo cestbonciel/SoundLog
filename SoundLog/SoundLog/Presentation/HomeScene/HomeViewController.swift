@@ -74,7 +74,6 @@ class HomeViewController: UIViewController {
         
         config.image = UIImage(systemName: "arrowtriangle.down.fill")
         config.imagePadding = 2
-//        config.titlePadding = 2
         config.contentInsets = NSDirectionalEdgeInsets.init(top: 4, leading: 8, bottom: 4, trailing: 8)
         
         let button = UIButton()
@@ -85,7 +84,6 @@ class HomeViewController: UIViewController {
         button.layer.cornerRadius = 4
         
 		button.addTarget(self, action: #selector(tapToggleButton), for: .touchUpInside)
-        
 		return button
 	}()
     // MARK: - Calendar View ---
@@ -150,19 +148,29 @@ class HomeViewController: UIViewController {
 			self.calendarView.setScope(.week, animated: true)
 			
 			self.headerDateFormatter.dateFormat = "YYYY년 MM월 W주차"
-			self.togglePeriodButton.setTitle("주", for: .normal)
-			self.togglePeriodButton.setImage(UIImage(systemName: "arrowtriangle.down.fill"), for: .normal)
+			
+            
+            updateToggleButtonTitle(to: "주")
+			self.togglePeriodButton.setImage(UIImage(systemName: "arrowtriangle.up.fill"), for: .normal)
 			self.headerLabel.text = headerDateFormatter.string(from: calendarView.currentPage)
 		} else {
 			self.calendarView.setScope(.month, animated: true)
 			self.headerDateFormatter.dateFormat = "YYYY년 MM월"
-			self.togglePeriodButton.setTitle("월", for: .normal)
-			self.togglePeriodButton.setImage(UIImage(systemName: "arrowtriangle.up.fill"), for: .normal)
+			
+            
+            updateToggleButtonTitle(to: "월")
+            
+			self.togglePeriodButton.setImage(UIImage(systemName: "arrowtriangle.down.fill"), for: .normal)
 			self.headerLabel.text = headerDateFormatter.string(from: calendarView.currentPage)
 		}
 	}
 	
-	
+    func updateToggleButtonTitle(to newTitle: String) {
+        var titleContainer = AttributeContainer()
+        titleContainer.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        togglePeriodButton.configuration?.attributedTitle = AttributedString(newTitle, attributes: titleContainer)
+    }
+    
 	lazy var calendarView = FSCalendar(frame: .zero)
     // MARK: - SoundLogViewController
     
@@ -191,9 +199,7 @@ class HomeViewController: UIViewController {
 			
 			$0.trailing.equalTo(topSideStackView.snp.trailing)
 		}
-//        calendarView.layer.borderColor = UIColor.magenta.cgColor
-//        calendarView.layer.borderWidth = 1
-        //self.calendarView.headerHeight = 68
+
 		calendarView.snp.makeConstraints {
 			$0.top.equalTo(topSideStackView.snp.bottom).offset(64)
 			$0.left.equalToSuperview().inset(16)
@@ -283,14 +289,29 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
+  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 146
+        return 180
     }
 }
 
 
 extension HomeViewController: SoundLogTableCellDelegate {
+    func didTapEditButton(for cell: SoundLogTableCell) {
+        guard let indexPath = tableView.indexPath(for: cell),
+              let soundLog = soundLogs?[indexPath.row] else { return }
+        // Initializer for conditional binding must have Optional type, not 'StorageSoundLog'
+        
+        
+        let detailVC = SoundLogDetailViewController()
+        detailVC.editSoundLog = soundLog
+        
+        detailVC.editViewModel = SoundLogViewModel(log: soundLog)
+        
+        detailVC.modalPresentationStyle = .fullScreen
+        present(detailVC, animated: true)
+    }
+    
     func didToggleBookmark(for cell: SoundLogTableCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let soundLog = soundLogs[indexPath.row]
@@ -300,17 +321,7 @@ extension HomeViewController: SoundLogTableCellDelegate {
         } else {
             BookmarkSoundLog.addBookmark(for: soundLog)
         }
-        
-        //tableView.reloadRows(at: [indexPath], with: .automatic)
+
         cell.updateBookmarkIcon(isBookmarked: BookmarkSoundLog.isBookmarked(for: soundLog))
     }
 }
-
-//extension HomeViewController: SoundLogViewControllerDelegate {
-//    func soundLogViewControllerDidSaveLog(_ controller: SoundLogViewController) {
-//        let defaultDate = calendarView.selectedDate ?? calendarView.today!
-//        soundLogs = StorageSoundLog.fetchDate(date: defaultDate)
-//        //calendarView.reloadData()
-//
-//    }
-//}

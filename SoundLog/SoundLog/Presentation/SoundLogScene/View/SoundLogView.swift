@@ -116,7 +116,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         textField.leftView = leftInsetView
         textField.leftViewMode = .always
         textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 15자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
         textField.layer.cornerRadius = 10
         textField.keyboardType = .default
@@ -156,12 +156,12 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         let moodLabelButton = UIButton()
            moodLabelButton.setTitle("기분", for: .normal)
         moodLabelButton.setTitleColor(.black, for: .normal)
-           moodLabelButton.isEnabled = false // 버튼을 비활성화하여 선택되지 않도록 합니다.
+           moodLabelButton.isEnabled = false
         moodLabelButton.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
            buttons.append(moodLabelButton)
         
         for (index, emojiString) in MoodEmoji.emojis.enumerated() where index != 0 {
-                // '기분'에 해당하는 빈 문자열을 가진 첫 번째 버튼을 스킵합니다.
+                
                 let button = UIButton()
                 button.tag = index
                 button.setTitle(emojiString, for: .normal)
@@ -327,8 +327,8 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         scrollView.addSubview(contentView)
         scrollView.contentInsetAdjustmentBehavior = .never
     
-        contentView.layer.borderColor = UIColor.yellow.cgColor
-        contentView.layer.borderWidth = 1
+//        contentView.layer.borderColor = UIColor.yellow.cgColor
+//        contentView.layer.borderWidth = 1
         
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()

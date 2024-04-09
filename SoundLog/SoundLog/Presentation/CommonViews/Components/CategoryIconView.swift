@@ -24,17 +24,15 @@ enum CategoryIconType {
     var backgroundColor: UIColor {
         switch self {
         case .asmr:
-            return UIColor.vividBlueGreen // 예시 색상
+            return UIColor.vividBlueGreen
         case .recording:
-            return UIColor.neonPurple // 예시 색상
+            return UIColor.neonPurple 
         }
     }
 }
 
 final class CategoryIconView: UIView {
-    //var type: CategoryIconType!
-    
-    //var onTap: ((CategoryIconType) -> Void)?
+
     private let iconLabel: UILabel = {
         let label = UILabel()
         label.font = .gmsans(ofSize: 8, weight: .GMSansMedium)

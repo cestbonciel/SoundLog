@@ -34,7 +34,6 @@ class MapViewController: UIViewController {
         titleContainer.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         configuration.attributedTitle = AttributedString("확인", attributes: titleContainer)
 		configuration.baseForegroundColor = .black
-		//configuration.title = "확인"
 		configuration.contentInsets = NSDirectionalEdgeInsets.init(top: 8, leading: 8, bottom: 8, trailing: 8)
 		let button = UIButton(configuration: configuration)
         button.backgroundColor = .neonLightPurple

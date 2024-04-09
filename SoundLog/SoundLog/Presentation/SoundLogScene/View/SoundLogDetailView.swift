@@ -10,7 +10,8 @@ import UIKit
 import SnapKit
 
 final class SoundLogDetailView: UIView, UIScrollViewDelegate {
-    //private let soundLogTextView = LogTextView()
+    var soundLog: StorageSoundLog?
+    
     private let customPlayerView = CustomPlayerView()
     
     override init(frame: CGRect) {
@@ -44,13 +45,13 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         return stackView
     }()
     
-    //MARK: - Buttons: save, cancel
+    //MARK: - Buttons: edit, delete
     lazy var rightButtonStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [deleteButton, editButton])
         stackView.axis = .horizontal
-        stackView.alignment = .leading
+        stackView.alignment = .fill
         stackView.spacing = 16
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -84,7 +85,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = UIColor.neonYellow
         button.setTitle("수정", for: .normal)
-        button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansBold)
         
         return button
     }()
@@ -92,7 +93,8 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     // MARK: - Common background  ( 나중에 컴포넌트화 하자)
     private lazy var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
+        //view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 1)
+        view.backgroundColor = .pastelSkyblue
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -128,7 +130,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         textField.leftView = leftInsetView
         textField.leftViewMode = .always
         textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        textField.attributedPlaceholder = NSAttributedString(string: "3자 이상 7자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 15자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
         textField.layer.cornerRadius = 10
         textField.clearButtonMode = .whileEditing
@@ -137,15 +139,15 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         textField.autocapitalizationType = .none
         
         textField.returnKeyType = .done
-//        textField.delegate = self
-        textField.layer.backgroundColor = UIColor.white.cgColor
+        textField.layer.backgroundColor = UIColor.pastelSkyblue.cgColor
         
         return textField
     }()
     
     lazy var backgroundView2: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
+        //view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
+        view.backgroundColor = .pastelSkyblue
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         
@@ -164,24 +166,34 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     
     lazy var moodButtons: [UIButton] = {
         var buttons = [UIButton]()
-        let mood = [1: "기분", 2: "😚", 3: "😡", 4: "😢", 5: "🥳"]
-        for (index, moodText) in mood.sorted(by: {  $0.key < $1.key }) {
+        let moodLabelButton = UIButton()
+        moodLabelButton.setTitle("기분", for: .normal)
+        moodLabelButton.setTitleColor(.black, for: .normal)
+        moodLabelButton.isEnabled = false
+        moodLabelButton.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+        buttons.append(moodLabelButton)
+        
+        for (index, emojiString) in MoodEmoji.emojis.enumerated() where index != 0 {
+            
             let button = UIButton()
             button.tag = index
-            button.setTitle("\(moodText)", for: .normal)
+            button.setTitle(emojiString, for: .normal)
             button.setTitleColor(.black, for: .normal)
             
             button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-            
+            button.layer.cornerRadius = button.frame.size.height / 2
+            button.clipsToBounds = true
             buttons.append(button)
         }
+        
         return buttons
     }()
 
     // MARK: - Feature : Recording
     private lazy var backgroundView3: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
+        //view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
+        view.backgroundColor = .pastelSkyblue
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         return view
@@ -189,7 +201,8 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     
     private lazy var backgroundView4: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
+        //view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
+        view.backgroundColor = .pastelSkyblue
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         
@@ -198,7 +211,8 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     
     private lazy var backgroundView5: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
+        view.backgroundColor = .pastelSkyblue
+        //view.backgroundColor = UIColor(red: 217.0 / 255.0, green: 229.0 / 255.0, blue: 229.0 / 255.0, alpha: 0.5)
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         return view
@@ -350,6 +364,11 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
             $0.height.equalTo(40)
         }
         
+        deleteButton.snp.makeConstraints {
+            $0.width.equalTo(72)
+            $0.height.equalTo(40)
+        }
+        
         contentView.addSubview(backgroundView)
         backgroundView.addSubview(soundLogDate)
         
@@ -424,17 +443,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
             $0.height.equalTo(32)
         }
         
-        
-        // MARK: - UITextView
-        //soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
-        //contentView.addSubview(soundLogTextView)
 
-        /*soundLogTextView.snp.makeConstraints {
-            $0.top.equalTo(recordingStack.snp.bottom).offset(24)
-            $0.left.right.equalToSuperview().inset(28)
-            $0.height.equalTo(180)
-        }*/
-        
         // MARK: - USER LOCATION
         contentView.addSubview(backgroundView4)
         backgroundView4.addSubview(locationStack)
@@ -504,4 +513,13 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         }
         
     }// : setupUI
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        moodButtons.forEach { button in
+            button.layer.cornerRadius = button.bounds.size.height / 2
+            button.clipsToBounds = true
+        }
+    }
 }

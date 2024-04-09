@@ -10,6 +10,7 @@ import SnapKit
 
 protocol SoundLogTableCellDelegate: AnyObject {
     func didToggleBookmark(for cell: SoundLogTableCell)
+    func didTapEditButton(for cell: SoundLogTableCell)
 }
 
 class SoundLogTableCell: UITableViewCell {
@@ -45,12 +46,12 @@ class SoundLogTableCell: UITableViewCell {
         let icon = UIImageView()
         icon.image = UIImage(systemName: "bookmark")
         icon.contentMode = .scaleAspectFit
-        icon.tintColor = .neonPurple
+        icon.tintColor = .black
         return icon
     }()
     
     lazy var categoryIcon: CategoryIconView = {
-        let icon = CategoryIconView(type: .asmr)
+        let icon = CategoryIconView(type: .recording)
   
         return icon
     }()
@@ -86,6 +87,29 @@ class SoundLogTableCell: UITableViewCell {
         return stackView
     }()
     
+    //MARK: - 수정/삭제 화면
+    lazy var editButton: UIButton = {
+        var attString = AttributedString("Edit")
+        attString.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        
+        var config = UIButton.Configuration.borderedTinted()
+        config.attributedTitle = attString
+        config.baseBackgroundColor = .systemRed
+        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+
+        let button = UIButton(configuration: config)
+        button.configuration = config
+        button.tintColor = .systemRed
+        button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func editButtonTapped() {
+        delegate?.didTapEditButton(for: self)
+    }
+    
     private lazy var customPlayerView: CustomPlayerView = CustomPlayerView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -97,6 +121,8 @@ class SoundLogTableCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -178,11 +204,12 @@ class SoundLogTableCell: UITableViewCell {
         cellView.addSubview(titleLabel)
         cellView.addSubview(rightStackView)
         cellView.addSubview(customPlayerView)
+        cellView.addSubview(editButton)
         
         cellView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(129)
+            $0.height.equalTo(160)
         }
         
         locationIcon.snp.makeConstraints {
@@ -219,65 +246,28 @@ class SoundLogTableCell: UITableViewCell {
             
         }
         
+        editButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(16)
+            $0.right.equalTo(bookmarkIcon.snp.right)
+        }
+        
         rightStackView.snp.makeConstraints {
             $0.top.equalTo(bookmarkIcon.snp.bottom).offset(8)
             $0.right.equalToSuperview().inset(16)
             
         }
-        
+
     }
     
 }
 
 /*
- customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
- 
- if let recordedFileName = soundLog.soundRecordFile?.recordedFileUrl {
-     //Initializer for conditional binding must have Optional type, not 'String'
-     let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-     let recordedFileURL = documentDirectory.appendingPathComponent(recordedFileName)
-     customPlayerView.queueSound(url: recordedFileURL)
+ @objc func addLogButtonTapped(_ sender: UIButton) {
+     let vc = SoundLogDetailViewController()
+     
+     let navVC = UINavigationController(rootViewController: vc)
+     navVC.modalPresentationStyle = .fullScreen
+     self.present(navVC, animated: true)
+     //Value of type 'SoundLogTableCell' has no member 'present'
  }
  */
-
-/*
- 
- if let recordedFileName = soundLog.soundRecordFile?.recordedFileUrl,
-    let url = URL(string: recordedFileName) {
-     print("녹음된 파일: \(url)")
-     if FileManager.default.fileExists(atPath: url.path) {
-         print("파일이 존재함: \(url.path)")
-         customPlayerView.queueSound(url: url)
-     } else {
-         print("file Error: 파일이 존재하지 않음. 경로: \(url.path)")
-         // 경로가 유효하지 않을 때 보다 상세한 디버깅 정보를 출력할 수 있습니다.
-     }
-     customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
- } else {
-     print("file Error: 저장된 녹음 파일 URL이 잘못되었거나 없음.")
- }
- 
- if let recordedFileName = soundLog.soundRecordFile,
-    let url = URL(string: recordedFileName.recordedFileUrl) {
-     //Initializer for conditional binding must have Optional type, not 'String'
-     print("녹음된 파일: \(url)")
-     if FileManager.default.fileExists(atPath: url.path) {
-         customPlayerView.queueSound(url: url)
-     } else {
-         print("file Error: 오디오 파일 URL 이 유효하지 않음.")
-     }
-     customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
- }
- 
-if let recordedFileName = soundLog.soundRecordFile,
-   let url = URL(string: recordedFileName.recordedFileUrl) {
-    //Initializer for conditional binding must have Optional type, not 'String'
-    print("녹음된 파일: \(url)")
-    if FileManager.default.fileExists(atPath: url.path) {
-        customPlayerView.queueSound(url: url)
-    } else {
-        print("file Error: 오디오 파일 URL 이 유효하지 않음.")
-    }
-    customPlayerView.playAndPauseBtn.addTarget(self, action: #selector(playRecordAudio), for: .touchUpInside)
-}
-*/

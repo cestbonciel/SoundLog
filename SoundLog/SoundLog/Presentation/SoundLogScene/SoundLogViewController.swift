@@ -65,7 +65,6 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     @objc func titleTextFieldDidChange(_ sender: UITextField) {
         guard let text = sender.text, !text.isEmpty else { return }
     
-        /// 텍스트의 첫 글자가 공백인 경우 삭제합니다.
         if sender.text?.first == " " {
             sender.text = String(sender.text!.dropFirst())
             return
@@ -134,26 +133,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         dismiss(animated: true)
         
     }
-        
-        /*
-        viewModel.create { success in
-            DispatchQueue.main.async {
-                if success {
-                    // 저장 성공 시, 예를 들어 홈 화면으로 돌아간다거나 사용자에게 성공 알림을 표시합니다.
-                    self.dismiss(animated: true)
-                } else {
-                    // 저장 실패 시, 사용자에게 실패 알림을 표시합니다.
-                    let alertController = UIAlertController(title: "경고", message: "기록을 입력하고 저장해주세요.", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default)
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true)
-                }
-            }
-        }
-        */
-        //dismiss(animated: true)
-    
-   
+  
     // MARK: - Presenting view for REC
     @objc func touchUpbottomSheet(_ sender: UIButton) {
         let viewController = RecordingViewController()

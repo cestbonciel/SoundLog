@@ -14,13 +14,23 @@ class SoundLogViewModel {
     var soundTitle: Observable<String> = Observable("")
     var soundMood: Observable<String> = Observable(MoodEmoji[0])
     var recordedFileUrl: Observable<RecordedFile?> = Observable(nil)
-    //Property 'soundRecordFile' is not a member type of 'StorageSoundLog'
+  
     var soundLocation: Observable<String> = Observable("")
     var soundCategory: Observable<String> = Observable("")
     
+    convenience init(log: StorageSoundLog) {
+        self.init()
+        self.soundLogs = [log]
+        self.createdAt.value = log.createdAt
+        self.soundTitle.value = log.soundTitle
+        self.soundMood.value = log.soundMood
+        self.recordedFileUrl.value = log.soundRecordFile
+        self.soundCategory.value = log.soundCategory
+    }
+    
     // MARK: - 1.제목 글자수 제한
     var titleLimitExceeded: Bool {
-        return !(1...10).contains(soundTitle.value.count)
+        return !(1...15).contains(soundTitle.value.count)
     }
     
     // MARK: - 2.녹음파일 존재유무
@@ -108,3 +118,15 @@ class SoundLogViewModel {
     }
 }
 
+
+/*
+convenience init(log: StorageSoundLog) {
+    self.init()
+    self.soundLogs = [log]
+    self.createdAt.value = log.createdAt
+    self.soundTitle.value = log.soundTitle
+    self.soundMood.value = log.soundMood
+    self.recordedFileUrl.value = log.soundRecordFile
+    self.soundCategory.value = log.soundCategory
+}
+*/
