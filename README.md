@@ -10,5 +10,5 @@
 
 ## 그 날의 소리들을 기록하고 담으세요.
 ![github00](https://github.com/cestbonciel/SoundLog/assets/46340978/aec0b49e-eaca-4920-a1ad-336c3b127081)
-![github01](https://github.com/cestbonciel/SoundLog/assets/46340978/5cb59bec-cdb0-496f-bd68-e47f3cbef3d0)
 
+![github01](https://github.com/cestbonciel/SoundLog/assets/46340978/b6c5b229-1176-49fe-a357-2782e2de391c)
