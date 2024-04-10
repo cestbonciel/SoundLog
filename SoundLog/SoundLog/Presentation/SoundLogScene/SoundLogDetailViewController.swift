@@ -11,7 +11,7 @@ import MapKit
 import SnapKit
 
 class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate {
-    var editSoundLog: StorageSoundLog?
+    var editSoundLogData: StorageSoundLog?
     var editViewModel: SoundLogViewModel!
     private let soundLogDetailView = SoundLogDetailView()
     private let customPlayerView = CustomPlayerView()
@@ -37,7 +37,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     func loadSavedData() {
-        if let editSoundLog = editSoundLog {
+        if let editSoundLog = editSoundLogData {
             editViewModel.createdAt.value = editSoundLog.createdAt
             editViewModel.soundTitle.value = editSoundLog.soundTitle
             editViewModel.soundMood.value = editSoundLog.soundMood
@@ -106,8 +106,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         let isASMR = category == "ASMR"
         soundLogDetailView.selectedASMRBtn.isSelected = isASMR
         soundLogDetailView.selectedRecBtn.isSelected = !isASMR
-        
-        // 이 부분은 버튼의 UI 업데이트를 담당합니다. 예를 들어, 버튼이 선택되었을 때의 배경색 등을 설정할 수 있습니다.
+
         soundLogDetailView.selectedASMRBtn.backgroundColor = isASMR ? .neonYellow : .black
         soundLogDetailView.selectedRecBtn.backgroundColor = isASMR ? .black : .neonYellow
         
@@ -122,7 +121,9 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     // MARK: - Objc Action 관리 ⭐️
     func setTargetActions() {
         soundLogDetailView.cancelButton.addTarget(self, action: #selector(actCancelButton), for: .touchUpInside)
+        soundLogDetailView.deleteButton.addTarget(self, action: #selector(deleteSoundLogs), for: .touchUpInside)
         soundLogDetailView.editButton.addTarget(self, action: #selector(editSave), for: .touchUpInside)
+        
         soundLogDetailView.soundLogDate.addTarget(self, action: #selector(handleDatePicker), for: .valueChanged)
         soundLogDetailView.soundLogTitle.addTarget(self, action: #selector(titleTextFieldDidChange), for: .editingChanged)
         soundLogDetailView.moodButtons.forEach { button in
@@ -136,9 +137,27 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     @objc func editSave() {
-        if let editLog = editSoundLog {
+        if let editLog = editSoundLogData {
             editViewModel.edit(editLog)
+            dismiss(animated: true)
         }
+    }
+    
+    @objc func deleteSoundLogs() {
+        guard let soundLog = editSoundLogData else { return }
+        let alert = UIAlertController(title: "\(soundLog.soundTitle)", message: "소리의 기록을 삭제할까요?", preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] action in
+            StorageSoundLog.deleteSoundLog(soundLog)
+            self?.dismiss(animated: true)
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
     
     @objc func handleDatePicker(_ sender: UIDatePicker) {
@@ -157,7 +176,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         editViewModel.soundTitle.value = text
         
         if editViewModel.titleLimitExceeded {
-            sender.text = String(sender.text!.prefix(10))
+            sender.text = String(sender.text!.prefix(15))
             showLimitAlert()
         }
         
@@ -165,7 +184,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     private func showLimitAlert() {
-        let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 10자 이하여야 합니다.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 15자 이하여야 합니다.", preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)

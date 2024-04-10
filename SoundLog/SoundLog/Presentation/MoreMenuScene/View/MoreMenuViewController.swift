@@ -11,6 +11,7 @@ import SnapKit
 class MoreMenuViewController: UIViewController {
     var bookmarkedLogs: [StorageSoundLog] = []
     
+    
     lazy var moreMenuView = MoreMenuView()
     
     override func viewDidLoad() {
@@ -102,8 +103,10 @@ extension MoreMenuViewController: SoundLogTableCellDelegate {
         let soundLog = bookmarkedLogs[indexPath.row]
         
         let detailVC = SoundLogDetailViewController()
-        detailVC.editSoundLog = soundLog
-        //Value of type 'SoundLogDetailViewController' has no member 'soundLog'
+        detailVC.editSoundLogData = soundLog
+        detailVC.editViewModel = SoundLogViewModel(log: soundLog)
+        
+        detailVC.modalPresentationStyle = .fullScreen
         present(detailVC, animated: true)
     }
     

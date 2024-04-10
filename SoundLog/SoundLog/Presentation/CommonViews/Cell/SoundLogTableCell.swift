@@ -231,7 +231,7 @@ class SoundLogTableCell: UITableViewCell {
         
         categoryIcon.snp.makeConstraints {
             $0.centerY.equalTo(bookmarkIcon.snp.centerY)
-            $0.right.equalTo(bookmarkIcon.snp.left).offset(-16)
+            $0.right.equalTo(bookmarkIcon.snp.left).offset(-8)
             $0.height.equalTo(16)
         }
         

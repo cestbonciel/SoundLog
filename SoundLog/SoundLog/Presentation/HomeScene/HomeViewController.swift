@@ -304,7 +304,7 @@ extension HomeViewController: SoundLogTableCellDelegate {
         
         
         let detailVC = SoundLogDetailViewController()
-        detailVC.editSoundLog = soundLog
+        detailVC.editSoundLogData = soundLog
         
         detailVC.editViewModel = SoundLogViewModel(log: soundLog)
         
