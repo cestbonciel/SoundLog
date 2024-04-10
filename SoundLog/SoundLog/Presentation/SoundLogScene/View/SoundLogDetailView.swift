@@ -83,7 +83,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         button.frame = CGRect(x: 0, y: 0, width: 56, height: 40)
         button.layer.cornerRadius = 10
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = UIColor.neonYellow
+        button.backgroundColor = UIColor.lightGray
         button.setTitle("수정", for: .normal)
         button.titleLabel?.font = .gmsans(ofSize: 16, weight: .GMSansBold)
         
@@ -319,6 +319,15 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
         return label
     }()
+    
+    // 저장 버튼 상태를 업데이트하는 메소드
+    func updateEditButton(isEnabled: Bool) {
+        editButton.isEnabled = isEnabled
+        editButton.backgroundColor = isEnabled ? UIColor.neonYellow : UIColor.lightGray
+        
+        let fontColor: UIColor = isEnabled ? .black : .gray
+        editButton.setTitleColor(fontColor, for: .normal)
+    }
     
     // MARK: - setupUI
     private func setupUI() {

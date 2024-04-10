@@ -31,7 +31,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         self.view.backgroundColor = UIColor.white
         setTargetActions()
         navigationController?.hidesBarsOnSwipe = true
-
+        soundLogDetailView.soundLogTitle.delegate = self
         loadSavedData()
         bindViewModelToView()
     }
@@ -141,6 +141,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
             editViewModel.edit(editLog)
             dismiss(animated: true)
         }
+        updateEditState()
     }
     
     @objc func deleteSoundLogs() {
@@ -180,7 +181,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
             showLimitAlert()
         }
         
-        updateForm()
+        updateEditState()
     }
     
     private func showLimitAlert() {
@@ -200,6 +201,10 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         sender.backgroundColor = UIColor.neonPurple
         sender.layer.cornerRadius = sender.layer.frame.height / 2
         sender.clipsToBounds = true
+        
+        editViewModel.updateMood(with: sender.tag)
+        
+        updateEditState()
     }
  
     @objc func actCancelButton(_ sender: UIButton) {
@@ -251,18 +256,21 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         
             selectedButton = sender
         }
+        editViewModel.soundCategory.value = sender == soundLogDetailView.selectedRecBtn ? "Recording" : "ASMR"
+        updateEditState()
     }
     
     
 
     // MARK: - 제목, 내용 글자 수 제한 --
-    func updateForm() {
+    func updateEditState() {
         let titleLength = !editViewModel.titleLimitExceeded
-        //let mood = viewModel.moodIsValid
-        let sound = editViewModel.soundIsValid
-        let location = editViewModel.locationIsValid
+        let mood = editViewModel.moodIsSelected
+        //let sound = editViewModel.soundIsValid
+        //let location = editViewModel.locationIsValid
         let category = editViewModel.categoryIsValid
-        soundLogDetailView.editButton.isEnabled = titleLength && sound && location && category
+        let formIsValid = titleLength && mood && category
+        soundLogDetailView.updateEditButton(isEnabled: formIsValid)
     }
 }
 
