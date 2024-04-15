@@ -12,7 +12,7 @@ import SnapKit
 final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     var soundLog: StorageSoundLog?
     
-    private let customPlayerView = CustomPlayerView()
+    //var customPlayerView: CustomPlayerView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

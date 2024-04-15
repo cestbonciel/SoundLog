@@ -14,7 +14,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     var editSoundLogData: StorageSoundLog?
     var editViewModel: SoundLogViewModel!
     private let soundLogDetailView = SoundLogDetailView()
-    private let customPlayerView = CustomPlayerView()
+    var customPlayerView: CustomPlayerView?
     private let editCategoryIcon = CategoryIconView(type: .recording)
     
     //MARK: - CLLocation
@@ -72,7 +72,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         editViewModel.recordedFileUrl.bind { [weak self] recordedFile in
             if let urlString = recordedFile?.recordedFileUrl,
                let url = URL(string: urlString) {
-                self?.customPlayerView.queueSound(url: url)
+                self?.customPlayerView?.queueSound(url: url)
             }
         }
         // 5. 위치

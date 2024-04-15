@@ -110,8 +110,9 @@ class SoundLogTableCell: UITableViewCell {
         delegate?.didTapEditButton(for: self)
     }
     
-    private lazy var customPlayerView: CustomPlayerView = CustomPlayerView()
-    
+    // MARK: - CustomPlayerView
+    //private lazy var customPlayerView: CustomPlayerView = CustomPlayerView()
+    var customPlayerView: CustomPlayerView?
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
@@ -153,24 +154,23 @@ class SoundLogTableCell: UITableViewCell {
         let categoryType: CategoryIconType = soundLog.soundCategory == "ASMR" ? .asmr : .recording
         categoryIcon.setupView(type: categoryType)
         
-        if let recordedFileUrlString = soundLog.soundRecordFile?.recordedFileUrl,
-           let url = URL(string: recordedFileUrlString) {
-            print("녹음된 파일: \(url)")
-            // 파일 시스템 상에서 실제 파일 존재 여부를 로그로 출력합니다.
-            let fileExists = FileManager.default.fileExists(atPath: url.path)
-            print("@@@ 파일 존재 여부: \(fileExists) @@@")
-            print("@@@ 파일 존재 여부: \(url.path) @@@")
-            
-            if fileExists {
-                customPlayerView.queueSound(url: url)
-                
+        if let urlString = soundLog.soundRecordFile?.recordedFileUrl,
+           let url = URL(string: urlString) {
+            if customPlayerView == nil {
+                customPlayerView = CustomPlayerView(soundURL: url, frame: .zero)
+                cellView.addSubview(customPlayerView!)
+                setupCustomPlayerViewConstraints()
             } else {
-                print("@@@ file Error: 오디오 파일 URL이 유효하지 않습니다. 경로: \(url.path)")
-                // 여기서 사용자에게 오류 메시지를 표시하거나 적절한 처리를 할 수 있습니다.
+                customPlayerView?.queueSound(url: url)
             }
-        } else {
-            print("file Error: 녹음된 파일의 URL이 없거나 잘못되었습니다.")
-            // 적절한 사용자 피드백을 제공합니다.
+        }
+    }
+    
+    private func setupCustomPlayerViewConstraints() {
+        customPlayerView?.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.left.right.equalToSuperview().inset(8)
+            make.height.equalTo(50) // 적절한 높이 값
         }
     }
     
@@ -190,10 +190,7 @@ class SoundLogTableCell: UITableViewCell {
         delegate?.didToggleBookmark(for: self)
     }
     
-    @objc func playRecordAudio() {
-        print("재생 버튼이 눌림")
-        customPlayerView.playbuttonTapped()
-    }
+    
     
     private func setUpCellUI() {
         self.contentView.addSubview(cellView)
@@ -203,7 +200,7 @@ class SoundLogTableCell: UITableViewCell {
         cellView.addSubview(bookmarkIcon)
         cellView.addSubview(titleLabel)
         cellView.addSubview(rightStackView)
-        cellView.addSubview(customPlayerView)
+        //cellView.addSubview(customPlayerView)
         cellView.addSubview(editButton)
         
         cellView.snp.makeConstraints {
@@ -240,11 +237,11 @@ class SoundLogTableCell: UITableViewCell {
             $0.left.equalTo(locationIcon.snp.left)
         }
         
-        customPlayerView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
-            $0.left.right.equalToSuperview()
-            
-        }
+//        customPlayerView.snp.makeConstraints {
+//            $0.top.equalTo(titleLabel.snp.bottom).offset(32)
+//            $0.left.right.equalToSuperview()
+//
+//        }
         
         editButton.snp.makeConstraints {
             $0.bottom.equalToSuperview().inset(16)
@@ -261,13 +258,3 @@ class SoundLogTableCell: UITableViewCell {
     
 }
 
-/*
- @objc func addLogButtonTapped(_ sender: UIButton) {
-     let vc = SoundLogDetailViewController()
-     
-     let navVC = UINavigationController(rootViewController: vc)
-     navVC.modalPresentationStyle = .fullScreen
-     self.present(navVC, animated: true)
-     //Value of type 'SoundLogTableCell' has no member 'present'
- }
- */

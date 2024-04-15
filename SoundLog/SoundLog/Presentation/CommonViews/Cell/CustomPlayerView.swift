@@ -25,19 +25,23 @@ class CustomPlayerView: UIView {
     
     var audioPlayer: AVAudioPlayer?
     var audioTimer: Timer?
-
-    init() {
+    var audioFile: URL
+    
+    init(soundURL: URL, frame: CGRect) {
+        self.audioFile = soundURL
         super.init(frame: .zero)
         setupUI()
+        setupAudioSessionForPlayback()
+        queueSound(url: soundURL)
         makeTimer()
     }
     
-    convenience init(url: URL) {
-        self.init()
-        setupUI()
-        queueSound(url: url)
-        makeTimer()
-    }
+//    convenience init(url: URL) {
+//        self.init()
+//        setupUI()
+//        queueSound(url: url)
+//        makeTimer()
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -58,7 +62,7 @@ class CustomPlayerView: UIView {
         let button = UIButton()
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
         button.setPreferredSymbolConfiguration(.init(pointSize: 16, weight: .regular, scale: .default), forImageIn: .normal)
-
+        button.setImage(UIImage(systemName: "pause.fill"), for: .selected)
         button.tintColor = .black
         button.addTarget(self, action: #selector(playbuttonTapped), for: .touchUpInside)
         return button
@@ -192,7 +196,7 @@ class CustomPlayerView: UIView {
 extension CustomPlayerView: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
-            audioTimer?.invalidate()
+            //audioTimer?.invalidate()
             currentPlayerState = .paused
             setButtonState()
         } else {
@@ -201,16 +205,3 @@ extension CustomPlayerView: AVAudioPlayerDelegate {
     }
 }
 
-
-/*
-@objc func playbuttonTapped() {
-
-    if currentPlayerState == .playing {
-        currentPlayerState = .paused
-        audioPlayer?.pause()
-    } else {
-        currentPlayerState = .playing
-        audioPlayer?.play()
-    }
-}
-*/

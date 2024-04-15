@@ -14,7 +14,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     var viewModel = SoundLogViewModel()
     
     private let soundLogView = SoundLogView()
-    private let customPlayerView = CustomPlayerView()
+    var customPlayerView: CustomPlayerView?
     private let categoryIconView = CategoryIconView(type: .recording)
     //MARK: - CLLocation
     var locationManager2: CLLocationManager?
@@ -262,7 +262,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         viewModel.recordedFileUrl.bind { [weak self] recordFile in
             guard let url = recordFile?.recordedFileUrl, let urlObject = URL(string: url) else { return }
 
-            self?.customPlayerView.queueSound(url: urlObject)
+            self?.customPlayerView?.queueSound(url: urlObject)
             self?.updateSaveButtonState()
         }
 
@@ -275,7 +275,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             guard let strongSelf = self else { return }
             let categoryType: CategoryIconType
             switch category {
-            case "Recording":
+            case "REC":
                 categoryType = .recording
             case "ASMR":
                 categoryType = .asmr

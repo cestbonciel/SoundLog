@@ -24,6 +24,10 @@ extension UIColor {
     class var neonLightPurple: UIColor {
         return UIColor(red: 189.0 / 255.0, green: 187.0 / 255.0 , blue: 255.0 / 255.0, alpha: 1)
     }
+    
+    class var realBlue: UIColor {
+        return UIColor(red: 53.0 / 255.0, green: 105.0 / 255.0 , blue: 206.0 / 255.0, alpha: 1)
+    }
 	
 	class var systemDimGray: UIColor {
 		return UIColor(red: 176.0 / 255.0, green: 176.0 / 255.0, blue: 176.0 / 255.0, alpha: 1)

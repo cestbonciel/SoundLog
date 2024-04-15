@@ -17,7 +17,7 @@ enum CategoryIconType {
         case .asmr:
             return "ASMR"
         case .recording:
-            return "Recording"
+            return "REC"
         }
     }
 
@@ -26,7 +26,7 @@ enum CategoryIconType {
         case .asmr:
             return UIColor.vividBlueGreen
         case .recording:
-            return UIColor.neonPurple 
+            return UIColor.realBlue
         }
     }
 }
