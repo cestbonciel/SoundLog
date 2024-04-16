@@ -52,7 +52,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
             print("recording.. recorder nil")
             recordButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             playButton.isEnabled = false
-            selectButton.isEnabled = true
+            stopButton.isEnabled = true
             recordingWithPermission(true)
             return
         }
@@ -63,7 +63,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         } else {
             recordButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             playButton.isEnabled = false
-            selectButton.isEnabled = true
+            stopButton.isEnabled = true
             recordingWithPermission(false)
         }
 	}
@@ -83,7 +83,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         }
         do {
             self.audioPlayer = try AVAudioPlayer(contentsOf: recordedFileUrl!)
-            selectButton.isEnabled = true
+            stopButton.isEnabled = true
             audioPlayer.delegate = self
             audioPlayer.prepareToPlay()
             audioPlayer.volume = 3.0
@@ -129,52 +129,12 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 	// MARK: Feature - Play
 	func setPlayButton(_ play: Bool, stop: Bool) {
 		playButton.isEnabled = play
-		selectButton.isEnabled = stop
+		stopButton.isEnabled = stop
 	}
 	// MARK: - RECORD PERMISSION
     func recordingWithPermission(_ setUp: Bool) {
-        let recordPermission = AVAudioSession.sharedInstance().recordPermission
-        switch recordPermission {
-        case .granted:
-            // 권한이 허용된 경우
-            DispatchQueue.main.async {
-                self.setSessionPlayAndRecord()
-                if setUp {
-                    self.setupAudioRecorder()
-                }
-                self.audioRecorder.record()
-                self.progressTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
-                    self.updateAudioMeter(timer: timer)
-                })
-            }
-            
-        case .denied:
-            // 권한이 거부된 경우
-            DispatchQueue.main.async {
-                self.presentRecordingPermissionAlert()
-            }
-            
-        case .undetermined:
-            // 권한 요청
-            AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] granted in
-                DispatchQueue.main.async {
-                    if granted {
-                        self.setSessionPlayAndRecord()
-                        if setUp {
-                            self.setupAudioRecorder()
-                        }
-                        self.audioRecorder.record()
-                        self.startProgressTimer()
-                    } else {
-                        self.presentRecordingPermissionAlert()
-                    }
-                }
-            }
-            
-        default:
-            break
-        }
-        /*
+        print("\(#function)")
+        
         AVAudioSession.sharedInstance().requestRecordPermission { [unowned self] granted in
             if granted {
                 DispatchQueue.main.async {
@@ -191,30 +151,12 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
                 }
             } else {
                 print("Permission to record not granted.")
-                //self.presentRecordingPermissionAlert()
             }
         }
         
         if AVAudioSession.sharedInstance().recordPermission == .denied {
             print("permission denied.")
-            self.presentRecordingPermissionAlert()
         }
-        */
-    }
-    
-    func presentRecordingPermissionAlert() {
-        let alert = UIAlertController(
-            title: "녹음 권한 비활성화",
-            message: "녹음 정보를 사용하려면 설정에서 녹음 권한을 활성화해야 합니다. 설정으로 이동하시겠습니까?",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "설정으로 이동", style: .default) { _ in
-            if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
-                UIApplication.shared.open(appSettings)
-            }
-        })
-        present(alert, animated: true, completion: nil)
     }
     
     private func updateAudioMeter(timer: Timer) {
@@ -288,45 +230,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 	}
 
 	
-    @objc func stopButtonPressed(_ sender: UIButton) {
-        // 먼저 녹음 권한 상태를 체크합니다.
-        let recordPermission = AVAudioSession.sharedInstance().recordPermission
-        switch recordPermission {
-        case .granted:
-            // 권한이 허용된 경우, 녹음을 정지합니다.
-            stopRecordingSession()
-            
-        case .denied:
-            // 권한이 거부된 경우, 설정으로 이동하라는 알림을 표시합니다.
-            presentRecordingPermissionAlert()
-            
-        case .undetermined:
-            // 권한이 아직 결정되지 않았습니다. 여기서는 다루지 않겠습니다.
-            break
-            
-        default:
-            break
-        }
-        /*
-         audioRecorder?.stop()
-         audioPlayer?.stop()
-         progressTimer.invalidate()
-         
-         recordButton.setImage(UIImage(systemName: "mic.fill"), for: .normal)
-         let session = AVAudioSession.sharedInstance()
-         do {
-         try session.setActive(false)
-         playButton.isEnabled = true
-         selectButton.isEnabled = false
-         recordButton.isEnabled = true
-         } catch {
-         print("Could not make session inactive.")
-         print(error.localizedDescription)
-         }
-         */
-    }
-    
-    func stopRecordingSession() {
+	@objc func stopButtonPressed(_ sender: UIButton) {
         audioRecorder?.stop()
         audioPlayer?.stop()
         progressTimer.invalidate()
@@ -336,32 +240,32 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         do {
             try session.setActive(false)
             playButton.isEnabled = true
-            selectButton.isEnabled = false
+            stopButton.isEnabled = false
             recordButton.isEnabled = true
         } catch {
             print("Could not make session inactive.")
             print(error.localizedDescription)
         }
-    }
+        
+	}
 	
 	// MARK: - AVFoundation Delegate
 	func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("function: \(#function)")
         
         print("finished recording \(flag)")
-        uploadButton.isEnabled = flag
-        selectButton.isEnabled = false
+        stopButton.isEnabled = false
         playButton.isEnabled = true
         recordButton.setImage(UIImage(systemName: "mic.fill"), for: UIControl.State())
         
         let alert = UIAlertController(title: "소리의 기록",
                                       message: "녹음이 완료됐어요.",
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "녹음선택", style: .default) {[unowned self] _ in
+        alert.addAction(UIAlertAction(title: "녹음유지", style: .default) {[unowned self] _ in
             print("keep was tapped")
             self.audioRecorder = nil
         })
-        alert.addAction(UIAlertAction(title: "녹음삭제", style: .destructive) {[unowned self] _ in
+        alert.addAction(UIAlertAction(title: "지우기", style: .destructive) {[unowned self] _ in
              print("delete was tapped")
              self.audioRecorder.deleteRecording()
         })
@@ -379,7 +283,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
             self.statePlaying = false
 
             recordButton.isEnabled = true
-            selectButton.isEnabled = false
+            stopButton.isEnabled = false
             progressView.setProgress(0.0, animated: false)
             timerLabel.text = "00:00"
         } else {

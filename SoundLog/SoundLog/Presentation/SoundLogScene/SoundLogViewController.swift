@@ -32,12 +32,15 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         navigationController?.hidesBarsOnSwipe = true
         self.navigationController?.navigationBar.isHidden = true
        //scrollView.delegate = self
-        //soundLogView.soundLogTitle.delegate = self
-        self.hideKeyboardWhenTappedAround()
+        soundLogView.soundLogTitle.delegate = self
+        
         
         bind()
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
     
     // MARK: - Objc Action 관리 ⭐️
     func setTargetActions() {
@@ -65,12 +68,15 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
             sender.text = String(sender.text!.dropFirst())
             return
         }
-
+        
         viewModel.soundTitle.value = sender.text ?? ""
-      
         
         if viewModel.titleLimitExceeded {
+<<<<<<< HEAD
             sender.text = String(sender.text!.prefix(17))
+=======
+            sender.text = String(sender.text!.prefix(15))
+>>>>>>> parent of 36f3440 (HotFix: shazam, permission, splash, ui)
             showLimitAlert()
         }
         
@@ -83,7 +89,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         alertController.addAction(action)
         present(alertController, animated: true)
     }
-
+    //var selectedMood: MoodEmoji?
     
     @objc private func selectMood(_ sender: UIButton) {
         soundLogView.moodButtons.forEach { button in
@@ -305,7 +311,13 @@ extension SoundLogViewController: UIScrollViewDelegate {
         }
     }
 }
-
+extension SoundLogViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("textFieldShouldReturn called")
+        textField.resignFirstResponder()
+        return true
+    }
+}
 
 // MARK: - Map
 extension SoundLogViewController: MapViewControllerDelegate {
@@ -322,14 +334,3 @@ extension SoundLogViewController: MapViewControllerDelegate {
 }
 
 
-extension SoundLogViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(SoundLogViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}

@@ -46,6 +46,15 @@ class ShazamViewModel: NSObject, ObservableObject {
 		stopRecording()
 	}
     
+    func toggleShazam() {
+        if isShazamActive {
+            stopListening()
+        } else {
+            startListening()
+        }
+        isShazamActive.toggle()
+    }
+	
 	private func requestRecordPermission(audioSession: AVAudioSession) {
 		audioSession.requestRecordPermission { [weak self] status in
 			DispatchQueue.main.async {
@@ -70,31 +79,6 @@ class ShazamViewModel: NSObject, ObservableObject {
 			return
 		}
 		
-        do {
-            let audioSession = AVAudioSession.sharedInstance()
-            try audioSession.setCategory(.playAndRecord, mode: .default)
-            try audioSession.setActive(true)
-            
-            let inputNode = audioEngine.inputNode
-            let recordingFormat = inputNode.outputFormat(forBus: .zero)
-            
-            guard recordingFormat.sampleRate > 0 && recordingFormat.channelCount > 0 else {
-                print("Recording format is not valid")
-                return
-            }
-            
-            inputNode.removeTap(onBus: .zero)
-            inputNode.installTap(onBus: .zero, bufferSize: 1024, format: recordingFormat) { [weak self] buffer, time in
-                print("Current Recording at: \(time)")
-                self?.session.matchStreamingBuffer(buffer, at: time)
-            }
-            
-            audioEngine.prepare()
-            try audioEngine.start()
-        } catch {
-            print("Audio Engine failed to start: \(error)")
-        }
-        /*
 		let inputNode = audioEngine.inputNode
 		let recordingFormat = inputNode.outputFormat(forBus: .zero)
 		
@@ -114,7 +98,6 @@ class ShazamViewModel: NSObject, ObservableObject {
 		} catch {
 			print(error.localizedDescription)
 		}
-        */
 	}
 	
 	private func stopRecording() {

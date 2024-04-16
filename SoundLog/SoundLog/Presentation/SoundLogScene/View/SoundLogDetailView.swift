@@ -349,8 +349,8 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         contentView.addSubview(buttonStack)
         buttonStack.snp.makeConstraints {
             $0.top.equalTo(contentView.snp.top).inset(48)
-            $0.left.equalToSuperview().inset(16)
-            $0.right.equalToSuperview().inset(16)
+            $0.left.equalToSuperview().inset(28)
+            $0.right.equalToSuperview().inset(28)
             $0.height.equalTo(40)
         }
         cancelButton.snp.makeConstraints {
@@ -383,8 +383,8 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         
         backgroundView.snp.makeConstraints {
             $0.top.equalTo(rightButtonStack.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(16)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(28)
+            $0.trailing.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }
         
@@ -397,16 +397,16 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         contentView.addSubview(soundLogTitle)
         soundLogTitle.snp.makeConstraints{
             $0.top.equalTo(backgroundView.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(16)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(28)
+            $0.trailing.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }
         //MARK: - moodButton Autolayout
         contentView.addSubview(backgroundView2)
         backgroundView2.snp.makeConstraints {
             $0.top.equalTo(soundLogTitle.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(16)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(28)
+            $0.trailing.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }
         backgroundView2.addSubview(moodStackView)
@@ -432,8 +432,8 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         backgroundView3.addSubview(recordingStack)
         backgroundView3.snp.makeConstraints {
             $0.top.equalTo(backgroundView2.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(16)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(28)
+            $0.trailing.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }
         
@@ -460,7 +460,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         
         backgroundView4.snp.makeConstraints {
             $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
-            $0.left.right.equalToSuperview().inset(16)
+            $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }
         
@@ -494,7 +494,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         
         backgroundView5.snp.makeConstraints {
             $0.top.equalTo(backgroundView4.snp.bottom).offset(56)
-            $0.left.right.equalToSuperview().inset(16)
+            $0.left.right.equalToSuperview().inset(28)
             $0.height.equalTo(48)
         }
         

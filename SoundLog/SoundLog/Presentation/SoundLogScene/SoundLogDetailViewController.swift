@@ -31,9 +31,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         self.view.backgroundColor = UIColor.white
         setTargetActions()
         navigationController?.hidesBarsOnSwipe = true
-        
-        self.hideKeyboardWhenTappedAround()
-        //soundLogDetailView.soundLogTitle.delegate = self
+        soundLogDetailView.soundLogTitle.delegate = self
         loadSavedData()
         bindViewModelToView()
     }
@@ -179,7 +177,9 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         editViewModel.soundTitle.value = text
         
         if editViewModel.titleLimitExceeded {
+
             sender.text = String(sender.text!.prefix(17))
+
             showLimitAlert()
         }
         
@@ -283,12 +283,12 @@ extension SoundLogDetailViewController: UIScrollViewDelegate {
         }
     }
 }
-//extension SoundLogDetailViewController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        textField.resignFirstResponder()
-//        return true
-//    }
-//}
+extension SoundLogDetailViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
 
 // MARK: - Map
 extension SoundLogDetailViewController: MapViewControllerDelegate {
@@ -304,15 +304,3 @@ extension SoundLogDetailViewController: MapViewControllerDelegate {
     }
 }
 
-
-extension SoundLogDetailViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(SoundLogViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}

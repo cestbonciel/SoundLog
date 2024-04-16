@@ -30,7 +30,7 @@ class RecordingViewController: UIViewController {
 		self.setupUI()
 		view.backgroundColor = .pastelSkyblue
         
-        selectButton.isEnabled = false
+        stopButton.isEnabled = false
         playButton.isEnabled = false
         setSessionPlayback()
 	}
@@ -114,8 +114,8 @@ class RecordingViewController: UIViewController {
 	}()
     
 	//MARK: - STOP BUTTON
-	lazy var selectButton: UIButton = {
-		var attString = AttributedString("결정")
+	lazy var stopButton: UIButton = {
+		var attString = AttributedString("정지")
 		attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         
 		var config = UIButton.Configuration.borderedTinted()
@@ -159,46 +159,34 @@ class RecordingViewController: UIViewController {
 		return button
 	}()
 	
-    @objc func cancelButtonTapped() {
-        uploadButton.isEnabled = false
-        let alertController = UIAlertController(title: "안내", message: "취소하면 녹음한 기록이 사라집니다.", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in
-            UIView.animate(withDuration: 1.0, delay: 0.8, options: [.curveEaseInOut], animations: {
-                self.dismiss(animated: true)
-            }, completion: nil)
-            
-        }
-        alertController.addAction(cancelAction)
-        alertController.addAction(confirmAction)
+	@objc func cancelButtonTapped() {
         
-        present(alertController, animated: true, completion: nil)
-        
-    }
+         let alertController = UIAlertController(title: "안내", message: "취소하면 녹음한 기록이 사라집니다.", preferredStyle: .alert)
+         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+         let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in
+             UIView.animate(withDuration: 1.0, delay: 0.8, options: [.curveEaseInOut], animations: {
+                 self.dismiss(animated: true)
+             }, completion: nil)
+
+         }
+         alertController.addAction(cancelAction)
+         alertController.addAction(confirmAction)
+
+         present(alertController, animated: true, completion: nil)
+
+	}
 	// MARK: - Save Recorded file
 	lazy var uploadButton: UIButton = {
-        var attString = AttributedString("업로드")
-        attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-
-        var config = UIButton.Configuration.filled()
-        config.attributedTitle = attString
-        config.baseBackgroundColor = .neonPurple
-        config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8)
-
-        let button = UIButton(configuration: config)
-        button.configuration = config
-        button.tintColor = .black
+		let button = UIButton()
+		button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
+		button.tintColor = .neonPurple
         button.addTarget(self, action: #selector(saveRecordedFile), for: .touchUpInside)
 		return button
 	}()
     
     @objc func saveRecordedFile() {
-        guard let recordedAudioURL = audioFileURL else {
-            let alert = UIAlertController(title: "녹음 파일 없음", message: "녹음후 결정버튼을 누르세요.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "확인", style: .default))
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
+        guard let recordedAudioURL = audioFileURL else { return }
         
         viewModel.createRecordedFile(url: recordedAudioURL) { success in
             DispatchQueue.main.async {
@@ -213,7 +201,6 @@ class RecordingViewController: UIViewController {
                     })
                     self.present(alert, animated: true)
                 } else {
-                    
                     print("Failed to save recorded file URL.")
                 }
             }//: dispatchQueue
@@ -254,7 +241,7 @@ class RecordingViewController: UIViewController {
 		view.addSubview(recorderButtonStackView)
 		recorderButtonStackView.addArrangedSubview(playButton)
 		recorderButtonStackView.addArrangedSubview(recordButton)
-		recorderButtonStackView.addArrangedSubview(selectButton)
+		recorderButtonStackView.addArrangedSubview(stopButton)
 
 		NSLayoutConstraint.activate([
 			recorderButtonStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 32),
@@ -285,16 +272,3 @@ class RecordingViewController: UIViewController {
 		
 	}
 }
-
-/*
- let alert = UIAlertController(title: "소리의 기록",
-                               message: "녹음을 선택해서 결정버튼을 먼저 누르세요.",
-                               preferredStyle: .alert)
- alert.addAction(UIAlertAction(title: "확인", style: .default) { [unowned self] _ in
-     print("녹음파일을 먼저 선택해주세요.")
-     self.dismiss(animated: true)
- })
- self.present(alert, animated: true)
- 
- 
- */

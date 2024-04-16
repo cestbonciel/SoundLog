@@ -31,7 +31,7 @@ final class SplashViewController: UIViewController {
         }
         animationView.play { [weak self] (finished) in
             if finished {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                     self?.transitionToMainViewController()
                 }
             }
