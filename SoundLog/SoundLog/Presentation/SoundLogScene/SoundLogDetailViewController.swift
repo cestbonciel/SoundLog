@@ -178,7 +178,9 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         
         if editViewModel.titleLimitExceeded {
 
+
             sender.text = String(sender.text!.prefix(17))
+
 
             showLimitAlert()
         }

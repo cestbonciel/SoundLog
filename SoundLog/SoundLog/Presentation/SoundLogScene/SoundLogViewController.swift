@@ -72,11 +72,9 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         viewModel.soundTitle.value = sender.text ?? ""
         
         if viewModel.titleLimitExceeded {
-<<<<<<< HEAD
+
             sender.text = String(sender.text!.prefix(17))
-=======
-            sender.text = String(sender.text!.prefix(15))
->>>>>>> parent of 36f3440 (HotFix: shazam, permission, splash, ui)
+
             showLimitAlert()
         }
         
@@ -84,7 +82,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     private func showLimitAlert() {
-        let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 17자 이하여야 합니다.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 15자 이하여야 합니다.", preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
@@ -299,8 +297,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         let location = viewModel.locationIsValid
         let category = viewModel.categoryIsValid
         //soundLogView.saveButton.isEnabled = titleLength && sound && location && category
-        //let formIsValid = titleLength && mood && sound && location && category
-        soundLogView.updateSaveButton(isEnabled: true)
+        let formIsValid = titleLength && mood && sound && location && category
+        soundLogView.updateSaveButton(isEnabled: formIsValid)
     }
 }
 

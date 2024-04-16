@@ -30,7 +30,7 @@ class SoundLogViewModel {
     
     // MARK: - 1.제목 글자수 제한
     var titleLimitExceeded: Bool {
-<<<<<<< HEAD
+
         
          // 제목 최대 15글자
         
@@ -44,10 +44,9 @@ class SoundLogViewModel {
 //        } else {
 //            return false
 //        }
+
         return !(1...17).contains(soundTitle.value.count)
-=======
-        return !(1...15).contains(soundTitle.value.count)
->>>>>>> parent of 36f3440 (HotFix: shazam, permission, splash, ui)
+
     }
     
     // MARK: - 2.녹음파일 존재유무
