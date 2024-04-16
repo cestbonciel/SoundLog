@@ -30,7 +30,7 @@ class RecordingViewController: UIViewController {
 		self.setupUI()
 		view.backgroundColor = .pastelSkyblue
         
-        stopButton.isEnabled = false
+        selectButton.isEnabled = false
         playButton.isEnabled = false
         setSessionPlayback()
 	}
@@ -114,8 +114,8 @@ class RecordingViewController: UIViewController {
 	}()
     
 	//MARK: - STOP BUTTON
-	lazy var stopButton: UIButton = {
-		var attString = AttributedString("정지")
+	lazy var selectButton: UIButton = {
+		var attString = AttributedString("결정")
 		attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
         
 		var config = UIButton.Configuration.borderedTinted()
@@ -177,12 +177,19 @@ class RecordingViewController: UIViewController {
 	}
 	// MARK: - Save Recorded file
 	lazy var uploadButton: UIButton = {
-		let button = UIButton()
-		button.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
-		button.setPreferredSymbolConfiguration(.init(pointSize: 32, weight: .regular, scale: .default), forImageIn: .normal)
-		button.tintColor = .neonPurple
+        var attString = AttributedString("업로드")
+        attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+
+        var config = UIButton.Configuration.filled()
+        config.attributedTitle = attString
+        config.baseBackgroundColor = .neonPurple
+        config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8)
+
+        let button = UIButton(configuration: config)
+        button.configuration = config
+        button.tintColor = .black
         button.addTarget(self, action: #selector(saveRecordedFile), for: .touchUpInside)
-		return button
+        return button
 	}()
     
     @objc func saveRecordedFile() {
@@ -241,7 +248,7 @@ class RecordingViewController: UIViewController {
 		view.addSubview(recorderButtonStackView)
 		recorderButtonStackView.addArrangedSubview(playButton)
 		recorderButtonStackView.addArrangedSubview(recordButton)
-		recorderButtonStackView.addArrangedSubview(stopButton)
+		recorderButtonStackView.addArrangedSubview(selectButton)
 
 		NSLayoutConstraint.activate([
 			recorderButtonStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 32),

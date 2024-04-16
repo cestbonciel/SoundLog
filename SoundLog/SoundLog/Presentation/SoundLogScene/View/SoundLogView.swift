@@ -116,7 +116,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         textField.leftView = leftInsetView
         textField.leftViewMode = .always
         textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 15자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 17자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
         textField.layer.cornerRadius = 10
         textField.keyboardType = .default
@@ -327,9 +327,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         scrollView.addSubview(contentView)
         scrollView.contentInsetAdjustmentBehavior = .never
     
-//        contentView.layer.borderColor = UIColor.yellow.cgColor
-//        contentView.layer.borderWidth = 1
-        
+
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalToSuperview()
@@ -342,8 +340,8 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         
         buttonStack.snp.makeConstraints {
             $0.top.equalTo(scrollView.safeAreaLayoutGuide.snp.top).inset(16)
-            $0.leading.equalToSuperview().inset(28)
-            $0.trailing.equalToSuperview().inset(28)
+            $0.leading.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(40)
         }
         
@@ -362,8 +360,8 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         
         backgroundView.snp.makeConstraints {
             $0.top.equalTo(buttonStack.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(28)
-            $0.trailing.equalToSuperview().inset(28)
+            $0.leading.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(48)
         }
         
@@ -376,16 +374,16 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         contentView.addSubview(soundLogTitle)
         soundLogTitle.snp.makeConstraints{
             $0.top.equalTo(backgroundView.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(28)
-            $0.trailing.equalToSuperview().inset(28)
+            $0.leading.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(48)
         }
         //MARK: - moodButton Autolayout
         contentView.addSubview(backgroundView2)
         backgroundView2.snp.makeConstraints {
             $0.top.equalTo(soundLogTitle.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(28)
-            $0.trailing.equalToSuperview().inset(28)
+            $0.leading.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(48)
         }
         backgroundView2.addSubview(moodStackView)
@@ -411,8 +409,8 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         backgroundView3.addSubview(recordingStack)
         backgroundView3.snp.makeConstraints {
             $0.top.equalTo(backgroundView2.snp.bottom).offset(24)
-            $0.leading.equalToSuperview().inset(28)
-            $0.trailing.equalToSuperview().inset(28)
+            $0.leading.equalToSuperview().inset(16)
+            $0.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(48)
         }
         
@@ -431,18 +429,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
             $0.height.equalTo(32)
         }
         
-        
-        // MARK: - UITextView
-        /*
-        soundLogTextView.placeholderText = "소리에 대해 작성해봐요."
-        contentView.addSubview(soundLogTextView)
-
-        soundLogTextView.snp.makeConstraints {
-            $0.top.equalTo(recordingStack.snp.bottom).offset(24)
-            $0.left.right.equalToSuperview().inset(28)
-            $0.height.equalTo(180)
-        }
-        */
+      
         // MARK: - USER LOCATION
         contentView.addSubview(backgroundView4)
         backgroundView4.addSubview(locationStack)
@@ -450,7 +437,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         
         backgroundView4.snp.makeConstraints {
             $0.top.equalTo(backgroundView3.snp.bottom).offset(24)
-            $0.left.right.equalToSuperview().inset(28)
+            $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(48)
         }
         
@@ -484,7 +471,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         
         backgroundView5.snp.makeConstraints {
             $0.top.equalTo(backgroundView4.snp.bottom).offset(56)
-            $0.left.right.equalToSuperview().inset(28)
+            $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(48)
         }
         

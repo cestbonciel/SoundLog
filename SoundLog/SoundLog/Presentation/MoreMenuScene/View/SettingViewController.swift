@@ -146,6 +146,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.configure(with: model)
+            cell.selectionStyle = .none
             return cell
         }
     }

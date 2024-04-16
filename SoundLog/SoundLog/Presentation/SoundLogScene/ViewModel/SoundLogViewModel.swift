@@ -31,21 +31,9 @@ class SoundLogViewModel {
     // MARK: - 1.제목 글자수 제한
     var titleLimitExceeded: Bool {
 
-        
-         // 제목 최대 15글자
-        
-//        if soundTitle.value.isEmpty == false {
-//            if soundTitle.value.count <= 15 {
-//                return true
-//            } else {
-//                soundTitle.value.removeLast()
-//                return true
-//            }
-//        } else {
-//            return false
-//        }
 
         return !(1...17).contains(soundTitle.value.count)
+
 
     }
     
@@ -133,16 +121,3 @@ class SoundLogViewModel {
         )
     }
 }
-
-
-/*
-convenience init(log: StorageSoundLog) {
-    self.init()
-    self.soundLogs = [log]
-    self.createdAt.value = log.createdAt
-    self.soundTitle.value = log.soundTitle
-    self.soundMood.value = log.soundMood
-    self.recordedFileUrl.value = log.soundRecordFile
-    self.soundCategory.value = log.soundCategory
-}
-*/
