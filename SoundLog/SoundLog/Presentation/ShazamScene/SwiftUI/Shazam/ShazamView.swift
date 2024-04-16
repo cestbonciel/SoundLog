@@ -128,8 +128,8 @@ struct ShazamView: View {
 			  onRecordButtonTapped()
              //shazamViewModel.toggleShazam()
 		 }, label: {
-			  Image(systemName: "mic")
-					.font(.system(size: 24, weight: .bold))
+			  Image(systemName: "headphones.circle.fill")
+					.font(.system(size: 48, weight: .bold))
 					.foregroundColor(.white)
 					.frame(width: 100, height: 100, alignment: .center)
 					.background(

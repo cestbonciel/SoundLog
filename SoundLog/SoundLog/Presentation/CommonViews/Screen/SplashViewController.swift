@@ -31,14 +31,14 @@ final class SplashViewController: UIViewController {
         }
         animationView.play { [weak self] (finished) in
             if finished {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                     self?.transitionToMainViewController()
                 }
             }
         }
         animationView.alpha = 0.5
         animationView.loopMode = .playOnce
-        animationView.animationSpeed = 0.5
+        animationView.animationSpeed = 1
         
         view.bringSubviewToFront(appNameSoundLog)
     }

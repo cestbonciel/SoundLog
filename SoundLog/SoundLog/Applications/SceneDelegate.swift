@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         // TODO: - 마지막에 다시 활성화시켜주기
-        /*
+        
         let storyboard = UIStoryboard(name: "CustomLaunch", bundle: nil)
         let initVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
         self.window!.backgroundColor = UIColor.pastelSkyblue
@@ -28,7 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.backgroundColor = .black
-        */
+        
     }
     
    

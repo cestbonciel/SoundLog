@@ -283,6 +283,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
                 categoryType = .recording
             }
             strongSelf.categoryIconView.updateType(type: categoryType)
+            self?.updateSaveButtonState()
         }
     }
     
@@ -294,8 +295,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         let location = viewModel.locationIsValid
         let category = viewModel.categoryIsValid
         //soundLogView.saveButton.isEnabled = titleLength && sound && location && category
-        let formIsValid = titleLength && mood && sound && location && category
-        soundLogView.updateSaveButton(isEnabled: formIsValid)
+        //let formIsValid = titleLength && mood && sound && location && category
+        soundLogView.updateSaveButton(isEnabled: true)
     }
 }
 
