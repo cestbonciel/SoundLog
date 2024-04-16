@@ -15,6 +15,7 @@
 		1A13969E2B18895C0072BC49 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A13969D2B18895C0072BC49 /* SettingViewController.swift */; };
 		1A1877BE2B86809C001DB607 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1877BD2B86809C001DB607 /* RealmManager.swift */; };
 		1A1877C62B8688B2001DB607 /* StorageSoundLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1877C52B8688B2001DB607 /* StorageSoundLog.swift */; };
+		1A30548E2BCF1A0000C0587E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1A30548D2BCF1A0000C0587E /* Lottie */; };
 		1A499B2D2B2600D3001370B5 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A499B2C2B2600D3001370B5 /* SettingTableViewCell.swift */; };
 		1A499B2F2B2634DA001370B5 /* SettingAppVersionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A499B2E2B2634DA001370B5 /* SettingAppVersionCell.swift */; };
 		1A52406E2B9EE6FA0015FEAC /* CategoryIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A52406D2B9EE6FA0015FEAC /* CategoryIconView.swift */; };
@@ -34,7 +35,6 @@
 		1AAC0EDC2BA365A6001E8992 /* SoundLogDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAC0EDB2BA365A6001E8992 /* SoundLogDetailView.swift */; };
 		1AB05A422B9F63BD006571FE /* CLPlackMark+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB05A412B9F63BD006571FE /* CLPlackMark+Extension.swift */; };
 		1AC340AD2BB73ED300C4DECE /* BookmarkSoundLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC340AC2BB73ED300C4DECE /* BookmarkSoundLog.swift */; };
-		1AC61D622BACA9FE00631BAD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 1AC61D612BACA9FE00631BAD /* Lottie */; };
 		1AC61D662BACB70000631BAD /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC61D652BACB70000631BAD /* SplashViewController.swift */; };
 		1AC61D682BACBE6E00631BAD /* CustomLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AC61D672BACBE6E00631BAD /* CustomLaunch.storyboard */; };
 		1AC61D6C2BACC73000631BAD /* soundLogAni.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AC61D6B2BACC73000631BAD /* soundLogAni.json */; };
@@ -176,7 +176,7 @@
 				1A133D922BAC5FB7002382D4 /* Realm in Frameworks */,
 				1A133D972BAC6098002382D4 /* FSCalendar in Frameworks */,
 				1A133D942BAC5FB7002382D4 /* RealmSwift in Frameworks */,
-				1AC61D622BACA9FE00631BAD /* Lottie in Frameworks */,
+				1A30548E2BCF1A0000C0587E /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +534,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1A3054902BCF1AC700C0587E /* PBXTargetDependency */,
 			);
 			name = SoundLog;
 			packageProductDependencies = (
@@ -542,7 +543,7 @@
 				1A133D912BAC5FB7002382D4 /* Realm */,
 				1A133D932BAC5FB7002382D4 /* RealmSwift */,
 				1A133D962BAC6098002382D4 /* FSCalendar */,
-				1AC61D612BACA9FE00631BAD /* Lottie */,
+				1A30548D2BCF1A0000C0587E /* Lottie */,
 			);
 			productName = OmyAk;
 			productReference = 877DAC8D2A7AD46C00AE3038 /* SoundLog.app */;
@@ -577,7 +578,7 @@
 				1A9C0FFD2B9DE8700026D92D /* XCRemoteSwiftPackageReference "AcknowList" */,
 				1A133D902BAC5FB7002382D4 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				1A133D952BAC6098002382D4 /* XCRemoteSwiftPackageReference "FSCalendar" */,
-				1AC61D602BACA9FE00631BAD /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				1A30548C2BCF1A0000C0587E /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 877DAC8E2A7AD46C00AE3038 /* Products */;
 			projectDirPath = "";
@@ -680,6 +681,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A3054902BCF1AC700C0587E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 1A30548F2BCF1AC700C0587E /* Lottie */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		877DAC962A7AD46C00AE3038 /* Main.storyboard */ = {
@@ -925,20 +933,20 @@
 				kind = branch;
 			};
 		};
+		1A30548C2BCF1A0000C0587E /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		1A9C0FFD2B9DE8700026D92D /* XCRemoteSwiftPackageReference "AcknowList" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/vtourraine/AcknowList";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.1.0;
-			};
-		};
-		1AC61D602BACA9FE00631BAD /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.4.1;
 			};
 		};
 		8708D6B92A9F86E70000CAC5 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -967,15 +975,20 @@
 			package = 1A133D952BAC6098002382D4 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
 		};
+		1A30548D2BCF1A0000C0587E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A30548C2BCF1A0000C0587E /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+		1A30548F2BCF1AC700C0587E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1A30548C2BCF1A0000C0587E /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
 		1A9C0FFE2B9DE8700026D92D /* AcknowList */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1A9C0FFD2B9DE8700026D92D /* XCRemoteSwiftPackageReference "AcknowList" */;
 			productName = AcknowList;
-		};
-		1AC61D612BACA9FE00631BAD /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1AC61D602BACA9FE00631BAD /* XCRemoteSwiftPackageReference "lottie-spm" */;
-			productName = Lottie;
 		};
 		8708D6BA2A9F86E70000CAC5 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

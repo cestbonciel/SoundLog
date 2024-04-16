@@ -30,7 +30,20 @@ class SoundLogViewModel {
     
     // MARK: - 1.제목 글자수 제한
     var titleLimitExceeded: Bool {
-        return !(1...15).contains(soundTitle.value.count)
+        
+         // 제목 최대 15글자
+        
+//        if soundTitle.value.isEmpty == false {
+//            if soundTitle.value.count <= 15 {
+//                return true
+//            } else {
+//                soundTitle.value.removeLast()
+//                return true
+//            }
+//        } else {
+//            return false
+//        }
+        return !(1...16).contains(soundTitle.value.count)
     }
     
     // MARK: - 2.녹음파일 존재유무

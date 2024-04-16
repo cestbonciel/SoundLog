@@ -31,7 +31,9 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         self.view.backgroundColor = UIColor.white
         setTargetActions()
         navigationController?.hidesBarsOnSwipe = true
-        soundLogDetailView.soundLogTitle.delegate = self
+        
+        self.hideKeyboardWhenTappedAround()
+        //soundLogDetailView.soundLogTitle.delegate = self
         loadSavedData()
         bindViewModelToView()
     }
@@ -177,7 +179,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         editViewModel.soundTitle.value = text
         
         if editViewModel.titleLimitExceeded {
-            sender.text = String(sender.text!.prefix(15))
+            sender.text = String(sender.text!.prefix(16))
             showLimitAlert()
         }
         
@@ -281,12 +283,12 @@ extension SoundLogDetailViewController: UIScrollViewDelegate {
         }
     }
 }
-extension SoundLogDetailViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}
+//extension SoundLogDetailViewController: UITextFieldDelegate {
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
+//}
 
 // MARK: - Map
 extension SoundLogDetailViewController: MapViewControllerDelegate {
@@ -303,24 +305,14 @@ extension SoundLogDetailViewController: MapViewControllerDelegate {
 }
 
 
-/*
-private func updateUIWithStoredData() {
-    guard let editSoundLog = editSoundLog else { return }
+extension SoundLogDetailViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SoundLogViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
     
-    soundLogDetailView.soundLogDate
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
-*/
-
-
-/*
-if let editSoundLog = editSoundLog {
-    self.editViewModel = SoundLogViewModel(log: editSoundLog)
-    // ViewModel의 상태를 콘솔에 출력
-    print("ViewModel의 날짜: \(editViewModel.createdAt.value)")
-    print("ViewModel의 제목: \(editViewModel.soundTitle.value)")
-    print("ViewModel의 감정: \(editViewModel.soundMood.value)")
-    print("ViewModel의 녹음 파일 URL: \(String(describing: editViewModel.recordedFileUrl.value?.recordedFileUrl))")
-    print("ViewModel의 위치: \(editViewModel.soundLocation.value)")
-    print("ViewModel의 카테고리: \(editViewModel.soundCategory.value)")
-}
- */
