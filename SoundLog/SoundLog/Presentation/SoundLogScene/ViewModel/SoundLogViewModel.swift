@@ -43,7 +43,7 @@ class SoundLogViewModel {
 //        } else {
 //            return false
 //        }
-        return !(1...16).contains(soundTitle.value.count)
+        return !(1...17).contains(soundTitle.value.count)
     }
     
     // MARK: - 2.녹음파일 존재유무
