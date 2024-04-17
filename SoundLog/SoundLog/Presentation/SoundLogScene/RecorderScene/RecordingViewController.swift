@@ -115,17 +115,18 @@ class RecordingViewController: UIViewController {
     
 	//MARK: - STOP BUTTON
 	lazy var selectButton: UIButton = {
-		var attString = AttributedString("결정")
+
+		var attString = AttributedString("선택")
 		attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        
-		var config = UIButton.Configuration.borderedTinted()
+
+		var config = UIButton.Configuration.bordered()
 		config.attributedTitle = attString
-		config.baseBackgroundColor = .systemRed
+        config.baseBackgroundColor = .neonLightPurple
 		config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
 
 		let button = UIButton(configuration: config)
 		button.configuration = config
-		button.tintColor = .systemRed
+        button.tintColor = .black
 		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
 		button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(stopButtonPressed), for: .touchUpInside)
@@ -180,9 +181,9 @@ class RecordingViewController: UIViewController {
         var attString = AttributedString("업로드")
         attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
 
-        var config = UIButton.Configuration.filled()
+        var config = UIButton.Configuration.bordered()
         config.attributedTitle = attString
-        config.baseBackgroundColor = .neonPurple
+        config.baseBackgroundColor = .neonYellow
         config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8)
 
         let button = UIButton(configuration: config)
@@ -193,7 +194,12 @@ class RecordingViewController: UIViewController {
 	}()
     
     @objc func saveRecordedFile() {
-        guard let recordedAudioURL = audioFileURL else { return }
+        guard let recordedAudioURL = audioFileURL else {
+            let alert = UIAlertController(title: "녹음 파일 없음", message: "녹음후 선택버튼을 누르세요.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         
         viewModel.createRecordedFile(url: recordedAudioURL) { success in
             DispatchQueue.main.async {
