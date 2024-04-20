@@ -130,7 +130,7 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
         textField.leftView = leftInsetView
         textField.leftViewMode = .always
         textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 17자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 24자 미만", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
         textField.layer.cornerRadius = 10
         textField.clearButtonMode = .whileEditing

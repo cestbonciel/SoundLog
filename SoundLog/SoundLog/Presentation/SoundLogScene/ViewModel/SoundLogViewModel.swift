@@ -31,11 +31,20 @@ class SoundLogViewModel {
     // MARK: - 1.제목 글자수 제한
     var titleLimitExceeded: Bool {
 
-
-        return !(1...17).contains(soundTitle.value.count)
-
-
+        if soundTitle.value.isEmpty == false {
+            if soundTitle.value.count <= 24 {
+                return true
+            } else {
+                soundTitle.value.removeLast()
+                return true
+            }
+        } else {
+            
+            return false
+        }
     }
+    
+    
     
     // MARK: - 2.녹음파일 존재유무
     var soundIsValid: Bool {

@@ -52,7 +52,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
             print("recording.. recorder nil")
             recordButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             playButton.isEnabled = false
-            selectButton.isEnabled = true
+            stopButton.isEnabled = true
             recordingWithPermission(true)
             return
         }
@@ -63,7 +63,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         } else {
             recordButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
             playButton.isEnabled = false
-            selectButton.isEnabled = true
+            stopButton.isEnabled = true
             recordingWithPermission(false)
         }
 	}
@@ -83,7 +83,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         }
         do {
             self.audioPlayer = try AVAudioPlayer(contentsOf: recordedFileUrl!)
-            selectButton.isEnabled = true
+            stopButton.isEnabled = true
             audioPlayer.delegate = self
             audioPlayer.prepareToPlay()
             audioPlayer.volume = 3.0
@@ -129,7 +129,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 	// MARK: Feature - Play
 	func setPlayButton(_ play: Bool, stop: Bool) {
 		playButton.isEnabled = play
-		selectButton.isEnabled = stop
+		stopButton.isEnabled = stop
 	}
     // MARK: - RECORD PERMISSION
     func recordingWithPermission(_ setUp: Bool) {
@@ -274,7 +274,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         do {
             try session.setActive(false)
             playButton.isEnabled = true
-            selectButton.isEnabled = false
+            stopButton.isEnabled = false
             recordButton.isEnabled = true
         } catch {
             print("Could not make session inactive.")
@@ -302,7 +302,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         print("function: \(#function)")
         
         print("finished recording \(flag)")
-        selectButton.isEnabled = false
+        stopButton.isEnabled = false
         playButton.isEnabled = true
         recordButton.setImage(UIImage(systemName: "mic.fill"), for: UIControl.State())
         
@@ -331,7 +331,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
             self.statePlaying = false
 
             recordButton.isEnabled = true
-            selectButton.isEnabled = false
+            stopButton.isEnabled = false
             progressView.setProgress(0.0, animated: false)
             timerLabel.text = "00:00"
         } else {

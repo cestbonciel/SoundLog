@@ -62,25 +62,23 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     @objc func titleTextFieldDidChange(_ sender: UITextField) {
-        guard let text = sender.text, !text.isEmpty else { return }
+        guard let text = sender.text,
+              !text.isEmpty else { return }
     
-        if sender.text?.first == " " {
-            sender.text = String(sender.text!.dropFirst())
-            return
+        if sender.text?.count == 1 {
+            if sender.text?.first == " " {
+                sender.text = ""
+                return
+            }
         }
-        
         viewModel.soundTitle.value = sender.text ?? ""
         
-        if viewModel.titleLimitExceeded {
-            sender.text = String(sender.text!.prefix(17))
-            showLimitAlert()
-        }
         
         updateSaveButtonState()
     }
     
     private func showLimitAlert() {
-        let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 17자 이하여야 합니다.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 24자 이하로 작성하세요.", preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
@@ -289,12 +287,12 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     
     // MARK: - 제목, 내용 글자 수 제한 --
     func updateSaveButtonState() {
-        let titleLength = !viewModel.titleLimitExceeded
+        let titleLength = viewModel.titleLimitExceeded
         let mood = viewModel.moodIsSelected
         let sound = viewModel.soundIsValid
         let location = viewModel.locationIsValid
         let category = viewModel.categoryIsValid
-        //soundLogView.saveButton.isEnabled = titleLength && sound && location && category
+        
         let formIsValid = titleLength && mood && sound && location && category
         soundLogView.updateSaveButton(isEnabled: formIsValid)
     }

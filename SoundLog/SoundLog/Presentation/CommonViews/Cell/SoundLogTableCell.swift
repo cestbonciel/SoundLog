@@ -60,6 +60,7 @@ class SoundLogTableCell: UITableViewCell {
         let label = UILabel()
         label.text = ""
         label.font = .gmsans(ofSize: 12, weight: .GMSansMedium)
+        label.sizeToFit()
         return label
     }()
     
@@ -235,6 +236,7 @@ class SoundLogTableCell: UITableViewCell {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(locationLabel.snp.bottom).offset(16)
             $0.left.equalTo(locationIcon.snp.left)
+            $0.height.equalTo(16)
         }
         
 //        customPlayerView.snp.makeConstraints {

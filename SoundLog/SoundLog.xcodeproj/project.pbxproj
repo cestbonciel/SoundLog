@@ -84,7 +84,6 @@
 		87E94C5D2AEBE5B3007DD30C /* GmarketSansTTFBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87E94C5A2AEBE5B3007DD30C /* GmarketSansTTFBold.ttf */; };
 		87E94C5E2AEBE5B3007DD30C /* GmarketSansTTFMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87E94C5B2AEBE5B3007DD30C /* GmarketSansTTFMedium.ttf */; };
 		87E94C5F2AEBE5B3007DD30C /* GmarketSansTTFLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87E94C5C2AEBE5B3007DD30C /* GmarketSansTTFLight.ttf */; };
-		87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E9769D2A8D4BEA00756C18 /* StartViewController.swift */; };
 		87EE460D2AD7D651008E553F /* UIView+BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EE460C2AD7D651008E553F /* UIView+BackgroundView.swift */; };
 /* End PBXBuildFile section */
 
@@ -162,7 +161,6 @@
 		87E94C5A2AEBE5B3007DD30C /* GmarketSansTTFBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansTTFBold.ttf; sourceTree = "<group>"; };
 		87E94C5B2AEBE5B3007DD30C /* GmarketSansTTFMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansTTFMedium.ttf; sourceTree = "<group>"; };
 		87E94C5C2AEBE5B3007DD30C /* GmarketSansTTFLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GmarketSansTTFLight.ttf; sourceTree = "<group>"; };
-		87E9769D2A8D4BEA00756C18 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		87EE460C2AD7D651008E553F /* UIView+BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+BackgroundView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -277,7 +275,6 @@
 				87DB259E2A8D421E00EE0CE4 /* startEnter.storyboard */,
 				877DAC962A7AD46C00AE3038 /* Main.storyboard */,
 				878864D12A8E73A6008340E2 /* MainTabBarController.swift */,
-				87E9769D2A8D4BEA00756C18 /* StartViewController.swift */,
 				1A871B272B87C2FC00F2CD10 /* Cell */,
 				1A52406C2B9EE6D20015FEAC /* Components */,
 			);
@@ -650,7 +647,6 @@
 				874764402AFAA48900365717 /* SongData.swift in Sources */,
 				1A52406E2B9EE6FA0015FEAC /* CategoryIconView.swift in Sources */,
 				1AC340AD2BB73ED300C4DECE /* BookmarkSoundLog.swift in Sources */,
-				87E9769E2A8D4BEA00756C18 /* StartViewController.swift in Sources */,
 				87B143FA2AE6B3EC00EDF23F /* SharedDelegate.swift in Sources */,
 				87B143F82AE6B3DF00EDF23F /* MapViewController.swift in Sources */,
 				874418672ABAD97F00233604 /* RecordingViewController.swift in Sources */,
@@ -833,8 +829,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = CustomLaunch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -844,9 +840,12 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.seohyun.iOSApp.SoundLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -868,8 +867,8 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = CustomLaunch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -879,9 +878,12 @@
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.seohyun.iOSApp.SoundLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

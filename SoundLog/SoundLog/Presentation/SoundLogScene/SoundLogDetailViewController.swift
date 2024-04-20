@@ -166,26 +166,22 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
     }
     
     @objc func titleTextFieldDidChange(_ sender: UITextField) {
-        guard let text = sender.text, !text.isEmpty else { return }
+        guard let text = sender.text,
+              !text.isEmpty else { return }
     
-        if sender.text?.count == 1 && text.first == " " {
+        if sender.text?.count == 1 {
             if sender.text?.first == " " {
                 sender.text = ""
                 return
             }
         }
-        editViewModel.soundTitle.value = text
-        
-        if editViewModel.titleLimitExceeded {
-            sender.text = String(sender.text!.prefix(17))
-            showLimitAlert()
-        }
+        editViewModel.soundTitle.value = sender.text ?? ""
         
         updateEditState()
     }
     
     private func showLimitAlert() {
-        let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 17자 이하여야 합니다.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "경고", message: "제목은 1자 이상 24자 이하여야 합니다.", preferredStyle: .alert)
         let action = UIAlertAction(title: "확인", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)

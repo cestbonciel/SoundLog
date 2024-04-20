@@ -30,7 +30,7 @@ class RecordingViewController: UIViewController {
 		self.setupUI()
 		view.backgroundColor = .pastelSkyblue
         
-        selectButton.isEnabled = false
+        stopButton.isEnabled = false
         playButton.isEnabled = false
         setSessionPlayback()
 	}
@@ -70,8 +70,10 @@ class RecordingViewController: UIViewController {
 	
     
 	// MARK: - Recorder Button Components
-	private let recorderButtonStackView: UIStackView = {
-		let view = UIStackView()
+	private lazy var recorderButtonStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [playButton, recordButton, stopButton])
+        view.isLayoutMarginsRelativeArrangement = true
+        view.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 32, bottom: 0, trailing: 32)
 		view.axis = .horizontal
 		view.alignment = .center
 		view.distribution = .equalSpacing
@@ -114,21 +116,31 @@ class RecordingViewController: UIViewController {
 	}()
     
 	//MARK: - STOP BUTTON
-	lazy var selectButton: UIButton = {
+	lazy var stopButton: UIButton = { // stop.fill
+        var config = UIButton.Configuration.filled()
+        config.image = UIImage(systemName: "stop.fill")
+        config.baseBackgroundColor = .neonPurple
+        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
 
-		var attString = AttributedString("선택")
-		attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-
-		var config = UIButton.Configuration.bordered()
-		config.attributedTitle = attString
-        config.baseBackgroundColor = .neonLightPurple
-		config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
-
-		let button = UIButton(configuration: config)
-		button.configuration = config
-        button.tintColor = .black
-		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
-		button.translatesAutoresizingMaskIntoConstraints = false
+        let button = UIButton(configuration: config)
+        button.configuration = config
+        button.tintColor = .white
+        button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
+        button.layer.cornerRadius = button.frame.width / 2
+        button.translatesAutoresizingMaskIntoConstraints = false
+//		var attString = AttributedString("확인")
+//		attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
+//
+//		var config = UIButton.Configuration.bordered()
+//		config.attributedTitle = attString
+//        config.baseBackgroundColor = .neonLightPurple
+//		config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+//
+//		let button = UIButton(configuration: config)
+//		button.configuration = config
+//        button.tintColor = .black
+//		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
+//		button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(stopButtonPressed), for: .touchUpInside)
 		return button
 	}()
@@ -193,7 +205,7 @@ class RecordingViewController: UIViewController {
         return button
 	}()
     
-    @objc func saveRecordedFile() {
+    @objc func saveRecordedFile() { 
         guard let recordedAudioURL = audioFileURL else {
             let alert = UIAlertController(title: "녹음 파일 없음", message: "녹음후 선택버튼을 누르세요.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "확인", style: .default))
@@ -252,9 +264,9 @@ class RecordingViewController: UIViewController {
 		
 		// MARK: record Button StackView -
 		view.addSubview(recorderButtonStackView)
-		recorderButtonStackView.addArrangedSubview(playButton)
-		recorderButtonStackView.addArrangedSubview(recordButton)
-		recorderButtonStackView.addArrangedSubview(selectButton)
+//		recorderButtonStackView.addArrangedSubview(playButton)
+//		recorderButtonStackView.addArrangedSubview(recordButton)
+//		recorderButtonStackView.addArrangedSubview(stopButton)
 
 		NSLayoutConstraint.activate([
 			recorderButtonStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 32),

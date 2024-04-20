@@ -22,7 +22,7 @@
         <scene sceneID="n8d-l7-14J">
             <objects>
                 <tabBarController storyboardIdentifier="tabBar" id="fEf-Vj-Qik" customClass="MainTabBarController" customModule="SoundLog" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kd2-RT-tBX">
+                    <tabBar key="tabBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" id="kd2-RT-tBX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
