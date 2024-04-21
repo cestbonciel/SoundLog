@@ -32,7 +32,7 @@ class SoundLogViewModel {
     var titleLimitExceeded: Bool {
 
         if soundTitle.value.isEmpty == false {
-            if soundTitle.value.count <= 24 {
+            if soundTitle.value.count <= 20 {
                 return true
             } else {
                 soundTitle.value.removeLast()

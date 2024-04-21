@@ -85,7 +85,7 @@ class RecordingViewController: UIViewController {
 	lazy var recordButton: UIButton = {
 		var config = UIButton.Configuration.filled()
 		config.image = UIImage(systemName: "mic.fill")
-		config.baseBackgroundColor = .systemRed
+        config.baseBackgroundColor = .realBlue
 		config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
 
 		let button = UIButton(configuration: config)
@@ -119,7 +119,7 @@ class RecordingViewController: UIViewController {
 	lazy var stopButton: UIButton = { // stop.fill
         var config = UIButton.Configuration.filled()
         config.image = UIImage(systemName: "stop.fill")
-        config.baseBackgroundColor = .neonPurple
+        config.baseBackgroundColor = .systemRed
         config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16)
 
         let button = UIButton(configuration: config)

@@ -50,7 +50,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         
         if audioRecorder == nil {
             print("recording.. recorder nil")
-            recordButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            recordButton.setImage(UIImage(systemName: "waveform"), for: .normal)
             playButton.isEnabled = false
             stopButton.isEnabled = true
             recordingWithPermission(true)
@@ -61,7 +61,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
             audioRecorder.pause()
             recordButton.setImage(UIImage(systemName: "mic.fill"), for: .normal)
         } else {
-            recordButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+            recordButton.setImage(UIImage(systemName: "waveform"), for: .normal)
             playButton.isEnabled = false
             stopButton.isEnabled = true
             recordingWithPermission(false)

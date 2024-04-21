@@ -260,7 +260,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
 
     // MARK: - 제목, 내용 글자 수 제한 --
     func updateEditState() {
-        let titleLength = !editViewModel.titleLimitExceeded
+        let titleLength = editViewModel.titleLimitExceeded
         let mood = editViewModel.moodIsSelected
         //let sound = editViewModel.soundIsValid
         //let location = editViewModel.locationIsValid

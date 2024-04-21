@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SoundLogView: UIView, UIScrollViewDelegate {
+final class SoundLogView: UIView {
     weak var textFieldDelegate: UITextFieldDelegate?
     weak var textViewDelegate: UITextViewDelegate?
     
@@ -23,12 +23,12 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
     }
     
     //MARK: - Entire View Scroll
-    lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = true
-        scrollView.delegate = self
-        return scrollView
-    }()
+//    lazy var scrollView: UIScrollView = {
+//        let scrollView = UIScrollView()
+//        scrollView.showsVerticalScrollIndicator = true
+//        scrollView.delegate = self
+//        return scrollView
+//    }()
     
     lazy var contentView: UIView = {
         let view = UIView()
@@ -116,7 +116,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
         textField.leftView = leftInsetView
         textField.leftViewMode = .always
         textField.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 24자 이하", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
+        textField.attributedPlaceholder = NSAttributedString(string: "1자 이상 20자 이하", attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderText])
         
         textField.layer.cornerRadius = 10
         textField.keyboardType = .default
@@ -316,22 +316,23 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
     // MARK: - setupUI
     private func setupUI() {
         
-        addSubview(scrollView)
-        scrollView.snp.makeConstraints {
-            //$0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
-            $0.top.equalToSuperview()
-            $0.centerX.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.width.equalToSuperview()
-        }
-        scrollView.addSubview(contentView)
-        scrollView.contentInsetAdjustmentBehavior = .never
+//        addSubview(scrollView)
+//        scrollView.snp.makeConstraints {
+//            //$0.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+//            $0.top.equalToSuperview()
+//            $0.centerX.equalToSuperview()
+//            $0.bottom.equalToSuperview()
+//            $0.width.equalToSuperview()
+//        }
+        addSubview(contentView)
+        //scrollView.contentInsetAdjustmentBehavior = .never
     
 
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.height.equalTo(800)
+            //$0.height.equalTo(800)
+            $0.bottom.equalToSuperview()
         }
         
         contentView.addSubview(buttonStack)
@@ -339,7 +340,7 @@ final class SoundLogView: UIView, UIScrollViewDelegate {
 //        buttonStack.layer.borderWidth = 1
         
         buttonStack.snp.makeConstraints {
-            $0.top.equalTo(scrollView.safeAreaLayoutGuide.snp.top).inset(16)
+            $0.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).inset(16)
             $0.leading.equalToSuperview().inset(16)
             $0.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(40)

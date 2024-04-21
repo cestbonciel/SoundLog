@@ -86,6 +86,13 @@ class HomeViewController: UIViewController {
 		button.addTarget(self, action: #selector(tapToggleButton), for: .touchUpInside)
 		return button
 	}()
+    
+    private lazy var scrollView = UIScrollView()
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        
+        return view
+    }()
     // MARK: - Calendar View ---
     private func configureCalendar() {
         calendarView.delegate = self
@@ -184,28 +191,28 @@ class HomeViewController: UIViewController {
 	
    
 
-	private func setupHomeUI() {
-		view.addSubview(topSideStackView)
-		view.addSubview(calendarView)
-		view.addSubview(headerLabel)
-		view.addSubview(togglePeriodButton)
-		headerLabel.snp.makeConstraints {
-			$0.top.equalTo(topSideStackView.snp.bottom).offset(24)
-			$0.left.equalToSuperview().inset(30)
-		}
-		
-		togglePeriodButton.snp.makeConstraints {
-			$0.centerY.equalTo(headerLabel.snp.centerY)
-			
-			$0.trailing.equalTo(topSideStackView.snp.trailing)
-		}
-
-		calendarView.snp.makeConstraints {
-			$0.top.equalTo(topSideStackView.snp.bottom).offset(64)
-			$0.left.equalToSuperview().inset(16)
-			$0.right.equalToSuperview().inset(16)
-			$0.height.equalTo(320)
-		}
+    private func setupHomeUI() {
+        view.addSubview(topSideStackView)
+        view.addSubview(calendarView)
+        view.addSubview(headerLabel)
+        view.addSubview(togglePeriodButton)
+        headerLabel.snp.makeConstraints {
+            $0.top.equalTo(topSideStackView.snp.bottom).offset(24)
+            $0.left.equalToSuperview().inset(30)
+        }
+        
+        togglePeriodButton.snp.makeConstraints {
+            $0.centerY.equalTo(headerLabel.snp.centerY)
+            
+            $0.trailing.equalTo(topSideStackView.snp.trailing)
+        }
+        
+        calendarView.snp.makeConstraints {
+            $0.top.equalTo(topSideStackView.snp.bottom).offset(64)
+            $0.left.equalToSuperview().inset(16)
+            $0.right.equalToSuperview().inset(16)
+            $0.height.equalTo(240)
+        }
         
         
         tableView.dataSource = self
@@ -218,9 +225,12 @@ class HomeViewController: UIViewController {
             $0.left.right.equalToSuperview().inset(16)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-
-	}
-
+        
+        
+    }
+    
+    
+    
 	
 }
 
@@ -325,3 +335,86 @@ extension HomeViewController: SoundLogTableCellDelegate {
         cell.updateBookmarkIcon(isBookmarked: BookmarkSoundLog.isBookmarked(for: soundLog))
     }
 }
+
+
+extension UIView {
+    func addSubviews(_ views: [UIView]) {
+        views.forEach { self.addSubview($0) }
+    }
+
+}
+
+/*
+ view.addSubview(topSideStackView)
+ 
+ topSideStackView.layer.borderColor = UIColor.systemGreen.cgColor
+ topSideStackView.layer.borderWidth = 1
+ 
+ self.view.addSubview(scrollView)
+ 
+ //scrollView.addSubviews([headerLabel, togglePeriodButton, calendarView, tableView])
+ 
+ self.scrollView.addSubview(contentView)
+ contentView.addSubviews([headerLabel, togglePeriodButton, calendarView, tableView])
+ 
+ headerLabel.layer.borderColor = UIColor.magenta.cgColor
+ headerLabel.layer.borderWidth = 1
+ 
+ togglePeriodButton.layer.borderColor = UIColor.magenta.cgColor
+ togglePeriodButton.layer.borderWidth = 1
+ 
+ scrollView.snp.makeConstraints {
+     $0.top.equalTo(topSideStackView.snp.bottom).offset(16)
+     $0.left.right.equalToSuperview().inset(16)
+     //$0.bottom.equalTo(view.snp.bottom)
+     $0.bottom.equalTo(view.safeAreaLayoutGuide)
+ }
+ 
+ scrollView.layer.borderColor = UIColor.systemPurple.cgColor
+ scrollView.layer.borderWidth = 1
+ 
+ 
+ contentView.layer.borderColor = UIColor.yellow.cgColor
+ contentView.layer.borderWidth = 1
+ 
+ contentView.snp.makeConstraints {
+     $0.edges.equalTo(scrollView.contentLayoutGuide)
+     $0.width.equalTo(scrollView.frameLayoutGuide)
+     //$0.bottom.equalTo(scrollView.snp.bottom)
+ }
+ 
+ headerLabel.snp.makeConstraints {
+     $0.centerY.equalTo(togglePeriodButton.snp.centerY)
+     $0.left.equalTo(contentView.snp.left)
+     //$0.left.equalTo(scrollView.snp.left)
+ }
+ 
+ togglePeriodButton.snp.makeConstraints {
+     //$0.top.equalTo(scrollView)
+     $0.top.equalTo(contentView)
+     
+     $0.trailing.equalTo(topSideStackView.snp.trailing)
+ }
+
+ calendarView.snp.makeConstraints {
+     $0.top.equalTo(headerLabel.snp.bottom).offset(8)
+     $0.left.right.equalTo(contentView)
+     //$0.width.equalTo(contentView)
+     
+     $0.height.equalTo(240)
+ }
+ 
+ 
+ tableView.dataSource = self
+ tableView.delegate = self
+ 
+ //view.addSubview(tableView)
+ 
+ tableView.snp.makeConstraints {
+     $0.top.equalTo(calendarView.snp.bottom).offset(8)
+     $0.width.equalTo(contentView)
+     //$0.bottom.equalTo(view.safeAreaLayoutGuide)
+     $0.bottom.equalTo(contentView.snp.bottom)
+ }
+ 
+ */

@@ -298,13 +298,13 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     }
 }
 
-extension SoundLogViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x > 0 {
-            scrollView.contentOffset.x = 0
-        }
-    }
-}
+//extension SoundLogViewController: UIScrollViewDelegate {
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView.contentOffset.x > 0 {
+//            scrollView.contentOffset.x = 0
+//        }
+//    }
+//}
 extension SoundLogViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("textFieldShouldReturn called")
