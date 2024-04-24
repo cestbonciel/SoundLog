@@ -210,7 +210,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
  
     @objc func actCancelButton(_ sender: UIButton) {
         
-        let alertController = UIAlertController(title: "안내", message: "취소하면 작성한 내용이 사라집니다.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "안내", message: "취소하면 수정이 안됩니다.", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         let confirmAction = UIAlertAction(title: "확인", style: .default) { _ in
             UIView.animate(withDuration: 1.0, delay: 0.8, options: [.curveEaseInOut], animations: {

@@ -329,8 +329,10 @@ final class SoundLogView: UIView {
     
 
         contentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.width.equalToSuperview()
+            $0.top.equalToSuperview().inset(10)
+            $0.left.right.equalToSuperview()
+            //$0.right.equalToSuperview().inset(4)
+            //$0.width.equalToSuperview()
             //$0.height.equalTo(800)
             $0.bottom.equalToSuperview()
         }

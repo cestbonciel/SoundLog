@@ -128,19 +128,7 @@ class RecordingViewController: UIViewController {
         button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
         button.layer.cornerRadius = button.frame.width / 2
         button.translatesAutoresizingMaskIntoConstraints = false
-//		var attString = AttributedString("확인")
-//		attString.font = .gmsans(ofSize: 16, weight: .GMSansMedium)
-//
-//		var config = UIButton.Configuration.bordered()
-//		config.attributedTitle = attString
-//        config.baseBackgroundColor = .neonLightPurple
-//		config.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
-//
-//		let button = UIButton(configuration: config)
-//		button.configuration = config
-//        button.tintColor = .black
-//		button.frame = CGRect(x: 0, y: 0, width: 48, height: 48)
-//		button.translatesAutoresizingMaskIntoConstraints = false
+
         button.addTarget(self, action: #selector(stopButtonPressed), for: .touchUpInside)
 		return button
 	}()
@@ -264,9 +252,7 @@ class RecordingViewController: UIViewController {
 		
 		// MARK: record Button StackView -
 		view.addSubview(recorderButtonStackView)
-//		recorderButtonStackView.addArrangedSubview(playButton)
-//		recorderButtonStackView.addArrangedSubview(recordButton)
-//		recorderButtonStackView.addArrangedSubview(stopButton)
+
 
 		NSLayoutConstraint.activate([
 			recorderButtonStackView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 32),

@@ -70,11 +70,42 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 	}
 	
     @objc func startPlaying(_ sender: UIButton) {
+        print(#function)
+        /*
+        // 첫 재생을 위한 초기화 또는 이미 재생 중인 오디오의 일시 정지/재생
+        if audioPlayer == nil {
+            playRecordingFile()
+        } else if audioPlayer!.isPlaying {
+            audioPlayer?.pause()
+            playButton.configuration?.image = UIImage(systemName: "play.fill")
+        } else {
+            audioPlayer?.play()
+            playButton.configuration?.image = UIImage(systemName: "pause.fill")
+        }
+        */
+        /*
+        guard let audioPlayer = audioPlayer else { return }
+        
+        if audioPlayer.isPlaying {
+            audioPlayer.pause()
+            isPaused = true
+            playButton.configuration?.image = UIImage(systemName: "play.fill")
+        } else {
+            if isPaused {
+                audioPlayer.play()
+            } else {
+                playRecordingFile()
+            }
+            isPaused = false
+            playButton.configuration?.image = UIImage(systemName: "pause.fill")
+        }
+        */
         playRecordingFile()
     }
-	
+    
     func playRecordingFile() {
         var recordedFileUrl: URL?
+      
         
         if self.audioRecorder != nil {
             recordedFileUrl = self.audioRecorder.url
@@ -95,6 +126,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
             self.audioPlayer = nil
             print(error.localizedDescription)
         }
+        
     }
     
     private func startProgressTimer() {
@@ -129,10 +161,10 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
 
 	
 	// MARK: Feature - Play
-	func setPlayButton(_ play: Bool, stop: Bool) {
-		playButton.isEnabled = play
-		stopButton.isEnabled = stop
-	}
+//	func setPlayButton(_ play: Bool, stop: Bool) {
+//		playButton.isEnabled = play
+//		stopButton.isEnabled = stop
+//	}
     // MARK: - RECORD PERMISSION
     func recordingWithPermission(_ setUp: Bool) {
         let recordPermission = AVAudioSession.sharedInstance().recordPermission
