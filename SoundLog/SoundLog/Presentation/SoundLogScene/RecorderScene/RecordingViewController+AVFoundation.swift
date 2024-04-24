@@ -52,6 +52,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
             print("recording.. recorder nil")
             recordButton.setImage(UIImage(systemName: "waveform"), for: .normal)
             playButton.isEnabled = false
+            uploadButton.isEnabled = false
             stopButton.isEnabled = true
             recordingWithPermission(true)
             return
@@ -83,11 +84,12 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         }
         do {
             self.audioPlayer = try AVAudioPlayer(contentsOf: recordedFileUrl!)
-            stopButton.isEnabled = true
+            stopButton.isEnabled = false
             audioPlayer.delegate = self
             audioPlayer.prepareToPlay()
             audioPlayer.volume = 3.0
             audioPlayer.play()
+        
             startProgressTimer()
         } catch {
             self.audioPlayer = nil
@@ -253,6 +255,7 @@ extension RecordingViewController: AVAudioPlayerDelegate, AVAudioRecorderDelegat
         switch recordPermission {
         case .granted:
             stopRecordingSession()
+            uploadButton.isEnabled = true
         case .denied:
             presentRecordingPermissionAlert()
             

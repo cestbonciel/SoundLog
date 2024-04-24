@@ -198,7 +198,7 @@ class HomeViewController: UIViewController {
         view.addSubview(togglePeriodButton)
         headerLabel.snp.makeConstraints {
             $0.top.equalTo(topSideStackView.snp.bottom).offset(24)
-            $0.left.equalToSuperview().inset(30)
+            $0.left.equalToSuperview().inset(16)
         }
         
         togglePeriodButton.snp.makeConstraints {

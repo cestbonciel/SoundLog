@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SoundLogDetailView: UIView, UIScrollViewDelegate {
+final class SoundLogDetailView: UIView {
     var soundLog: StorageSoundLog?
     
     //var customPlayerView: CustomPlayerView?
@@ -24,12 +24,12 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     }
     
     //MARK: - Entire View Scroll
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = true
-        scrollView.delegate = self
-        return scrollView
-    }()
+//    private lazy var scrollView: UIScrollView = {
+//        let scrollView = UIScrollView()
+//        scrollView.showsVerticalScrollIndicator = true
+//        scrollView.delegate = self
+//        return scrollView
+//    }()
     
     private lazy var contentView: UIView = {
         let view = UIView()
@@ -332,7 +332,8 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
     // MARK: - setupUI
     private func setupUI() {
         
-        addSubview(scrollView)
+        //addSubview(scrollView)
+        /*
         scrollView.snp.makeConstraints {
 //            $0.edges.equalToSuperview()
             $0.top.equalToSuperview().inset(10)
@@ -340,11 +341,13 @@ final class SoundLogDetailView: UIView, UIScrollViewDelegate {
             $0.bottom.equalToSuperview()
             $0.width.equalToSuperview()
         }
-        scrollView.addSubview(contentView)
+        */
+        addSubview(contentView)
         contentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalTo(800)
+            $0.top.equalToSuperview().inset(10)
+            //$0.width.equalToSuperview()
+            //$0.height.equalTo(800)
+            $0.bottom.equalToSuperview()
         }
         contentView.addSubview(buttonStack)
         buttonStack.snp.makeConstraints {

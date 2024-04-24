@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,6 +16,9 @@
         </array>
         <array key="GmarketSansMedium.otf">
             <string>GmarketSansMedium</string>
+        </array>
+        <array key="GmarketSansTTFMedium.ttf">
+            <string>GmarketSansTTFMedium</string>
         </array>
     </customFonts>
     <scenes>
@@ -48,37 +52,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-Q7-g3x" userLabel="AppTitle Stack">
-                                <rect key="frame" x="226.66666666666663" y="63" width="147.33333333333337" height="57.333333333333343"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="EN8-Q7-g3x" userLabel="AppTitle Stack">
+                                <rect key="frame" x="251.66666666666666" y="63" width="122.33333333333334" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소리의 기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADt-nx-acz">
-                                        <rect key="frame" x="0.0" y="0.0" width="147.33333333333334" height="37.333333333333336"/>
-                                        <fontDescription key="fontDescription" name="GmarketSansBold" family="Gmarket Sans" pointSize="32"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="소리의 기록" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADt-nx-acz">
+                                        <rect key="frame" x="0.0" y="0.0" width="122.33333333333333" height="24"/>
+                                        <fontDescription key="fontDescription" name="GmarketSansBold" family="Gmarket Sans" pointSize="24"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sound Log" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1M7-Lr-gDE">
-                                        <rect key="frame" x="0.0" y="37.333333333333329" width="147.33333333333334" height="20"/>
+                                        <rect key="frame" x="40.333333333333343" y="24" width="82" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="wjF-cQ-6e5"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="GmarketSansMedium" family="Gmarket Sans" pointSize="16"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="GmarketSansTTFMedium" family="Gmarket Sans TTF" pointSize="14"/>
+                                        <color key="textColor" name="soundLogRealBlue"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="160" translatesAutoresizingMaskIntoConstraints="NO" id="hzg-NJ-1Ah">
-                                <rect key="frame" x="16" y="168.33333333333334" width="358" height="32"/>
+                                <rect key="frame" x="16" y="139" width="358" height="32"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bga-7e-95c">
                                         <rect key="frame" x="0.0" y="0.0" width="109" height="32"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="monthlylbl_bg" translatesAutoresizingMaskIntoConstraints="NO" id="OIt-wt-5jL">
-                                                <rect key="frame" x="0.0" y="12.333333333333314" width="109" height="13"/>
+                                                <rect key="frame" x="0.0" y="11" width="109" height="13"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="월별 음악기록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sU1-M8-wIR">
-                                                <rect key="frame" x="0.0" y="6.6666666666666572" width="109" height="18.666666666666668"/>
+                                                <rect key="frame" x="0.0" y="8" width="109" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="250" constant="120" id="QCt-LA-9XB"/>
                                                 </constraints>
@@ -117,7 +121,7 @@
                             <constraint firstItem="EN8-Q7-g3x" firstAttribute="top" secondItem="Vfp-Ei-fsV" secondAttribute="top" constant="16" id="EVJ-6A-0fW"/>
                             <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="EN8-Q7-g3x" secondAttribute="trailing" constant="16" id="VJZ-1h-ZGe"/>
                             <constraint firstItem="Vfp-Ei-fsV" firstAttribute="trailing" secondItem="hzg-NJ-1Ah" secondAttribute="trailing" constant="16" id="bze-fO-wQb"/>
-                            <constraint firstItem="hzg-NJ-1Ah" firstAttribute="top" secondItem="EN8-Q7-g3x" secondAttribute="bottom" constant="48" id="lcz-8y-c4f"/>
+                            <constraint firstItem="hzg-NJ-1Ah" firstAttribute="top" secondItem="EN8-Q7-g3x" secondAttribute="bottom" constant="32" id="lcz-8y-c4f"/>
                             <constraint firstItem="hzg-NJ-1Ah" firstAttribute="leading" secondItem="Vfp-Ei-fsV" secondAttribute="leading" constant="16" id="nKh-Ht-HrS"/>
                         </constraints>
                     </view>
@@ -215,6 +219,9 @@
         <image name="more_highlight" width="24" height="24"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="shazam" width="60" height="60"/>
+        <namedColor name="soundLogRealBlue">
+            <color red="0.20784313725490197" green="0.41176470588235292" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

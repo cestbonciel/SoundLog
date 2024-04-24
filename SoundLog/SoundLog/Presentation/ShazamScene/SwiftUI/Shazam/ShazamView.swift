@@ -55,10 +55,11 @@ struct ShazamView: View {
 						 VStack {
 							 SongDetail(song: foundSong)
 								 .animation(.easeInOut, value: isAnimating)
-							 Spacer()
+							 Spacer(minLength: 32)
 							 recordButton
 						 }
-						 .padding(.vertical, 64)
+                         .padding(.vertical, 48)
+						 //.padding(.vertical, 64)
 					 }
 					 
 					 
@@ -71,13 +72,15 @@ struct ShazamView: View {
 								 infoAlert
 							 })
 					 }
-					 .padding(EdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 32))
+                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 32))
+					 //.padding(EdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 32))
 					 
 					 Spacer()
 				 }
 				 
 			 }// : ZSTACK
-			 .padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
+             .padding(EdgeInsets(top: 16, leading: 0, bottom: 24, trailing: 0))
+			 //.padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
              
 		 }
 		 .onAppear(perform: { bindViewModel() })
@@ -118,7 +121,7 @@ struct ShazamView: View {
 					.scaledToFit()
 					.foregroundColor(Color.black.opacity(0.7))
 		 })
-         .padding(.top, 32)
+         .padding(.top, 24)
 
 	}
 

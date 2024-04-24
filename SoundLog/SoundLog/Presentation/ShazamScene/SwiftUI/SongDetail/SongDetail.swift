@@ -17,7 +17,7 @@ struct SongDetail: View {
 						 phase in
 						 if let image = phase.image {
 							 image.resizable()
-								 .aspectRatio(contentMode: .fill)
+                                 .aspectRatio(contentMode: .fill)
                                  .frame(maxHeight: 160)
 								 //.frame(maxHeight: 200)
 								 .clipped()
