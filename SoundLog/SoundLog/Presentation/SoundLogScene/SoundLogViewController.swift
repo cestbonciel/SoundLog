@@ -33,7 +33,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         self.navigationController?.navigationBar.isHidden = true
        //scrollView.delegate = self
         soundLogView.soundLogTitle.delegate = self
-        
+        self.hideKeyboardWhenTappedAround()
         
         bind()
     }
@@ -318,4 +318,14 @@ extension SoundLogViewController: MapViewControllerDelegate {
     }
 }
 
-
+extension SoundLogViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(SoundLogViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
