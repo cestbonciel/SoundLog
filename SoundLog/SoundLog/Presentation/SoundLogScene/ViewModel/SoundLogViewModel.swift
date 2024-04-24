@@ -14,18 +14,42 @@ class SoundLogViewModel {
     var soundTitle: Observable<String> = Observable("")
     var soundMood: Observable<String> = Observable(MoodEmoji[0])
     var recordedFileUrl: Observable<RecordedFile?> = Observable(nil)
-  
     var soundLocation: Observable<String> = Observable("")
     var soundCategory: Observable<String> = Observable("")
     
+    var hasChangedDatas: Observable<Bool> = Observable(false)
+    
+    private var originalData: StorageSoundLog?
+    
     convenience init(log: StorageSoundLog) {
         self.init()
+        self.originalData = log
+        loadOriginalData(log)
+        /*
         self.soundLogs = [log]
         self.createdAt.value = log.createdAt
         self.soundTitle.value = log.soundTitle
         self.soundMood.value = log.soundMood
         self.recordedFileUrl.value = log.soundRecordFile
         self.soundCategory.value = log.soundCategory
+        */
+    }
+    
+    private func loadOriginalData(_ log: StorageSoundLog) {
+        createdAt.value = log.createdAt
+        soundTitle.value = log.soundTitle
+        soundMood.value = log.soundMood
+        recordedFileUrl.value = log.soundRecordFile
+        soundLocation.value = log.soundLocation
+        soundCategory.value = log.soundCategory
+    }
+    
+    func checkForChanges() {
+        hasChangedDatas.value = !(createdAt.value == originalData?.createdAt &&
+                                 soundTitle.value == originalData?.soundTitle &&
+                                 soundMood.value == originalData?.soundMood &&
+                                 soundLocation.value == originalData?.soundLocation &&
+                                 soundCategory.value == originalData?.soundCategory)
     }
     
     // MARK: - 1.제목 글자수 제한
@@ -73,6 +97,12 @@ class SoundLogViewModel {
             return false
         }
         return true
+    }
+    
+    // MARK: - 6. 전체 유효성 검사
+    var isFormValid: Bool {
+        // 모든 조건이 참일 때만 true를 반환합니다.
+        return titleLimitExceeded && soundIsValid && locationIsValid && moodIsSelected && categoryIsValid
     }
 
     func updateMood(with selectedIndex: Int) {

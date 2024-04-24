@@ -51,10 +51,12 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
         // 1. 날짜
         editViewModel.createdAt.bind { [weak self] date in
             self?.soundLogDetailView.soundLogDate.date = date
+            self?.updateEditState()
         }
         // 2. 제목
         editViewModel.soundTitle.bind { [weak self] title in
             self?.soundLogDetailView.soundLogTitle.text = title
+            self?.updateEditState()
         }
         // 3. 감정
         editViewModel.soundMood.bind { [weak self] mood in
@@ -66,6 +68,7 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
                     button.backgroundColor = .neonPurple
                 }
             }
+            self?.updateEditState()
         }
         
         // 4. 녹음
@@ -74,32 +77,34 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
                let url = URL(string: urlString) {
                 self?.customPlayerView?.queueSound(url: url)
             }
+            //self?.updateEditState()
         }
         // 5. 위치
         editViewModel.soundLocation.bind { [weak self] location in
             DispatchQueue.main.async {
                 self?.soundLogDetailView.addressLabel.text = location
             }
+            
         }
         // 6. 카테고리
         editViewModel.soundCategory.bind { [weak self] category in
             DispatchQueue.main.async {
                 self?.updateCategorySelection(category: category)
             }
-            /*
-            guard let strongSelf = self else { return }
-            let categoryType: CategoryIconType
-            switch category {
-            case "Recording":
-                categoryType = .recording
-            case "ASMR":
-                categoryType = .asmr
-            default:
-                categoryType = .recording
-            }
-            strongSelf.editCategoryIcon.updateType(type: categoryType)
-            */
+           
+            self?.updateEditState()
         }
+        
+        // ViewModel의 데이터가 변경될 때 마다 호출
+        editViewModel.hasChangedDatas.bind { [weak self] changed in
+            DispatchQueue.main.async {
+                self?.soundLogDetailView.updateEditButton(isEnabled: changed)
+            }
+        }
+        
+        // 각 바인딩의 끝에 checkForChanges()를 호출하여 변경사항을 확인합니다.
+        editViewModel.soundTitle.bind { [weak self] _ in self?.editViewModel.checkForChanges() }
+        
     }
     
     private func updateCategorySelection(category: String) {
@@ -260,13 +265,15 @@ class SoundLogDetailViewController: UIViewController, CLLocationManagerDelegate 
 
     // MARK: - 제목, 내용 글자 수 제한 --
     func updateEditState() {
+        /*
         let titleLength = editViewModel.titleLimitExceeded
         let mood = editViewModel.moodIsSelected
         //let sound = editViewModel.soundIsValid
         //let location = editViewModel.locationIsValid
         let category = editViewModel.categoryIsValid
         let formIsValid = titleLength && mood && category
-        soundLogDetailView.updateEditButton(isEnabled: formIsValid)
+        */
+        soundLogDetailView.updateEditButton(isEnabled:editViewModel.isFormValid)
     }
 }
 

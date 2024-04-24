@@ -128,9 +128,8 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
     @objc func saveSoundLogs() {
         viewModel.create()
         dismiss(animated: true)
-        
     }
-  
+    
     // MARK: - Presenting view for REC
     @objc func touchUpbottomSheet(_ sender: UIButton) {
         let viewController = RecordingViewController()
@@ -148,6 +147,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         }
 
         present(viewController, animated: true)
+        updateSaveButtonState()
     }
        
     private var selectedButton: UIButton?
@@ -238,10 +238,12 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         //1. 날짜
         viewModel.createdAt.bind { date in
             self.soundLogView.soundLogDate.date = date
+            self.updateSaveButtonState()
         }
         //2. 제목
         viewModel.soundTitle.bind { text in
             self.soundLogView.soundLogTitle.text = text
+            self.updateSaveButtonState()
         }
         //3. 감정
         viewModel.soundMood.bind { mood in
@@ -254,6 +256,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
                     button.backgroundColor = .clear
                 }
             }
+            self.updateSaveButtonState()
         }
         
         //4.녹음
@@ -267,6 +270,7 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
         //5.위치
         viewModel.soundLocation.bind { location in
             self.soundLogView.addressLabel.text = location
+            self.updateSaveButtonState()
         }
         //6.카테고리선택
         viewModel.soundCategory.bind { [weak self] category in
@@ -281,30 +285,17 @@ class SoundLogViewController: UIViewController, CLLocationManagerDelegate{
                 categoryType = .recording
             }
             strongSelf.categoryIconView.updateType(type: categoryType)
-            
+            self?.updateSaveButtonState()
         }
     }
     
     // MARK: - 제목, 내용 글자 수 제한 --
     func updateSaveButtonState() {
-        let titleLength = viewModel.titleLimitExceeded
-        let mood = viewModel.moodIsSelected
-        let sound = viewModel.soundIsValid
-        let location = viewModel.locationIsValid
-        let category = viewModel.categoryIsValid
-        
-        let formIsValid = titleLength && mood && sound && location && category
-        soundLogView.updateSaveButton(isEnabled: formIsValid)
+        soundLogView.updateSaveButton(isEnabled: viewModel.isFormValid)
     }
 }
 
-//extension SoundLogViewController: UIScrollViewDelegate {
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if scrollView.contentOffset.x > 0 {
-//            scrollView.contentOffset.x = 0
-//        }
-//    }
-//}
+
 extension SoundLogViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("textFieldShouldReturn called")

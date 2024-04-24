@@ -345,6 +345,8 @@ final class SoundLogDetailView: UIView {
         addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10)
+            $0.left.right.equalToSuperview()
+            //$0.right.equalToSuperview().inset(4)
             //$0.width.equalToSuperview()
             //$0.height.equalTo(800)
             $0.bottom.equalToSuperview()
@@ -491,6 +493,8 @@ final class SoundLogDetailView: UIView {
        
         
         contentView.addSubview(backgroundView5)
+//        contentView.layer.borderColor = UIColor.blue.cgColor
+//        contentView.layer.borderWidth = 1
         backgroundView5.addSubview(categoryLabel)
         backgroundView5.addSubview(categoryBtnStack)
 
