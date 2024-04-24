@@ -31,7 +31,7 @@ enum MoodEmoji: Int, CaseIterable {
 struct MoodEmoji {
     static let emojis: [String] = [
         "", // 기분 선택을 위한 빈 문자열(선택하지 않음을 나타냄)
-        "😚", // happy
+        "😁", // happy
         "🥳", // excited
         "😢", // sad
         "😡"  // angry

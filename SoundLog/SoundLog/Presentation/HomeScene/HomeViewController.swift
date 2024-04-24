@@ -64,8 +64,9 @@ class HomeViewController: UIViewController {
 		headerDate.translatesAutoresizingMaskIntoConstraints = false
 		return headerDate
 	}()
-
-	lazy var togglePeriodButton: UIButton = {
+    
+    lazy var togglePeriodButton: UIButton = {
+        
         var config = UIButton.Configuration.filled()
         
         var titleContainer = AttributeContainer()
@@ -85,6 +86,7 @@ class HomeViewController: UIViewController {
         
 		button.addTarget(self, action: #selector(tapToggleButton), for: .touchUpInside)
 		return button
+        
 	}()
     
     private lazy var scrollView = UIScrollView()
