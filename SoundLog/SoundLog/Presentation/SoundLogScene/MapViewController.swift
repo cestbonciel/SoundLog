@@ -111,7 +111,7 @@ class MapViewController: UIViewController {
 		
 		let alertController = UIAlertController(
 			title: "위치 권한 비활성화",
-			message: "위치 정보를 사용하려면 설정에서 위치 서비스를 활성화해야 합니다. 설정으로 이동하시겠습니까?",
+			message: "사용자만이 알 수 있는 위치 정보 이용입니다. 함께 기록하기 위해 정확한 위치를 켜야합니다. 설정으로 이동하시겠습니까?",
 			preferredStyle: .alert
 		)
 		

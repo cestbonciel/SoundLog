@@ -18,7 +18,7 @@ struct ShazamView: View {
 	@EnvironmentObject private var shazamViewModel: ShazamViewModel
 	
 	@State var isAnimating: Bool = false
-	
+    //@State private var foundSong2 = SongData.example()
 	
 	
 	 var body: some View {
@@ -43,6 +43,18 @@ struct ShazamView: View {
 							 onRecordButtonTapped()
 						 }
 					 }
+                     
+                     VStack {
+                         Text("Shazam 검색")
+                             .font(.custom("GmarketSansTTFBold", size: 16))
+                         Text("주변 소음이 없는 곳에서\n 음악만 녹음해주세요.")
+                             .font(.custom("GmarketSansTTFMedium", size: 14))
+                             .multilineTextAlignment(.center)
+                             .lineSpacing(8)
+                             .padding(16)
+                             .foregroundColor(Color.slRealBlue)
+                     }
+                     .padding(.vertical, 24)
 					 
 					 if shouldShowRecordButton {
 						 recordButton
@@ -50,40 +62,42 @@ struct ShazamView: View {
 								 permissionAlert
 							 })
 					 }
-					 
+                     
 					 if foundSong != nil {
 						 VStack {
 							 SongDetail(song: foundSong)
 								 .animation(.easeInOut, value: isAnimating)
 							 Spacer(minLength: 32)
+                             
 							 recordButton
 						 }
                          .padding(.vertical, 48)
 						 //.padding(.vertical, 64)
 					 }
+                     
 					 
 					 
 				 }
-				 VStack {
-					 HStack {
-						 Spacer()
-						 infoButton
-							 .alert(isPresented: $shouldShowInfoAlert, content: {
-								 infoAlert
-							 })
-					 }
-                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 32))
-					 //.padding(EdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 32))
-					 
-					 Spacer()
-				 }
+//				 VStack {
+//					 HStack {
+//						 Spacer()
+//						 infoButton
+//							 .alert(isPresented: $shouldShowInfoAlert, content: {
+//								 infoAlert
+//							 })
+//					 }
+//                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 32))
+//					 //.padding(EdgeInsets(top: 16, leading: 0, bottom: 0, trailing: 32))
+//
+//					 Spacer()
+//				 }
 				 
 			 }// : ZSTACK
              .padding(EdgeInsets(top: 16, leading: 0, bottom: 24, trailing: 0))
 			 //.padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
              
 		 }
-		 .onAppear(perform: { bindViewModel() })
+         .onAppear(perform: { bindViewModel() })
 		 .onDisappear(perform: { shazamViewModel.stopListening() })
 		 .ignoresSafeArea()
 	 }
@@ -131,48 +145,57 @@ struct ShazamView: View {
 			  onRecordButtonTapped()
              //shazamViewModel.toggleShazam()
 		 }, label: {
-			  Image(systemName: "headphones.circle.fill")
+			  Image(systemName: "music.note")
 					.font(.system(size: 48, weight: .bold))
-					.foregroundColor(.white)
+					//.foregroundColor(.white)
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.slRealBlue, .slneonPurple],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
 					.frame(width: 100, height: 100, alignment: .center)
 					.background(
-                        Circle().fill(Color.slneonPurple)
+                        Circle().fill(Color.black)
 							  .shadow(radius: 1)
 					)
 		 })
          .padding(.bottom, 48)
 	}
 
-
-	private func bindViewModel() {
-		 shazamViewModel.$viewState.sink { viewState in
-			  switch viewState {
-			  case .initial:
-					shouldShowAnimationView = false
-					shouldShowRecordButton = true
-					shouldShowNoResultView = false
-			  case .recordingInProgress:
-					shouldShowRecordButton = false
-				  shouldShowAnimationView = true
-					shouldShowNoResultView = false
-					foundSong = nil
-			  case .infoAlert:
-					shouldShowInfoAlert = true
-			  case .recordPermissionSettingsAlert:
-					shouldShowRecordPermissionAlert = true
-			  case .noResult:
-				  shouldShowAnimationView = false
-					shouldShowNoResultView = true
-					foundSong = nil
-			  case .result(let song):
-					withAnimation {
-						 foundSong = song
-					}
-				  shouldShowAnimationView = false
-			  }
-		 }.store(in: &cancellables)
-	}
-
+    
+    private func bindViewModel() {
+        shazamViewModel.$viewState.sink { viewState in
+            switch viewState {
+            case .initial:
+                shouldShowAnimationView = false
+                shouldShowRecordButton = true
+                shouldShowNoResultView = false
+            case .recordingInProgress:
+                shouldShowRecordButton = false
+                shouldShowAnimationView = true
+                shouldShowNoResultView = false
+                foundSong = nil
+                
+            case .infoAlert:
+                shouldShowInfoAlert = true
+            case .recordPermissionSettingsAlert:
+                shouldShowRecordPermissionAlert = true
+            case .noResult:
+                shouldShowAnimationView = false
+                shouldShowNoResultView = true
+                foundSong = nil
+                
+            case .result(let song):
+                withAnimation {
+                    foundSong = song
+                }
+                shouldShowAnimationView = false
+            }
+        }.store(in: &cancellables)
+    }
+    
 	
 	
 	private func onRecordButtonTapped() {
@@ -198,4 +221,5 @@ struct ShazamView_Previews: PreviewProvider {
 
 extension Color {
     static let slneonPurple = Color("soundLogPurple")
+    static let slRealBlue = Color("soundLogRealBlue")
 }

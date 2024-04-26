@@ -823,8 +823,8 @@
 				INFOPLIST_FILE = SoundLog/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "소리의 기록";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치를 등록하려면 사용자의 위치 권한을 허용해야합니다.";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "녹음을 기록하려면 마이크 사용 허용해야합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자만 알 수 있는 녹음된 위치의 기록하기 위해 정확한 위치 권한을 허용해주세요.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "나만 알고 싶은 소리를 기록하고 추억하려면 마이크 사용 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = CustomLaunch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -861,8 +861,8 @@
 				INFOPLIST_FILE = SoundLog/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "소리의 기록";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치를 등록하려면 사용자의 위치 권한을 허용해야합니다.";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "녹음을 기록하려면 마이크 사용 허용해야합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자만 알 수 있는 녹음된 위치의 기록하기 위해 정확한 위치 권한을 허용해주세요.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "나만 알고 싶은 소리를 기록하고 추억하려면 마이크 사용 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = CustomLaunch;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
