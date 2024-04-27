@@ -195,7 +195,7 @@ class RecordingViewController: UIViewController {
     
     @objc func saveRecordedFile() { 
         guard let recordedAudioURL = audioFileURL else {
-            let alert = UIAlertController(title: "녹음 파일 없음", message: "녹음후 선택버튼을 누르세요.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "녹음 파일 없음", message: "녹음후 정지버튼을 누르세요.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "확인", style: .default))
             self.present(alert, animated: true, completion: nil)
             return

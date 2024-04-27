@@ -21,16 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		barButtonItemAppearance.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal) // UIBarButtonItem의 일반 상태 텍스트 색상을 흰색으로 설정
         // MARK: - Realm
         
-        let config = Realm.Configuration(
-            schemaVersion: 2) { migration, oldSchemaVersion in
-                if oldSchemaVersion < 2 {
-                    migration.enumerateObjects(ofType: StorageSoundLog.className()) { oldObject, newObject in
-                        newObject?["soundRecordFile"] = nil;
-                        newObject?["soundNote"] = ""
-                    }
-                }
-            }
-        Realm.Configuration.defaultConfiguration = config
+//        let config = Realm.Configuration(
+//            schemaVersion: 2) { migration, oldSchemaVersion in
+//                if oldSchemaVersion < 2 {
+//                    migration.enumerateObjects(ofType: StorageSoundLog.className()) { oldObject, newObject in
+//                        newObject?["soundRecordFile"] = nil;
+//                        newObject?["soundNote"] = ""
+//                    }
+//                }
+//            }
+//        Realm.Configuration.defaultConfiguration = config
 		
         
         return true
