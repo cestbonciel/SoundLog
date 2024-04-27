@@ -21,9 +21,9 @@ class ShazamViewModel: NSObject, ObservableObject {
 		session.delegate = self
 	}
 	
-	func showInfo() {
-		self.viewState = .infoAlert
-	}
+//	func showInfo() {
+//		self.viewState = .infoAlert
+//	}
 	
 	func startListening() {
 		let audioSession = AVAudioSession.sharedInstance()
@@ -43,7 +43,15 @@ class ShazamViewModel: NSObject, ObservableObject {
 	}
 	
 	func stopListening() {
-		stopRecording()
+		//stopRecording()
+        audioEngine.inputNode.removeTap(onBus: 0)
+        audioEngine.stop()
+        audioEngine.reset()
+        try? AVAudioSession.sharedInstance().setActive(false) // Deactivate the audio session
+        
+        DispatchQueue.main.async {
+            self.viewState = .initial // Reset the view state to the initial state
+        }
 	}
 
 	private func requestRecordPermission(audioSession: AVAudioSession) {
@@ -66,7 +74,8 @@ class ShazamViewModel: NSObject, ObservableObject {
         }
         
         if audioEngine.isRunning {
-            stopRecording()
+            //stopRecording()
+            stopListening()
             return
         }
         
@@ -105,7 +114,8 @@ class ShazamViewModel: NSObject, ObservableObject {
 extension ShazamViewModel: SHSessionDelegate {
 	func session(_ session: SHSession, didFind match: SHMatch) {
 		guard let firstMatch = match.mediaItems.first else { return }
-		stopRecording()
+		//stopRecording()
+        stopListening()
 		let song = SongData(
 			title: firstMatch.title ?? "",
 			artist: firstMatch.artist ?? "",
@@ -119,7 +129,8 @@ extension ShazamViewModel: SHSessionDelegate {
 	
 	func session(_ session: SHSession, didNotFindMatchFor signature: SHSignature, error: Error?) {
 		print(error?.localizedDescription ?? "")
-		stopRecording()
+		//stopRecording()
+        stopListening()
 		DispatchQueue.main.async {
 			self.viewState = .noResult
 		}
@@ -130,7 +141,7 @@ extension ShazamViewModel {
 	enum ViewState {
 		case initial
 		case recordingInProgress
-		case infoAlert
+        //case infoAlert
 		case recordPermissionSettingsAlert
 		case noResult
 		case result(song: SongData)
