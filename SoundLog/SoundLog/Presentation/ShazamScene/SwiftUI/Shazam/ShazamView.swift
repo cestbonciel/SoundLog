@@ -88,7 +88,7 @@ struct ShazamView: View {
                              Spacer() // Pushes all content to the top
 
                              recordButton
-                                 .padding(.bottom, 48) // Padding from the bottom of the VStack
+                                 .padding(.bottom, 56) // Padding from the bottom of the VStack
                          }
                          //.padding(.vertical, 56)
                      }
@@ -101,7 +101,10 @@ struct ShazamView: View {
 			 //.padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
              
 		 }
-         .onAppear(perform: { bindViewModel() })
+         .onAppear(perform: {
+             bindViewModel()
+             //resetToInitialState()
+         })
 		 .onDisappear(perform: { shazamViewModel.stopListening() })
 		 .ignoresSafeArea()
 	 }
@@ -216,6 +219,49 @@ struct ShazamView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
     }
     
+    private func bindViewModel() {
+        shazamViewModel.$viewState
+            .receive(on: RunLoop.main)
+            .sink { viewState in
+                switch viewState {
+                case .initial:
+                    self.shouldShowInfoText = true
+                    self.shouldShowAnimationView = false
+                    self.shouldShowRecordButton = true
+                    self.shouldShowNoResultView = false
+                    self.foundSong = nil // 확실히 상태 초기화를 보장하기 위해 nil로 설정
+                    // ViewModel의 viewState가 initial 상태로 바뀔 때마다 리셋
+                    self.resetToInitialState()
+                case .recordingInProgress:
+                    shouldShowInfoText = false
+                    shouldShowRecordButton = false
+                    shouldShowAnimationView = true
+                    shouldShowNoResultView = false
+                    foundSong = nil
+
+                case .recordPermissionSettingsAlert:
+                    shouldShowRecordPermissionAlert = true
+                case .noResult:
+                    shouldShowInfoText = false
+                    shouldShowAnimationView = false
+                    shouldShowRecordButton = false
+                    shouldShowNoResultView = true
+                    foundSong = nil
+                    
+                case .result(let song):
+                    withAnimation {
+                        foundSong = song
+                    }
+                    shouldShowRecordButton = false
+                    shouldShowInfoText = false
+                    shouldShowAnimationView = false
+               
+                }
+            }
+            .store(in: &cancellables)
+    }
+
+    
     private func cancelShazamSearch() {
         shazamViewModel.stopListening()
         resetToInitialState()
@@ -229,9 +275,12 @@ struct ShazamView: View {
         
         foundSong = nil
     }
-    
+    /*
     private func bindViewModel() {
-        shazamViewModel.$viewState.sink { viewState in
+        
+        /*
+        shazamViewModel.$viewState
+            .sink { viewState in
             switch viewState {
             case .initial:
                 shouldShowInfoText = true
@@ -263,8 +312,9 @@ struct ShazamView: View {
                 shouldShowAnimationView = false
             }
         }.store(in: &cancellables)
+        */
     }
-    
+    */
 	
 	
 	private func onRecordButtonTapped() {
