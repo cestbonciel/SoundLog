@@ -30,4 +30,5 @@
 
 ### App Store
 앱스토어에서 **소리의 기록**을 검색해주세요. 
-![qrcode_109123603_d0064a57a61857f4f0638deaa735cff3](https://github.com/cestbonciel/SoundLog/assets/46340978/283d5caa-29c4-4b52-aa52-2b154db1f4f9)
+
+<img src="https://github.com/cestbonciel/SoundLog/assets/46340978/283d5caa-29c4-4b52-aa52-2b154db1f4f9"  width="240" height="240"/>
