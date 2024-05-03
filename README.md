@@ -6,7 +6,8 @@
 길가다가 들었던 좋은 노래, Shazam 으로 찾아보세요. <br>
 그 노래를 소리의 기록에서 녹음하고, 기분과 위치도 함께 기록해보세요. 
 
-![sound log_cover2](https://github.com/cestbonciel/SoundLog/assets/46340978/32aa7cec-0a57-4455-8ecf-3118a37a3cc5)
+
+![sound log0502](https://github.com/cestbonciel/SoundLog/assets/46340978/b730fe34-980f-4bf5-b7a4-da4027e57bfd)
 
 ## 그 날의 소리들을 기록하고 담으세요.
 ![github00](https://github.com/cestbonciel/SoundLog/assets/46340978/aec0b49e-eaca-4920-a1ad-336c3b127081)
